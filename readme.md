@@ -3,7 +3,29 @@
 
 JAVA 17
 
-## Clean Architecture
+## Build du projet
+
+### Variable d'environment attentdu pour le build du project
+
+#### Base de données
+> DATABASE_URL
+ 
+> DATABASE_USER
+
+> DATABASE_PASSWORD
+
+#### JWT
+> JWT_SECRET
+
+#### Captcha
+>CAPTCHA_SECRET
+
+#### Mail 
+>MAILER_ACCOUNT
+
+>MAILER_PASSWORD
+
+### Clean Architecture
 
  ### CORE Module
 

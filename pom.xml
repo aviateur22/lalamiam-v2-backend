@@ -8,6 +8,13 @@
     <artifactId>lalamiam_v2</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.18</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
     <modules>
         <module>core</module>
         <module>infra</module>
@@ -18,5 +25,47 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <!-- Database -->
+                <database.schema>sc_project</database.schema>
+                <database.url>jdbc:postgresql://localhost:5432/java_angular_project_test</database.url>
+
+                <!--Horaire -->
+                <zone.id>Europe/Paris</zone.id>
+
+                <!--Log -->
+                <log.level>DEBUG</log.level>
+
+                <!--mail -->
+                <mailer.from>admin@ctoutweb.fr</mailer.from>
+                <mailer.port>587</mailer.port>
+                <mailer.smtp>smtp.gmail.com</mailer.smtp>
+                <mailer.secure>true</mailer.secure>
+                <mailer.smtp.auth>true</mailer.smtp.auth>
+
+                <war.name>lalamiam-app</war.name>
+
+                <!--JWT -->
+                <jwt.validity.hour>72</jwt.validity.hour>
+                <jwt.issuer>ctoutweb</jwt.issuer>
+
+                <!--Cookie-->
+                <cookie.domain>customDomain</cookie.domain>
+                <cookie.path>/</cookie.path>
+                <cookie.secure>false</cookie.secure>
+                <cookie.samesite>Lax</cookie.samesite>
+                <cookie.is.httponly>true</cookie.is.httponly>
+
+                <war.name>lalamiam-app</war.name>
+
+
+            </properties>
+        </profile>
+    </profiles>
 
 </project>
