@@ -20,6 +20,8 @@ jobs:
         with:
           java-version: 17
           distribution: 'zulu' # Alternative distribution options are available.
+      - name: Run unit tests
+        run: mvn test
       - name: Cache SonarQube packages
         uses: actions/cache@v4
         with:
