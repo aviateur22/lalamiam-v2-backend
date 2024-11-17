@@ -1,28 +1,29 @@
 package common;
 
-import adapter.adminDisplayProfessionalDocument.IBoundariesAdapter.IBoundaryInputAdapter;
-import adapter.clientInscription.boundary.IBoundariesAdapter;
-import entity.adminDisplayProfessionalDocument.IAdminDisplayProfessionalDocument.IProfessionalDocument;
-import entity.captcha.ICaptcha;
-import entity.common.IProfessional;
-import entity.common.ITokenToValidate;
-import entity.common.impl.ProfessionalImpl;
-import entity.adminDisplayProfessionalDocument.impl.entity.ProfessionalInscriptionDocumentImpl;
-import entity.common.impl.TokenToValidateImpl;
-import entity.captcha.strategy.impl.context.CaptchaContextImpl;
-import entity.cryptographic.CryptographicType;
-import entity.cryptographic.ICryptography;
-import entity.professionalInscription.IProfessionalInscription;
-import entity.professionalInscriptionConfirmation.IProfessionalInscriptionConfirmation;
-import entity.professionalInscriptionConfirmation.impl.boundary.BoundaryOutputImpl;
-import entity.captcha.strategy.ICaptchaStrategy;
-import entity.captcha.strategy.impl.strategy.CaptchaCalculStrategyImpl;
-import entity.captcha.strategy.impl.strategy.CaptchaImageStrategyImpl;
-import entity.captcha.strategy.impl.strategy.CaptchaTextStrategyImpl;
-import provider.ICaptchaConfiguration;
-import provider.ICaptchaRepository;
-import provider.ICryptographicService;
-import provider.IMessageService;
+import com.ctoutweb.lalamiam.core.adapter.adminDisplayProfessionalDocument.IBoundariesAdapter.IBoundaryInputAdapter;
+import com.ctoutweb.lalamiam.core.adapter.validateUserCaptchaResponse.IBoundariesAdapter;
+import com.ctoutweb.lalamiam.core.adapter.createImage.boundary.InputBoundaryAdapter;
+import com.ctoutweb.lalamiam.core.entity.adminDisplayProfessionalDocument.IAdminDisplayProfessionalDocument.IProfessionalDocument;
+import com.ctoutweb.lalamiam.core.entity.createCaptchaImage.OutputBoundary;
+import com.ctoutweb.lalamiam.core.entity.captcha.ICaptcha;
+import com.ctoutweb.lalamiam.core.entity.common.IProfessional;
+import com.ctoutweb.lalamiam.core.entity.common.impl.ProfessionalImpl;
+import com.ctoutweb.lalamiam.core.entity.adminDisplayProfessionalDocument.impl.entity.ProfessionalInscriptionDocumentImpl;
+import com.ctoutweb.lalamiam.core.entity.common.impl.TokenToValidateImpl;
+import com.ctoutweb.lalamiam.core.entity.captcha.strategy.impl.context.CaptchaContextImpl;
+import com.ctoutweb.lalamiam.core.entity.cryptographic.CryptographicType;
+import com.ctoutweb.lalamiam.core.entity.cryptographic.ICryptography;
+import com.ctoutweb.lalamiam.core.entity.professionalInscription.IProfessionalInscription;
+import com.ctoutweb.lalamiam.core.entity.professionalInscriptionConfirmation.IProfessionalInscriptionConfirmation;
+import com.ctoutweb.lalamiam.core.entity.professionalInscriptionConfirmation.impl.boundary.BoundaryOutputImpl;
+import com.ctoutweb.lalamiam.core.entity.captcha.strategy.ICaptchaStrategy;
+import com.ctoutweb.lalamiam.core.entity.captcha.strategy.impl.strategy.CaptchaCalculStrategyImpl;
+import com.ctoutweb.lalamiam.core.entity.captcha.strategy.impl.strategy.CaptchaImageStrategyImpl;
+import com.ctoutweb.lalamiam.core.entity.captcha.strategy.impl.strategy.CaptchaTextStrategyImpl;
+import com.ctoutweb.lalamiam.core.provider.ICaptchaConfiguration;
+import com.ctoutweb.lalamiam.core.provider.ICaptchaRepository;
+import com.ctoutweb.lalamiam.core.provider.ICryptographicService;
+import com.ctoutweb.lalamiam.core.provider.IMessageService;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -78,8 +79,8 @@ public class DataForTest {
       }
     };
   }
-  public static adapter.professionalInscription.IBoundariesAdapter.IBoundaryInputAdapter fakeProfessionalInscriptionInformationAdapter() {
-    adapter.professionalInscription.IBoundariesAdapter.IBoundaryInputAdapter professionalInscriptionInformationAdapter = new adapter.professionalInscription.IBoundariesAdapter.IBoundaryInputAdapter() {
+  public static com.ctoutweb.lalamiam.core.adapter.professionalInscription.IBoundariesAdapter.IBoundaryInputAdapter fakeProfessionalInscriptionInformationAdapter() {
+    com.ctoutweb.lalamiam.core.adapter.professionalInscription.IBoundariesAdapter.IBoundaryInputAdapter professionalInscriptionInformationAdapter = new com.ctoutweb.lalamiam.core.adapter.professionalInscription.IBoundariesAdapter.IBoundaryInputAdapter() {
       @Override
       public String getCaptchaResponseByUser() {
         return "captchaResponseByUser";
@@ -132,15 +133,15 @@ public class DataForTest {
     return professionalInscriptionInformationAdapter;
   }
 
-  public static entity.professionalInscription.impl.boundary.BoundaryOutputImpl fakeProfessionalInscriptionResult() {
-    return new entity.professionalInscription.impl.boundary.BoundaryOutputImpl(1l, "message réponse");
+  public static com.ctoutweb.lalamiam.core.entity.professionalInscription.impl.boundary.BoundaryOutputImpl fakeProfessionalInscriptionResult() {
+    return new com.ctoutweb.lalamiam.core.entity.professionalInscription.impl.boundary.BoundaryOutputImpl(1l, "message réponse");
   }
   public static BoundaryOutputImpl professionalInscriptionConfirmmationResult(boolean isConfirmationValid) {
     return new BoundaryOutputImpl(isConfirmationValid, "fakeMessage");
   }
-  public static IBoundariesAdapter.IBoundaryInputAdapter fakeClientInscriptionAdapter() {
+  public static com.ctoutweb.lalamiam.core.adapter.clientInscription.boundary.IBoundariesAdapter.IBoundaryInputAdapter fakeClientInscriptionAdapter() {
 
-    return new IBoundariesAdapter.IBoundaryInputAdapter() {
+    return new com.ctoutweb.lalamiam.core.adapter.clientInscription.boundary.IBoundariesAdapter.IBoundaryInputAdapter() {
       @Override
       public String getCaptchaResponseByUser() {
         return null;
@@ -172,11 +173,11 @@ public class DataForTest {
       }
     };
   }
-  public static entity.clientInscription.impl.boundaries.BoundaryOutputImpl userInscriptionResponse() {
-    return new entity.clientInscription.impl.boundaries.BoundaryOutputImpl("reponse message", 1l);
+  public static com.ctoutweb.lalamiam.core.entity.clientInscription.impl.boundaries.BoundaryOutputImpl userInscriptionResponse() {
+    return new com.ctoutweb.lalamiam.core.entity.clientInscription.impl.boundaries.BoundaryOutputImpl("reponse message", 1l);
   }
-  public static IBoundariesAdapter.IBoundaryOutputAdapter userInscriptionResponseAdapter() {
-    return new IBoundariesAdapter.IBoundaryOutputAdapter() {
+  public static com.ctoutweb.lalamiam.core.adapter.clientInscription.boundary.IBoundariesAdapter.IBoundaryOutputAdapter userInscriptionResponseAdapter() {
+    return new com.ctoutweb.lalamiam.core.adapter.clientInscription.boundary.IBoundariesAdapter.IBoundaryOutputAdapter() {
       @Override
       public Long getUserId() {
         return 1L;
@@ -188,9 +189,9 @@ public class DataForTest {
       }
     };
   }
-  public static adapter.validateUserCaptchaResponse.IBoundariesAdapter.IBoundaryInputAdapter fakeUserCaptchaResponseAdapter() {
+  public static IBoundariesAdapter.IBoundaryInputAdapter fakeUserCaptchaResponseAdapter() {
 
-    return new adapter.validateUserCaptchaResponse.IBoundariesAdapter.IBoundaryInputAdapter() {
+    return new IBoundariesAdapter.IBoundaryInputAdapter() {
       @Override
       public String getCaptchaResponseByUser() {
         return "responseClient";
@@ -209,16 +210,16 @@ public class DataForTest {
 
     };
   }
-  public static adapter.validateUserCaptchaResponse.IBoundariesAdapter.IBoundaryOutputAdapter userCaptchaResponseResultAdapterValid() {
-    return new adapter.validateUserCaptchaResponse.IBoundariesAdapter.IBoundaryOutputAdapter() {
+  public static IBoundariesAdapter.IBoundaryOutputAdapter userCaptchaResponseResultAdapterValid() {
+    return new IBoundariesAdapter.IBoundaryOutputAdapter() {
       @Override
       public boolean getIsClientResponseValid() {
         return true;
       }
     };
   }
-  public static adapter.validateUserCaptchaResponse.IBoundariesAdapter.IBoundaryOutputAdapter userCaptchaResponseResultAdapterNotValid() {
-    return new adapter.validateUserCaptchaResponse.IBoundariesAdapter.IBoundaryOutputAdapter() {
+  public static IBoundariesAdapter.IBoundaryOutputAdapter userCaptchaResponseResultAdapterNotValid() {
+    return new IBoundariesAdapter.IBoundaryOutputAdapter() {
       @Override
       public boolean getIsClientResponseValid() {
         return false;
@@ -282,8 +283,8 @@ public class DataForTest {
       }
     };
   }
-  public static adapter.professionalInscriptionConfirmation.IBoundariesAdapter.IBoundaryInputAdapter fakeProfessionalConfirmationInformationAdapter() {
-    return new adapter.professionalInscriptionConfirmation.IBoundariesAdapter.IBoundaryInputAdapter() {
+  public static com.ctoutweb.lalamiam.core.adapter.professionalInscriptionConfirmation.IBoundariesAdapter.IBoundaryInputAdapter fakeProfessionalConfirmationInformationAdapter() {
+    return new com.ctoutweb.lalamiam.core.adapter.professionalInscriptionConfirmation.IBoundariesAdapter.IBoundaryInputAdapter() {
       @Override
       public String getProfessionalEmailToken() {
         return null;
@@ -398,8 +399,8 @@ public class DataForTest {
     return new CaptchaImageStrategyImpl(messageService, cryptographicService, captchaRepository, fakeCaptchaConfiguration());
   }
 
-  public static adapter.createImage.boundary.InputBoundaryAdapter getCreateImageInputBoundaryAdapter() {
-    return new adapter.createImage.boundary.InputBoundaryAdapter() {
+  public static InputBoundaryAdapter getCreateImageInputBoundaryAdapter() {
+    return new InputBoundaryAdapter() {
       @Override
       public String getTextToDraw() {
         return "bonjour";
@@ -407,18 +408,18 @@ public class DataForTest {
     };
   }
 
-  public static entity.createCaptchaImage.OutputBoundary fakeOutputBoundary(BufferedImage image) {
-    return new entity.createCaptchaImage.OutputBoundary(image);
+  public static OutputBoundary fakeOutputBoundary(BufferedImage image) {
+    return new OutputBoundary(image);
   }
 
   public static BufferedImage fakeImage() {
     return new BufferedImage(20, 20, TYPE_INT_RGB);
   }
 
-  public static adapter.executeCaptchaStrategy.IBoundariesAdapter.IBoundaryInputAdapter getExecuteCaptchaStrategyInputBoundaryAdapter(IMessageService messageService, ICryptographicService cryptographicService) {
+  public static com.ctoutweb.lalamiam.core.adapter.executeCaptchaStrategy.IBoundariesAdapter.IBoundaryInputAdapter getExecuteCaptchaStrategyInputBoundaryAdapter(IMessageService messageService, ICryptographicService cryptographicService) {
     CaptchaContextImpl captchaContext = fakeCaptchaContextCalculStrategy( messageService, cryptographicService);
 
-    return new adapter.executeCaptchaStrategy.IBoundariesAdapter.IBoundaryInputAdapter() {
+    return new com.ctoutweb.lalamiam.core.adapter.executeCaptchaStrategy.IBoundariesAdapter.IBoundaryInputAdapter() {
       @Override
       public CaptchaContextImpl getCaptchaContext() {
         return captchaContext;
