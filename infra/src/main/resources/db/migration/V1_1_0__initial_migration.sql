@@ -98,6 +98,7 @@ create table IF NOT EXISTS sc_lalamiam.professional_account(
     "id" BIGINT PRIMARY KEY,
     "user_id" BIGINT NOT NULL REFERENCES sc_lalamiam."users"("id") on delete cascade,
     "account_activation_at" TIMESTAMPTZ,
+    "account_activation_limit_date_at" TIMESTAMPTZ,
     "is_account_active" BOOLEAN NOT NULL DEFAULT TRUE,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
@@ -155,7 +156,7 @@ CREATE INDEX IF NOT EXISTS idx_login ON sc_lalamiam.login(user_id);
 create table IF NOT EXISTS sc_lalamiam.delay_login(
     "id" BIGINT PRIMARY KEY,
     "user_id" BIGINT NOT NULL REFERENCES sc_lalamiam."users"("id") on delete cascade,
-    "login_delay_until" TIMESTAMPTZ NOT NULL DEFAULT NOW() + INTERVAL '5 minutes',
+    "delay_login_until" TIMESTAMPTZ NOT NULL DEFAULT NOW() + INTERVAL '5 minutes',
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );
