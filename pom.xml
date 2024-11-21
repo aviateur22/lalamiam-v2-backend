@@ -30,6 +30,12 @@
         <profile>
             <id>local</id>
             <properties>
+                <!-- API version-->
+                <api.language>fr</api.language>
+
+                <!-- API version-->
+                <api.version>v1</api.version>
+
                 <!-- Database -->
                 <database.schema>sc_project</database.schema>
                 <database.url>jdbc:postgresql://localhost:5432/java_angular_project_test</database.url>

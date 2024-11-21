@@ -13,5 +13,5 @@ import org.springframework.context.annotation.FilterType;
         basePackages =  "com.ctoutweb.lalamiam.core",
         includeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {CoreService.class})}
 )
-public class CoreConfiguration {
+public class CoreDomainConfig {
 }

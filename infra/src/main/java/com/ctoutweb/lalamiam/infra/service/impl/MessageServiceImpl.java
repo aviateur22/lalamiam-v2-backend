@@ -1,10 +1,9 @@
 package com.ctoutweb.lalamiam.infra.service.impl;
-
-import com.ctoutweb.lalamiam.infra.service.IMessageServiceInfra;
+import com.ctoutweb.lalamiam.core.provider.IMessageService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MessageServiceImpl implements IMessageServiceInfra {
+public class MessageServiceImpl implements IMessageService {
   @Override
   public String getMessage(String messageKey) {
     return null;
