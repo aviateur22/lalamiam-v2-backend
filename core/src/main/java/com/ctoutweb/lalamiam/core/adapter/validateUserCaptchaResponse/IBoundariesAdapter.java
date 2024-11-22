@@ -26,6 +26,18 @@ public interface IBoundariesAdapter {
      * @return CryptographicType
      */
     CryptographicType getCryptographicType();
+
+    /**
+     * Captcha token
+     * @return
+     */
+    String getCaptchaToken();
+
+    /**
+     * Separator entre le captchaToken et réponse client
+     * @return
+     */
+    String getCaptchaTokenSeparator();
   }
   /**
    * Sortie du useCase

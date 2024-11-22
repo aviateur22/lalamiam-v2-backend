@@ -25,8 +25,6 @@ import static common.DataForTest.*;
  */
 public class ValidateUserCaptchaResponseUseCaseTest {
   @Mock
-  ICaptchaConfiguration captchaConfiguration;
-  @Mock
   IMessageService messageService;
 
   @Mock
@@ -44,8 +42,7 @@ public class ValidateUserCaptchaResponseUseCaseTest {
     captchaValidateClientResponseUseCase = new ValidateCaptchaResponseUseCase(
             messageService,
             cryptographicService,
-            notificationService,
-            captchaConfiguration
+            notificationService
     );
 
   }
@@ -56,8 +53,6 @@ public class ValidateUserCaptchaResponseUseCaseTest {
      * given
      */
 
-    Mockito.when(captchaConfiguration.getCaptchaToken()).thenReturn("aaabbbb");
-    Mockito.when(captchaConfiguration.getStringSeparator()).thenReturn("%");
     Mockito.when(cryptographicService.isHashValid(Mockito.any())).thenReturn(false);
 
     String exceptionMessage = "mauvaise réponse captcha";
@@ -80,8 +75,6 @@ public class ValidateUserCaptchaResponseUseCaseTest {
      */
 
     Mockito.when(cryptographicService.isHashValid(Mockito.any())).thenReturn(true);
-    Mockito.when(captchaConfiguration.getCaptchaToken()).thenReturn("aa");
-    Mockito.when(captchaConfiguration.getStringSeparator()).thenReturn("%%");
 
     IBoundaryInputAdapter boundaryInputAdapter = DataForTest.fakeUserCaptchaResponseAdapter();
     ValidateCaptchaResponseUseCase.Input input = ValidateCaptchaResponseUseCase.Input.getUseCaseInput(boundaryInputAdapter);
@@ -107,21 +100,21 @@ public class ValidateUserCaptchaResponseUseCaseTest {
 /**
  * given
  */
-    Mockito.when(captchaConfiguration.getCaptchaToken()).thenReturn("aaaaabbbbcccc");
-    Mockito.when(captchaConfiguration.getStringSeparator()).thenReturn("%");
-
     IBoundaryInputAdapter validateUserCaptchaResponseAdapter = fakeUserCaptchaResponseAdapter();
     BoundaryInputImpl validateUserCaptchaResponse = BoundaryInputImpl.getBoundaryInputImpl(
             validateUserCaptchaResponseAdapter.getCaptchaResponseByUser(),
             validateUserCaptchaResponseAdapter.getHashOrDecrypteCaptchaResponse(),
-            validateUserCaptchaResponseAdapter.getCryptographicType());
+            validateUserCaptchaResponseAdapter.getCryptographicType(),
+            validateUserCaptchaResponseAdapter.getCaptchaToken(),
+            validateUserCaptchaResponseAdapter.getCaptchaTokenSeparator()
+    );
 
     /**
      * when
      */
 
-    String actualResponse = captchaValidateClientResponseUseCase.AddCaptchaConfToClientResponse(validateUserCaptchaResponseAdapter.getCaptchaResponseByUser());
-    String expectedResponse = captchaConfiguration.getCaptchaToken() + captchaConfiguration.getStringSeparator() + validateUserCaptchaResponse.getCaptchaResponseByUser() ;
+    String actualResponse = captchaValidateClientResponseUseCase.AddCaptchaConfToClientResponse(validateUserCaptchaResponseAdapter.getCaptchaResponseByUser(), validateUserCaptchaResponseAdapter.getCaptchaToken(), validateUserCaptchaResponseAdapter.getCaptchaTokenSeparator());
+    String expectedResponse = validateUserCaptchaResponseAdapter.getCaptchaToken() + validateUserCaptchaResponseAdapter.getCaptchaTokenSeparator() + validateUserCaptchaResponse.getCaptchaResponseByUser() ;
     /**
      * then
      */
@@ -133,13 +126,10 @@ public class ValidateUserCaptchaResponseUseCaseTest {
     /**
      * given
      */
-
-    Mockito.when(captchaConfiguration.getCaptchaToken()).thenReturn("");
-
     String exceptionMessage = "Données manquantes pour résoudre le captcha";
 
     Mockito.when(messageService.getMessage("captcha.data.error")).thenReturn(exceptionMessage);
-    ValidateCaptchaResponseUseCase.Input input = new ValidateCaptchaResponseUseCase.Input(fakeUserCaptchaResponseAdapter());
+    ValidateCaptchaResponseUseCase.Input input = new ValidateCaptchaResponseUseCase.Input(fakeUserCaptchaResponseAdapterWithoutToken());
 
     /**
      * When
@@ -159,13 +149,10 @@ public class ValidateUserCaptchaResponseUseCaseTest {
     /**
      * given
      */
-
-    Mockito.when(captchaConfiguration.getCaptchaToken()).thenReturn("");
-
     String exceptionMessage = "Données manquantes pour résoudre le captcha";
 
     Mockito.when(messageService.getMessage("captcha.data.error")).thenReturn(exceptionMessage);
-    ValidateCaptchaResponseUseCase.Input input = new ValidateCaptchaResponseUseCase.Input(fakeUserCaptchaResponseAdapter());
+    ValidateCaptchaResponseUseCase.Input input = new ValidateCaptchaResponseUseCase.Input(fakeUserCaptchaResponseAdapterWithoutToken());
 
     /**
      * When
@@ -178,29 +165,5 @@ public class ValidateUserCaptchaResponseUseCaseTest {
     Assertions.assertEquals(exceptionMessage, exception.getMessage());
 
 
-  }
-
-  @Test
-  void captcha_private_token_should_be_afbcdefgh() {
-    /**
-     * Données entrée du useCase
-     */
-    Mockito.when(captchaConfiguration.getCaptchaToken()).thenReturn("afbcdefgh");
-
-    ValidateCaptchaResponseUseCase.Input input = new ValidateCaptchaResponseUseCase.Input(fakeUserCaptchaResponseAdapter());
-
-
-    /**
-     * When
-     */
-    ValidateCaptchaResponseUseCase captchaValidateClientResponseUseCase = new ValidateCaptchaResponseUseCase(messageService, cryptographicService, notificationService, captchaConfiguration);
-
-    String actualPrivateCaptchaToken = captchaValidateClientResponseUseCase.getCaptchaToken();
-    String expectedProvateCaptchaToken = "afbcdefgh";
-
-    /**
-     * Then
-     */
-    Assertions.assertEquals(expectedProvateCaptchaToken, actualPrivateCaptchaToken);
   }
 }

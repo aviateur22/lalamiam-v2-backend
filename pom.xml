@@ -46,6 +46,10 @@
                 <!--Log -->
                 <log.level>DEBUG</log.level>
 
+                <!--Captcha-->
+                <captcha.token>monyjpohfd14555srbdgdkSfdqfoFdqeSF</captcha.token>
+                <captcha.string.separator>%!!%</captcha.string.separator>
+
                 <!--mail -->
                 <mailer.from>admin@ctoutweb.fr</mailer.from>
                 <mailer.port>587</mailer.port>

@@ -1,11 +1,11 @@
 package com.ctoutweb.lalamiam.core.useCase.impl;
 
+import com.ctoutweb.lalamiam.core.annotation.CoreService;
 import com.ctoutweb.lalamiam.core.entity.cryptographic.CryptographicType;
 import com.ctoutweb.lalamiam.core.entity.validateUserCaptchaResponse.impl.BoundaryInputImpl;
 import com.ctoutweb.lalamiam.core.entity.validateUserCaptchaResponse.impl.BoundaryOutputImpl;
 import com.ctoutweb.lalamiam.core.exception.ApplicationException;
 import com.ctoutweb.lalamiam.core.exception.BadRequestException;
-import com.ctoutweb.lalamiam.core.provider.ICaptchaConfiguration;
 import com.ctoutweb.lalamiam.core.provider.ICryptographicService;
 import com.ctoutweb.lalamiam.core.adapter.validateUserCaptchaResponse.IBoundariesAdapter.IBoundaryOutputAdapter;
 import com.ctoutweb.lalamiam.core.adapter.validateUserCaptchaResponse.IBoundariesAdapter.IBoundaryInputAdapter;
@@ -17,25 +17,19 @@ import com.ctoutweb.lalamiam.core.useCase.InputBase;
 import com.ctoutweb.lalamiam.core.useCase.OutputBase;
 import com.ctoutweb.lalamiam.core.useCase.UseCase;
 
+@CoreService
 public class ValidateCaptchaResponseUseCase implements UseCase<ValidateCaptchaResponseUseCase.Input, ValidateCaptchaResponseUseCase.Output> {
   private final IMessageService messageService;
   private final ICryptographicService cryptographicService;
   private final INotificationService notificationService;
-
-  /**
-   * Token provenant de l'infra permettant de vérifier la réponse du client
-   */
-  private ICaptchaConfiguration captchaConfiguration;
   public ValidateCaptchaResponseUseCase(
           IMessageService messageService,
           ICryptographicService cryptographicService,
-          INotificationService notificationService,
-          ICaptchaConfiguration captchaConfiguration
+          INotificationService notificationService
   ) {
     this.messageService = messageService;
     this.cryptographicService = cryptographicService;
     this.notificationService = notificationService;
-    this.captchaConfiguration = captchaConfiguration;
   }
 
   @Override
@@ -45,10 +39,10 @@ public class ValidateCaptchaResponseUseCase implements UseCase<ValidateCaptchaRe
 
 
     // Récupération du cpatchaToken
-    String captchaToken = captchaConfiguration.getCaptchaToken();
-    String stringSeparator = captchaConfiguration.getStringSeparator();
+    String captchaToken = inputBoundary.getCaptchaToken();
+    String captchaTokenSeparator = inputBoundary.getCaptchaTokenSeparator();
 
-    if((captchaToken == null || captchaToken.isBlank()) || (stringSeparator == null || stringSeparator.isBlank())) {
+    if((captchaToken == null || captchaToken.isBlank()) || (captchaTokenSeparator == null || captchaTokenSeparator.isBlank())) {
       messageService.logError("captchaConfiguration error");
       throw new ApplicationException(messageService.getMessage("captcha.data.error"));
     }
@@ -61,7 +55,8 @@ public class ValidateCaptchaResponseUseCase implements UseCase<ValidateCaptchaRe
     }
 
     // Assemble la réponse client avec le token du captcha
-    String clientResponseWithCaptchaConf = AddCaptchaConfToClientResponse(inputBoundary.getCaptchaResponseByUser());
+    String captchaUserResponse = inputBoundary.getCaptchaResponseByUser();
+    String clientResponseWithCaptchaConf = AddCaptchaConfToClientResponse(captchaUserResponse, captchaToken, captchaTokenSeparator);
 
     // Vérification que la réponse est valide
       boolean isClientResponseValid = this.isResponseClientValid(
@@ -78,22 +73,22 @@ public class ValidateCaptchaResponseUseCase implements UseCase<ValidateCaptchaRe
     return Output.getUseCaseOutput(boundaryOutput);
   }
 
-  /**
-   * Token permettant de valider les réponses ds client
-   * Ce token provient de l'infra
-   * @return String
-   */
-  public String getCaptchaToken() {
-    return this.captchaConfiguration.getCaptchaToken();
-  }
+//  /**
+//   * Token permettant de valider les réponses ds client
+//   * Ce token provient de l'infra
+//   * @return String
+//   */
+//  public String getCaptchaToken() {
+//    return this.captchaConfiguration.getCaptchaToken();
+//  }
 
   /**
    * Ajout du Token et séparator à la réponse du client
    * @param captchaResponseByUser
    * @return String
    */
-  public String AddCaptchaConfToClientResponse(String captchaResponseByUser) {
-    return captchaConfiguration.getCaptchaToken()+ captchaConfiguration.getStringSeparator() + captchaResponseByUser;
+  public String AddCaptchaConfToClientResponse(String captchaResponseByUser, String captchaToken, String captchaSeparator) {
+    return captchaToken+ captchaSeparator + captchaResponseByUser;
   }
 
   /**
@@ -154,7 +149,9 @@ public class ValidateCaptchaResponseUseCase implements UseCase<ValidateCaptchaRe
       return BoundaryInputImpl.getBoundaryInputImpl(
               inputBoundaryAdapter.getCaptchaResponseByUser(),
               inputBoundaryAdapter.getHashOrDecrypteCaptchaResponse(),
-              inputBoundaryAdapter.getCryptographicType()
+              inputBoundaryAdapter.getCryptographicType(),
+              inputBoundaryAdapter.getCaptchaToken(),
+              inputBoundaryAdapter.getCaptchaTokenSeparator()
               );
     }
   }

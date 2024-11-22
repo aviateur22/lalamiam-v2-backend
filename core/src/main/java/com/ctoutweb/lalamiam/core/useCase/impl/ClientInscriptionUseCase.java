@@ -2,6 +2,7 @@ package com.ctoutweb.lalamiam.core.useCase.impl;
 
 import com.ctoutweb.lalamiam.core.adapter.clientInscription.boundary.IBoundariesAdapter.IBoundaryInputAdapter;
 import com.ctoutweb.lalamiam.core.adapter.clientInscription.boundary.IBoundariesAdapter.IBoundaryOutputAdapter;
+import com.ctoutweb.lalamiam.core.annotation.CoreService;
 import com.ctoutweb.lalamiam.core.entity.clientInscription.IClientInscription.ICreatedClient;
 import com.ctoutweb.lalamiam.core.entity.clientInscription.IClientInscription.ICreatedAccount;
 import com.ctoutweb.lalamiam.core.entity.clientInscription.IClientInscription.ICreatedRole;
@@ -15,6 +16,7 @@ import com.ctoutweb.lalamiam.core.useCase.InputBase;
 import com.ctoutweb.lalamiam.core.useCase.OutputBase;
 import com.ctoutweb.lalamiam.core.useCase.UseCase;
 
+@CoreService
 public class ClientInscriptionUseCase implements UseCase<ClientInscriptionUseCase.Input, ClientInscriptionUseCase.Output> {
 
   private final IMessageService messageService;
@@ -81,7 +83,7 @@ public class ClientInscriptionUseCase implements UseCase<ClientInscriptionUseCas
    * @return boolean
    */
   public boolean isEmailAvailable(String emailClient) {
-    return clientInscriptionRepository.findUserByEmail(emailClient).isEmpty();
+    return clientInscriptionRepository.findUserByEmail(emailClient) == null;
   }
 
   /**
@@ -139,7 +141,9 @@ public class ClientInscriptionUseCase implements UseCase<ClientInscriptionUseCas
               inputBoundaryAdapter.getName(),
               inputBoundaryAdapter.getCaptchaResponseByUser(),
               inputBoundaryAdapter.getHashOrDecrypteCaptchaResponse(),
-              inputBoundaryAdapter.getCryptographicType()
+              inputBoundaryAdapter.getCryptographicType(),
+              inputBoundaryAdapter.getCaptchaToken(),
+              inputBoundaryAdapter.getCaptchaTokenSeparator()
       );
     }
   }

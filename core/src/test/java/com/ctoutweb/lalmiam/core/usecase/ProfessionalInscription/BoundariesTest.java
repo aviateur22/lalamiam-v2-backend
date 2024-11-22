@@ -34,7 +34,9 @@ public class BoundariesTest {
             boundaryInputAdapter.getDocuments(),
             boundaryInputAdapter.getCaptchaResponseByUser(),
             boundaryInputAdapter.getHashOrDecrypteCaptchaResponse(),
-            boundaryInputAdapter.getCryptographicType());
+            boundaryInputAdapter.getCryptographicType(),
+            boundaryInputAdapter.getCaptchaToken(),
+            boundaryInputAdapter.getCaptchaTokenSeparator());
 
     /**
      * Then

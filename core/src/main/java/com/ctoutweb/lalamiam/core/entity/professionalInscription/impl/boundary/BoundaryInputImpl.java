@@ -14,7 +14,9 @@ public record BoundaryInputImpl(
         List<String> documents,
         String captchaResponseByUser,
         String hashOrDecrypteCaptchaResponse,
-        CryptographicType cryptographicType
+        CryptographicType cryptographicType,
+        String capcthaToken,
+        String captchaTokenSeparator
 
 ) implements IBoundaryInputAdapter {
   public static BoundaryInputImpl getBoundaryInputImpl(
@@ -26,7 +28,9 @@ public record BoundaryInputImpl(
           List<String> documents,
           String captchaResponseByUser,
           String hashOrDecrypteCaptchaResponse,
-          CryptographicType cryptographicType
+          CryptographicType cryptographicType,
+          String capcthaToken,
+          String captchaTokenSeparator
   ) {
     return new BoundaryInputImpl(
             hashPassword,
@@ -37,7 +41,9 @@ public record BoundaryInputImpl(
             documents,
             captchaResponseByUser,
             hashOrDecrypteCaptchaResponse,
-            cryptographicType
+            cryptographicType,
+            capcthaToken,
+            captchaTokenSeparator
     );
   }
 
@@ -85,6 +91,16 @@ public record BoundaryInputImpl(
   @Override
   public CryptographicType getCryptographicType() {
     return cryptographicType;
+  }
+
+  @Override
+  public String getCaptchaToken() {
+    return capcthaToken;
+  }
+
+  @Override
+  public String getCaptchaTokenSeparator() {
+    return captchaTokenSeparator;
   }
 
 

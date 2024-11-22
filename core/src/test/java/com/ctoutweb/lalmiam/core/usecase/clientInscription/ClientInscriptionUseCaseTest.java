@@ -65,7 +65,7 @@ public class ClientInscriptionUseCaseTest {
      */
     IBoundaryInputAdapter clientInscriptionAdapter = fakeClientInscriptionAdapter();
     Mockito.when(messageService.getMessage("register.success")).thenReturn("Bonjour");
-    Mockito.when(clientInscriptionRepository.findUserByEmail(clientInscriptionAdapter.getEmail())).thenReturn(Optional.empty());
+    Mockito.when(clientInscriptionRepository.findUserByEmail(clientInscriptionAdapter.getEmail())).thenReturn(null);
     Mockito.when(clientInscriptionRepository.addClient(clientInscriptionAdapter.getEmail(), clientInscriptionAdapter.getHashPassword())).thenReturn(new CreatedClientImpl(1l));
     Mockito.when(clientInscriptionRepository.createAccountClient(1l)).thenReturn(new CreatedAccountImpl(1l));
 
@@ -115,7 +115,7 @@ public class ClientInscriptionUseCaseTest {
      * given
      */
     IBoundaryInputAdapter fakeClientInscriptionAdapter = fakeClientInscriptionAdapter();
-    Mockito.when(clientInscriptionRepository.findUserByEmail(anyString())).thenReturn(Optional.empty());
+    Mockito.when(clientInscriptionRepository.findUserByEmail(anyString())).thenReturn(null);
 
     /**
      * when
@@ -135,7 +135,7 @@ public class ClientInscriptionUseCaseTest {
     /**
      * Given
      */
-    Mockito.when(clientInscriptionRepository.findUserByEmail(any())).thenReturn(Optional.empty());
+    Mockito.when(clientInscriptionRepository.findUserByEmail(any())).thenReturn(null);
 
     IBoundaryInputAdapter clientInscriptionAdapter = fakeClientInscriptionAdapter();
 
@@ -147,7 +147,9 @@ public class ClientInscriptionUseCaseTest {
             clientInscriptionAdapter.getName(),
             clientInscriptionAdapter.getCaptchaResponseByUser(),
             clientInscriptionAdapter.getHashOrDecrypteCaptchaResponse(),
-            clientInscriptionAdapter.getCryptographicType()
+            clientInscriptionAdapter.getCryptographicType(),
+            clientInscriptionAdapter.getCaptchaToken(),
+            clientInscriptionAdapter.getCaptchaTokenSeparator()
 
     );
 
@@ -168,7 +170,7 @@ public class ClientInscriptionUseCaseTest {
     /**
      * Given
      */
-    Mockito.when(clientInscriptionRepository.findUserByEmail(any())).thenReturn(Optional.of(new CreatedClientImpl(1l)));
+    Mockito.when(clientInscriptionRepository.findUserByEmail(any())).thenReturn((new CreatedClientImpl(1l)));
 
     IBoundaryInputAdapter clientInscriptionAdapter = fakeClientInscriptionAdapter();
 
@@ -195,7 +197,9 @@ public class ClientInscriptionUseCaseTest {
             clientInscriptionInformationAdapter.getName(),
             clientInscriptionInformationAdapter.getCaptchaResponseByUser(),
             clientInscriptionInformationAdapter.getHashOrDecrypteCaptchaResponse(),
-            clientInscriptionInformationAdapter.getCryptographicType()
+            clientInscriptionInformationAdapter.getCryptographicType(),
+            clientInscriptionInformationAdapter.getCaptchaToken(),
+            clientInscriptionInformationAdapter.getCaptchaTokenSeparator()
     );
 
     Mockito.when(clientInscriptionRepository.addClient(clientInscriptionInformation.getEmail(), clientInscriptionInformation.getHashPassword())).thenReturn(new CreatedClientImpl(1l));
@@ -238,7 +242,9 @@ public class ClientInscriptionUseCaseTest {
             clientInscriptionInformationAdapter.getName(),
             clientInscriptionInformationAdapter.getCaptchaResponseByUser(),
             clientInscriptionInformationAdapter.getHashOrDecrypteCaptchaResponse(),
-            clientInscriptionInformationAdapter.getCryptographicType()
+            clientInscriptionInformationAdapter.getCryptographicType(),
+            clientInscriptionInformationAdapter.getCaptchaToken(),
+            clientInscriptionInformationAdapter.getCaptchaTokenSeparator()
     );
 
     Mockito.when(clientInscriptionRepository.createAccountClient(1l)).thenReturn(new CreatedAccountImpl(1l));

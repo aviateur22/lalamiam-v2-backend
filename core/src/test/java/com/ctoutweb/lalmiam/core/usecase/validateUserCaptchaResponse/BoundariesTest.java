@@ -36,7 +36,9 @@ public class BoundariesTest {
     BoundaryInputImpl expectedResponse =  new BoundaryInputImpl(
             fakeUserCaptchaResponseAdapter().getCaptchaResponseByUser(),
             fakeUserCaptchaResponseAdapter().getHashOrDecrypteCaptchaResponse(),
-            fakeUserCaptchaResponseAdapter().getCryptographicType()
+            fakeUserCaptchaResponseAdapter().getCryptographicType(),
+            fakeUserCaptchaResponseAdapter().getCaptchaToken(),
+            fakeUserCaptchaResponseAdapter().getCaptchaTokenSeparator()
     );
 
     /**

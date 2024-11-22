@@ -97,6 +97,16 @@ public class DataForTest {
       }
 
       @Override
+      public String getCaptchaToken() {
+        return "dsffdfdf";
+      }
+
+      @Override
+      public String getCaptchaTokenSeparator() {
+        return "!%%!";
+      }
+
+      @Override
       public String getName() {
         return "bobo";
       }
@@ -158,6 +168,16 @@ public class DataForTest {
       }
 
       @Override
+      public String getCaptchaToken() {
+        return null;
+      }
+
+      @Override
+      public String getCaptchaTokenSeparator() {
+        return null;
+      }
+
+      @Override
       public String getHashPassword() {
         return "hashpassword";
       }
@@ -205,6 +225,47 @@ public class DataForTest {
       @Override
       public CryptographicType getCryptographicType() {
         return CryptographicType.HASH;
+      }
+
+      @Override
+      public String getCaptchaToken() {
+        return "dddddd";
+      }
+
+      @Override
+      public String getCaptchaTokenSeparator() {
+        return "!%%!";
+      }
+
+
+    };
+  }
+  public static IBoundariesAdapter.IBoundaryInputAdapter fakeUserCaptchaResponseAdapterWithoutToken() {
+
+    return new IBoundariesAdapter.IBoundaryInputAdapter() {
+      @Override
+      public String getCaptchaResponseByUser() {
+        return "responseClient";
+      }
+
+      @Override
+      public String getHashOrDecrypteCaptchaResponse() {
+        return "dddddddd";
+      }
+
+      @Override
+      public CryptographicType getCryptographicType() {
+        return CryptographicType.HASH;
+      }
+
+      @Override
+      public String getCaptchaToken() {
+        return null;
+      }
+
+      @Override
+      public String getCaptchaTokenSeparator() {
+        return null;
       }
 
 

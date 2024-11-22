@@ -12,7 +12,7 @@ public interface IClientInscriptionRepository {
    * @param email String - email du client
    * @return Optional<CreatedClientAdapter>
    */
-  public Optional<ICreatedClient> findUserByEmail(String email);
+  public ICreatedClient findUserByEmail(String email);
 
   /**
    * Ajout d'un nouveau client

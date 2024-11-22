@@ -116,7 +116,9 @@ public class ProfessionalInscriptionUseCase implements UseCase<ProfessionalInscr
               inputBoundaryAdapter.getDocuments(),
               inputBoundaryAdapter.getCaptchaResponseByUser(),
               inputBoundaryAdapter.getHashOrDecrypteCaptchaResponse(),
-              inputBoundaryAdapter.getCryptographicType()
+              inputBoundaryAdapter.getCryptographicType(),
+              inputBoundaryAdapter.getCaptchaToken(),
+              inputBoundaryAdapter.getCaptchaTokenSeparator()
       );
     }
   }

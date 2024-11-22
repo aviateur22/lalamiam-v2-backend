@@ -6,15 +6,19 @@ import com.ctoutweb.lalamiam.core.adapter.validateUserCaptchaResponse.IBoundarie
 public record BoundaryInputImpl(
         String clientResponse,
         String hashOrDecrypteCaptchaResponse,
-        CryptographicType cryptographicType
+        CryptographicType cryptographicType,
+        String captchaToken,
+        String captchaTokenSeparator
 ) implements IBoundaryInputAdapter {
 
   public static BoundaryInputImpl getBoundaryInputImpl(
           String captchaResponseByUser,
           String hashOrDecrypteCaptchaResponse,
-          CryptographicType cryptographicType
+          CryptographicType cryptographicType,
+          String captchaToken,
+          String captchaTokenSeparator
   ) {
-    return new BoundaryInputImpl(captchaResponseByUser, hashOrDecrypteCaptchaResponse, cryptographicType);
+    return new BoundaryInputImpl(captchaResponseByUser, hashOrDecrypteCaptchaResponse, cryptographicType, captchaToken, captchaTokenSeparator);
   }
 
   @Override
@@ -30,5 +34,15 @@ public record BoundaryInputImpl(
   @Override
   public CryptographicType getCryptographicType() {
     return cryptographicType;
+  }
+
+  @Override
+  public String getCaptchaToken() {
+    return captchaToken;
+  }
+
+  @Override
+  public String getCaptchaTokenSeparator() {
+    return captchaTokenSeparator;
   }
 }

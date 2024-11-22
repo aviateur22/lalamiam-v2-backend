@@ -38,7 +38,9 @@ public class BoundariesTest {
             userInscriptionAdapter.getName(),
             userInscriptionAdapter.getCaptchaResponseByUser(),
             userInscriptionAdapter.getHashOrDecrypteCaptchaResponse(),
-            userInscriptionAdapter.getCryptographicType()
+            userInscriptionAdapter.getCryptographicType(),
+            userInscriptionAdapter.getCaptchaToken(),
+            userInscriptionAdapter.getCaptchaTokenSeparator()
     );
 
     /**
