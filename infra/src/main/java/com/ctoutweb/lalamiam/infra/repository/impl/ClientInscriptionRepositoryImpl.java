@@ -4,7 +4,7 @@ import com.ctoutweb.lalamiam.core.entity.clientInscription.IClientInscription.IC
 import com.ctoutweb.lalamiam.core.entity.clientInscription.IClientInscription.ICreatedRole;
 import com.ctoutweb.lalamiam.core.entity.clientInscription.IClientInscription.ICreatedAccount;
 import com.ctoutweb.lalamiam.core.provider.IClientInscriptionRepository;
-import com.ctoutweb.lalamiam.infra.model.Factory;
+import com.ctoutweb.lalamiam.infra.factory.Factory;
 import com.ctoutweb.lalamiam.infra.repository.IRoleUserRepository;
 import com.ctoutweb.lalamiam.infra.repository.IUserAccountRepository;
 import com.ctoutweb.lalamiam.infra.repository.IUserRepository;

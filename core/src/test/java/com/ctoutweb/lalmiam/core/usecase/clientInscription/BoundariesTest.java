@@ -35,7 +35,7 @@ public class BoundariesTest {
     BoundaryInputImpl expectedResult = new BoundaryInputImpl(
             userInscriptionAdapter.getHashPassword(),
             userInscriptionAdapter.getEmail(),
-            userInscriptionAdapter.getName(),
+            userInscriptionAdapter.getUserName(),
             userInscriptionAdapter.getCaptchaResponseByUser(),
             userInscriptionAdapter.getHashOrDecrypteCaptchaResponse(),
             userInscriptionAdapter.getCryptographicType(),
@@ -46,7 +46,7 @@ public class BoundariesTest {
     /**
      * Then
      */
-    Assertions.assertEquals(expectedResult.getName(), actualResponse.getName());
+    Assertions.assertEquals(expectedResult.getUserName(), actualResponse.getUserName());
     Assertions.assertEquals(expectedResult.getEmail(), actualResponse.getEmail());
     Assertions.assertEquals(expectedResult.getHashPassword(), actualResponse.getHashPassword());
   }

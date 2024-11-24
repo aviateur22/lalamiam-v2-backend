@@ -107,7 +107,7 @@ public class DataForTest {
       }
 
       @Override
-      public String getName() {
+      public String getUserName() {
         return "bobo";
       }
 
@@ -188,7 +188,7 @@ public class DataForTest {
       }
 
       @Override
-      public String getName() {
+      public String getUserName() {
         return "mon nom";
       }
     };

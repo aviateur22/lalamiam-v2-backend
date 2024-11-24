@@ -1,7 +1,7 @@
 package com.ctoutweb.lalamiam.infra.config;
 
-import com.ctoutweb.lalamiam.infra.model.Factory;
-import com.ctoutweb.lalamiam.infra.model.FileMessage;
+import com.ctoutweb.lalamiam.infra.factory.Factory;
+import com.ctoutweb.lalamiam.infra.model.config.FileMessage;
 import com.ctoutweb.lalamiam.infra.model.IApiLanguage;
 import com.ctoutweb.lalamiam.infra.model.IApiMessage;
 import com.ctoutweb.lalamiam.infra.utility.PropertiesUtility;

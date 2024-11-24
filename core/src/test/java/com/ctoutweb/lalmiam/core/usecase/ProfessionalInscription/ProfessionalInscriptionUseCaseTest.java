@@ -61,7 +61,7 @@ public class ProfessionalInscriptionUseCaseTest {
     BoundaryInputImpl boundaryInput = BoundaryInputImpl.getBoundaryInputImpl(
             professionalInscriptionInformationAdapter.getHashPassword(),
             professionalInscriptionInformationAdapter.getEmail(),
-            professionalInscriptionInformationAdapter.getName(),
+            professionalInscriptionInformationAdapter.getUserName(),
             professionalInscriptionInformationAdapter.getFirstName(),
             professionalInscriptionInformationAdapter.getPhone(),
             professionalInscriptionInformationAdapter.getDocuments(),

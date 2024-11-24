@@ -138,7 +138,7 @@ public class ClientInscriptionUseCase implements UseCase<ClientInscriptionUseCas
       return BoundaryInputImpl.getBoundaryInputImpl(
               inputBoundaryAdapter.getHashPassword(),
               inputBoundaryAdapter.getEmail(),
-              inputBoundaryAdapter.getName(),
+              inputBoundaryAdapter.getUserName(),
               inputBoundaryAdapter.getCaptchaResponseByUser(),
               inputBoundaryAdapter.getHashOrDecrypteCaptchaResponse(),
               inputBoundaryAdapter.getCryptographicType(),

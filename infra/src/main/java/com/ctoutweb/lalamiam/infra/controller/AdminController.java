@@ -19,7 +19,7 @@ public class AdminController {
   }
 
 
-  @GetMapping("/professional/documents")
+  @GetMapping("/get-professional-documents")
   public ResponseEntity<String> getProfessionalDocuement() {
 
 

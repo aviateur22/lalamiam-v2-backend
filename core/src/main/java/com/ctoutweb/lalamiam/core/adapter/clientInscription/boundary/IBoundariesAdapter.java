@@ -9,7 +9,7 @@ public interface IBoundariesAdapter {
   public interface IBoundaryInputAdapter extends com.ctoutweb.lalamiam.core.adapter.validateUserCaptchaResponse.IBoundariesAdapter.IBoundaryInputAdapter {
     String getHashPassword();
     String getEmail();
-    String getName();
+    String getUserName();
   }
 
   /**

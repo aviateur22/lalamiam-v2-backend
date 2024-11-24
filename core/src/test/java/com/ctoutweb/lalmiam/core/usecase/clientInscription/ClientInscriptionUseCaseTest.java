@@ -21,8 +21,6 @@ import org.mockito.MockitoAnnotations;
 import com.ctoutweb.lalamiam.core.useCase.impl.ValidateCaptchaResponseUseCase;
 import com.ctoutweb.lalamiam.core.useCase.impl.ClientInscriptionUseCase;
 
-import java.util.Optional;
-
 import static common.DataForTest.fakeClientInscriptionAdapter;
 import static org.mockito.ArgumentMatchers.*;
 
@@ -144,7 +142,7 @@ public class ClientInscriptionUseCaseTest {
     var clientInscriptionInformation = BoundaryInputImpl.getBoundaryInputImpl(
             clientInscriptionAdapter.getHashPassword(),
             clientInscriptionAdapter.getEmail(),
-            clientInscriptionAdapter.getName(),
+            clientInscriptionAdapter.getUserName(),
             clientInscriptionAdapter.getCaptchaResponseByUser(),
             clientInscriptionAdapter.getHashOrDecrypteCaptchaResponse(),
             clientInscriptionAdapter.getCryptographicType(),
@@ -194,7 +192,7 @@ public class ClientInscriptionUseCaseTest {
     var clientInscriptionInformation = BoundaryInputImpl.getBoundaryInputImpl(
             clientInscriptionInformationAdapter.getHashPassword(),
             clientInscriptionInformationAdapter.getEmail(),
-            clientInscriptionInformationAdapter.getName(),
+            clientInscriptionInformationAdapter.getUserName(),
             clientInscriptionInformationAdapter.getCaptchaResponseByUser(),
             clientInscriptionInformationAdapter.getHashOrDecrypteCaptchaResponse(),
             clientInscriptionInformationAdapter.getCryptographicType(),
@@ -239,7 +237,7 @@ public class ClientInscriptionUseCaseTest {
     var clientInscriptionInformation = BoundaryInputImpl.getBoundaryInputImpl(
             clientInscriptionInformationAdapter.getHashPassword(),
             clientInscriptionInformationAdapter.getEmail(),
-            clientInscriptionInformationAdapter.getName(),
+            clientInscriptionInformationAdapter.getUserName(),
             clientInscriptionInformationAdapter.getCaptchaResponseByUser(),
             clientInscriptionInformationAdapter.getHashOrDecrypteCaptchaResponse(),
             clientInscriptionInformationAdapter.getCryptographicType(),

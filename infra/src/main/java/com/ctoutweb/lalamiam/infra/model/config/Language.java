@@ -1,4 +1,4 @@
-package com.ctoutweb.lalamiam.infra.model;
+package com.ctoutweb.lalamiam.infra.model.config;
 
 /**
  * Language disponible

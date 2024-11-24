@@ -47,7 +47,7 @@ public record BoundaryInputImpl(
   }
 
   @Override
-  public String getName() {
+  public String getUserName() {
     return name;
   }
 

@@ -62,13 +62,14 @@
                 <!--JWT -->
                 <jwt.validity.hour>72</jwt.validity.hour>
                 <jwt.issuer>ctoutweb</jwt.issuer>
-
+                <jwt.token>fldjfdslmdmlj</jwt.token>
                 <!--Cookie-->
                 <cookie.domain>customDomain</cookie.domain>
                 <cookie.path>/</cookie.path>
                 <cookie.secure>false</cookie.secure>
                 <cookie.samesite>Lax</cookie.samesite>
                 <cookie.is.httponly>true</cookie.is.httponly>
+                <cookie.maxage.day>1</cookie.maxage.day>
 
                 <war.name>lalamiam-app</war.name>
 

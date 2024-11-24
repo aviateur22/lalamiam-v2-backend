@@ -1,6 +1,6 @@
 package com.ctoutweb.lalamiam.infra.config;
 
-import com.ctoutweb.lalamiam.infra.model.Factory;
+import com.ctoutweb.lalamiam.infra.factory.Factory;
 import com.ctoutweb.lalamiam.infra.model.IApiLanguage;
 import com.ctoutweb.lalamiam.infra.model.impl.ApiLanguageImpl;
 import org.junit.jupiter.api.Assertions;

@@ -28,7 +28,7 @@ public class BoundariesTest {
     BoundaryInputImpl expectedResult = new BoundaryInputImpl(
             boundaryInputAdapter.getHashPassword(),
             boundaryInputAdapter.getEmail(),
-            boundaryInputAdapter.getName(),
+            boundaryInputAdapter.getUserName(),
             boundaryInputAdapter.getFirstName(),
             boundaryInputAdapter.getPhone(),
             boundaryInputAdapter.getDocuments(),

@@ -1,8 +1,8 @@
 package com.ctoutweb.lalamiam.infra.config;
 
 import com.ctoutweb.lalamiam.infra.model.IApiLanguage;
-import com.ctoutweb.lalamiam.infra.model.Language;
-import com.ctoutweb.lalamiam.infra.model.Factory;
+import com.ctoutweb.lalamiam.infra.model.config.Language;
+import com.ctoutweb.lalamiam.infra.factory.Factory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

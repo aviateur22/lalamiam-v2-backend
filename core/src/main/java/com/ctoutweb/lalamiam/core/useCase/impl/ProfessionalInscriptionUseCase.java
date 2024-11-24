@@ -110,7 +110,7 @@ public class ProfessionalInscriptionUseCase implements UseCase<ProfessionalInscr
       return BoundaryInputImpl.getBoundaryInputImpl(
               inputBoundaryAdapter.getHashPassword(),
               inputBoundaryAdapter.getEmail(),
-              inputBoundaryAdapter.getName(),
+              inputBoundaryAdapter.getUserName(),
               inputBoundaryAdapter.getFirstName(),
               inputBoundaryAdapter.getPhone(),
               inputBoundaryAdapter.getDocuments(),
