@@ -27,12 +27,6 @@ public class CustomCsrfFilter extends OncePerRequestFilter {
     CsrfToken csrfCookieToken = customCsrfTokenRepository.loadHeaderToken(request);
     CsrfToken headerCsrfFormToken = customCsrfTokenRepository.loadHeaderToken(request);
 
-    // Génération nouveau token CSRF pour le path auth/csrf
-    if(request.getRequestURI().contains("/auth/csrf")) {
-      csrfCookieToken = customCsrfTokenRepository.generateToken(request);
-      customCsrfTokenRepository.saveToken(csrfCookieToken, request, response);
-    }
-
     RequestMatcher csrfFilterMatcher = new DefaultRequiresCsrfMatcher();
 
     if(!csrfFilterMatcher.matches(request)){

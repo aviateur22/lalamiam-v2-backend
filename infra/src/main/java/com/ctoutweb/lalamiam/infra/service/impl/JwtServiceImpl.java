@@ -7,7 +7,7 @@ import com.ctoutweb.lalamiam.infra.factory.Factory;
 import com.ctoutweb.lalamiam.infra.security.authentication.UserPrincipal;
 import com.ctoutweb.lalamiam.infra.security.jwt.IJwtIssue;
 import com.ctoutweb.lalamiam.infra.service.IJwtService;
-import com.ctoutweb.lalamiam.infra.service.ITextHash;
+import com.ctoutweb.lalamiam.infra.service.ITextHashService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 public class JwtServiceImpl implements IJwtService {
   private final Factory factory;
 
-  private final ITextHash textHash;
+  private final ITextHashService textHash;
   @Value("${jwt.validity.hour}")
   Long jwtValidity;
   @Value("${jwt.secret.key}")
@@ -33,11 +33,10 @@ public class JwtServiceImpl implements IJwtService {
   String jwtIssuer;
   @Value("${zone.id}")
   String zoneId;
+  @Value("${csrf.access.token}")
+  String csrfAccessToken;
 
-  @Value("${jwt.token}")
-  String jwtToken;
-
-  public JwtServiceImpl(Factory factory, ITextHash textHash) {
+  public JwtServiceImpl(Factory factory, ITextHashService textHash) {
     this.factory = factory;
     this.textHash = textHash;
   }
@@ -76,7 +75,7 @@ public class JwtServiceImpl implements IJwtService {
             .withJWTId(jwtId)
             .withIssuer(jwtIssuer)
             .withExpiresAt(expiredAt)
-            .withClaim("token", textHash.hashText(jwtToken))
+            .withClaim("token", textHash.hashText(csrfAccessToken))
             .sign(Algorithm.HMAC256(jwtSecret));
 
     return factory.getImpl(jwtId, token, expiredAt.atZone(ZoneId.of(zoneId)));

@@ -10,9 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
-import static com.ctoutweb.lalamiam.infra.constant.ApplicationConstant.COOKIE_CSRF_PARAM_NAME;
-import static com.ctoutweb.lalamiam.infra.constant.ApplicationConstant.X_CSRF_TOKEN;
-
 @Service
 @PropertySource({"classpath:application.properties"})
 public class CookieServiceImpl implements ICookieService {

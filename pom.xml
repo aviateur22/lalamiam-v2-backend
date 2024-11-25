@@ -62,7 +62,8 @@
                 <!--JWT -->
                 <jwt.validity.hour>72</jwt.validity.hour>
                 <jwt.issuer>ctoutweb</jwt.issuer>
-                <jwt.token>fldjfdslmdmlj</jwt.token>
+                <csrf.access.token>fldjfdslmdmlj</csrf.access.token>
+
                 <!--Cookie-->
                 <cookie.domain>customDomain</cookie.domain>
                 <cookie.path>/</cookie.path>
