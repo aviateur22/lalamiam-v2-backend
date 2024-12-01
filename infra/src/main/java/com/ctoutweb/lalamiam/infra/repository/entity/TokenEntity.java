@@ -11,10 +11,15 @@ public class TokenEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private String token;
+  @Column(name = "cryptography_text")
+  private String cryptographyText;
 
-  @Column(name = "cryptograpy_type")
+  @Column(name = "cryptography_type")
   private String cryptographyType;
+
+  @Column(name = "iv_key")
+  private String ivKey;
+
 
   /**
    * Relation
@@ -33,12 +38,12 @@ public class TokenEntity {
     this.id = id;
   }
 
-  public String getToken() {
-    return token;
+  public String getCryptographyText() {
+    return cryptographyText;
   }
 
-  public void setToken(String token) {
-    this.token = token;
+  public void setCryptographyText(String cryptographyText) {
+    this.cryptographyText = cryptographyText;
   }
 
   public String getCryptographyType() {
@@ -57,24 +62,32 @@ public class TokenEntity {
     this.user = user;
   }
 
+  public String getIvKey() {
+    return ivKey;
+  }
+
+  public void setIvKey(String ivKey) {
+    this.ivKey = ivKey;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     TokenEntity that = (TokenEntity) o;
-    return Objects.equals(id, that.id) && Objects.equals(token, that.token) && Objects.equals(cryptographyType, that.cryptographyType) && Objects.equals(user, that.user);
+    return Objects.equals(id, that.id) && Objects.equals(cryptographyText, that.cryptographyText) && Objects.equals(cryptographyType, that.cryptographyType) && Objects.equals(user, that.user);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, token, cryptographyType, user);
+    return Objects.hash(id, cryptographyText, cryptographyType, user);
   }
 
   @Override
   public String toString() {
     return "TokenEntity{" +
             "id=" + id +
-            ", token='" + token + '\'' +
+            ", token='" + cryptographyText + '\'' +
             ", cryptographyType='" + cryptographyType + '\'' +
             ", user=" + user +
             '}';

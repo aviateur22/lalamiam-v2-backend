@@ -20,12 +20,12 @@ public record DtoToValidateImpl<T>(T dto1) implements IDtoToValidate {
 
   @Override
   public void validateDto(Validator validator) {
-    AnnotationValidator<T> registerValidator = new AnnotationValidator<>(validator);
+    AnnotationValidator<T> annotationToValidate = new AnnotationValidator<>(validator);
 
     // Récupération des DTO  la liste de a valider
     List<T> getDataToValidate = this.getDtosToValidate();
 
     if(!getDataToValidate.isEmpty())
-      getDataToValidate.stream().forEach(inputData->registerValidator.validate(inputData));
+      getDataToValidate.stream().forEach(inputData->annotationToValidate.validate(inputData));
   }
 }

@@ -4,7 +4,7 @@ import com.ctoutweb.lalamiam.core.provider.IMessageService;
 import com.ctoutweb.lalamiam.infra.dto.RegisterClientDto;
 import com.ctoutweb.lalamiam.infra.factory.Factory;
 import com.ctoutweb.lalamiam.infra.model.IMessageResponse;
-import com.ctoutweb.lalamiam.infra.service.IConfigurationService;
+import com.ctoutweb.lalamiam.infra.service.ISecurityService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Validator;
@@ -18,13 +18,13 @@ public class AuthController {
   private final Factory factory;
   private final Validator validator;
   private final IMessageService messageService;
-  private final IConfigurationService configurationService;
+  private final ISecurityService configurationService;
 
   public AuthController(
           Factory factory,
           IMessageService messageService,
           Validator validator,
-          IConfigurationService configurationService
+          ISecurityService configurationService
   ) {
     this.factory = factory;
     this.messageService = messageService;

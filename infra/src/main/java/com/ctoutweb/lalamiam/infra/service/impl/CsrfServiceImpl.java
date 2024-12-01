@@ -3,10 +3,10 @@ package com.ctoutweb.lalamiam.infra.service.impl;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.ctoutweb.lalamiam.infra.security.csrf.ICustomCsrfTokenRepository;
 import com.ctoutweb.lalamiam.infra.security.jwt.IJwtIssue;
-import com.ctoutweb.lalamiam.infra.service.IConfigurationService;
 import com.ctoutweb.lalamiam.infra.service.ICookieService;
+import com.ctoutweb.lalamiam.infra.service.ICsrfService;
 import com.ctoutweb.lalamiam.infra.service.IJwtService;
-import com.ctoutweb.lalamiam.infra.service.ITextHashService;
+import com.ctoutweb.lalamiam.infra.service.ICryptoService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,26 +19,20 @@ import static com.ctoutweb.lalamiam.infra.constant.ApplicationConstant.COOKIE_CS
 
 @Service
 @PropertySource({"classpath:application.properties"})
-public class ConfigurationServiceImpl implements IConfigurationService {
+public class CsrfServiceImpl implements ICsrfService {
   @Value("${csrf.access.token}")
   String csrfAccessToken;
   private final ICookieService cookieService;
   private final IJwtService jwtService;
   private final ICustomCsrfTokenRepository customCsrfTokenRepository;
-  private final ITextHashService textHashService;
+  private final ICryptoService textHashService;
 
-  public ConfigurationServiceImpl(
-          ICookieService cookieService,
-          IJwtService jwtService,
-          ICustomCsrfTokenRepository customCsrfTokenRepository,
-          ITextHashService textHashService
-  ) {
+  public CsrfServiceImpl(ICookieService cookieService, IJwtService jwtService, ICustomCsrfTokenRepository customCsrfTokenRepository, ICryptoService textHashService) {
     this.cookieService = cookieService;
     this.jwtService = jwtService;
     this.customCsrfTokenRepository = customCsrfTokenRepository;
     this.textHashService = textHashService;
   }
-
   @Override
   public void generateCsrf(HttpServletRequest request, HttpServletResponse response) {
     var cookieAccessCsrfKeyValue = getCookieCsrfAccessKeyValue(request);
@@ -78,11 +72,11 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 
   /**
    * Vérification validité de la clé
-   * @param csrfAccessToken String  - Jwt contenant la clé
+   * @param jwtWithCsrfAccessToken String  - Jwt contenant la clé
    * @return boolean
    */
-  public boolean isCsrfAccessKeyValid(String csrfAccessToken) {
-    DecodedJWT decodedJWT = jwtService.validateAndDecode(csrfAccessToken);
+  public boolean isCsrfAccessKeyValid(String jwtWithCsrfAccessToken) {
+    DecodedJWT decodedJWT = jwtService.validateAndDecode(jwtWithCsrfAccessToken);
 
     if(decodedJWT == null) {
       manageUnvalidCsrfAccessKey();
@@ -105,4 +99,5 @@ public class ConfigurationServiceImpl implements IConfigurationService {
   public void manageUnvalidCsrfAccessKey() {
     cookieService.cancelCookie(COOKIE_CSRF_ACCESS_KEY_PARAM_NAME);
   }
+
 }

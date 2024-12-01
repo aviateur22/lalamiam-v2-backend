@@ -7,7 +7,7 @@ import com.ctoutweb.lalamiam.infra.factory.Factory;
 import com.ctoutweb.lalamiam.infra.security.authentication.UserPrincipal;
 import com.ctoutweb.lalamiam.infra.security.jwt.IJwtIssue;
 import com.ctoutweb.lalamiam.infra.service.IJwtService;
-import com.ctoutweb.lalamiam.infra.service.ITextHashService;
+import com.ctoutweb.lalamiam.infra.service.ICryptoService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
@@ -23,8 +23,7 @@ import java.util.stream.Collectors;
 @PropertySource({"classpath:application.properties"})
 public class JwtServiceImpl implements IJwtService {
   private final Factory factory;
-
-  private final ITextHashService textHash;
+  private final ICryptoService textHash;
   @Value("${jwt.validity.hour}")
   Long jwtValidity;
   @Value("${jwt.secret.key}")
@@ -36,7 +35,7 @@ public class JwtServiceImpl implements IJwtService {
   @Value("${csrf.access.token}")
   String csrfAccessToken;
 
-  public JwtServiceImpl(Factory factory, ITextHashService textHash) {
+  public JwtServiceImpl(Factory factory, ICryptoService textHash) {
     this.factory = factory;
     this.textHash = textHash;
   }

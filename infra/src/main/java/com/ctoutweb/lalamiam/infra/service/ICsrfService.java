@@ -5,19 +5,21 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpHeaders;
 
 /**
- * Service permettant de gérer la config de l'applicvation
+ * Gestion des token CSRF
  */
-public interface IConfigurationService {
+public interface ICsrfService {
+
   /**
    * Génération d'un token CSRF
    * @param request HttpServletRequest
-   * @param response HttpServletResponse
+   * @Param response HttpServletResponse
    */
-  public void generateCsrf(HttpServletRequest request, HttpServletResponse response);
+  void generateCsrf(HttpServletRequest request, HttpServletResponse response);
 
   /**
-   * Génération d'une clé permettant de générer des Token CSRF
-   * @return HttpHeaders
+   * Génération d'un token permettant de créer des token CSRF
+   * @return HttpHeader
    */
   public HttpHeaders generateCsrfAccessKey();
+
 }

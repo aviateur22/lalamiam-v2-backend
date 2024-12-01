@@ -133,9 +133,10 @@ CREATE INDEX IF NOT EXISTS idx_jwt ON sc_lalamiam.jwt(user_id);
 -- Token  --
 create table IF NOT EXISTS sc_lalamiam.token(
     "id" BIGINT PRIMARY KEY,
-    "user_id" BIGINT NOT NULL REFERENCES sc_lalamiam."users"("id") on delete cascade,
-    "token" TEXT NOT NULL,
+    "user_id" BIGINT REFERENCES sc_lalamiam."users"("id") on delete cascade,
+    "cryptography_text" TEXT NOT NULL,
     "cryptograhy_type" TEXT NOT NULL,
+    "iv_key" TEXT,
     "valid_until" TIMESTAMPTZ NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
@@ -162,6 +163,14 @@ create table IF NOT EXISTS sc_lalamiam.delay_login(
 );
 CREATE INDEX IF NOT EXISTS idx_delay_login ON sc_lalamiam.delay_login(user_id);
 
+create table IF NOT EXISTS sc_lalamiam.captcha_image(
+    "id" BIGINT PRIMARY KEY,
+    "path" TEXT NOT NULL,
+    "response" TEXT NOT NULL,
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
+    "updated_at" TIMESTAMPTZ
+);
+
 ALTER table IF EXISTS sc_lalamiam.users OWNER TO lalamiam;
 ALTER table IF EXISTS sc_lalamiam.employee OWNER TO lalamiam;
 ALTER table IF EXISTS sc_lalamiam.professional OWNER TO lalamiam;
@@ -176,6 +185,7 @@ ALTER table IF EXISTS sc_lalamiam.professional_account OWNER TO lalamiam;
 ALTER table IF EXISTS sc_lalamiam.token OWNER TO lalamiam;
 ALTER table IF EXISTS sc_lalamiam.login OWNER TO lalamiam;
 ALTER table IF EXISTS sc_lalamiam.delay_login OWNER TO lalamiam;
+ALTER table IF EXISTS sc_lalamiam.captcha_image OWNER TO lalamiam;
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE sc_lalamiam.users TO lalamiam;
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE sc_lalamiam.employee TO lalamiam;
@@ -191,6 +201,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE sc_lalamiam.employee_account TO la
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE sc_lalamiam.token TO lalamiam;
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE sc_lalamiam.login TO lalamiam;
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE sc_lalamiam.delay_login TO lalamiam;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE sc_lalamiam.captcha_image TO lalamiam;
 
 CREATE SEQUENCE if not exists sc_lalamiam.users_pk_seq START WITH 1 INCREMENT BY 1 NO CYCLE;
 CREATE SEQUENCE if not exists sc_lalamiam.document_pk_seq START WITH 1 INCREMENT BY 1 NO CYCLE;
@@ -202,6 +213,7 @@ CREATE SEQUENCE if not exists sc_lalamiam.professional_account_pk_seq START WITH
 CREATE SEQUENCE if not exists sc_lalamiam.token_pk_seq START WITH 1 INCREMENT BY 1 NO CYCLE;
 CREATE SEQUENCE if not exists sc_lalamiam.login_pk_seq START WITH 1 INCREMENT BY 1 NO CYCLE;
 CREATE SEQUENCE if not exists sc_lalamiam.delay_login_pk_seq START WITH 1 INCREMENT BY 1 NO CYCLE;
+CREATE SEQUENCE if not exists sc_lalamiam.captcha_image_pk_seq START WITH 1 INCREMENT BY 1 NO CYCLE;
 
 ALTER SEQUENCE if exists sc_lalamiam.users_pk_seq OWNER TO lalamiam;
 ALTER SEQUENCE if exists sc_lalamiam.users_pk_seq owned by sc_lalamiam.users.id;
@@ -238,6 +250,10 @@ ALTER TABLE sc_lalamiam.login ALTER COLUMN id SET DEFAULT NEXTVAL('sc_lalamiam.l
 ALTER SEQUENCE if exists sc_lalamiam.delay_login_pk_seq OWNER TO lalamiam;
 ALTER SEQUENCE if exists sc_lalamiam.delay_login_pk_seq owned by sc_lalamiam.delay_login.id;
 ALTER TABLE sc_lalamiam.delay_login ALTER COLUMN id SET DEFAULT NEXTVAL('sc_lalamiam.delay_login_pk_seq');
+
+ALTER SEQUENCE if exists sc_lalamiam.captcha_image_pk_seq OWNER TO lalamiam;
+ALTER SEQUENCE if exists sc_lalamiam.captcha_image_pk_seq owned by sc_lalamiam.captcha_image.id;
+ALTER TABLE sc_lalamiam.captcha_image ALTER COLUMN id SET DEFAULT NEXTVAL('sc_lalamiam.captcha_image_pk_seq');
 
 --Clear password: test
 INSERT INTO sc_lalamiam.users ("user_name", "email" , "password") VALUES

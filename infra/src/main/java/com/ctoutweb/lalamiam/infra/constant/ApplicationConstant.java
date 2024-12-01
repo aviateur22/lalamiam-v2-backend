@@ -1,5 +1,7 @@
 package com.ctoutweb.lalamiam.infra.constant;
 
+import com.ctoutweb.lalamiam.infra.model.image.ImageType;
+
 public class ApplicationConstant {
   private ApplicationConstant() {
     throw new IllegalStateException("Class static");
@@ -25,5 +27,14 @@ public class ApplicationConstant {
   public static final String HEADER_CSRF_PARAM_NAME = "_header";  // Token provenant du header
   public static final String COOKIE_CSRF_ACCESS_KEY_PARAM_NAME = "_csrf_generation_auth"; // Nom du cookie contenant le JWT permettant de générer un nouveau CSRF
   public static final String SEPARATOR = "+!!+";
+
+  // Captcha Image data
+  public static final int IMAGE_WIDTH = 300;
+  public static final int IMAGE_HEIGHT = 100;
+  public static final ImageType APP_IMAGE_TYPE = ImageType.PNG;
+
+  // Crypto
+  public static final int CRYPTO_ITERATION_COUNT = 65536;
+  public static final int CRYPTO_KEY_LENGTH = 256;
 
 }

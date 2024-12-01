@@ -9,6 +9,12 @@ import java.util.Arrays;
 public class PasswordConstraintValidator implements ConstraintValidator<PasswordConstraint, String> {
   private String message;
   private final int MIN_LENGTH = 11;
+
+  @Override
+  public void initialize(PasswordConstraint password) {
+    this.message = password.message();
+  }
+
   @Override
   public boolean isValid(String password, ConstraintValidatorContext context) {
     PasswordValidator passwordValidator = getPasswordRule();

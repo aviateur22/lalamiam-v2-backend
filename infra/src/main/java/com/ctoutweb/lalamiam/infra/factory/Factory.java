@@ -6,7 +6,12 @@ import com.ctoutweb.lalamiam.infra.controller.validation.IDtoToValidate;
 import com.ctoutweb.lalamiam.infra.model.IApiLanguage;
 import com.ctoutweb.lalamiam.infra.model.IApiMessage;
 import com.ctoutweb.lalamiam.infra.model.IMessageResponse;
+import com.ctoutweb.lalamiam.infra.model.captcha.BaseCapatcha;
+import com.ctoutweb.lalamiam.infra.model.image.IPropertiesImage;
+import com.ctoutweb.lalamiam.infra.model.image.impl.ImagePropertiesImpl;
+import com.ctoutweb.lalamiam.infra.model.image.MimeType;
 import com.ctoutweb.lalamiam.infra.model.impl.*;
+import com.ctoutweb.lalamiam.infra.repository.ITokenRepository;
 import com.ctoutweb.lalamiam.infra.repository.entity.RoleUserEntity;
 import com.ctoutweb.lalamiam.infra.repository.entity.UserAccountEntity;
 import com.ctoutweb.lalamiam.infra.repository.entity.UserEntity;
@@ -16,6 +21,8 @@ import com.ctoutweb.lalamiam.core.entity.clientInscription.IClientInscription.IC
 import com.ctoutweb.lalamiam.infra.security.csrf.CsrfHeaderTokenImpl;
 import com.ctoutweb.lalamiam.infra.security.jwt.IJwtIssue;
 import com.ctoutweb.lalamiam.infra.security.jwt.impl.JwtIssueImpl;
+import com.ctoutweb.lalamiam.infra.service.ICryptoService;
+import com.ctoutweb.lalamiam.infra.service.IMessageService;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Component;
 
@@ -67,6 +74,13 @@ public class Factory {
 
   public IJwtIssue getImpl(String jwtId, String jwtToken, ZonedDateTime expiredAt) {
     return new JwtIssueImpl(jwtId, jwtToken, expiredAt);
+  }
+  public IPropertiesImage getImpl(String name, MimeType type) {
+    return new ImagePropertiesImpl(name, type);
+  }
+
+  public BaseCapatcha getImpl(IMessageService messageService, ITokenRepository tokenRepository, ICryptoService cryptoService) {
+    return new BaseCapatcha(messageService, tokenRepository, cryptoService);
   }
 
 }

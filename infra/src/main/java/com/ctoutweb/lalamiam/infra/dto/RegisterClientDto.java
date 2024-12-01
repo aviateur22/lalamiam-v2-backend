@@ -18,8 +18,8 @@ public record RegisterClientDto(
         @PasswordConstraint(message = "{password.bad.format}")
         String password,
 
-        @NotNull(message = "{password.missing}")
-        @NotBlank(message = "{password.missing}")
+        @NotNull(message = "{nickname.missing}")
+        @NotBlank(message = "{nickname.missing}")
         String userName) {
 
 }

@@ -72,6 +72,11 @@
                 <cookie.is.httponly>true</cookie.is.httponly>
                 <cookie.maxage.day>1</cookie.maxage.day>
 
+                <!--Chiffrement-->
+                <crypto.name>AES</crypto.name>
+                <crypto.algorithm>AES/CBC/PKCS5Padding</crypto.algorithm>
+                <crypto.secret.key.algo>PBKDF2WithHmacSHA256</crypto.secret.key.algo>
+
                 <war.name>lalamiam-app</war.name>
 
 
