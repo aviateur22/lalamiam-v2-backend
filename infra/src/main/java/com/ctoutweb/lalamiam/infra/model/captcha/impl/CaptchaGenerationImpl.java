@@ -1,25 +1,32 @@
-package com.ctoutweb.lalamiam.infra.model.captcha;
+package com.ctoutweb.lalamiam.infra.model.captcha.impl;
 
+import com.ctoutweb.lalamiam.infra.factory.Factory;
+import com.ctoutweb.lalamiam.infra.model.captcha.CaptchaType;
+import com.ctoutweb.lalamiam.infra.model.captcha.ICaptchaGeneration;
+import com.ctoutweb.lalamiam.infra.model.captcha.ICaptchaImage;
+import com.ctoutweb.lalamiam.infra.model.image.IImageBase64;
 import com.ctoutweb.lalamiam.infra.model.security.CryptographyType;
 import com.ctoutweb.lalamiam.infra.repository.ITokenRepository;
-import com.ctoutweb.lalamiam.infra.repository.entity.CaptchaImageEntity;
 import com.ctoutweb.lalamiam.infra.repository.entity.TokenEntity;
 import com.ctoutweb.lalamiam.infra.service.ICryptoService;
 import com.ctoutweb.lalamiam.infra.service.IMessageService;
 import com.ctoutweb.lalamiam.infra.utility.IntegerUtil;
 import com.ctoutweb.lalamiam.infra.utility.TextUtility;
+import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
 
 import static com.ctoutweb.lalamiam.infra.constant.ApplicationConstant.*;
 
-public class BaseCapatcha {
+@Component
+public class CaptchaGenerationImpl implements ICaptchaGeneration {
   /**
    * Titre du captcha
    */
@@ -36,35 +43,39 @@ public class BaseCapatcha {
   private String captchaResponse;
 
   /**
-   * Id de la réponse en base de données
+   * Id de la réponse sauvegardé en base de données
    */
   private Long captchaResponseId;
 
   /**
-   * Question capycha au format image Base64
+   * Question captcha au format IImageBase64
    */
-  private String captchaQuestionBase64;
+  private IImageBase64 captchaQuestionBase64;
 
   /**
-   * Path de l'image à charger si captcha de type Image
+   * Pour les captcha de type image.
+   * Image selectionnée pour le captcha
    */
-  private String imagePath;
+  private File imageFile;
   private final IMessageService messageService;
   private final ITokenRepository tokenRepository;
   private final ICryptoService cryptoService;
+  private final Factory factory;
 
-  public BaseCapatcha(IMessageService messageService, ITokenRepository tokenRepository, ICryptoService cryptoService) {
+  public CaptchaGenerationImpl(
+          IMessageService messageService,
+          ITokenRepository tokenRepository,
+          ICryptoService cryptoService,
+          Factory factory
+  ) {
     this.messageService = messageService;
     this.tokenRepository = tokenRepository;
     this.cryptoService = cryptoService;
+    this.factory = factory;
   }
 
-  /**
-   * Génération des donées captcha pour un captcha type calcul ou text
-   * @param captchaType CaptchaType
-   * @return BaseCapatcha
-   */
-  public BaseCapatcha generate(CaptchaType captchaType) {
+  @Override
+  public CaptchaGenerationImpl generate(CaptchaType captchaType) {
     switch (captchaType) {
       case TEXT -> captchaTypeText();
       default -> captchaTypeCalcul();
@@ -72,26 +83,57 @@ public class BaseCapatcha {
     return this;
   }
 
-  /**
-   * Génération des donées captcha pour un captcha type Image
-   * @param captchaImages List<CaptchaImageEntity>
-   * @return BaseCapatcha
-   */
-  public BaseCapatcha generate(List<CaptchaImageEntity> captchaImages) {
-    captchaTypeImage(captchaImages);
+  @Override
+  public ICaptchaGeneration generate(List<ICaptchaImage> captchaImages, List<File> captchaImageFiles) {
+    captchaTypeImage(captchaImages, captchaImageFiles);
+    return this;
+  }
+  @Override
+  public ICaptchaGeneration cryptographyAndSaveResponse(CryptographyType cryptographyType) {
+    TokenEntity captchaResponseToSave = getCryptographyText(cryptographyType);
+    TokenEntity savedCaptcha = tokenRepository.save(captchaResponseToSave);
+    captchaResponseId = savedCaptcha.getId();
     return this;
   }
 
-  public void captchaTypeImage(List<CaptchaImageEntity> captchaImages) {
+  @Override
+  public ICaptchaGeneration convertCaptchaQuestionToBase64Image() throws IOException {
+
+    // MimeType de l'image
+    String mimeType = APP_IMAGE_TYPE.getImageProperties().getMimeType().getName();
+
+    // Image au format Byte
+    byte[] imageByteFormat = imageFile != null ?
+            generateFileImageByteFormat() : generateQuestionImageByteFormat();
+
+    String imageBase64 = Base64.getEncoder().encodeToString(imageByteFormat);
+
+    // Données images
+    captchaQuestionBase64 = factory.getImpl(mimeType, imageBase64);
+
+    return this;
+  }
+
+  /**
+   *
+   * @param captchaImages List<ICaptchaImage> - Données des images en base de données
+   */
+  public void captchaTypeImage(List<ICaptchaImage> captchaImages, List<File> captchaImageFiles) {
     final int MIN = 0;
 
     captchaTitle = this.messageService.getMessage("captcha.image.title");
 
-    int randomCaptchaIndex = IntegerUtil.generateNumberBetween(MIN, captchaImages.size() - 1);
-    CaptchaImageEntity captchaImageSelected = captchaImages.get(randomCaptchaIndex);
+    int randomCaptchaIndex = IntegerUtil.generateNumberBetween(MIN, captchaImageFiles.size() - 1);
+    imageFile = captchaImageFiles.get(randomCaptchaIndex);
+
+    // Recherche des données liées a l'image selectionnée
+    ICaptchaImage captchaImageSelected = captchaImages
+            .stream()
+            .filter(image->image.getName().equals(imageFile.getName()))
+            .findFirst()
+            .orElse(null);
 
     captchaResponse = captchaImageSelected.getResponse();
-    imagePath = captchaImageSelected.getPath();
   }
 
   public void captchaTypeText() {
@@ -127,7 +169,6 @@ public class BaseCapatcha {
     captchaQuestion = String.format("%02d %c %02d", RANDOM_NUMBER_1, RANDOM_MATH_OPERATION, RANDOM_NUMBER_2);
   }
 
-
   /**
    * Calcul la réponse attendu pour un captcha de type Calcul
    * @param randomNumberOne int
@@ -142,28 +183,6 @@ public class BaseCapatcha {
       case '*' -> randomNumberOne * randomNumberTwo;
       default -> null;
     };
-  }
-
-  /**
-   * Cryptographie de la réponse au captcha et sauvegarde en base
-   * @param cryptographyType CryptographyType - Type de cryptographie a utiliser
-   * @return BaseCapatcha
-   */
-  public BaseCapatcha cryptographyAndSaveResponse(CryptographyType cryptographyType) {
-    TokenEntity captchaResponseToSave = getCryptographyText(cryptographyType);
-    this.tokenRepository.save(captchaResponseToSave);
-    return this;
-  }
-
-  /**
-   * Convertion de la question en image Base 64
-   * @return BaseCapatcha
-   * @throws IOException
-   */
-  public BaseCapatcha convertCaptchaQuestionToBase64Image() throws IOException {
-    byte[] imageByteFormat = getImageByteFormat();
-    captchaQuestionBase64 = Base64.getEncoder().encodeToString(imageByteFormat);
-    return this;
   }
 
   /**
@@ -192,6 +211,40 @@ public class BaseCapatcha {
     tokenEntity.setCryptographyType(cryptographyType.toString());
     return tokenEntity;
   }
+
+  /**
+   * Pour les captcha de type text et calcul
+   * Creation d'une image à partir de la question d'un captcha
+   * @return byte[]
+   * @throws IOException
+   */
+  private byte[] generateQuestionImageByteFormat()  throws IOException {
+    BufferedImage image = createImageFromText(IMAGE_HEIGHT, IMAGE_WIDTH);
+    String imageExtension = APP_IMAGE_TYPE.getImageProperties().getExtension();
+    try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+      ImageIO.write(image, imageExtension, baos);
+      byte[] imageBytes = baos.toByteArray();
+      return imageBytes;
+    }
+  }
+
+  /**
+   * Pour les captcha de type image
+   * Creation d'une image à partir d'un fichier
+   * @return byte[]
+   * @throws IOException
+   */
+  private byte[] generateFileImageByteFormat()  throws IOException {
+    BufferedImage image = ImageIO.read(imageFile);
+    String imageExtension = APP_IMAGE_TYPE.getImageProperties().getExtension();
+    try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+      ImageIO.write(image, imageExtension, baos);
+      byte[] imageBytes = baos.toByteArray();
+      return imageBytes;
+    }
+  }
+
+
 
   /**
    * Création d'une image à partir d'un text
@@ -233,41 +286,24 @@ public class BaseCapatcha {
     return image;
   }
 
-  /**
-   * Creation d'une image à partir d'un text
-   * @return byte[]
-   * @throws IOException
-   */
-  private byte[] getImageByteFormat()  throws IOException {
-    BufferedImage image = createImageFromText(IMAGE_HEIGHT, IMAGE_WIDTH);
-    String imageExtension = APP_IMAGE_TYPE.getImageProperties().getExtension();
-    try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
-      ImageIO.write(image, imageExtension, baos);
-      byte[] imageBytes = baos.toByteArray();
-      return imageBytes;
-    }
-  }
-
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+  @Override
   public String getCaptchaTitle() {
     return captchaTitle;
   }
-
+  @Override
+  public Long getCaptchaResponseId() {
+    return captchaResponseId;
+  }
+  @Override
+  public IImageBase64 getCaptchaQuestionBase64() {
+    return captchaQuestionBase64;
+  }
   public String getCaptchaQuestion() {
     return captchaQuestion;
   }
-
   public String getCaptchaResponse() {
     return captchaResponse;
-  }
-
-  public String getCaptchaQuestionBase64() {
-    return captchaQuestionBase64;
-  }
-
-  public String getImagePath() {
-    return imagePath;
   }
 }

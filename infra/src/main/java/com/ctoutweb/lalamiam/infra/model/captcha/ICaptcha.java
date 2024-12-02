@@ -1,7 +1,10 @@
 package com.ctoutweb.lalamiam.infra.model.captcha;
 
-import com.ctoutweb.lalamiam.infra.model.image.IBase64Image;
+import com.ctoutweb.lalamiam.infra.model.image.IImageBase64;
 
+/**
+ * Données générées pour un captcha
+ */
 public interface ICaptcha {
   /**
    * Titre principal du captcha
@@ -35,5 +38,5 @@ public interface ICaptcha {
    *
    * @return IBase64Image
    */
-  IBase64Image getCaptchaQuestionBase64();
+  IImageBase64 getCaptchaQuestionBase64();
 }

@@ -14,7 +14,7 @@ CREATE SCHEMA IF NOT EXISTS sc_lalamiam;
 ALTER SCHEMA sc_lalamiam OWNER TO lalamiam;
 
 
-DROP TABLE IF EXISTS sc_lalamiam."login", sc_lalamiam."token", sc_lalamiam."jwt", sc_lalamiam."delay_login", sc_lalamiam."professional_account", sc_lalamiam."employee_account", sc_lalamiam."user_account", sc_lalamiam."role_user", sc_lalamiam."role", sc_lalamiam."employee_professional", sc_lalamiam."employee", sc_lalamiam."document",  sc_lalamiam."professional", sc_lalamiam."users" CASCADE;
+DROP TABLE IF EXISTS sc_lalamiam."captcha_image", sc_lalamiam."login", sc_lalamiam."token", sc_lalamiam."jwt", sc_lalamiam."delay_login", sc_lalamiam."professional_account", sc_lalamiam."employee_account", sc_lalamiam."user_account", sc_lalamiam."role_user", sc_lalamiam."role", sc_lalamiam."employee_professional", sc_lalamiam."employee", sc_lalamiam."document",  sc_lalamiam."professional", sc_lalamiam."users" CASCADE;
 
 -- Utilisateur --
 CREATE TABLE if NOT EXISTS sc_lalamiam.users(
@@ -165,6 +165,7 @@ CREATE INDEX IF NOT EXISTS idx_delay_login ON sc_lalamiam.delay_login(user_id);
 
 create table IF NOT EXISTS sc_lalamiam.captcha_image(
     "id" BIGINT PRIMARY KEY,
+    "name" TEXT NOT NULL,
     "path" TEXT NOT NULL,
     "response" TEXT NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),

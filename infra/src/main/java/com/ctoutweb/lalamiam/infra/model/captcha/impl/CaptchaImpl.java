@@ -1,22 +1,22 @@
 package com.ctoutweb.lalamiam.infra.model.captcha.impl;
 
-import com.ctoutweb.lalamiam.infra.model.captcha.BaseCapatcha;
+import com.ctoutweb.lalamiam.infra.model.captcha.ICaptchaGeneration;
 import com.ctoutweb.lalamiam.infra.model.captcha.ICaptcha;
-import com.ctoutweb.lalamiam.infra.model.image.IBase64Image;
+import com.ctoutweb.lalamiam.infra.model.image.IImageBase64;
 
-public record CaptchaImpl(BaseCapatcha baseCapatcha) implements ICaptcha {
+public record CaptchaImpl(ICaptchaGeneration captchaGeneration) implements ICaptcha {
   @Override
   public String getCaptchaTitle() {
-    return null;
+    return captchaGeneration.getCaptchaTitle();
   }
 
   @Override
   public Long getResponseId() {
-    return null;
+    return captchaGeneration.getCaptchaResponseId();
   }
 
   @Override
-  public IBase64Image getCaptchaQuestionBase64() {
-    return null;
+  public IImageBase64 getCaptchaQuestionBase64() {
+    return captchaGeneration.getCaptchaQuestionBase64();
   }
 }

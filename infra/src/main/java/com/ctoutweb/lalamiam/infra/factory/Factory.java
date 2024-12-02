@@ -6,8 +6,15 @@ import com.ctoutweb.lalamiam.infra.controller.validation.IDtoToValidate;
 import com.ctoutweb.lalamiam.infra.model.IApiLanguage;
 import com.ctoutweb.lalamiam.infra.model.IApiMessage;
 import com.ctoutweb.lalamiam.infra.model.IMessageResponse;
-import com.ctoutweb.lalamiam.infra.model.captcha.BaseCapatcha;
+import com.ctoutweb.lalamiam.infra.model.captcha.ICaptchaGeneration;
+import com.ctoutweb.lalamiam.infra.model.captcha.ICaptchaImage;
+import com.ctoutweb.lalamiam.infra.model.captcha.impl.CaptchaGenerationImpl;
+import com.ctoutweb.lalamiam.infra.model.captcha.ICaptcha;
+import com.ctoutweb.lalamiam.infra.model.captcha.impl.CaptchaImageImpl;
+import com.ctoutweb.lalamiam.infra.model.captcha.impl.CaptchaImpl;
+import com.ctoutweb.lalamiam.infra.model.image.IImageBase64;
 import com.ctoutweb.lalamiam.infra.model.image.IPropertiesImage;
+import com.ctoutweb.lalamiam.infra.model.image.impl.ImageBase64Impl;
 import com.ctoutweb.lalamiam.infra.model.image.impl.ImagePropertiesImpl;
 import com.ctoutweb.lalamiam.infra.model.image.MimeType;
 import com.ctoutweb.lalamiam.infra.model.impl.*;
@@ -31,7 +38,6 @@ import java.util.Properties;
 
 @Component
 public class Factory {
-
 
   public IApiLanguage getImpl(String language) {
     return new ApiLanguageImpl(language);
@@ -60,6 +66,7 @@ public class Factory {
   public<T> IDtoToValidate getImpl(T dto1, T dto2) {
     return new DoubleDtoToValidateImpl<>(dto1, dto2);
   }
+
   public<T> IDtoToValidate getImpl(T dto1) {
     return new DtoToValidateImpl<>(dto1);
   }
@@ -75,12 +82,21 @@ public class Factory {
   public IJwtIssue getImpl(String jwtId, String jwtToken, ZonedDateTime expiredAt) {
     return new JwtIssueImpl(jwtId, jwtToken, expiredAt);
   }
+
   public IPropertiesImage getImpl(String name, MimeType type) {
     return new ImagePropertiesImpl(name, type);
   }
 
-  public BaseCapatcha getImpl(IMessageService messageService, ITokenRepository tokenRepository, ICryptoService cryptoService) {
-    return new BaseCapatcha(messageService, tokenRepository, cryptoService);
+  public ICaptcha getImpl(ICaptchaGeneration capatcha) {
+    return new CaptchaImpl(capatcha);
+  }
+
+  public IImageBase64 getImpl(String mimeTye, String imageBase64) {
+    return new ImageBase64Impl(mimeTye, imageBase64);
+  }
+
+  public ICaptchaImage getImpl(Long id, String name, String path, String response) {
+    return new CaptchaImageImpl(id, name, path, response);
   }
 
 }

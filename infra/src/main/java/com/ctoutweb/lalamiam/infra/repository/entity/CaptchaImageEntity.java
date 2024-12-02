@@ -13,6 +13,7 @@ public class CaptchaImageEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  private String name;
   private String path;
 
   private String response;
@@ -63,5 +64,13 @@ public class CaptchaImageEntity {
 
   public void setUpdatedAt(ZonedDateTime updatedAt) {
     this.updatedAt = updatedAt;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 }
