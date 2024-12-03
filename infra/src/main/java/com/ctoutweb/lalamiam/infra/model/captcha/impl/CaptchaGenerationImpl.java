@@ -12,6 +12,8 @@ import com.ctoutweb.lalamiam.infra.service.ICryptoService;
 import com.ctoutweb.lalamiam.infra.service.IMessageService;
 import com.ctoutweb.lalamiam.infra.utility.IntegerUtil;
 import com.ctoutweb.lalamiam.infra.utility.TextUtility;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;
@@ -20,13 +22,20 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Base64;
 import java.util.List;
 
 import static com.ctoutweb.lalamiam.infra.constant.ApplicationConstant.*;
 
 @Component
+@PropertySource({"classpath:application.properties"})
 public class CaptchaGenerationImpl implements ICaptchaGeneration {
+  @Value("${zone.id}")
+  String zoneId;
+
   /**
    * Titre du captcha
    */
@@ -209,6 +218,7 @@ public class CaptchaGenerationImpl implements ICaptchaGeneration {
     tokenEntity.setIvKey(cryptographyType.equals(CryptographyType.ENCRYPT) ? ivStringFormat : null);
     tokenEntity.setCryptographyText(cryptoText);
     tokenEntity.setCryptographyType(cryptographyType.toString());
+    tokenEntity.setValidUntil(getValidUntil());
     return tokenEntity;
   }
 
@@ -300,6 +310,11 @@ public class CaptchaGenerationImpl implements ICaptchaGeneration {
   public IImageBase64 getCaptchaQuestionBase64() {
     return captchaQuestionBase64;
   }
+  @Override
+  public ZonedDateTime getValidUntil() {
+    return ZonedDateTime.of(LocalDateTime.now().plusHours(3), ZoneId.of(zoneId));
+  }
+
   public String getCaptchaQuestion() {
     return captchaQuestion;
   }

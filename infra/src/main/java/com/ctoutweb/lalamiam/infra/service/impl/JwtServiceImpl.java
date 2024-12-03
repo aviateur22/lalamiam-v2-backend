@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 @PropertySource({"classpath:application.properties"})
 public class JwtServiceImpl implements IJwtService {
   private final Factory factory;
-  private final ICryptoService textHash;
   @Value("${jwt.validity.hour}")
   Long jwtValidity;
   @Value("${jwt.secret.key}")
@@ -32,12 +31,9 @@ public class JwtServiceImpl implements IJwtService {
   String jwtIssuer;
   @Value("${zone.id}")
   String zoneId;
-  @Value("${csrf.access.token}")
-  String csrfAccessToken;
 
-  public JwtServiceImpl(Factory factory, ICryptoService textHash) {
+  public JwtServiceImpl(Factory factory) {
     this.factory = factory;
-    this.textHash = textHash;
   }
 
   @Override
@@ -65,7 +61,7 @@ public class JwtServiceImpl implements IJwtService {
   }
 
   @Override
-  public IJwtIssue generate() {
+  public IJwtIssue generate(String cryptoToken) {
     Instant expiredAt = Instant.now().plus(Duration.ofHours(jwtValidity));
     byte[] timeNow = ("time now" +" " + System.currentTimeMillis()).getBytes();
     String jwtId = UUID.nameUUIDFromBytes(timeNow).toString();
@@ -74,7 +70,7 @@ public class JwtServiceImpl implements IJwtService {
             .withJWTId(jwtId)
             .withIssuer(jwtIssuer)
             .withExpiresAt(expiredAt)
-            .withClaim("token", textHash.hashText(csrfAccessToken))
+            .withClaim("token", cryptoToken)
             .sign(Algorithm.HMAC256(jwtSecret));
 
     return factory.getImpl(jwtId, token, expiredAt.atZone(ZoneId.of(zoneId)));

@@ -15,8 +15,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -52,6 +56,8 @@ public class CaptchaCalculStrategyImplTest {
     saveCaptchaToken.setCryptographyText("jfdldqslksqmlsmsmsqmdqsmldqsmkldsqmlkdqskmlù");
 
     String captchaTile = "Trouver le bon resulta";
+
+    ReflectionTestUtils.setField(captchaGeneration, "zoneId", "Europe/Paris");
     when(messageService.getMessage("captcha.calcul.title")).thenReturn(captchaTile);
     when(tokenRepository.save(any())).thenReturn(saveCaptchaToken);
 

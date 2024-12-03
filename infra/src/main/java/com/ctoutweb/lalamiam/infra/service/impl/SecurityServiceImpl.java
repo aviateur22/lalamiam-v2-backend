@@ -32,8 +32,13 @@ public class SecurityServiceImpl implements ISecurityService {
   }
 
   @Override
-  public ICaptcha generateCaptcha() throws IOException {
-    return captchaService.generateRandomCapatcha();
+  public HttpHeaders generateCaptchaAccessKey() {
+    return captchaService.generateCaptchaAccessKey();
+  }
+
+  @Override
+  public ICaptcha generateCaptcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    return captchaService.generateRandomCapatcha(request, response);
   }
 
   @Override

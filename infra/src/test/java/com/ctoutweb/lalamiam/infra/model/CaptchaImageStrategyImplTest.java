@@ -71,6 +71,11 @@ public class CaptchaImageStrategyImplTest {
     saveCaptchaToken.setCryptographyText("jfdldqslksqmlsmsmsqmdqsmldqsmkldsqmlkdqskmlù");
 
     String captchaTile = "Quel est cette image";
+
+    ReflectionTestUtils.setField(captchaGeneration, "zoneId", "Europe/Paris");
+
+    ReflectionTestUtils.setField(captchaImageStrategy, "captchaFolderImage", "image/captcha");
+
     when(messageService.getMessage("captcha.image.title")).thenReturn(captchaTile);
     when(captchaImageRepository.findAll()).thenReturn(captchaImages);
     when(tokenRepository.save(any())).thenReturn(saveCaptchaToken);

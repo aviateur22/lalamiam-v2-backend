@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.io.IOException;
 
@@ -51,6 +52,7 @@ public class CaptchaTextStrategyImplTest {
     saveCaptchaToken.setCryptographyType(CryptographyType.HASH.toString());
     saveCaptchaToken.setCryptographyText("jfdldqslksqmlsmsmsqmdqsmldqsmkldsqmlkdqskmlù");
 
+    ReflectionTestUtils.setField(captchaGeneration, "zoneId", "Europe/Paris");
     String captchaTile = "Recopier le mot";
     when(messageService.getMessage("captcha.text.title")).thenReturn(captchaTile);
     when(tokenRepository.save(any())).thenReturn(saveCaptchaToken);

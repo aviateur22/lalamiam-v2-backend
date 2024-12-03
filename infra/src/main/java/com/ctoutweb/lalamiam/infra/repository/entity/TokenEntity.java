@@ -2,6 +2,7 @@ package com.ctoutweb.lalamiam.infra.repository.entity;
 
 import jakarta.persistence.*;
 
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 @Entity
@@ -19,6 +20,9 @@ public class TokenEntity {
 
   @Column(name = "iv_key")
   private String ivKey;
+
+  @Column(name = "valid_until")
+  private ZonedDateTime validUntil;
 
 
   /**
@@ -68,6 +72,14 @@ public class TokenEntity {
 
   public void setIvKey(String ivKey) {
     this.ivKey = ivKey;
+  }
+
+  public ZonedDateTime getValidUntil() {
+    return validUntil;
+  }
+
+  public void setValidUntil(ZonedDateTime validUntil) {
+    this.validUntil = validUntil;
   }
 
   @Override

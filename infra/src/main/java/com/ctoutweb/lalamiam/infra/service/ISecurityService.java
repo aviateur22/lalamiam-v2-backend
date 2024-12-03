@@ -26,10 +26,16 @@ public interface ISecurityService {
   public HttpHeaders generateCsrfAccessKey();
 
   /**
+   * Génération d'une clé permettant de générer des captcha
+   * @return HttpHeaders
+   */
+  public HttpHeaders generateCaptchaAccessKey();
+
+  /**
    * Génération des données captcha
    * @return ICaptcha
    */
-  public ICaptcha generateCaptcha() throws IOException;
+  public ICaptcha generateCaptcha(HttpServletRequest request, HttpServletResponse response) throws IOException;
 
   /**
    * Vérification captcha response

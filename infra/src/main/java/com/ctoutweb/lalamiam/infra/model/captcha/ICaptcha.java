@@ -2,6 +2,8 @@ package com.ctoutweb.lalamiam.infra.model.captcha;
 
 import com.ctoutweb.lalamiam.infra.model.image.IImageBase64;
 
+import java.time.ZonedDateTime;
+
 /**
  * Données générées pour un captcha
  */

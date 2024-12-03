@@ -25,17 +25,22 @@ public class CsrfServiceImpl implements ICsrfService {
   private final ICookieService cookieService;
   private final IJwtService jwtService;
   private final ICustomCsrfTokenRepository customCsrfTokenRepository;
-  private final ICryptoService textHashService;
+  private final ICryptoService cryptoService;
 
-  public CsrfServiceImpl(ICookieService cookieService, IJwtService jwtService, ICustomCsrfTokenRepository customCsrfTokenRepository, ICryptoService textHashService) {
+  public CsrfServiceImpl(
+          ICookieService cookieService,
+          IJwtService jwtService,
+          ICustomCsrfTokenRepository customCsrfTokenRepository,
+          ICryptoService textHashService
+  ) {
     this.cookieService = cookieService;
     this.jwtService = jwtService;
     this.customCsrfTokenRepository = customCsrfTokenRepository;
-    this.textHashService = textHashService;
+    this.cryptoService = textHashService;
   }
   @Override
   public void generateCsrf(HttpServletRequest request, HttpServletResponse response) {
-    var cookieAccessCsrfKeyValue = getCookieCsrfAccessKeyValue(request);
+    var cookieAccessCsrfKeyValue = getCookieCsrfAccessKey(request);
 
     if(cookieAccessCsrfKeyValue == null || isCsrfAccessKeyValid(cookieAccessCsrfKeyValue)) {
       manageUnvalidCsrfAccessKey();
@@ -49,7 +54,7 @@ public class CsrfServiceImpl implements ICsrfService {
   @Override
   public HttpHeaders generateCsrfAccessKey() {
     HttpHeaders headers = new HttpHeaders();
-    IJwtIssue jwt = jwtService.generate();
+    IJwtIssue jwt = jwtService.generate(cryptoService.hashText(csrfAccessToken));
     headers.add(HttpHeaders.SET_COOKIE, cookieService.generateCookie(COOKIE_CSRF_ACCESS_KEY_PARAM_NAME, jwt.getJwtToken()));
     return headers;
   }
@@ -59,7 +64,7 @@ public class CsrfServiceImpl implements ICsrfService {
    * @param request HttpServletRequest
    * @return String - Contenu du cookie
    */
-  public String getCookieCsrfAccessKeyValue(HttpServletRequest request) {
+  public String getCookieCsrfAccessKey(HttpServletRequest request) {
     var findcookie = cookieService.findCookie(request, COOKIE_CSRF_ACCESS_KEY_PARAM_NAME);
 
     if(findcookie == null) {
@@ -90,7 +95,7 @@ public class CsrfServiceImpl implements ICsrfService {
       return false;
     }
 
-    return textHashService.isHashValid(csrfAccessToken, hashCsrfAccessToken);
+    return cryptoService.isHashValid(csrfAccessToken, hashCsrfAccessToken);
   }
 
   /**

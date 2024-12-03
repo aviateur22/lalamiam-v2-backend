@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-@Component
+@Component("CaptchaCalculStrategy")
 public class CaptchaCalculStrategyImpl implements ICaptchaStrategy {
   private static final CaptchaType captchaType = CaptchaType.CALCUL;
   private static final CryptographyType cryptoType = CryptographyType.HASH;

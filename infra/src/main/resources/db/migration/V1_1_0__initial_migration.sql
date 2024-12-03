@@ -135,7 +135,7 @@ create table IF NOT EXISTS sc_lalamiam.token(
     "id" BIGINT PRIMARY KEY,
     "user_id" BIGINT REFERENCES sc_lalamiam."users"("id") on delete cascade,
     "cryptography_text" TEXT NOT NULL,
-    "cryptograhy_type" TEXT NOT NULL,
+    "cryptography_type" TEXT NOT NULL,
     "iv_key" TEXT,
     "valid_until" TIMESTAMPTZ NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
@@ -279,5 +279,22 @@ INSERT INTO sc_lalamiam.role_user ("user_id", "role_id") VALUES
 (3, 1),
 (3, 2),
 (3, 3);
+
+INSERT INTO sc_lalamiam.captcha_image("name","path", "response") VALUES
+('la carotte.png', 'infra/image/captcha/la carotte.png', 'carotte'),
+('la coccinelle.png', 'infra/image/captcha/la coccinelle.png', 'coccinelle'),
+('la pluie.png', 'infra/image/captcha/la pluie.png', 'pluie'),
+('le chat.png', 'infra/image/captcha/le chat.png', 'chat'),
+('le parasol.png', 'infra/image/captcha/le parasol.png', 'parasol'),
+('raisin.png', 'infra/image/captcha/raisin.png', 'raisin'),
+('un caddie.png', 'infra/image/captcha/un caddie.png', 'caddie'),
+('un champignon.png', 'infra/image/captcha/un champignon.png', 'champignon'),
+('un citron.png', 'infra/image/captcha/un citron.png', 'citron'),
+('un coeur.png', 'infra/image/captcha/un coeur.png', 'coeur'),
+('une orange.png', 'infra/image/captcha/une orange.png', 'orange'),
+('une poire.png', 'infra/image/captcha/une poire.png', 'poire');
+
+
+
 
 COMMIT;

@@ -28,6 +28,9 @@ public class ApplicationConstant {
   public static final String COOKIE_CSRF_ACCESS_KEY_PARAM_NAME = "_csrf_generation_auth"; // Nom du cookie contenant le JWT permettant de générer un nouveau CSRF
   public static final String SEPARATOR = "+!!+";
 
+  // CAPTCHA
+  public static final String CAPTCHA_ACCESS_KEY_PARAM_NAME = "_captcha_generation_auth"; // Nom du cookie contenant le token JWT permettant de générer un nouveau Captcha
+
   // Captcha Image data
   public static final int IMAGE_WIDTH = 300;
   public static final int IMAGE_HEIGHT = 100;

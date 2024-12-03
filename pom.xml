@@ -37,7 +37,7 @@
                 <api.version>v1</api.version>
 
                 <!-- Database -->
-                <database.schema>sc_project</database.schema>
+                <database.schema>sc_lalamiam</database.schema>
                 <database.url>jdbc:postgresql://localhost:5432/java_angular_project_test</database.url>
 
                 <!--Horaire -->
@@ -49,6 +49,8 @@
                 <!--Captcha-->
                 <captcha.token>monyjpohfd14555srbdgdkSfdqfoFdqeSF</captcha.token>
                 <captcha.string.separator>%!!%</captcha.string.separator>
+                <captcha.access.token>345fd5fdfdqfLSFJ6952589sfdfdsfdfsfsgfdsfdsfdsfvsq</captcha.access.token>
+                <captcha.image.folder>infra/image/captcha</captcha.image.folder>
 
                 <!--mail -->
                 <mailer.from>admin@ctoutweb.fr</mailer.from>
@@ -62,6 +64,8 @@
                 <!--JWT -->
                 <jwt.validity.hour>72</jwt.validity.hour>
                 <jwt.issuer>ctoutweb</jwt.issuer>
+
+                <!--CSRF -->
                 <csrf.access.token>fldjfdslmdmlj</csrf.access.token>
 
                 <!--Cookie-->

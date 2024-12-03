@@ -14,10 +14,11 @@ public interface IJwtService {
   public IJwtIssue generate(UserPrincipal userPrincipal);
 
   /**
-   * Génération d'un JWT sans authentification
+   * Génération d'un JWT avec un token
+   * @param cryptoToken String - Token utilisant la cryptographie qui sera intégré dans les claims du JWT
    * @return IJwtIssue
    */
-  public IJwtIssue generate();
+  public IJwtIssue generate(String cryptoToken);
 
   /**
    * Decoded un JWT

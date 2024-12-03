@@ -5,6 +5,7 @@ import com.ctoutweb.lalamiam.infra.model.security.CryptographyType;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
@@ -29,6 +30,12 @@ public interface ICaptchaGeneration {
    * @return Long
    */
   public Long getCaptchaResponseId();
+
+  /**
+   * Validité du captcha
+   * @return ZonedDateTime
+   */
+  public ZonedDateTime getValidUntil();
 
   /**
    * Génération des donées captcha pour un captcha type calcul ou text
