@@ -53,6 +53,7 @@ public class CaptchaServiceImpl implements ICaptchaService {
     }
 
     CaptchaType randomCaptchaType = getRandomCaptcha();
+
     return  captchaFactory
             .getCaptchaStrategy(randomCaptchaType)
             .generateCaptcha();
@@ -61,6 +62,13 @@ public class CaptchaServiceImpl implements ICaptchaService {
   @Override
   public HttpHeaders generateCaptchaAccessKey() {
     HttpHeaders headers = new HttpHeaders();
+    IJwtIssue jwt = jwtService.generate(cryptoService.hashText(captchaAccessToken));
+    headers.add(HttpHeaders.SET_COOKIE, cookieService.generateCookie(CAPTCHA_ACCESS_KEY_PARAM_NAME, jwt.getJwtToken()));
+    return headers;
+  }
+
+  @Override
+  public HttpHeaders generateCaptchaAccessKey(HttpHeaders headers) {
     IJwtIssue jwt = jwtService.generate(cryptoService.hashText(captchaAccessToken));
     headers.add(HttpHeaders.SET_COOKIE, cookieService.generateCookie(CAPTCHA_ACCESS_KEY_PARAM_NAME, jwt.getJwtToken()));
     return headers;

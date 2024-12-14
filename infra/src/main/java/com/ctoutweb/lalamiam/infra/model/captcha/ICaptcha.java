@@ -2,8 +2,6 @@ package com.ctoutweb.lalamiam.infra.model.captcha;
 
 import com.ctoutweb.lalamiam.infra.model.image.IImageBase64;
 
-import java.time.ZonedDateTime;
-
 /**
  * Données générées pour un captcha
  */
@@ -24,7 +22,7 @@ public interface ICaptcha {
    * Id de la réponse en base
    * @return Srting
    */
-  Long getResponseId();
+  Long getCaptchaResponseId();
 
   /**
    * Image au format base64 de la question du captcha
@@ -40,5 +38,5 @@ public interface ICaptcha {
    *
    * @return IBase64Image
    */
-  IImageBase64 getCaptchaQuestionBase64();
+  IImageBase64 getCaptchaQuestionImageBase64();
 }

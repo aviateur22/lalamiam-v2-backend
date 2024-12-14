@@ -31,7 +31,7 @@
             <id>local</id>
             <properties>
                 <!-- API version-->
-                <api.language>fr</api.language>
+                <api.language>en</api.language>
 
                 <!-- API version-->
                 <api.version>v1</api.version>

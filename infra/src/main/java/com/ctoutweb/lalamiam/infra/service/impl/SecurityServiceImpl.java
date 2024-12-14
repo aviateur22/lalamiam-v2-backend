@@ -1,5 +1,6 @@
 package com.ctoutweb.lalamiam.infra.service.impl;
 
+import com.ctoutweb.lalamiam.core.exception.BadRequestException;
 import com.ctoutweb.lalamiam.infra.model.captcha.ICaptcha;
 import com.ctoutweb.lalamiam.infra.model.captcha.IUserCaptchaResponse;
 import com.ctoutweb.lalamiam.infra.service.*;
@@ -32,13 +33,28 @@ public class SecurityServiceImpl implements ISecurityService {
   }
 
   @Override
+  public boolean isCsrfValid(String csrf) {
+    return false;
+  }
+
+  @Override
   public HttpHeaders generateCaptchaAccessKey() {
     return captchaService.generateCaptchaAccessKey();
   }
 
   @Override
+  public HttpHeaders generateCaptchaAccessKey(HttpHeaders headers) {
+    return captchaService.generateCaptchaAccessKey(headers);
+  }
+
+  @Override
   public ICaptcha generateCaptcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    return captchaService.generateRandomCapatcha(request, response);
+   ICaptcha captcha = captchaService.generateRandomCapatcha(request, response);
+
+    if(captcha == null)
+      throw new BadRequestException("Pas de génération de captcha");
+
+    return captcha;
   }
 
   @Override

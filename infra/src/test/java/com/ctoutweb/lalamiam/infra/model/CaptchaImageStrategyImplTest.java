@@ -89,10 +89,10 @@ public class CaptchaImageStrategyImplTest {
      * then
      */
     Assertions.assertNotNull(captcha.getCaptchaTitle());
-    Assertions.assertNotNull(captcha.getResponseId());
-    Assertions.assertNotNull(captcha.getCaptchaQuestionBase64());
-    Assertions.assertNotNull(captcha.getCaptchaQuestionBase64().getMimeType());
-    Assertions.assertNotNull(captcha.getCaptchaQuestionBase64().getBase64Format());
+    Assertions.assertNotNull(captcha.getCaptchaResponseId());
+    Assertions.assertNotNull(captcha.getCaptchaQuestionImageBase64());
+    Assertions.assertNotNull(captcha.getCaptchaQuestionImageBase64().getMimeType());
+    Assertions.assertNotNull(captcha.getCaptchaQuestionImageBase64().getBase64Format());
 
   }
 

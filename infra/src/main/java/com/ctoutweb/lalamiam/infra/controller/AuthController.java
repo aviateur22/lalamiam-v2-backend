@@ -3,8 +3,10 @@ package com.ctoutweb.lalamiam.infra.controller;
 import com.ctoutweb.lalamiam.core.provider.IMessageService;
 import com.ctoutweb.lalamiam.infra.dto.RegisterClientDto;
 import com.ctoutweb.lalamiam.infra.factory.Factory;
+import com.ctoutweb.lalamiam.infra.model.param.IAppParam;
 import com.ctoutweb.lalamiam.infra.model.IMessageResponse;
 import com.ctoutweb.lalamiam.infra.model.captcha.ICaptcha;
+import com.ctoutweb.lalamiam.infra.service.IAuthService;
 import com.ctoutweb.lalamiam.infra.service.ISecurityService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -22,17 +24,18 @@ public class AuthController {
   private final Validator validator;
   private final IMessageService messageService;
   private final ISecurityService securityService;
-
+  private final IAuthService authService;
   public AuthController(
           Factory factory,
           IMessageService messageService,
           Validator validator,
-          ISecurityService configurationService
-  ) {
+          ISecurityService configurationService,
+          IAuthService authService) {
     this.factory = factory;
     this.messageService = messageService;
     this.validator = validator;
     this.securityService = configurationService;
+    this.authService = authService;
   }
 
   @PostMapping("/register-client")
@@ -51,20 +54,18 @@ public class AuthController {
   }
 
   @GetMapping("/generate-captcha")
-  ResponseEntity<String> generateCaptcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  ResponseEntity<ICaptcha> generateCaptcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
     ICaptcha captcha = securityService.generateCaptcha(request, response);
-    return new ResponseEntity<>("CSRF TOKEN", HttpStatus.OK);
+    return new ResponseEntity<>(captcha, HttpStatus.OK);
   }
 
-  @GetMapping("/csrf_access_key")
-  ResponseEntity<String> initialization() {
+  @GetMapping("/app-param")
+  ResponseEntity<IAppParam> getAppParam() {
+    // Récupération csrf accesskey
     var headers = securityService.generateCsrfAccessKey();
-    return ResponseEntity.status(HttpStatus.CREATED).headers(headers).body("csrf key access ok");
-  }
 
-  @GetMapping("/captcha_access_key")
-  ResponseEntity<String> generateCaptchaAccessKey() {
-    var headers = securityService.generateCaptchaAccessKey();
-    return ResponseEntity.status(HttpStatus.CREATED).headers(headers).body("captcha key access ok");
+    // Recupération captcha accesskey
+    headers = securityService.generateCaptchaAccessKey(headers);
+    return ResponseEntity.status(HttpStatus.OK).headers(headers).body(authService.getAppParamter());
   }
 }

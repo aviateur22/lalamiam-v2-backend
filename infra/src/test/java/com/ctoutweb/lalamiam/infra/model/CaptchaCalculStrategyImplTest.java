@@ -18,9 +18,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -41,7 +38,7 @@ public class CaptchaCalculStrategyImplTest {
 
     cryptoService = new CryptographiceServiceImpl(new BCryptPasswordEncoder());
     captchaGeneration = new CaptchaGenerationImpl(messageService, tokenRepository, cryptoService, factory);
-    captchaCalculStrategy = new CaptchaCalculStrategyImpl(factory, captchaGeneration);
+    captchaCalculStrategy = new CaptchaCalculStrategyImpl(captchaGeneration);
   }
 
   @Test
@@ -71,11 +68,11 @@ public class CaptchaCalculStrategyImplTest {
      * then
      */
     Assertions.assertNotNull(captcha.getCaptchaTitle());
-    Assertions.assertNotNull(captcha.getCaptchaQuestionBase64());
-    Assertions.assertNotNull(captcha.getCaptchaQuestionBase64().getBase64Format());
-    Assertions.assertNotNull(captcha.getCaptchaQuestionBase64().getMimeType());
-    Assertions.assertNotNull(captcha.getResponseId());
-    Assertions.assertEquals(1L, captcha.getResponseId());
+    Assertions.assertNotNull(captcha.getCaptchaQuestionImageBase64());
+    Assertions.assertNotNull(captcha.getCaptchaQuestionImageBase64().getBase64Format());
+    Assertions.assertNotNull(captcha.getCaptchaQuestionImageBase64().getMimeType());
+    Assertions.assertNotNull(captcha.getCaptchaResponseId());
+    Assertions.assertEquals(1L, captcha.getCaptchaResponseId());
     Assertions.assertEquals(captchaTile, captcha.getCaptchaTitle());
 
   }

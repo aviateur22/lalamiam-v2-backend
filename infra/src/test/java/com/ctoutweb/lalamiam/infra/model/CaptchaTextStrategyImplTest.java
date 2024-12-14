@@ -38,7 +38,7 @@ public class CaptchaTextStrategyImplTest {
 
     cryptoService = new CryptographiceServiceImpl(new BCryptPasswordEncoder());
     captchaGeneration = new CaptchaGenerationImpl(messageService, tokenRepository, cryptoService, factory);
-    captchaTextStrategy = new CaptchaTextStrategyImpl(captchaGeneration, factory);
+    captchaTextStrategy = new CaptchaTextStrategyImpl(captchaGeneration);
   }
 
   @Test
@@ -67,11 +67,11 @@ public class CaptchaTextStrategyImplTest {
      * then
      */
     Assertions.assertNotNull(captcha.getCaptchaTitle());
-    Assertions.assertNotNull(captcha.getCaptchaQuestionBase64());
-    Assertions.assertNotNull(captcha.getCaptchaQuestionBase64().getBase64Format());
-    Assertions.assertNotNull(captcha.getCaptchaQuestionBase64().getMimeType());
-    Assertions.assertNotNull(captcha.getResponseId());
-    Assertions.assertEquals(1L, captcha.getResponseId());
+    Assertions.assertNotNull(captcha.getCaptchaQuestionImageBase64());
+    Assertions.assertNotNull(captcha.getCaptchaQuestionImageBase64().getBase64Format());
+    Assertions.assertNotNull(captcha.getCaptchaQuestionImageBase64().getMimeType());
+    Assertions.assertNotNull(captcha.getCaptchaResponseId());
+    Assertions.assertEquals(1L, captcha.getCaptchaResponseId());
     Assertions.assertEquals(captchaTile, captcha.getCaptchaTitle());
 
   }

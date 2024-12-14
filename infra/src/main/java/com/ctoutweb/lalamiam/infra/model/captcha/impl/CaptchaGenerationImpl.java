@@ -2,6 +2,7 @@ package com.ctoutweb.lalamiam.infra.model.captcha.impl;
 
 import com.ctoutweb.lalamiam.infra.factory.Factory;
 import com.ctoutweb.lalamiam.infra.model.captcha.CaptchaType;
+import com.ctoutweb.lalamiam.infra.model.captcha.ICaptcha;
 import com.ctoutweb.lalamiam.infra.model.captcha.ICaptchaGeneration;
 import com.ctoutweb.lalamiam.infra.model.captcha.ICaptchaImage;
 import com.ctoutweb.lalamiam.infra.model.image.IImageBase64;
@@ -61,6 +62,8 @@ public class CaptchaGenerationImpl implements ICaptchaGeneration {
    */
   private IImageBase64 captchaQuestionBase64;
 
+  private ZonedDateTime validUntil;
+
   /**
    * Pour les captcha de type image.
    * Image selectionnée pour le captcha
@@ -82,7 +85,6 @@ public class CaptchaGenerationImpl implements ICaptchaGeneration {
     this.cryptoService = cryptoService;
     this.factory = factory;
   }
-
   @Override
   public CaptchaGenerationImpl generate(CaptchaType captchaType) {
     switch (captchaType) {
@@ -91,7 +93,6 @@ public class CaptchaGenerationImpl implements ICaptchaGeneration {
     };
     return this;
   }
-
   @Override
   public ICaptchaGeneration generate(List<ICaptchaImage> captchaImages, List<File> captchaImageFiles) {
     captchaTypeImage(captchaImages, captchaImageFiles);
@@ -104,7 +105,6 @@ public class CaptchaGenerationImpl implements ICaptchaGeneration {
     captchaResponseId = savedCaptcha.getId();
     return this;
   }
-
   @Override
   public ICaptchaGeneration convertCaptchaQuestionToBase64Image() throws IOException {
 
@@ -121,6 +121,10 @@ public class CaptchaGenerationImpl implements ICaptchaGeneration {
     captchaQuestionBase64 = factory.getImpl(mimeType, imageBase64);
 
     return this;
+  }
+  @Override
+  public ICaptcha getCaptcha() {
+    return factory.getImpl(captchaTitle, captchaQuestionBase64, captchaResponseId);
   }
 
   /**
@@ -218,7 +222,7 @@ public class CaptchaGenerationImpl implements ICaptchaGeneration {
     tokenEntity.setIvKey(cryptographyType.equals(CryptographyType.ENCRYPT) ? ivStringFormat : null);
     tokenEntity.setCryptographyText(cryptoText);
     tokenEntity.setCryptographyType(cryptographyType.toString());
-    tokenEntity.setValidUntil(getValidUntil());
+    tokenEntity.setValidUntil(ZonedDateTime.of(LocalDateTime.now().plusHours(3), ZoneId.of(zoneId)));
     return tokenEntity;
   }
 
@@ -253,8 +257,6 @@ public class CaptchaGenerationImpl implements ICaptchaGeneration {
       return imageBytes;
     }
   }
-
-
 
   /**
    * Création d'une image à partir d'un text
@@ -298,19 +300,18 @@ public class CaptchaGenerationImpl implements ICaptchaGeneration {
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  @Override
   public String getCaptchaTitle() {
     return captchaTitle;
   }
-  @Override
+
   public Long getCaptchaResponseId() {
     return captchaResponseId;
   }
-  @Override
+
   public IImageBase64 getCaptchaQuestionBase64() {
     return captchaQuestionBase64;
   }
-  @Override
+
   public ZonedDateTime getValidUntil() {
     return ZonedDateTime.of(LocalDateTime.now().plusHours(3), ZoneId.of(zoneId));
   }

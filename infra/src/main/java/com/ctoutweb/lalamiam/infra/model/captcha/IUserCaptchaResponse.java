@@ -6,4 +6,10 @@ public interface IUserCaptchaResponse {
    * @return String
    */
   public String getCaptchaResponseByUser();
+
+  /**
+   * Id de la réponse
+   * @return Long
+   */
+  public Long getCaptchaResponseId();
 }

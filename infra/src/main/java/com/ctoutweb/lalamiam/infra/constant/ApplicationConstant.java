@@ -25,11 +25,11 @@ public class ApplicationConstant {
   public static final String FORM_CSRF_TOKEN = "FORM-CSRF-TOKEN";  // Header key pour la récupération d'un token CSRF lors de la soumission d'un formulaire
   public static final String COOKIE_CSRF_PARAM_NAME = "_csrf"; // Nom du cookie contenant le token CSRF
   public static final String HEADER_CSRF_PARAM_NAME = "_header";  // Token provenant du header
-  public static final String COOKIE_CSRF_ACCESS_KEY_PARAM_NAME = "_csrf_generation_auth"; // Nom du cookie contenant le JWT permettant de générer un nouveau CSRF
+  public static final String COOKIE_CSRF_ACCESS_KEY_PARAM_NAME = "_csrf_access_key"; // Nom du cookie contenant le JWT permettant de générer un nouveau CSRF
   public static final String SEPARATOR = "+!!+";
 
   // CAPTCHA
-  public static final String CAPTCHA_ACCESS_KEY_PARAM_NAME = "_captcha_generation_auth"; // Nom du cookie contenant le token JWT permettant de générer un nouveau Captcha
+  public static final String CAPTCHA_ACCESS_KEY_PARAM_NAME = "_captcha_access_key"; // Nom du cookie contenant le token JWT permettant de générer un nouveau Captcha
 
   // Captcha Image data
   public static final int IMAGE_WIDTH = 300;

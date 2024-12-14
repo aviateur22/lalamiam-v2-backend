@@ -26,10 +26,24 @@ public interface ISecurityService {
   public HttpHeaders generateCsrfAccessKey();
 
   /**
+   * Validation du token CSRF
+   * @return boolean
+   */
+  public boolean isCsrfValid(String csrf);
+
+  /**
    * Génération d'une clé permettant de générer des captcha
    * @return HttpHeaders
    */
   public HttpHeaders generateCaptchaAccessKey();
+
+  /**
+   * Génération d'une clé permettant de générer des captchas
+   * Les Headers sont passés en param en cas de données présentes
+   * @param headers HttpHeaders - Header
+   * @return HttpHeaders
+   */
+  public HttpHeaders generateCaptchaAccessKey(HttpHeaders headers);
 
   /**
    * Génération des données captcha

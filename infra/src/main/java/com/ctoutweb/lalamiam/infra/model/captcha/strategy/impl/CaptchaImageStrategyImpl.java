@@ -27,7 +27,6 @@ public class CaptchaImageStrategyImpl implements ICaptchaStrategy {
   private final ICaptchaGeneration captchaGeneration;
   private final ICaptchaImageRepository captchaImageRepository;
   private final CaptchaImageMapper captchaImageMapper;
-  private final Factory factory;
 
   public CaptchaImageStrategyImpl(
           ICaptchaGeneration captchaGeneration,
@@ -38,7 +37,6 @@ public class CaptchaImageStrategyImpl implements ICaptchaStrategy {
     this.captchaGeneration = captchaGeneration;
     this.captchaImageRepository = captchaImageRepository;
     this.captchaImageMapper = captchaImageMapper;
-    this.factory = factory;
   }
 
   @Override
@@ -52,11 +50,11 @@ public class CaptchaImageStrategyImpl implements ICaptchaStrategy {
 
     List<File> captchaImageFiles = getCaptchaImageFiles();
 
-    captchaGeneration
+    return captchaGeneration
             .generate(captchaImages, captchaImageFiles)
             .cryptographyAndSaveResponse(cryptoType)
-            .convertCaptchaQuestionToBase64Image();
-    return factory.getImpl(captchaGeneration);
+            .convertCaptchaQuestionToBase64Image()
+            .getCaptcha();
   }
 
   /**

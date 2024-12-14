@@ -1,42 +1,15 @@
 package com.ctoutweb.lalamiam.infra.model.captcha;
 
-import com.ctoutweb.lalamiam.infra.model.image.IImageBase64;
 import com.ctoutweb.lalamiam.infra.model.security.CryptographyType;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
  * Abastraction des étapes de creation d'un captcha
  */
 public interface ICaptchaGeneration {
-
-  /**
-   * Récupération titre du captcha
-   * @return String
-   */
-  public String getCaptchaTitle();
-
-  /**
-   * Données sur l'image captcha
-   * @return IImageBase64
-   */
-  public IImageBase64 getCaptchaQuestionBase64();
-
-  /**
-   * Id de la réponse attendu en base
-   * @return Long
-   */
-  public Long getCaptchaResponseId();
-
-  /**
-   * Validité du captcha
-   * @return ZonedDateTime
-   */
-  public ZonedDateTime getValidUntil();
-
   /**
    * Génération des donées captcha pour un captcha type calcul ou text
    * @param captchaType CaptchaType
@@ -64,5 +37,11 @@ public interface ICaptchaGeneration {
    * @throws IOException
    */
   ICaptchaGeneration convertCaptchaQuestionToBase64Image() throws IOException;
+
+  /**
+   * Récupération des données Captcha
+   * @return ICaptcha
+   */
+  ICaptcha getCaptcha();
 
 }

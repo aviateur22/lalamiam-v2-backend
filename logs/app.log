@@ -1,0 +1,334 @@
+2024-12-14 20:04:38 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Starting Lalamiam using Java 17.0.7 with PID 17196 (C:\Programmation\java\lalamiam_v2\infra\target\classes started by Administrateur in C:\Programmation\java\lalamiam_v2)
+2024-12-14 20:04:38 [main] DEBUG c.ctoutweb.lalamiam.infra.Lalamiam - Running with Spring Boot v3.1.0, Spring v6.0.9
+2024-12-14 20:04:38 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - No active profile set, falling back to 1 default profile: "default"
+2024-12-14 20:04:40 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-14 20:04:40 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 296 ms. Found 14 JPA repository interfaces.
+2024-12-14 20:04:41 [main] DEBUG c.c.l.i.m.c.DynamicMessageSource - Clearing entire resource bundle cache
+2024-12-14 20:04:41 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-12-14 20:04:41 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3543 ms
+2024-12-14 20:04:42 [main] DEBUG c.c.l.i.s.csrf.CustomCsrfFilter - Filter 'csrfFilter' configured for use
+2024-12-14 20:04:43 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-14 20:04:45 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-14 20:04:46 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-14 20:04:46 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 56b2045e-06bc-4b1a-b398-6a56e89bcbce
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-12-14 20:04:46 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AdminController:
+	{GET [/admin/get-professional-documents]}: getProfessionalDocuement()
+2024-12-14 20:04:46 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AuthController:
+	{GET [/auth/generate-captcha]}: generateCaptcha(HttpServletRequest,HttpServletResponse)
+	{GET [/auth/csrf_access_key]}: initialization()
+	{GET [/auth/generate-csrf]}: csrfToken(HttpServletRequest,HttpServletResponse)
+	{GET [/auth/app-param]}: getAppParam()
+	{POST [/auth/register-client]}: registerClient(RegisterClientDto)
+	{GET [/auth/captcha_access_key]}: generateCaptchaAccessKey()
+2024-12-14 20:04:46 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2024-12-14 20:04:46 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'beanNameHandlerMapping' {}
+2024-12-14 20:04:46 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'resourceHandlerMapping' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]], /**=ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]}
+2024-12-14 20:04:46 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@978475b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@507187c1, org.springframework.security.web.context.SecurityContextHolderFilter@30bd6bc8, org.springframework.security.web.header.HeaderWriterFilter@501956f9, org.springframework.web.filter.CorsFilter@2220c5f7, com.ctoutweb.lalamiam.infra.security.csrf.CustomCsrfFilter@2a7d9b41, org.springframework.security.web.authentication.logout.LogoutFilter@5bb661e0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@90b9695, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@488c608a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5bb90b89, org.springframework.security.web.session.SessionManagementFilter@29dcad7e, org.springframework.security.web.access.ExceptionTranslationFilter@9cdf13e, org.springframework.security.web.access.intercept.AuthorizationFilter@34dda1b4]
+2024-12-14 20:04:47 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/api/v1'
+2024-12-14 20:04:47 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Started Lalamiam in 10.348 seconds (process running for 11.248)
+2024-12-14 20:05:25 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-14 20:08:00 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Starting Lalamiam using Java 17.0.7 with PID 13880 (C:\Programmation\java\lalamiam_v2\infra\target\classes started by Administrateur in C:\Programmation\java\lalamiam_v2)
+2024-12-14 20:08:00 [main] DEBUG c.ctoutweb.lalamiam.infra.Lalamiam - Running with Spring Boot v3.1.0, Spring v6.0.9
+2024-12-14 20:08:00 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - No active profile set, falling back to 1 default profile: "default"
+2024-12-14 20:08:01 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-14 20:08:01 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 298 ms. Found 14 JPA repository interfaces.
+2024-12-14 20:08:02 [main] DEBUG c.c.l.i.m.c.DynamicMessageSource - Clearing entire resource bundle cache
+2024-12-14 20:08:03 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-12-14 20:08:03 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3184 ms
+2024-12-14 20:08:03 [main] DEBUG c.c.l.i.s.csrf.CustomCsrfFilter - Filter 'csrfFilter' configured for use
+2024-12-14 20:08:04 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-14 20:08:06 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-14 20:08:06 [main] ERROR c.c.l.infra.config.ApiLanguageConfig - Le language fr n'est pas valide
+2024-12-14 20:08:07 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-14 20:08:07 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 3f1a1d9c-a304-4bd0-87aa-0753d2bacc5e
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-12-14 20:08:07 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AdminController:
+	{GET [/admin/get-professional-documents]}: getProfessionalDocuement()
+2024-12-14 20:08:07 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AuthController:
+	{GET [/auth/captcha_access_key]}: generateCaptchaAccessKey()
+	{GET [/auth/generate-captcha]}: generateCaptcha(HttpServletRequest,HttpServletResponse)
+	{POST [/auth/register-client]}: registerClient(RegisterClientDto)
+	{GET [/auth/generate-csrf]}: csrfToken(HttpServletRequest,HttpServletResponse)
+	{GET [/auth/csrf_access_key]}: initialization()
+	{GET [/auth/app-param]}: getAppParam()
+2024-12-14 20:08:07 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2024-12-14 20:08:07 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'beanNameHandlerMapping' {}
+2024-12-14 20:08:07 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'resourceHandlerMapping' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]], /**=ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]}
+2024-12-14 20:08:07 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@c5c2a84, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@42a89cef, org.springframework.security.web.context.SecurityContextHolderFilter@71d8794f, org.springframework.security.web.header.HeaderWriterFilter@7e8f97dd, org.springframework.web.filter.CorsFilter@7f33ad20, com.ctoutweb.lalamiam.infra.security.csrf.CustomCsrfFilter@609319c3, org.springframework.security.web.authentication.logout.LogoutFilter@7c55e559, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3749c6ac, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@299c86f0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@52a23575, org.springframework.security.web.session.SessionManagementFilter@7bbc11ed, org.springframework.security.web.access.ExceptionTranslationFilter@d426e01, org.springframework.security.web.access.intercept.AuthorizationFilter@659565ed]
+2024-12-14 20:08:08 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/api/v1'
+2024-12-14 20:08:08 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Started Lalamiam in 9.147 seconds (process running for 9.77)
+2024-12-14 20:08:58 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-14 20:10:05 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Starting Lalamiam using Java 17.0.7 with PID 11232 (C:\Programmation\java\lalamiam_v2\infra\target\classes started by Administrateur in C:\Programmation\java\lalamiam_v2)
+2024-12-14 20:10:05 [main] DEBUG c.ctoutweb.lalamiam.infra.Lalamiam - Running with Spring Boot v3.1.0, Spring v6.0.9
+2024-12-14 20:10:05 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - No active profile set, falling back to 1 default profile: "default"
+2024-12-14 20:10:07 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-14 20:10:07 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 366 ms. Found 14 JPA repository interfaces.
+2024-12-14 20:10:08 [main] DEBUG c.c.l.i.m.c.DynamicMessageSource - Clearing entire resource bundle cache
+2024-12-14 20:10:09 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-12-14 20:10:09 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4042 ms
+2024-12-14 20:10:09 [main] DEBUG c.c.l.i.s.csrf.CustomCsrfFilter - Filter 'csrfFilter' configured for use
+2024-12-14 20:10:11 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-14 20:10:14 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-14 20:10:15 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-14 20:10:15 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 60461418-e762-446d-8687-9d75f77ca63e
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-12-14 20:10:15 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AdminController:
+	{GET [/admin/get-professional-documents]}: getProfessionalDocuement()
+2024-12-14 20:10:15 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AuthController:
+	{GET [/auth/captcha_access_key]}: generateCaptchaAccessKey()
+	{GET [/auth/generate-captcha]}: generateCaptcha(HttpServletRequest,HttpServletResponse)
+	{GET [/auth/csrf_access_key]}: initialization()
+	{GET [/auth/app-param]}: getAppParam()
+	{POST [/auth/register-client]}: registerClient(RegisterClientDto)
+	{GET [/auth/generate-csrf]}: csrfToken(HttpServletRequest,HttpServletResponse)
+2024-12-14 20:10:15 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2024-12-14 20:10:15 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'beanNameHandlerMapping' {}
+2024-12-14 20:10:15 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'resourceHandlerMapping' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]], /**=ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]}
+2024-12-14 20:10:15 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5bb661e0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@18fcfe7e, org.springframework.security.web.context.SecurityContextHolderFilter@299c86f0, org.springframework.security.web.header.HeaderWriterFilter@268f126f, org.springframework.web.filter.CorsFilter@1ed0128b, com.ctoutweb.lalamiam.infra.security.csrf.CustomCsrfFilter@1dcedc93, org.springframework.security.web.authentication.logout.LogoutFilter@23243bc0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1b1d93e9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@20a7ce0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5319e4fc, org.springframework.security.web.session.SessionManagementFilter@9cdf13e, org.springframework.security.web.access.ExceptionTranslationFilter@5a644d75, org.springframework.security.web.access.intercept.AuthorizationFilter@52a23575]
+2024-12-14 20:10:16 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/api/v1'
+2024-12-14 20:10:16 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Started Lalamiam in 12.041 seconds (process running for 12.711)
+2024-12-14 20:10:33 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-14 20:10:33 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2024-12-14 20:10:44 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-14 21:09:34 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Starting Lalamiam using Java 17.0.7 with PID 11224 (C:\Programmation\java\lalamiam_v2\infra\target\classes started by Administrateur in C:\Programmation\java\lalamiam_v2)
+2024-12-14 21:09:34 [main] DEBUG c.ctoutweb.lalamiam.infra.Lalamiam - Running with Spring Boot v3.1.0, Spring v6.0.9
+2024-12-14 21:09:34 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - No active profile set, falling back to 1 default profile: "default"
+2024-12-14 21:09:37 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-14 21:09:37 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 262 ms. Found 14 JPA repository interfaces.
+2024-12-14 21:09:38 [main] DEBUG c.c.l.i.m.c.DynamicMessageSource - Clearing entire resource bundle cache
+2024-12-14 21:09:39 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-12-14 21:09:39 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4668 ms
+2024-12-14 21:09:39 [main] DEBUG c.c.l.i.s.csrf.CustomCsrfFilter - Filter 'csrfFilter' configured for use
+2024-12-14 21:09:40 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-14 21:09:42 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-14 21:09:43 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-14 21:09:43 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: d6a92a35-7396-41d2-9345-caadcc350915
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-12-14 21:09:43 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AdminController:
+	{GET [/admin/get-professional-documents]}: getProfessionalDocuement()
+2024-12-14 21:09:43 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AuthController:
+	{GET [/auth/captcha_access_key]}: generateCaptchaAccessKey()
+	{GET [/auth/generate-captcha]}: generateCaptcha(HttpServletRequest,HttpServletResponse)
+	{GET [/auth/generate-csrf]}: csrfToken(HttpServletRequest,HttpServletResponse)
+	{GET [/auth/csrf_access_key]}: initialization()
+	{GET [/auth/app-param]}: getAppParam()
+	{POST [/auth/register-client]}: registerClient(RegisterClientDto)
+2024-12-14 21:09:43 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2024-12-14 21:09:43 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'beanNameHandlerMapping' {}
+2024-12-14 21:09:43 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'resourceHandlerMapping' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]], /**=ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]}
+2024-12-14 21:09:43 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3b48361e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@44b82007, org.springframework.security.web.context.SecurityContextHolderFilter@4ccf1d3e, org.springframework.security.web.header.HeaderWriterFilter@3c1ef806, org.springframework.web.filter.CorsFilter@5ae22651, com.ctoutweb.lalamiam.infra.security.csrf.CustomCsrfFilter@5f7eee96, org.springframework.security.web.authentication.logout.LogoutFilter@73eaae1e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@20a7ce0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@276eafad, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@464017f5, org.springframework.security.web.session.SessionManagementFilter@4fbed6fc, org.springframework.security.web.access.ExceptionTranslationFilter@3e8995cc, org.springframework.security.web.access.intercept.AuthorizationFilter@18fcfe7e]
+2024-12-14 21:09:44 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/api/v1'
+2024-12-14 21:09:44 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Started Lalamiam in 10.932 seconds (process running for 11.607)
+2024-12-14 21:09:47 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-14 21:09:47 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-12-14 21:09:47 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2024-12-14 21:09:47 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2024-12-14 21:09:47 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2024-12-14 21:09:47 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2024-12-14 21:09:47 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2024-12-14 21:09:47 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2024-12-14 21:09:47 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2024-12-14 21:09:47 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2024-12-14 21:10:53 [http-nio-8080-exec-5] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2024-12-14 21:10:53 [http-nio-8080-exec-5] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2024-12-14 21:10:53 [http-nio-8080-exec-5] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2024-12-14 21:10:53 [http-nio-8080-exec-5] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2024-12-14 21:10:53 [http-nio-8080-exec-5] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2024-12-14 21:10:53 [http-nio-8080-exec-5] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2024-12-14 21:10:53 [http-nio-8080-exec-5] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2024-12-14 21:10:53 [http-nio-8080-exec-5] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2024-12-14 21:12:47 [http-nio-8080-exec-9] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2024-12-14 21:12:47 [http-nio-8080-exec-9] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2024-12-14 21:12:47 [http-nio-8080-exec-9] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2024-12-14 21:12:47 [http-nio-8080-exec-9] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2024-12-14 21:13:27 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-14 21:14:37 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Starting Lalamiam using Java 17.0.7 with PID 932 (C:\Programmation\java\lalamiam_v2\infra\target\classes started by Administrateur in C:\Programmation\java\lalamiam_v2)
+2024-12-14 21:14:37 [main] DEBUG c.ctoutweb.lalamiam.infra.Lalamiam - Running with Spring Boot v3.1.0, Spring v6.0.9
+2024-12-14 21:14:37 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - No active profile set, falling back to 1 default profile: "default"
+2024-12-14 21:14:38 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-14 21:14:38 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 266 ms. Found 14 JPA repository interfaces.
+2024-12-14 21:14:39 [main] DEBUG c.c.l.i.m.c.DynamicMessageSource - Clearing entire resource bundle cache
+2024-12-14 21:14:40 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-12-14 21:14:40 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2837 ms
+2024-12-14 21:14:40 [main] DEBUG c.c.l.i.s.csrf.CustomCsrfFilter - Filter 'csrfFilter' configured for use
+2024-12-14 21:14:41 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-14 21:14:43 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-14 21:14:44 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-14 21:14:44 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: ec9cf7cf-129d-4ad1-b1fb-5df826d81e10
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-12-14 21:14:44 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AdminController:
+	{GET [/admin/get-professional-documents]}: getProfessionalDocuement()
+2024-12-14 21:14:44 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AuthController:
+	{GET [/auth/captcha_access_key]}: generateCaptchaAccessKey()
+	{GET [/auth/generate-captcha]}: generateCaptcha(HttpServletRequest,HttpServletResponse)
+	{GET [/auth/csrf_access_key]}: initialization()
+	{GET [/auth/generate-csrf]}: csrfToken(HttpServletRequest,HttpServletResponse)
+	{GET [/auth/app-param]}: getAppParam()
+	{POST [/auth/register-client]}: registerClient(RegisterClientDto)
+2024-12-14 21:14:44 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2024-12-14 21:14:44 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'beanNameHandlerMapping' {}
+2024-12-14 21:14:44 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'resourceHandlerMapping' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]], /**=ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]}
+2024-12-14 21:14:44 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@29dcad7e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5ce1ec7, org.springframework.security.web.context.SecurityContextHolderFilter@1d82d35c, org.springframework.security.web.header.HeaderWriterFilter@65852d05, org.springframework.web.filter.CorsFilter@627cb3ed, com.ctoutweb.lalamiam.infra.security.csrf.CustomCsrfFilter@628b819d, org.springframework.security.web.authentication.logout.LogoutFilter@9cdf13e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5cb64b9c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6a233d33, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@30bd6bc8, org.springframework.security.web.session.SessionManagementFilter@20843604, org.springframework.security.web.access.ExceptionTranslationFilter@350ede1, org.springframework.security.web.access.intercept.AuthorizationFilter@7afac89a]
+2024-12-14 21:14:45 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/api/v1'
+2024-12-14 21:14:45 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Started Lalamiam in 8.903 seconds (process running for 9.526)
+2024-12-14 21:14:50 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-14 21:14:50 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-12-14 21:14:51 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2024-12-14 21:14:51 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2024-12-14 21:14:51 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2024-12-14 21:14:51 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2024-12-14 21:16:32 [http-nio-8080-exec-5] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2024-12-14 21:16:32 [http-nio-8080-exec-5] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2024-12-14 21:16:32 [http-nio-8080-exec-5] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2024-12-14 21:16:32 [http-nio-8080-exec-5] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2024-12-14 21:17:18 [http-nio-8080-exec-6] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2024-12-14 21:17:18 [http-nio-8080-exec-6] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2024-12-14 21:17:18 [http-nio-8080-exec-6] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2024-12-14 21:17:18 [http-nio-8080-exec-6] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2024-12-14 21:24:46 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-14 21:24:52 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Starting Lalamiam using Java 17.0.7 with PID 3308 (C:\Programmation\java\lalamiam_v2\infra\target\classes started by Administrateur in C:\Programmation\java\lalamiam_v2)
+2024-12-14 21:24:52 [main] DEBUG c.ctoutweb.lalamiam.infra.Lalamiam - Running with Spring Boot v3.1.0, Spring v6.0.9
+2024-12-14 21:24:52 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - No active profile set, falling back to 1 default profile: "default"
+2024-12-14 21:24:53 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-14 21:24:54 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 334 ms. Found 14 JPA repository interfaces.
+2024-12-14 21:24:54 [main] DEBUG c.c.l.i.m.c.DynamicMessageSource - Clearing entire resource bundle cache
+2024-12-14 21:24:55 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-12-14 21:24:55 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2966 ms
+2024-12-14 21:24:55 [main] DEBUG c.c.l.i.s.csrf.CustomCsrfFilter - Filter 'csrfFilter' configured for use
+2024-12-14 21:24:57 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-14 21:24:58 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-14 21:24:59 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-14 21:24:59 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 832223ec-c79f-452e-9779-dbc03cde3832
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-12-14 21:25:00 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AdminController:
+	{GET [/admin/get-professional-documents]}: getProfessionalDocuement()
+2024-12-14 21:25:00 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AuthController:
+	{GET [/auth/generate-captcha]}: generateCaptcha(HttpServletRequest,HttpServletResponse)
+	{GET [/auth/csrf_access_key]}: initialization()
+	{GET [/auth/app-param]}: getAppParam()
+	{POST [/auth/register-client]}: registerClient(RegisterClientDto)
+	{GET [/auth/generate-csrf]}: csrfToken(HttpServletRequest,HttpServletResponse)
+	{GET [/auth/captcha_access_key]}: generateCaptchaAccessKey()
+2024-12-14 21:25:00 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2024-12-14 21:25:00 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'beanNameHandlerMapping' {}
+2024-12-14 21:25:00 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'resourceHandlerMapping' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]], /**=ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]}
+2024-12-14 21:25:00 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@464017f5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3c4231e5, org.springframework.security.web.context.SecurityContextHolderFilter@4ee80a94, org.springframework.security.web.header.HeaderWriterFilter@7d741200, org.springframework.web.filter.CorsFilter@397f9672, com.ctoutweb.lalamiam.infra.security.csrf.CustomCsrfFilter@628b819d, org.springframework.security.web.authentication.logout.LogoutFilter@2ae0eb98, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@76d220eb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@627cb3ed, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@72e4ffa2, org.springframework.security.web.session.SessionManagementFilter@4ccf1d3e, org.springframework.security.web.access.ExceptionTranslationFilter@969c2f9, org.springframework.security.web.access.intercept.AuthorizationFilter@3b48361e]
+2024-12-14 21:25:00 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/api/v1'
+2024-12-14 21:25:00 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Started Lalamiam in 9.421 seconds (process running for 10.139)
+2024-12-14 21:25:33 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-14 21:25:33 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2024-12-14 21:25:34 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2024-12-14 21:25:34 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2024-12-14 21:25:34 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2024-12-14 21:25:34 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2024-12-14 21:25:40 [http-nio-8080-exec-3] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2024-12-14 21:25:40 [http-nio-8080-exec-3] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2024-12-14 21:25:40 [http-nio-8080-exec-3] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2024-12-14 21:25:40 [http-nio-8080-exec-3] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2024-12-14 21:25:40 [http-nio-8080-exec-3] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2024-12-14 21:25:40 [http-nio-8080-exec-3] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2024-12-14 21:25:40 [http-nio-8080-exec-3] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2024-12-14 21:25:40 [http-nio-8080-exec-3] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2024-12-14 21:26:07 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-14 21:26:13 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Starting Lalamiam using Java 17.0.7 with PID 5528 (C:\Programmation\java\lalamiam_v2\infra\target\classes started by Administrateur in C:\Programmation\java\lalamiam_v2)
+2024-12-14 21:26:13 [main] DEBUG c.ctoutweb.lalamiam.infra.Lalamiam - Running with Spring Boot v3.1.0, Spring v6.0.9
+2024-12-14 21:26:13 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - No active profile set, falling back to 1 default profile: "default"
+2024-12-14 21:26:15 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-14 21:26:15 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 281 ms. Found 14 JPA repository interfaces.
+2024-12-14 21:26:15 [main] DEBUG c.c.l.i.m.c.DynamicMessageSource - Clearing entire resource bundle cache
+2024-12-14 21:26:16 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-12-14 21:26:16 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2888 ms
+2024-12-14 21:26:16 [main] DEBUG c.c.l.i.s.csrf.CustomCsrfFilter - Filter 'csrfFilter' configured for use
+2024-12-14 21:26:18 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-14 21:26:19 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-14 21:26:20 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-14 21:26:20 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: e9e20dfb-78e8-42f5-85a5-1616c281ac54
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-12-14 21:26:21 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AdminController:
+	{GET [/admin/get-professional-documents]}: getProfessionalDocuement()
+2024-12-14 21:26:21 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AuthController:
+	{GET [/auth/generate-captcha]}: generateCaptcha(HttpServletRequest,HttpServletResponse)
+	{POST [/auth/register-client]}: registerClient(RegisterClientDto)
+	{GET [/auth/generate-csrf]}: csrfToken(HttpServletRequest,HttpServletResponse)
+	{GET [/auth/app-param]}: getAppParam()
+2024-12-14 21:26:21 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2024-12-14 21:26:21 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'beanNameHandlerMapping' {}
+2024-12-14 21:26:21 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'resourceHandlerMapping' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]], /**=ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]}
+2024-12-14 21:26:21 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@507187c1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2220c5f7, org.springframework.security.web.context.SecurityContextHolderFilter@7c4697fc, org.springframework.security.web.header.HeaderWriterFilter@299c86f0, org.springframework.web.filter.CorsFilter@5bb90b89, com.ctoutweb.lalamiam.infra.security.csrf.CustomCsrfFilter@7ebe2e47, org.springframework.security.web.authentication.logout.LogoutFilter@18fcfe7e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@e6fbf82, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3b6c55b6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@10b0dd3a, org.springframework.security.web.session.SessionManagementFilter@5ce1ec7, org.springframework.security.web.access.ExceptionTranslationFilter@3bede349, org.springframework.security.web.access.intercept.AuthorizationFilter@193d73d3]
+2024-12-14 21:26:21 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/api/v1'
+2024-12-14 21:26:21 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Started Lalamiam in 9.388 seconds (process running for 10.028)
+2024-12-14 21:26:44 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-12-14 21:26:44 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-12-14 21:26:45 [http-nio-8080-exec-2] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2024-12-14 21:26:45 [http-nio-8080-exec-2] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2024-12-14 21:26:45 [http-nio-8080-exec-2] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2024-12-14 21:26:45 [http-nio-8080-exec-2] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2024-12-14 21:26:45 [http-nio-8080-exec-2] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2024-12-14 21:26:45 [http-nio-8080-exec-2] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2024-12-14 21:26:45 [http-nio-8080-exec-2] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2024-12-14 21:26:45 [http-nio-8080-exec-2] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2024-12-14 21:33:23 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'

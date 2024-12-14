@@ -23,4 +23,12 @@ public interface ICaptchaService {
    * @return HttpHeaders
    */
   HttpHeaders generateCaptchaAccessKey();
+
+  /**
+   * Renvoie un Token JWT permettant de générer des captcha
+   * Headers en paramètre quand des données sont déja presente
+   * @param httpHeaders HttpHeaders
+   * @return HttpHeaders
+   */
+  HttpHeaders generateCaptchaAccessKey(HttpHeaders httpHeaders);
 }

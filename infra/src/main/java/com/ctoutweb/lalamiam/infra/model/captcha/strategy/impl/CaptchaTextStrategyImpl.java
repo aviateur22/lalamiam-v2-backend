@@ -15,19 +15,17 @@ public class CaptchaTextStrategyImpl implements ICaptchaStrategy {
   private static final CaptchaType captchaType = CaptchaType.TEXT;
   private static final CryptographyType cryptoType = CryptographyType.HASH;
   private final ICaptchaGeneration captchaGeneration;
-  private final Factory factory;
 
-  public CaptchaTextStrategyImpl(ICaptchaGeneration captchaGeneration, Factory factory) {
+  public CaptchaTextStrategyImpl(ICaptchaGeneration captchaGeneration) {
     this.captchaGeneration = captchaGeneration;
-    this.factory = factory;
   }
 
   @Override
   public ICaptcha generateCaptcha() throws IOException {
-    captchaGeneration
+    return captchaGeneration
             .generate(captchaType)
             .cryptographyAndSaveResponse(cryptoType)
-            .convertCaptchaQuestionToBase64Image();
-    return factory.getImpl(captchaGeneration);
+            .convertCaptchaQuestionToBase64Image()
+            .getCaptcha();
   }
 }
