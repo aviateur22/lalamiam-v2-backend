@@ -6,7 +6,7 @@ public interface IBoundariesAdapter {
   /**
    * Entée du useCase
    */
-  public interface IBoundaryInputAdapter extends com.ctoutweb.lalamiam.core.adapter.validateUserCaptchaResponse.IBoundariesAdapter.IBoundaryInputAdapter {
+  public interface IBoundaryInputAdapter {
     String getHashPassword();
     String getEmail();
     String getUserName();

@@ -21,8 +21,7 @@ public class ApplicationConstant {
   public static final String BUNDLE_ERROR_MESSAGE_PATH = "message/validatorErrorMessage";
 
   // CSRF Token
-  public static final String X_CSRF_TOKEN = "X-CSRF-TOKEN";  // Header key pour l'envoie d'un nouveau token CSRF
-  public static final String FORM_CSRF_TOKEN = "FORM-CSRF-TOKEN";  // Header key pour la récupération d'un token CSRF lors de la soumission d'un formulaire
+  public static final String POST_CSRF_TOKEN = "POST-CSRF-TOKEN";  // Header key pour l'envoie et récupération token CSRF
   public static final String COOKIE_CSRF_PARAM_NAME = "_csrf"; // Nom du cookie contenant le token CSRF
   public static final String HEADER_CSRF_PARAM_NAME = "_header";  // Token provenant du header
   public static final String COOKIE_CSRF_ACCESS_KEY_PARAM_NAME = "_csrf_access_key"; // Nom du cookie contenant le JWT permettant de générer un nouveau CSRF

@@ -2,7 +2,7 @@ package com.ctoutweb.lalamiam.infra.security.csrf;
 
 import org.springframework.security.web.csrf.CsrfToken;
 
-public record CsrfHeaderTokenImpl(String headerName, String parameterName, String token) implements CsrfToken {
+public record CsrfTokenImpl(String headerName, String parameterName, String token) implements CsrfToken {
   @Override
   public String getHeaderName() {
     return headerName;

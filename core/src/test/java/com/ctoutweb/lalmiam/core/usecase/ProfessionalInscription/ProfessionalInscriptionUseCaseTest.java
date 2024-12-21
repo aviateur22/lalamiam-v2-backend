@@ -64,12 +64,7 @@ public class ProfessionalInscriptionUseCaseTest {
             professionalInscriptionInformationAdapter.getUserName(),
             professionalInscriptionInformationAdapter.getFirstName(),
             professionalInscriptionInformationAdapter.getPhone(),
-            professionalInscriptionInformationAdapter.getDocuments(),
-            professionalInscriptionInformationAdapter.getCaptchaResponseByUser(),
-            professionalInscriptionInformationAdapter.getHashOrDecrypteCaptchaResponse(),
-            professionalInscriptionInformationAdapter.getCryptographicType(),
-            professionalInscriptionInformationAdapter.getCaptchaToken(),
-            professionalInscriptionInformationAdapter.getCaptchaTokenSeparator()
+            professionalInscriptionInformationAdapter.getDocuments()
     );
 
     /**

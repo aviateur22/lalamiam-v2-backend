@@ -3,8 +3,12 @@ package com.ctoutweb.lalamiam.infra.factory;
 import com.ctoutweb.lalamiam.infra.controller.validation.impl.DoubleDtoToValidateImpl;
 import com.ctoutweb.lalamiam.infra.controller.validation.impl.DtoToValidateImpl;
 import com.ctoutweb.lalamiam.infra.controller.validation.IDtoToValidate;
+import com.ctoutweb.lalamiam.infra.dto.RegisterClientDto;
+import com.ctoutweb.lalamiam.infra.dto.UserCaptchaResponseDto;
 import com.ctoutweb.lalamiam.infra.model.IApiLanguage;
 import com.ctoutweb.lalamiam.infra.model.IApiMessage;
+import com.ctoutweb.lalamiam.infra.model.IErrorMessage;
+import com.ctoutweb.lalamiam.infra.model.captcha.IUserCaptchaResponse;
 import com.ctoutweb.lalamiam.infra.model.param.AppParamImpl;
 import com.ctoutweb.lalamiam.infra.model.param.IAppParam;
 import com.ctoutweb.lalamiam.infra.model.IMessageResponse;
@@ -25,7 +29,7 @@ import com.ctoutweb.lalamiam.infra.repository.entity.UserEntity;
 import com.ctoutweb.lalamiam.core.entity.clientInscription.IClientInscription.ICreatedClient;
 import com.ctoutweb.lalamiam.core.entity.clientInscription.IClientInscription.ICreatedRole;
 import com.ctoutweb.lalamiam.core.entity.clientInscription.IClientInscription.ICreatedAccount;
-import com.ctoutweb.lalamiam.infra.security.csrf.CsrfHeaderTokenImpl;
+import com.ctoutweb.lalamiam.infra.security.csrf.CsrfTokenImpl;
 import com.ctoutweb.lalamiam.infra.security.jwt.IJwtIssue;
 import com.ctoutweb.lalamiam.infra.security.jwt.impl.JwtIssueImpl;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -68,12 +72,8 @@ public class Factory {
     return new DtoToValidateImpl<>(dto1);
   }
 
-  public CsrfToken getCsrfHeaderTokenImpl(String headerName, String parameterName, String token) {
-    return new CsrfHeaderTokenImpl(headerName, parameterName, token);
-  }
-
-  public CsrfToken getCsrfCookieTokenImpl(String headerName, String parameterName, String token) {
-    return new CsrfHeaderTokenImpl(headerName, parameterName, token);
+  public CsrfToken getCsrfTokenImpl(String headerName, String parameterName, String token) {
+    return new CsrfTokenImpl(headerName, parameterName, token);
   }
 
   public IJwtIssue getImpl(String jwtId, String jwtToken, ZonedDateTime expiredAt) {
@@ -99,4 +99,7 @@ public class Factory {
     return new AppParamImpl(language);
   }
 
+  public IErrorMessage getErrorMessageImpl(String errorMessage) {
+    return new ErrorMessageImpl(errorMessage);
+  }
 }

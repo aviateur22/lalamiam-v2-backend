@@ -29,5 +29,4 @@ public interface ICookieService {
    * @return Cookie - Cookie de recherché
    */
   public Cookie findCookie(HttpServletRequest request, String name);
-
 }

@@ -42,7 +42,7 @@ public class CsrfServiceImpl implements ICsrfService {
   public void generateCsrf(HttpServletRequest request, HttpServletResponse response) {
     var cookieAccessCsrfKeyValue = getCookieCsrfAccessKey(request);
 
-    if(cookieAccessCsrfKeyValue == null || isCsrfAccessKeyValid(cookieAccessCsrfKeyValue)) {
+    if(cookieAccessCsrfKeyValue == null || !isCsrfAccessKeyValid(cookieAccessCsrfKeyValue)) {
       manageUnvalidCsrfAccessKey();
       return;
     }

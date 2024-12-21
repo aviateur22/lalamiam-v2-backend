@@ -81,30 +81,7 @@ public class DataForTest {
   }
   public static com.ctoutweb.lalamiam.core.adapter.professionalInscription.IBoundariesAdapter.IBoundaryInputAdapter fakeProfessionalInscriptionInformationAdapter() {
     com.ctoutweb.lalamiam.core.adapter.professionalInscription.IBoundariesAdapter.IBoundaryInputAdapter professionalInscriptionInformationAdapter = new com.ctoutweb.lalamiam.core.adapter.professionalInscription.IBoundariesAdapter.IBoundaryInputAdapter() {
-      @Override
-      public String getCaptchaResponseByUser() {
-        return "captchaResponseByUser";
-      }
 
-      @Override
-      public String getHashOrDecrypteCaptchaResponse() {
-        return "ddddddd";
-      }
-
-      @Override
-      public CryptographicType getCryptographicType() {
-        return CryptographicType.HASH;
-      }
-
-      @Override
-      public String getCaptchaToken() {
-        return "dsffdfdf";
-      }
-
-      @Override
-      public String getCaptchaTokenSeparator() {
-        return "!%%!";
-      }
 
       @Override
       public String getUserName() {
@@ -152,30 +129,6 @@ public class DataForTest {
   public static com.ctoutweb.lalamiam.core.adapter.clientInscription.boundary.IBoundariesAdapter.IBoundaryInputAdapter fakeClientInscriptionAdapter() {
 
     return new com.ctoutweb.lalamiam.core.adapter.clientInscription.boundary.IBoundariesAdapter.IBoundaryInputAdapter() {
-      @Override
-      public String getCaptchaResponseByUser() {
-        return null;
-      }
-
-      @Override
-      public String getHashOrDecrypteCaptchaResponse() {
-        return "dddddd";
-      }
-
-      @Override
-      public CryptographicType getCryptographicType() {
-        return CryptographicType.HASH;
-      }
-
-      @Override
-      public String getCaptchaToken() {
-        return null;
-      }
-
-      @Override
-      public String getCaptchaTokenSeparator() {
-        return null;
-      }
 
       @Override
       public String getHashPassword() {

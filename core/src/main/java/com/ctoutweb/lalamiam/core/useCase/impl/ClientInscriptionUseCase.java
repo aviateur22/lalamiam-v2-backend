@@ -36,7 +36,7 @@ public class ClientInscriptionUseCase implements UseCase<ClientInscriptionUseCas
 
 
   @Override
-  public Output execute(Input input) {
+  public Output execute(Input input) throws ConflictException {
     BoundaryInputImpl clientInscriptionInformation = input.getBoundaryInput();
 
     // Vérification captcha
@@ -122,7 +122,9 @@ public class ClientInscriptionUseCase implements UseCase<ClientInscriptionUseCas
   }
 
   /**
-   * USeCase Input
+   * Concrete implementation of UseCase.Input.
+   * IBoundaryInputAdapter Abstraction of the boundaryAdapter
+   * BoundaryInputImpl specific implementation of the boundaryAdapter for the useCase
    */
   public static class Input extends InputBase<IBoundaryInputAdapter, BoundaryInputImpl> implements UseCase.Input {
 
@@ -133,17 +135,18 @@ public class ClientInscriptionUseCase implements UseCase<ClientInscriptionUseCas
     public static Input getUseCaseInput(IBoundaryInputAdapter boundaryInputAdapter) {
       return new Input(boundaryInputAdapter);
     }
+
+    /**
+     * specific implementation of the boundaryAdapter for the useCase
+     * @param inputBoundaryAdapter
+     * @return BoundaryInputImpl
+     */
     @Override
     protected BoundaryInputImpl getImplementation(IBoundaryInputAdapter inputBoundaryAdapter) {
       return BoundaryInputImpl.getBoundaryInputImpl(
               inputBoundaryAdapter.getHashPassword(),
               inputBoundaryAdapter.getEmail(),
-              inputBoundaryAdapter.getUserName(),
-              inputBoundaryAdapter.getCaptchaResponseByUser(),
-              inputBoundaryAdapter.getHashOrDecrypteCaptchaResponse(),
-              inputBoundaryAdapter.getCryptographicType(),
-              inputBoundaryAdapter.getCaptchaToken(),
-              inputBoundaryAdapter.getCaptchaTokenSeparator()
+              inputBoundaryAdapter.getUserName()
       );
     }
   }

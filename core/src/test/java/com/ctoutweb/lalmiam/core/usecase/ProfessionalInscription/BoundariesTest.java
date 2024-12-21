@@ -31,12 +31,8 @@ public class BoundariesTest {
             boundaryInputAdapter.getUserName(),
             boundaryInputAdapter.getFirstName(),
             boundaryInputAdapter.getPhone(),
-            boundaryInputAdapter.getDocuments(),
-            boundaryInputAdapter.getCaptchaResponseByUser(),
-            boundaryInputAdapter.getHashOrDecrypteCaptchaResponse(),
-            boundaryInputAdapter.getCryptographicType(),
-            boundaryInputAdapter.getCaptchaToken(),
-            boundaryInputAdapter.getCaptchaTokenSeparator());
+            boundaryInputAdapter.getDocuments()
+    );
 
     /**
      * Then

@@ -1,6 +1,5 @@
 package com.ctoutweb.lalamiam.infra.service.impl;
 
-import com.ctoutweb.lalamiam.infra.security.csrf.CsrfCookieTokenImpl;
 import com.ctoutweb.lalamiam.infra.service.ICookieService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;

@@ -3,6 +3,7 @@ package com.ctoutweb.lalamiam.infra.service;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpHeaders;
+import org.springframework.security.web.csrf.CsrfToken;
 
 /**
  * Gestion des token CSRF
@@ -21,5 +22,4 @@ public interface ICsrfService {
    * @return HttpHeader
    */
   public HttpHeaders generateCsrfAccessKey();
-
 }

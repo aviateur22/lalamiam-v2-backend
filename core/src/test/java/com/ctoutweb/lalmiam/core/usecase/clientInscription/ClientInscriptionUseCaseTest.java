@@ -99,7 +99,8 @@ public class ClientInscriptionUseCaseTest {
 
     ClientInscriptionUseCase clientInscriptionUseCase = new ClientInscriptionUseCase(
             messageService,
-            notificationService, clientInscriptionRepository,
+            notificationService,
+            clientInscriptionRepository,
             captchaValidateClientResponseUseCase
     );
 
@@ -142,12 +143,7 @@ public class ClientInscriptionUseCaseTest {
     var clientInscriptionInformation = BoundaryInputImpl.getBoundaryInputImpl(
             clientInscriptionAdapter.getHashPassword(),
             clientInscriptionAdapter.getEmail(),
-            clientInscriptionAdapter.getUserName(),
-            clientInscriptionAdapter.getCaptchaResponseByUser(),
-            clientInscriptionAdapter.getHashOrDecrypteCaptchaResponse(),
-            clientInscriptionAdapter.getCryptographicType(),
-            clientInscriptionAdapter.getCaptchaToken(),
-            clientInscriptionAdapter.getCaptchaTokenSeparator()
+            clientInscriptionAdapter.getUserName()
 
     );
 
@@ -192,12 +188,7 @@ public class ClientInscriptionUseCaseTest {
     var clientInscriptionInformation = BoundaryInputImpl.getBoundaryInputImpl(
             clientInscriptionInformationAdapter.getHashPassword(),
             clientInscriptionInformationAdapter.getEmail(),
-            clientInscriptionInformationAdapter.getUserName(),
-            clientInscriptionInformationAdapter.getCaptchaResponseByUser(),
-            clientInscriptionInformationAdapter.getHashOrDecrypteCaptchaResponse(),
-            clientInscriptionInformationAdapter.getCryptographicType(),
-            clientInscriptionInformationAdapter.getCaptchaToken(),
-            clientInscriptionInformationAdapter.getCaptchaTokenSeparator()
+            clientInscriptionInformationAdapter.getUserName()
     );
 
     Mockito.when(clientInscriptionRepository.addClient(clientInscriptionInformation.getEmail(), clientInscriptionInformation.getHashPassword())).thenReturn(new CreatedClientImpl(1l));
@@ -237,12 +228,7 @@ public class ClientInscriptionUseCaseTest {
     var clientInscriptionInformation = BoundaryInputImpl.getBoundaryInputImpl(
             clientInscriptionInformationAdapter.getHashPassword(),
             clientInscriptionInformationAdapter.getEmail(),
-            clientInscriptionInformationAdapter.getUserName(),
-            clientInscriptionInformationAdapter.getCaptchaResponseByUser(),
-            clientInscriptionInformationAdapter.getHashOrDecrypteCaptchaResponse(),
-            clientInscriptionInformationAdapter.getCryptographicType(),
-            clientInscriptionInformationAdapter.getCaptchaToken(),
-            clientInscriptionInformationAdapter.getCaptchaTokenSeparator()
+            clientInscriptionInformationAdapter.getUserName()
     );
 
     Mockito.when(clientInscriptionRepository.createAccountClient(1l)).thenReturn(new CreatedAccountImpl(1l));

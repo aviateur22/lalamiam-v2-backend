@@ -1,8 +1,12 @@
 package com.ctoutweb.lalamiam.infra.controller;
 
 import com.ctoutweb.lalamiam.core.provider.IMessageService;
+import com.ctoutweb.lalamiam.infra.dto.LoginDto;
+import com.ctoutweb.lalamiam.infra.dto.LoginResponseDto;
 import com.ctoutweb.lalamiam.infra.dto.RegisterClientDto;
+import com.ctoutweb.lalamiam.infra.exception.BadRequestException;
 import com.ctoutweb.lalamiam.infra.factory.Factory;
+import com.ctoutweb.lalamiam.infra.model.impl.MessageResponseImpl;
 import com.ctoutweb.lalamiam.infra.model.param.IAppParam;
 import com.ctoutweb.lalamiam.infra.model.IMessageResponse;
 import com.ctoutweb.lalamiam.infra.model.captcha.ICaptcha;
@@ -44,13 +48,29 @@ public class AuthController {
     // Validation dto
     factory.getImpl(registerClientDto).validateDto(validator);
 
+    // Validation captcha
+    if(!securityService.isUserCaptchaResponseValid(registerClientDto.userCaptchaResponse()))
+      throw new BadRequestException(messageService.getMessage("captcha.invalid.response"));
+
+    // Creation compte client
+    authService.registerClient(registerClientDto);
+
     return new ResponseEntity<>(factory.getMessageResponseImpl(messageService.getMessage("register.success")), HttpStatus.OK);
   }
 
+  @PostMapping("/login")
+  ResponseEntity<LoginResponseDto> login(@RequestBody LoginDto loginDto) {
+    factory.getImpl(loginDto).validateDto(validator);
+
+    return new ResponseEntity<>(new LoginResponseDto("email", 151L, "Message"), HttpStatus.OK);
+
+  }
+
   @GetMapping("/generate-csrf")
-  ResponseEntity<String> csrfToken(HttpServletRequest request, HttpServletResponse response) {
+  ResponseEntity<IMessageResponse> csrfToken(HttpServletRequest request, HttpServletResponse response) {
     securityService.generateCsrf(request, response);
-    return new ResponseEntity<>("CSRF TOKEN", HttpStatus.OK);
+
+    return new ResponseEntity<>(new MessageResponseImpl("essaie"), HttpStatus.OK);
   }
 
   @GetMapping("/generate-captcha")

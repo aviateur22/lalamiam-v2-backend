@@ -11,4 +11,11 @@ public interface ICustomCsrfTokenRepository extends CsrfTokenRepository {
    * @return HeaderCsrfFormTokenImpl
    */
   public CsrfToken loadHeaderToken(HttpServletRequest request);
+
+  /**
+   * Récupération du token CSRF depuis le cookie
+   * @param request HttpServletRequest
+   * @return CsrfToken
+   */
+  public CsrfToken loadCookieToken(HttpServletRequest request);
 }

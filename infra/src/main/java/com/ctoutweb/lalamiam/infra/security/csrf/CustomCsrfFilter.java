@@ -1,5 +1,6 @@
 package com.ctoutweb.lalamiam.infra.security.csrf;
 
+import com.ctoutweb.lalamiam.infra.service.ICookieService;
 import com.ctoutweb.lalamiam.infra.utility.HttpServletUtility;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -17,14 +18,17 @@ import java.util.regex.Pattern;
 public class CustomCsrfFilter extends OncePerRequestFilter {
   private static final Logger LOGGER = LogManager.getLogger();
   private final ICustomCsrfTokenRepository customCsrfTokenRepository;
+  private final ICookieService cookieService;
 
-  public CustomCsrfFilter(ICustomCsrfTokenRepository customCsrfTokenRepository) {
+  public CustomCsrfFilter(ICustomCsrfTokenRepository customCsrfTokenRepository, ICookieService cookieService) {
     this.customCsrfTokenRepository = customCsrfTokenRepository;
+    this.cookieService = cookieService;
   }
 
   @Override
-  protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-    CsrfToken csrfCookieToken = customCsrfTokenRepository.loadHeaderToken(request);
+  protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+  throws ServletException, IOException {
+    CsrfToken csrfCookieToken = customCsrfTokenRepository.loadCookieToken(request);
     CsrfToken headerCsrfFormToken = customCsrfTokenRepository.loadHeaderToken(request);
 
     RequestMatcher csrfFilterMatcher = new DefaultRequiresCsrfMatcher();

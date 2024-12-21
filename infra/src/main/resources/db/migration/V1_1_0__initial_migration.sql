@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS sc_lalamiam."captcha_image", sc_lalamiam."login", sc_lalami
 -- Utilisateur --
 CREATE TABLE if NOT EXISTS sc_lalamiam.users(
     "id" BIGINT PRIMARY KEY,
-    "user_name" text not null,
+    "user_name" text,
     "email" text not null,
     "password" text not null,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),

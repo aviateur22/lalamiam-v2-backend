@@ -35,12 +35,7 @@ public class BoundariesTest {
     BoundaryInputImpl expectedResult = new BoundaryInputImpl(
             userInscriptionAdapter.getHashPassword(),
             userInscriptionAdapter.getEmail(),
-            userInscriptionAdapter.getUserName(),
-            userInscriptionAdapter.getCaptchaResponseByUser(),
-            userInscriptionAdapter.getHashOrDecrypteCaptchaResponse(),
-            userInscriptionAdapter.getCryptographicType(),
-            userInscriptionAdapter.getCaptchaToken(),
-            userInscriptionAdapter.getCaptchaTokenSeparator()
+            userInscriptionAdapter.getUserName()
     );
 
     /**

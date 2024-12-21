@@ -5,7 +5,7 @@ package com.ctoutweb.lalamiam.core.useCase;
  * @param <T> Class Type BoundaryOutput: Impléméntation des données à renvoyées en fin de useCase.
  * @param <U> Class Type BoundaryOutputAdapter: Abstraction de utilisée à la sortie du UseCase.
  */
-public abstract class OutputBase<T extends U, U > {
+public abstract class OutputBase<T extends U, U> {
   private final T outputBoundary;
 
   public OutputBase(T outputBoundary) {

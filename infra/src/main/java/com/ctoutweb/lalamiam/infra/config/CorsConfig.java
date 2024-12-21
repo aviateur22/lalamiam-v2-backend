@@ -8,6 +8,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
+import static com.ctoutweb.lalamiam.infra.constant.ApplicationConstant.POST_CSRF_TOKEN;
+
 @Configuration
 public class CorsConfig {
 
@@ -21,8 +23,16 @@ public class CorsConfig {
     webAppInitialize.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
     webAppInitialize.setAllowedMethods(Arrays.asList("GET"));
     webAppInitialize.setAllowedHeaders(Arrays.asList("Content-Type"));
+
     source.registerCorsConfiguration("/auth/app-param", webAppInitialize);
 
+    CorsConfiguration auth = new CorsConfiguration();
+    auth.setAllowCredentials(true);
+    auth.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+    auth.setAllowedMethods(Arrays.asList("GET", "POST"));
+    auth.setAllowedHeaders(Arrays.asList("Content-Type", POST_CSRF_TOKEN));
+    auth.setExposedHeaders(Arrays.asList(POST_CSRF_TOKEN));
+    source.registerCorsConfiguration("/auth/**", auth);
     return  source;
   }
 }
