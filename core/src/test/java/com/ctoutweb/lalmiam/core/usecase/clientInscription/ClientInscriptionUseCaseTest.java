@@ -8,7 +8,6 @@ import com.ctoutweb.lalamiam.core.entity.clientInscription.impl.entity.CreatedCl
 import com.ctoutweb.lalamiam.core.entity.clientInscription.impl.boundaries.BoundaryInputImpl;
 import com.ctoutweb.lalamiam.core.entity.clientInscription.impl.boundaries.BoundaryOutputImpl;
 import com.ctoutweb.lalamiam.core.exception.ConflictException;
-import com.ctoutweb.lalamiam.core.provider.ICaptchaConfiguration;
 import com.ctoutweb.lalamiam.core.provider.IClientInscriptionRepository;
 import com.ctoutweb.lalamiam.core.provider.IMessageService;
 import com.ctoutweb.lalamiam.core.provider.INotificationService;
@@ -34,15 +33,7 @@ public class ClientInscriptionUseCaseTest {
   IMessageService messageService;
 
   @Mock
-  ICaptchaConfiguration captchaConfiguration;
-
-  @Mock
   INotificationService notificationService;
-
-  @Mock
-  ValidateCaptchaResponseUseCase captchaValidateClientResponseUseCase;
-
-
   @BeforeEach
   void init() {
 
@@ -51,8 +42,7 @@ public class ClientInscriptionUseCaseTest {
     clientInscriptionUseCase = new ClientInscriptionUseCase(
             messageService,
             notificationService,
-            clientInscriptionRepository,
-            captchaValidateClientResponseUseCase
+            clientInscriptionRepository
     );
   }
 
@@ -100,8 +90,7 @@ public class ClientInscriptionUseCaseTest {
     ClientInscriptionUseCase clientInscriptionUseCase = new ClientInscriptionUseCase(
             messageService,
             notificationService,
-            clientInscriptionRepository,
-            captchaValidateClientResponseUseCase
+            clientInscriptionRepository
     );
 
     ValidateCaptchaResponseUseCase.Output output = clientInscriptionUseCase.executeCaptchaValidateClientResponseUseCase(clientInscriptionAdapter);
@@ -143,7 +132,7 @@ public class ClientInscriptionUseCaseTest {
     var clientInscriptionInformation = BoundaryInputImpl.getBoundaryInputImpl(
             clientInscriptionAdapter.getHashPassword(),
             clientInscriptionAdapter.getEmail(),
-            clientInscriptionAdapter.getUserName()
+            clientInscriptionAdapter.getNickName()
 
     );
 
@@ -188,7 +177,7 @@ public class ClientInscriptionUseCaseTest {
     var clientInscriptionInformation = BoundaryInputImpl.getBoundaryInputImpl(
             clientInscriptionInformationAdapter.getHashPassword(),
             clientInscriptionInformationAdapter.getEmail(),
-            clientInscriptionInformationAdapter.getUserName()
+            clientInscriptionInformationAdapter.getNickName()
     );
 
     Mockito.when(clientInscriptionRepository.addClient(clientInscriptionInformation.getEmail(), clientInscriptionInformation.getHashPassword())).thenReturn(new CreatedClientImpl(1l));
@@ -228,7 +217,7 @@ public class ClientInscriptionUseCaseTest {
     var clientInscriptionInformation = BoundaryInputImpl.getBoundaryInputImpl(
             clientInscriptionInformationAdapter.getHashPassword(),
             clientInscriptionInformationAdapter.getEmail(),
-            clientInscriptionInformationAdapter.getUserName()
+            clientInscriptionInformationAdapter.getNickName()
     );
 
     Mockito.when(clientInscriptionRepository.createAccountClient(1l)).thenReturn(new CreatedAccountImpl(1l));

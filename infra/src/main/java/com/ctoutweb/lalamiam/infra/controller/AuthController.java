@@ -4,6 +4,7 @@ import com.ctoutweb.lalamiam.core.provider.IMessageService;
 import com.ctoutweb.lalamiam.infra.dto.LoginDto;
 import com.ctoutweb.lalamiam.infra.dto.LoginResponseDto;
 import com.ctoutweb.lalamiam.infra.dto.RegisterClientDto;
+import com.ctoutweb.lalamiam.infra.dto.RegisterProfessionalDto;
 import com.ctoutweb.lalamiam.infra.exception.BadRequestException;
 import com.ctoutweb.lalamiam.infra.factory.Factory;
 import com.ctoutweb.lalamiam.infra.model.impl.MessageResponseImpl;
@@ -58,12 +59,22 @@ public class AuthController {
     return new ResponseEntity<>(factory.getMessageResponseImpl(messageService.getMessage("register.success")), HttpStatus.OK);
   }
 
+  @PostMapping("/register-professional")
+  ResponseEntity<IMessageResponse> registerProfessional(@RequestBody RegisterProfessionalDto registerProfessionalDto) {
+    // Validation dto
+    factory.getImpl(registerProfessionalDto).validateDto(validator);
+
+    // Creation compte client
+    authService.registerProfessional(registerProfessionalDto);
+
+    return new ResponseEntity<>(factory.getMessageResponseImpl(messageService.getMessage("register.success")), HttpStatus.OK);
+  }
+
   @PostMapping("/login")
   ResponseEntity<LoginResponseDto> login(@RequestBody LoginDto loginDto) {
     factory.getImpl(loginDto).validateDto(validator);
 
     return new ResponseEntity<>(new LoginResponseDto("email", 151L, "Message"), HttpStatus.OK);
-
   }
 
   @GetMapping("/generate-csrf")

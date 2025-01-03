@@ -82,15 +82,14 @@ public class DataForTest {
   public static com.ctoutweb.lalamiam.core.adapter.professionalInscription.IBoundariesAdapter.IBoundaryInputAdapter fakeProfessionalInscriptionInformationAdapter() {
     com.ctoutweb.lalamiam.core.adapter.professionalInscription.IBoundariesAdapter.IBoundaryInputAdapter professionalInscriptionInformationAdapter = new com.ctoutweb.lalamiam.core.adapter.professionalInscription.IBoundariesAdapter.IBoundaryInputAdapter() {
 
-
       @Override
-      public String getUserName() {
+      public String getLastName() {
         return "bobo";
       }
 
       @Override
       public String getFirstName() {
-        return "my first name";
+        return "my first nickname";
       }
 
       @Override
@@ -113,6 +112,11 @@ public class DataForTest {
       @Override
       public String getEmail() {
         return "bob@marley.com";
+      }
+
+      @Override
+      public String getNickName() {
+        return "fffgg";
       }
 
     };
@@ -141,7 +145,7 @@ public class DataForTest {
       }
 
       @Override
-      public String getUserName() {
+      public String getNickName() {
         return "mon nom";
       }
     };

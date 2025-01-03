@@ -10,7 +10,7 @@ public interface IBoundariesAdapter {
    * Entée du useCase
    */
   public interface IBoundaryInputAdapter extends com.ctoutweb.lalamiam.core.adapter.clientInscription.boundary.IBoundariesAdapter.IBoundaryInputAdapter {
-    String getUserName();
+    String getLastName();
     String getFirstName();
     String getPhone();
     List<String> getDocuments();

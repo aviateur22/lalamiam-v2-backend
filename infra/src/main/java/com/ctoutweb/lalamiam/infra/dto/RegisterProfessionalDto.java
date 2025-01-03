@@ -5,10 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-/**
- * Données pour l'inscription client
- */
-public record RegisterClientDto(
+public record RegisterProfessionalDto(
         @NotNull(message = "{email.missing}")
         @NotBlank(message = "{email.missing}")
         @Email(message = "{email.bad.format}")
@@ -19,9 +16,20 @@ public record RegisterClientDto(
 
         @NotNull(message = "{nickname.missing}")
         @NotBlank(message = "{nickname.missing}")
-        String nickname,
+        String nickName,
+
+        @NotNull(message = "{firstname.missing}")
+        @NotBlank(message = "{firstname.missing}")
+        String firstName,
+
+        @NotNull(message = "{lastname.missing}")
+        @NotBlank(message = "{lastname.missing}")
+        String lastName,
+
+        @NotNull(message = "{phone.missing}")
+        @NotBlank(message = "{phone.missing}")
+        String phone,
         @NotNull(message = "{captcha.response.missing}")
         UserCaptchaResponseDto userCaptchaResponse
 ) {
-
 }

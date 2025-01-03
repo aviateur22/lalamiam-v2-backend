@@ -9,7 +9,7 @@ public interface IBoundariesAdapter {
   public interface IBoundaryInputAdapter {
     String getHashPassword();
     String getEmail();
-    String getUserName();
+    String getNickName();
   }
 
   /**

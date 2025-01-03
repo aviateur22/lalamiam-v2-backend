@@ -1,14 +1,13 @@
 package com.ctoutweb.lalamiam.core.entity.professionalInscription.impl.boundary;
 
-import com.ctoutweb.lalamiam.core.entity.cryptographic.CryptographicType;
 import com.ctoutweb.lalamiam.core.adapter.professionalInscription.IBoundariesAdapter.IBoundaryInputAdapter;
 
 import java.util.List;
-
 public record BoundaryInputImpl(
         String hashPassword,
         String email,
-        String name,
+        String nickName,
+        String lastName,
         String firstName,
         String phone,
         List<String> documents
@@ -17,7 +16,8 @@ public record BoundaryInputImpl(
   public static BoundaryInputImpl getBoundaryInputImpl(
           String hashPassword,
           String email,
-          String name,
+          String nickName,
+          String lastName,
           String firstName,
           String phone,
           List<String> documents
@@ -25,7 +25,8 @@ public record BoundaryInputImpl(
     return new BoundaryInputImpl(
             hashPassword,
             email,
-            name,
+            nickName,
+            lastName,
             firstName,
             phone,
             documents
@@ -34,27 +35,32 @@ public record BoundaryInputImpl(
 
   @Override
   public String getHashPassword() {
-    return hashPassword();
+    return hashPassword;
   }
 
   @Override
   public String getEmail() {
-    return email();
+    return email;
   }
 
   @Override
-  public String getUserName() {
-    return name();
+  public String getNickName() {
+    return nickName;
+  }
+
+  @Override
+  public String getLastName() {
+    return lastName;
   }
 
   @Override
   public String getFirstName() {
-    return firstName();
+    return firstName;
   }
 
   @Override
   public String getPhone() {
-    return phone();
+    return phone;
   }
 
   @Override

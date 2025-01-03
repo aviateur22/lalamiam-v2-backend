@@ -1,5 +1,6 @@
 package com.ctoutweb.lalamiam.core.useCase.impl;
 
+import com.ctoutweb.lalamiam.core.annotation.CoreService;
 import com.ctoutweb.lalamiam.core.constant.ApplicationConstant;
 import com.ctoutweb.lalamiam.core.entity.professionalInscription.impl.boundary.BoundaryInputImpl;
 import com.ctoutweb.lalamiam.core.entity.professionalInscription.impl.boundary.BoundaryOutputImpl;
@@ -15,7 +16,7 @@ import com.ctoutweb.lalamiam.core.useCase.OutputBase;
 import com.ctoutweb.lalamiam.core.useCase.UseCase;
 
 import java.time.LocalDateTime;
-
+@CoreService
 public class ProfessionalInscriptionUseCase implements UseCase<ProfessionalInscriptionUseCase.Input, ProfessionalInscriptionUseCase.Output> {
   private final IProfessionalInscriptionRepository professionalInscriptionRepository;
  private final ClientInscriptionUseCase clientInscriptionUseCase;
@@ -101,16 +102,19 @@ public class ProfessionalInscriptionUseCase implements UseCase<ProfessionalInscr
   }
 
   public static class Input extends InputBase<IBoundaryInputAdapter, BoundaryInputImpl> implements UseCase.Input {
-
     public Input(IBoundaryInputAdapter boundaryInputAdapter) {
       super(boundaryInputAdapter);
+    }
+    public static Input getUseCaseInput(IBoundaryInputAdapter boundaryInputAdapter) {
+      return new Input(boundaryInputAdapter);
     }
     @Override
     protected BoundaryInputImpl getImplementation(IBoundaryInputAdapter inputBoundaryAdapter) {
       return BoundaryInputImpl.getBoundaryInputImpl(
               inputBoundaryAdapter.getHashPassword(),
               inputBoundaryAdapter.getEmail(),
-              inputBoundaryAdapter.getUserName(),
+              inputBoundaryAdapter.getNickName(),
+              inputBoundaryAdapter.getLastName(),
               inputBoundaryAdapter.getFirstName(),
               inputBoundaryAdapter.getPhone(),
               inputBoundaryAdapter.getDocuments()

@@ -6,7 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 
 /**
- *
+ * Scan les données présente dans le module CORE
+ * Seule les class ayant l'annotation CoreService seront chargés lors du scan
  */
 @Configuration
 @ComponentScan(

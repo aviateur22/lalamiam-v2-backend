@@ -35,13 +35,13 @@ public class BoundariesTest {
     BoundaryInputImpl expectedResult = new BoundaryInputImpl(
             userInscriptionAdapter.getHashPassword(),
             userInscriptionAdapter.getEmail(),
-            userInscriptionAdapter.getUserName()
+            userInscriptionAdapter.getNickName()
     );
 
     /**
      * Then
      */
-    Assertions.assertEquals(expectedResult.getUserName(), actualResponse.getUserName());
+    Assertions.assertEquals(expectedResult.getNickName(), actualResponse.getNickName());
     Assertions.assertEquals(expectedResult.getEmail(), actualResponse.getEmail());
     Assertions.assertEquals(expectedResult.getHashPassword(), actualResponse.getHashPassword());
   }

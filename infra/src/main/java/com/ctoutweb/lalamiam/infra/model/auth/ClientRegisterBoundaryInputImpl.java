@@ -2,7 +2,7 @@ package com.ctoutweb.lalamiam.infra.model.auth;
 
 import com.ctoutweb.lalamiam.core.adapter.clientInscription.boundary.IBoundariesAdapter.IBoundaryInputAdapter;
 
-public record RegisterBoundaryInputImpl(
+public record ClientRegisterBoundaryInputImpl(
         String hashPassword,
         String email,
         String userName
@@ -19,7 +19,7 @@ public record RegisterBoundaryInputImpl(
   }
 
   @Override
-  public String getUserName() {
+  public String getNickName() {
     return userName;
   }
 }

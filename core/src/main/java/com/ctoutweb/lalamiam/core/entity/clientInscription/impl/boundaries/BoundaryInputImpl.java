@@ -5,18 +5,18 @@ import com.ctoutweb.lalamiam.core.adapter.clientInscription.boundary.IBoundaries
 public record BoundaryInputImpl(
         String hashPassword,
         String email,
-        String name
+        String nickname
 ) implements IBoundaryInputAdapter {
 
   public static BoundaryInputImpl getBoundaryInputImpl(
           String hashPassword,
           String email,
-          String name
+          String nickname
   ) {
     return new BoundaryInputImpl(
             hashPassword,
             email,
-            name
+            nickname
     );
   }
 
@@ -31,7 +31,7 @@ public record BoundaryInputImpl(
   }
 
   @Override
-  public String getUserName() {
-    return name;
+  public String getNickName() {
+    return nickname;
   }
 }

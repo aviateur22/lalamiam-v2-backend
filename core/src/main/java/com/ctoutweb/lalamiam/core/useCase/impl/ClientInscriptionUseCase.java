@@ -18,32 +18,20 @@ import com.ctoutweb.lalamiam.core.useCase.UseCase;
 
 @CoreService
 public class ClientInscriptionUseCase implements UseCase<ClientInscriptionUseCase.Input, ClientInscriptionUseCase.Output> {
-
   private final IMessageService messageService;
   private final INotificationService notificationService;
   private final IClientInscriptionRepository clientInscriptionRepository;
-  private final ValidateCaptchaResponseUseCase captchaValidateClientResponseUseCase;
-
   public ClientInscriptionUseCase(
           IMessageService messageService,
-          INotificationService notificationService, IClientInscriptionRepository userInscriptionRepository,
-          ValidateCaptchaResponseUseCase captchaValidateClientResponseUseCase) {
+          INotificationService notificationService,
+          IClientInscriptionRepository userInscriptionRepository) {
     this.messageService = messageService;
     this.notificationService = notificationService;
     this.clientInscriptionRepository = userInscriptionRepository;
-    this.captchaValidateClientResponseUseCase = captchaValidateClientResponseUseCase;
   }
-
-
   @Override
   public Output execute(Input input) throws ConflictException {
     BoundaryInputImpl clientInscriptionInformation = input.getBoundaryInput();
-
-    // Vérification captcha
-//    CaptchaValidateClientResponseUseCase captchaValidateClientResponseUseCase = new CaptchaValidateClientResponseUseCase();
-//    CaptchaValidateClientResponseUseCase.Input captchaInput = new CaptchaValidateClientResponseUseCase.Input()
-//    CaptchaValidateClientResponseUseCase.Output captchaOutput = captchaValidateClientResponseUseCase.execute(captchaInput);
-
 
     // Vérification Existence email
     if(!this.isEmailAvailable(clientInscriptionInformation.getEmail()))
@@ -110,7 +98,6 @@ public class ClientInscriptionUseCase implements UseCase<ClientInscriptionUseCas
     return this.clientInscriptionRepository.createRoleClient(createClientId, 1);
   }
 
-
   /**
    * Creation compte client
    * @param clientId long
@@ -146,7 +133,7 @@ public class ClientInscriptionUseCase implements UseCase<ClientInscriptionUseCas
       return BoundaryInputImpl.getBoundaryInputImpl(
               inputBoundaryAdapter.getHashPassword(),
               inputBoundaryAdapter.getEmail(),
-              inputBoundaryAdapter.getUserName()
+              inputBoundaryAdapter.getNickName()
       );
     }
   }
