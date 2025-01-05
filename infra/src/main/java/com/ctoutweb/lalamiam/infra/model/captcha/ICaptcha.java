@@ -19,10 +19,10 @@ public interface ICaptcha {
 
 
   /**
-   * Id de la réponse en base
+   * Id de la réponse en base chiffré
    * @return Srting
    */
-  Long getCaptchaResponseId();
+  String getCaptchaResponseIdEncrypt();
 
   /**
    * Image au format base64 de la question du captcha

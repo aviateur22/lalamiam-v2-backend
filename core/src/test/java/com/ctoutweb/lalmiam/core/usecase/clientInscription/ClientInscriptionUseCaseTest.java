@@ -54,7 +54,7 @@ public class ClientInscriptionUseCaseTest {
     IBoundaryInputAdapter clientInscriptionAdapter = fakeClientInscriptionAdapter();
     Mockito.when(messageService.getMessage("register.success")).thenReturn("Bonjour");
     Mockito.when(clientInscriptionRepository.findUserByEmail(clientInscriptionAdapter.getEmail())).thenReturn(null);
-    Mockito.when(clientInscriptionRepository.addClient(clientInscriptionAdapter.getEmail(), clientInscriptionAdapter.getHashPassword())).thenReturn(new CreatedClientImpl(1l));
+    Mockito.when(clientInscriptionRepository.addClient(clientInscriptionAdapter.getEmail(), clientInscriptionAdapter.getHashPassword(), clientInscriptionAdapter.getNickName())).thenReturn(new CreatedClientImpl(1l));
     Mockito.when(clientInscriptionRepository.createAccountClient(1l)).thenReturn(new CreatedAccountImpl(1l));
 
     // Données a injecter dans le useCase
@@ -180,7 +180,7 @@ public class ClientInscriptionUseCaseTest {
             clientInscriptionInformationAdapter.getNickName()
     );
 
-    Mockito.when(clientInscriptionRepository.addClient(clientInscriptionInformation.getEmail(), clientInscriptionInformation.getHashPassword())).thenReturn(new CreatedClientImpl(1l));
+    Mockito.when(clientInscriptionRepository.addClient(clientInscriptionInformation.getEmail(), clientInscriptionInformation.getHashPassword(), clientInscriptionInformationAdapter.getNickName())).thenReturn(new CreatedClientImpl(1l));
     Mockito.when(clientInscriptionRepository.createRoleClient(anyLong(), anyInt())).thenReturn(new IClientInscription.ICreatedRole() {
       @Override
       public Long getClientRole() {

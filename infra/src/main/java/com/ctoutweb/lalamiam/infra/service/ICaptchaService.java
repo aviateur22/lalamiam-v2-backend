@@ -1,6 +1,7 @@
 package com.ctoutweb.lalamiam.infra.service;
 
 import com.ctoutweb.lalamiam.infra.model.captcha.ICaptcha;
+import com.ctoutweb.lalamiam.infra.model.captcha.IUserCaptchaResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpHeaders;
@@ -17,6 +18,13 @@ public interface ICaptchaService {
    * @return ICaptcha
    */
   ICaptcha generateRandomCapatcha(HttpServletRequest request, HttpServletResponse response) throws IOException;
+
+  /**
+   * Validation de la réponse a un captcha
+   * @param captchaResponse IUserCaptchaResponse
+   * @return Boolean
+   */
+  Boolean isCaptchaReponseValid(IUserCaptchaResponse captchaResponse);
 
   /**
    * Renvoie un Token JWT permettant de générer des captcha

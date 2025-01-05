@@ -39,5 +39,16 @@ public interface ICryptoService {
    */
   public String decrypt(String cipherText, byte[] iv);
 
+  /**
+   * Génration d'un tableau de random byte
+   * @return byte[]
+   */
   byte[] generateRandomByte();
+
+  /**
+   * Récupération dun tableau de byte à prtir d'un text encodé en base64
+   * @param base64Text String - Text encodé en base 64
+   * @return byte[]
+   */
+  byte[] getByteArrayFromBase64(String base64Text);
 }

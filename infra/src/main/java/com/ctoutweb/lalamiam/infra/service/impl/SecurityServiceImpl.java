@@ -59,6 +59,6 @@ public class SecurityServiceImpl implements ISecurityService {
 
   @Override
   public boolean isUserCaptchaResponseValid(IUserCaptchaResponse captchaResponse) {
-    return false;
+    return captchaService.isCaptchaReponseValid(captchaResponse);
   }
 }

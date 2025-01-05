@@ -11,7 +11,7 @@ public record UserCaptchaResponseDto(
 
           @NotNull(message = "{captcha.response.missing}")
           @NotBlank(message = "{captcha.response.missing}")
-          Long captchaResponseId
+          String captchaResponseIdEncrypt
   )  implements IUserCaptchaResponse {
   @Override
   public String getCaptchaResponseByUser() {
@@ -19,7 +19,7 @@ public record UserCaptchaResponseDto(
   }
 
   @Override
-  public Long getCaptchaResponseId() {
-    return captchaResponseId;
+  public String getCaptchaResponseIdEncrypt() {
+    return captchaResponseIdEncrypt;
   }
 }

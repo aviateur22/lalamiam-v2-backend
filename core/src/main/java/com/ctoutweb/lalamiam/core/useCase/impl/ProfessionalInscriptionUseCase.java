@@ -45,7 +45,7 @@ public class ProfessionalInscriptionUseCase implements UseCase<ProfessionalInscr
     long registerClienId = performClientInscription(inputBoundary);
 
    // Création d'un professionnel
-    long professionalId  = registerProfessional(registerClienId);
+    long professionalId  = registerProfessional(registerClienId, inputBoundary);
 
    // Création du compte professionel
     createProfessionalAccount(professionalId);
@@ -82,8 +82,8 @@ public class ProfessionalInscriptionUseCase implements UseCase<ProfessionalInscr
    * @param clientId Long - Identifiant client
    * @return Long - Idenditifiant Professionnel
    */
-  public Long registerProfessional(long clientId) {
-    ICreatedProfessional createdProfessionalAdapter = professionalInscriptionRepository.addProfessional(clientId);
+  public Long registerProfessional(long clientId, IBoundaryInputAdapter boundaryInputAdapter) {
+    ICreatedProfessional createdProfessionalAdapter = professionalInscriptionRepository.addProfessional(clientId, boundaryInputAdapter);
     return createdProfessionalAdapter.getProfessionalId();
   }
 

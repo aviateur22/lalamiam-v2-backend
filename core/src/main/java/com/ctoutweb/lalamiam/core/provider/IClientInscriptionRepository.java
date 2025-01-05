@@ -20,7 +20,7 @@ public interface IClientInscriptionRepository {
    * @param hashPassword String
    * @return CreatedClientAdapter
    */
-  public ICreatedClient addClient(String email, String hashPassword);
+  public ICreatedClient addClient(String email, String hashPassword, String userName);
 
   /**
    * Création des roles clients

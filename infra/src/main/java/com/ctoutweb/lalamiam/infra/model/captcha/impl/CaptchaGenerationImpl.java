@@ -1,5 +1,6 @@
 package com.ctoutweb.lalamiam.infra.model.captcha.impl;
 
+import com.ctoutweb.lalamiam.infra.exception.BadRequestException;
 import com.ctoutweb.lalamiam.infra.factory.Factory;
 import com.ctoutweb.lalamiam.infra.model.captcha.CaptchaType;
 import com.ctoutweb.lalamiam.infra.model.captcha.ICaptcha;
@@ -11,8 +12,10 @@ import com.ctoutweb.lalamiam.infra.repository.ITokenRepository;
 import com.ctoutweb.lalamiam.infra.repository.entity.TokenEntity;
 import com.ctoutweb.lalamiam.infra.service.ICryptoService;
 import com.ctoutweb.lalamiam.infra.service.IMessageService;
-import com.ctoutweb.lalamiam.infra.utility.IntegerUtil;
+import com.ctoutweb.lalamiam.infra.utility.NumberUtil;
 import com.ctoutweb.lalamiam.infra.utility.TextUtility;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
@@ -34,8 +37,12 @@ import static com.ctoutweb.lalamiam.infra.constant.ApplicationConstant.*;
 @Component
 @PropertySource({"classpath:application.properties"})
 public class CaptchaGenerationImpl implements ICaptchaGeneration {
+  private static final Logger LOGGER = LogManager.getLogger();
   @Value("${zone.id}")
   String zoneId;
+
+  @Value("${captcha.iv.key}")
+  String captchaIvKey;
 
   /**
    * Titre du captcha
@@ -124,7 +131,17 @@ public class CaptchaGenerationImpl implements ICaptchaGeneration {
   }
   @Override
   public ICaptcha getCaptcha() {
-    return factory.getImpl(captchaTitle, captchaQuestionBase64, captchaResponseId);
+    // Chiffrement de l'id du captcha
+    byte[] captchaIvKeyByte = cryptoService.getByteArrayFromBase64(captchaIvKey);
+
+    if(captchaIvKeyByte == null){
+      LOGGER.error(()->String.format("Impossible de produire un byte[] à partir de %s", captchaIvKey));
+      throw new BadRequestException(messageService.getMessage("captcha.config.error"));
+    }
+
+    String encryptCaptchaResponseId = cryptoService.encrypt(String.valueOf(captchaResponseId), captchaIvKeyByte);
+
+    return factory.getImpl(captchaTitle, captchaQuestionBase64, encryptCaptchaResponseId);
   }
 
   /**
@@ -136,7 +153,7 @@ public class CaptchaGenerationImpl implements ICaptchaGeneration {
 
     captchaTitle = this.messageService.getMessage("captcha.image.title");
 
-    int randomCaptchaIndex = IntegerUtil.generateNumberBetween(MIN, captchaImageFiles.size() - 1);
+    int randomCaptchaIndex = NumberUtil.generateNumberBetween(MIN, captchaImageFiles.size() - 1);
     imageFile = captchaImageFiles.get(randomCaptchaIndex);
 
     // Recherche des données liées a l'image selectionnée
@@ -155,7 +172,7 @@ public class CaptchaGenerationImpl implements ICaptchaGeneration {
 
     captchaTitle = messageService.getMessage("captcha.text.title");
 
-    captchaQuestion = TextUtility.generateRandomText(IntegerUtil.generateNumberBetween(MIN, MAX));
+    captchaQuestion = TextUtility.generateRandomText(NumberUtil.generateNumberBetween(MIN, MAX));
 
     // La réponse est équivalente à la question
     captchaResponse = captchaQuestion;
@@ -167,13 +184,13 @@ public class CaptchaGenerationImpl implements ICaptchaGeneration {
     final char[] CALCUl_OPERATION = {'+', '-', '*'};
 
     // Chiffre 1
-    final int RANDOM_NUMBER_1 = IntegerUtil.generateNumberBetween(MIN, MAX);
+    final int RANDOM_NUMBER_1 = NumberUtil.generateNumberBetween(MIN, MAX);
 
     // Calcul chiffre 2
-    final int RANDOM_NUMBER_2 = IntegerUtil.generateNumberBetween(MIN, MAX);
+    final int RANDOM_NUMBER_2 = NumberUtil.generateNumberBetween(MIN, MAX);
 
     // Operation mathématique
-    final char RANDOM_MATH_OPERATION =  CALCUl_OPERATION[IntegerUtil.generateNumberBetween(0, CALCUl_OPERATION.length - 1)];
+    final char RANDOM_MATH_OPERATION =  CALCUl_OPERATION[NumberUtil.generateNumberBetween(0, CALCUl_OPERATION.length - 1)];
 
     captchaTitle = messageService.getMessage("captcha.calcul.title");
 
@@ -210,7 +227,7 @@ public class CaptchaGenerationImpl implements ICaptchaGeneration {
     byte[] iv = cryptoService.generateRandomByte();
     String ivStringFormat = Base64.getEncoder().encodeToString(iv);
 
-    String cryptoText = switch (cryptographyType) {
+            String cryptoText = switch (cryptographyType) {
       case HASH -> cryptoService.hashText(captchaResponse);
       case ENCRYPT -> cryptoService.encrypt(captchaResponse, iv);
       default -> null;

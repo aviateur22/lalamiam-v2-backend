@@ -66,16 +66,15 @@ public class CaptchaImageStrategyImplTest {
 
     TokenEntity saveCaptchaToken = new TokenEntity();
     saveCaptchaToken.setId(1L);
-    saveCaptchaToken.setIvKey(null);
+    saveCaptchaToken.setIvKey("tzko/r9RK384RGo0FhR+cg==");
     saveCaptchaToken.setCryptographyType(CryptographyType.ENCRYPT.toString());
     saveCaptchaToken.setCryptographyText("jfdldqslksqmlsmsmsqmdqsmldqsmkldsqmlkdqskmlù");
 
     String captchaTile = "Quel est cette image";
 
     ReflectionTestUtils.setField(captchaGeneration, "zoneId", "Europe/Paris");
-
     ReflectionTestUtils.setField(captchaImageStrategy, "captchaFolderImage", "image/captcha");
-
+    ReflectionTestUtils.setField(captchaGeneration, "captchaIvKey", "+DYq3LSUul8V4/zCnvRmgQ==");
     when(messageService.getMessage("captcha.image.title")).thenReturn(captchaTile);
     when(captchaImageRepository.findAll()).thenReturn(captchaImages);
     when(tokenRepository.save(any())).thenReturn(saveCaptchaToken);
@@ -89,7 +88,7 @@ public class CaptchaImageStrategyImplTest {
      * then
      */
     Assertions.assertNotNull(captcha.getCaptchaTitle());
-    Assertions.assertNotNull(captcha.getCaptchaResponseId());
+    Assertions.assertNotNull(captcha.getCaptchaResponseIdEncrypt());
     Assertions.assertNotNull(captcha.getCaptchaQuestionImageBase64());
     Assertions.assertNotNull(captcha.getCaptchaQuestionImageBase64().getMimeType());
     Assertions.assertNotNull(captcha.getCaptchaQuestionImageBase64().getBase64Format());

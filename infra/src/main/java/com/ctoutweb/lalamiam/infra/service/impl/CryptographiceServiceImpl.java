@@ -5,6 +5,8 @@ import com.ctoutweb.lalamiam.core.entity.cryptographic.CryptographicType;
 import com.ctoutweb.lalamiam.core.entity.cryptographic.ICryptography.ICryptographySaveResult;
 import com.ctoutweb.lalamiam.core.provider.ICryptographicService;
 import com.ctoutweb.lalamiam.infra.service.ICryptoService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,6 +31,7 @@ import static com.ctoutweb.lalamiam.infra.constant.ApplicationConstant.CRYPTO_KE
 @Service
 @PropertySource({"classpath:application.properties"})
 public class CryptographiceServiceImpl implements ICryptographicService, ICryptoService {
+  private static final Logger LOGGER = LogManager.getLogger();
   private final PasswordEncoder passwordEncoder;
   @Value("${crypto.algorithm}")
   private String cryptoAlgo;
@@ -138,6 +141,17 @@ public class CryptographiceServiceImpl implements ICryptographicService, ICrypto
     new SecureRandom().nextBytes(iv);
     return iv;
   }
+
+  @Override
+  public byte[] getByteArrayFromBase64(String base64Text) throws IllegalArgumentException {
+    try{
+      return Base64.getDecoder().decode(base64Text.getBytes());
+    } catch (Exception exception) {
+      LOGGER.error(()->String.format("Impossible de convertir %s en byte[]", base64Text));
+      return null;
+    }
+  }
+
 
   private SecretKey generateSecretKey() throws NoSuchAlgorithmException, InvalidKeySpecException {
     SecretKeyFactory factory = SecretKeyFactory.getInstance(cryptoSecretkeyAlgo);

@@ -87,7 +87,7 @@ public class ProfessionalInscriptionUseCaseTest {
      */
     BoundaryOutputImpl clientInscriptionResponse = new BoundaryOutputImpl("", 1l);
     Mockito.when(clientInscriptionUseCase.execute(any())).thenReturn(new ClientInscriptionUseCase.Output(clientInscriptionResponse));
-    Mockito.when(professionalInscriptionRepository.addProfessional(any())).thenReturn(new IProfessionalInscription.ICreatedProfessional() {
+    Mockito.when(professionalInscriptionRepository.addProfessional(any(), any())).thenReturn(new IProfessionalInscription.ICreatedProfessional() {
       @Override
       public Long getProfessionalId() {
         return 1l;
@@ -146,7 +146,7 @@ public class ProfessionalInscriptionUseCaseTest {
      * given
      */
     long clientId = 1l;
-    when(professionalInscriptionRepository.addProfessional(any())).thenReturn(new IProfessionalInscription.ICreatedProfessional() {
+    when(professionalInscriptionRepository.addProfessional(any(), any())).thenReturn(new IProfessionalInscription.ICreatedProfessional() {
       @Override
       public Long getProfessionalId() {
         return 1l;
@@ -156,7 +156,7 @@ public class ProfessionalInscriptionUseCaseTest {
     /**
      * when
      */
-    long actualProfessionalId = professionalInscriptionUseCase.registerProfessional(clientId);
+    long actualProfessionalId = professionalInscriptionUseCase.registerProfessional(clientId, null);
     long exptectedProfessionalId = 1l;
 
     /**

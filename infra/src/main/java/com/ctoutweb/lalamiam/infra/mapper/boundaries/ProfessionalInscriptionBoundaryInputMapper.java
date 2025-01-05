@@ -1,4 +1,4 @@
-package com.ctoutweb.lalamiam.infra.boundaries;
+package com.ctoutweb.lalamiam.infra.mapper.boundaries;
 
 import com.ctoutweb.lalamiam.core.adapter.professionalInscription.IBoundariesAdapter.IBoundaryInputAdapter;
 import com.ctoutweb.lalamiam.infra.dto.RegisterProfessionalDto;

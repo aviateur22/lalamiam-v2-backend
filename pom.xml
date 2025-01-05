@@ -48,9 +48,8 @@
 
                 <!--Captcha-->
                 <captcha.token>monyjpohfd14555srbdgdkSfdqfoFdqeSF</captcha.token>
-                <captcha.string.separator>%!!%</captcha.string.separator>
-                <captcha.access.token>345fd5fdfdqfLSFJ6952589sfdfdsfdfsfsgfdsfdsfdsfvsq</captcha.access.token>
                 <captcha.image.folder>infra/image/captcha</captcha.image.folder>
+                <captcha.iv.key>gdcR7Ou5k0qrcUPiWRCWOQ==</captcha.iv.key>
 
                 <!--mail -->
                 <mailer.from>admin@ctoutweb.fr</mailer.from>

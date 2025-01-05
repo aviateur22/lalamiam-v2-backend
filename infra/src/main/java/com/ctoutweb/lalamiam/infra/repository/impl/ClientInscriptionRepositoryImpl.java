@@ -44,11 +44,12 @@ public class ClientInscriptionRepositoryImpl implements IClientInscriptionReposi
   }
 
   @Override
-  public ICreatedClient addClient(String email, String hashPassword) {
+  public ICreatedClient addClient(String email, String hashPassword, String userName) {
     UserEntity user = new UserEntity();
 
     user.setEmail(email);
     user.setPassword(hashPassword);
+    user.setUsrerName(userName);
 
     UserEntity addUser = userRepository.save(user);
 
@@ -79,8 +80,8 @@ public class ClientInscriptionRepositoryImpl implements IClientInscriptionReposi
 
     UserEntity user = new UserEntity();
     user.setId(clientId);
-
     userAccount.setUser(user);
+    userAccount.setAccountActive(false);
 
     UserAccountEntity saveAccount = userAccountRepository.save(userAccount);
 

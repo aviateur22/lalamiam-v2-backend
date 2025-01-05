@@ -37,6 +37,11 @@ public class CaptchaTextStrategyImplTest {
     MockitoAnnotations.openMocks(this);
 
     cryptoService = new CryptographiceServiceImpl(new BCryptPasswordEncoder());
+    ReflectionTestUtils.setField(cryptoService, "cryptoName", "AES");
+    ReflectionTestUtils.setField(cryptoService, "cryptoKey", "hjdfjkdhldhljdfldmùmddùPQdùmslqdfmsqnflnfclqdsfldqjfcbdqcnlfdqmfmsfùmsqdjmjffcsqfjqsdjqsqsm");
+    ReflectionTestUtils.setField(cryptoService, "cryptoSalt", "8E2EDB261622042C4BA537F970B842A22C48836BFBC9BEC8756DB400A41E41EAE2F628DE3F1F0A690AA57705CE62C5E9BCED67C8D5C22C17D735D0C137D7CC81");
+    ReflectionTestUtils.setField(cryptoService, "cryptoSecretkeyAlgo", "PBKDF2WithHmacSHA256");
+    ReflectionTestUtils.setField(cryptoService, "cryptoAlgo", "AES/CBC/PKCS5Padding");
     captchaGeneration = new CaptchaGenerationImpl(messageService, tokenRepository, cryptoService, factory);
     captchaTextStrategy = new CaptchaTextStrategyImpl(captchaGeneration);
   }
@@ -48,11 +53,13 @@ public class CaptchaTextStrategyImplTest {
      */
     TokenEntity saveCaptchaToken = new TokenEntity();
     saveCaptchaToken.setId(1L);
-    saveCaptchaToken.setIvKey(null);
+    saveCaptchaToken.setIvKey("3pjts9RbBStgasYj2HSdOQ==");
     saveCaptchaToken.setCryptographyType(CryptographyType.HASH.toString());
     saveCaptchaToken.setCryptographyText("jfdldqslksqmlsmsmsqmdqsmldqsmkldsqmlkdqskmlù");
 
     ReflectionTestUtils.setField(captchaGeneration, "zoneId", "Europe/Paris");
+    ReflectionTestUtils.setField(captchaGeneration, "captchaIvKey", "+DYq3LSUul8V4/zCnvRmgQ==");
+
     String captchaTile = "Recopier le mot";
     when(messageService.getMessage("captcha.text.title")).thenReturn(captchaTile);
     when(tokenRepository.save(any())).thenReturn(saveCaptchaToken);
@@ -70,8 +77,8 @@ public class CaptchaTextStrategyImplTest {
     Assertions.assertNotNull(captcha.getCaptchaQuestionImageBase64());
     Assertions.assertNotNull(captcha.getCaptchaQuestionImageBase64().getBase64Format());
     Assertions.assertNotNull(captcha.getCaptchaQuestionImageBase64().getMimeType());
-    Assertions.assertNotNull(captcha.getCaptchaResponseId());
-    Assertions.assertEquals(1L, captcha.getCaptchaResponseId());
+    Assertions.assertNotNull(captcha.getCaptchaResponseIdEncrypt());
+    Assertions.assertEquals("CzY3Q89XFanTbxlIpTvpaw==", captcha.getCaptchaResponseIdEncrypt());
     Assertions.assertEquals(captchaTile, captcha.getCaptchaTitle());
 
   }

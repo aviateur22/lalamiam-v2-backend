@@ -82,7 +82,8 @@ public class ClientInscriptionUseCase implements UseCase<ClientInscriptionUseCas
   public long createClient(BoundaryInputImpl clientInscriptionInformation) {
     ICreatedClient addedClient = clientInscriptionRepository.addClient(
             clientInscriptionInformation.getEmail(),
-            clientInscriptionInformation.getHashPassword()
+            clientInscriptionInformation.getHashPassword(),
+            clientInscriptionInformation.getNickName()
     );
     // Ajout du role client
     createClientRole(addedClient.getClientId());

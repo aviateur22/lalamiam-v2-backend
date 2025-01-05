@@ -22,6 +22,7 @@ public class ValidateCaptchaResponseUseCase implements UseCase<ValidateCaptchaRe
   private final IMessageService messageService;
   private final ICryptographicService cryptographicService;
   private final INotificationService notificationService;
+
   public ValidateCaptchaResponseUseCase(
           IMessageService messageService,
           ICryptographicService cryptographicService,

@@ -11,5 +11,5 @@ public interface IUserCaptchaResponse {
    * Id de la réponse
    * @return Long
    */
-  public Long getCaptchaResponseId();
+  public String getCaptchaResponseIdEncrypt();
 }
