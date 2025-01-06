@@ -81,7 +81,7 @@ public class ClientInscriptionRepositoryImpl implements IClientInscriptionReposi
     UserEntity user = new UserEntity();
     user.setId(clientId);
     userAccount.setUser(user);
-    userAccount.setAccountActive(false);
+    userAccount.setIsAccountActive(false);
 
     UserAccountEntity saveAccount = userAccountRepository.save(userAccount);
 

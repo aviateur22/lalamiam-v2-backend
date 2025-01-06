@@ -4,10 +4,12 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.ctoutweb.lalamiam.infra.factory.Factory;
+import com.ctoutweb.lalamiam.infra.repository.IJwtRepository;
+import com.ctoutweb.lalamiam.infra.repository.entity.JwtEntity;
+import com.ctoutweb.lalamiam.infra.repository.entity.UserEntity;
 import com.ctoutweb.lalamiam.infra.security.authentication.UserPrincipal;
 import com.ctoutweb.lalamiam.infra.security.jwt.IJwtIssue;
 import com.ctoutweb.lalamiam.infra.service.IJwtService;
-import com.ctoutweb.lalamiam.infra.service.ICryptoService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,7 @@ import java.util.stream.Collectors;
 @PropertySource({"classpath:application.properties"})
 public class JwtServiceImpl implements IJwtService {
   private final Factory factory;
+  private final IJwtRepository jwtRepository;
   @Value("${jwt.validity.hour}")
   Long jwtValidity;
   @Value("${jwt.secret.key}")
@@ -32,8 +35,9 @@ public class JwtServiceImpl implements IJwtService {
   @Value("${zone.id}")
   String zoneId;
 
-  public JwtServiceImpl(Factory factory) {
+  public JwtServiceImpl(Factory factory, IJwtRepository jwtRepository) {
     this.factory = factory;
+    this.jwtRepository = jwtRepository;
   }
 
   @Override
@@ -81,5 +85,26 @@ public class JwtServiceImpl implements IJwtService {
     return JWT.require(Algorithm.HMAC256(jwtSecret))
             .build()
             .verify(token);
+  }
+
+  @Override
+  public void deleteJwtByUserEmail(String email) {
+    if(jwtRepository.findOneByEmail(email).isPresent()){
+      jwtRepository.deleteByEmail(email);
+    }
+  }
+
+  @Override
+  public void saveJwt(Long userId, IJwtIssue jwt, String email) {
+    UserEntity userLogin = new UserEntity();
+    userLogin.setId(userId);
+
+    JwtEntity insertJwtLogin = new JwtEntity();
+    insertJwtLogin.setJwtToken(jwt.getJwtToken());
+    insertJwtLogin.setJwtId(jwt.getJwtId());
+    insertJwtLogin.setUser(userLogin);
+    insertJwtLogin.setExpiredAt(jwt.getExpiredAt());
+    insertJwtLogin.setEmail(email);
+    jwtRepository.save(insertJwtLogin);
   }
 }

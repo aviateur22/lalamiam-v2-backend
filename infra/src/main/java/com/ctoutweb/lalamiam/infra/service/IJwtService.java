@@ -27,4 +27,18 @@ public interface IJwtService {
    */
   public DecodedJWT validateAndDecode(String token);
 
+  /**
+   * Suppression d'un JWT a partir d'un email
+   * @param email
+   */
+  public void deleteJwtByUserEmail(String email);
+
+  /**
+   * Sauvegarde d'un JWT lors de l'authentitcation
+   * @param userId Long - Id de la personne qui se connecte
+   * @param jwt IJwtIssue _ JWT issue
+   * @param email String - Email de la personne
+   */
+  public void saveJwt(Long userId, IJwtIssue jwt, String email);
+
 }

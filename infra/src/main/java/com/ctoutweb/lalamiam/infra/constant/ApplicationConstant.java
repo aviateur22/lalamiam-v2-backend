@@ -39,4 +39,8 @@ public class ApplicationConstant {
   public static final int CRYPTO_ITERATION_COUNT = 65536;
   public static final int CRYPTO_KEY_LENGTH = 256;
 
+  // LOGIN
+
+  public static final long LOGIN_ERROR_ATTEMPT_AVAILABLE = 4;
+
 }

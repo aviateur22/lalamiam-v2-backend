@@ -120,7 +120,8 @@ CREATE INDEX IF NOT EXISTS idx_employee_account ON sc_lalamiam.employee_account(
 CREATE TABLE if NOT EXISTS sc_lalamiam.jwt(
     "id" BIGINT PRIMARY KEY,
     "user_id" BIGINT NOT NULL REFERENCES sc_lalamiam."users"("id") on delete cascade,
-    "jwt_token" text NOT NULL,
+    "email" TEXT NOT NULL,
+    "jwt_token" TEXT NOT NULL,
     "jwt_id" TEXT NOT NULL,
     "is_valid" BOOLEAN NOT NULL DEFAULT FALSE,
     "expired_at" TIMESTAMPTZ NOT NULL DEFAULT now(),

@@ -57,11 +57,11 @@ public class UserAccountEntity {
     this.accountActivationAt = accountActivationAt;
   }
 
-  public Boolean getAccountActive() {
+  public Boolean getIsAccountActive() {
     return isAccountActive;
   }
 
-  public void setAccountActive(Boolean accountActive) {
+  public void setIsAccountActive(Boolean accountActive) {
     isAccountActive = accountActive;
   }
 

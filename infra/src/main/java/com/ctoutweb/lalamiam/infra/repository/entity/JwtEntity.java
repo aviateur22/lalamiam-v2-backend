@@ -14,6 +14,8 @@ public class JwtEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  private String email;
+
   @Column(name = "jwt_token")
   private String jwtToken;
 
@@ -95,6 +97,14 @@ public class JwtEntity {
 
   public void setUser(UserEntity user) {
     this.user = user;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
   }
 
   @Override
