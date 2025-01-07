@@ -21,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/auth")
@@ -74,7 +75,9 @@ public class AuthController {
   ResponseEntity<LoginResponseDto> login(@RequestBody LoginDto loginDto) {
     factory.getImpl(loginDto).validateDto(validator);
 
-    return new ResponseEntity<>(new LoginResponseDto("email", 151L, "Message"), HttpStatus.OK);
+    authService.login(loginDto);
+
+    return new ResponseEntity<>(new LoginResponseDto("email", "151L", 1L , List.of(),"Message"), HttpStatus.OK);
   }
 
   @GetMapping("/generate-csrf")

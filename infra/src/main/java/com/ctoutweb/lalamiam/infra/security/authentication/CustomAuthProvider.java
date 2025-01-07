@@ -1,10 +1,13 @@
 package com.ctoutweb.lalamiam.infra.security.authentication;
 
 import com.ctoutweb.lalamiam.infra.exception.AuthException;
+import com.ctoutweb.lalamiam.infra.exception.BadRequestException;
 import com.ctoutweb.lalamiam.infra.mapper.UserEntityMapper;
 import com.ctoutweb.lalamiam.infra.model.IUserLoginStatus;
+import com.ctoutweb.lalamiam.infra.model.email.HtmlTemplateType;
 import com.ctoutweb.lalamiam.infra.repository.entity.LoginEntity;
 import com.ctoutweb.lalamiam.infra.repository.entity.UserEntity;
+import com.ctoutweb.lalamiam.infra.service.IEmailService;
 import com.ctoutweb.lalamiam.infra.service.ILoginService;
 import com.ctoutweb.lalamiam.infra.service.IMessageService;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,7 +36,7 @@ public class CustomAuthProvider implements AuthenticationProvider {
   private final ILoginService loginService;
   private final IMessageService messageService;
   private final UserEntityMapper userEntityMapper;
-  private final MailService mailService;
+  private final IEmailService mailService;
   @Value("${application.name}")
   private String applicationName;
   public CustomAuthProvider(
@@ -42,7 +45,7 @@ public class CustomAuthProvider implements AuthenticationProvider {
           ILoginService loginService,
           IMessageService messageService,
           UserEntityMapper userEntityMapper,
-          MailService mailService) {
+          IEmailService mailService) {
 
     this.passwordEncoder = passwordEncoder;
     this.userDetailsService = userDetailsService;
@@ -68,7 +71,7 @@ public class CustomAuthProvider implements AuthenticationProvider {
 
     // Récupération utilisateur
     if(user == null)
-      throw new AuthException(messageService.getMessage("email.unvalid"));
+      throw new BadRequestException(messageService.getMessage("email.unvalid"));
 
     // Vérification MDP
     UserPrincipal userLogin = (UserPrincipal) user;
@@ -132,7 +135,7 @@ public class CustomAuthProvider implements AuthenticationProvider {
    */
   public boolean isDelayOnLoginToAdd(List<LoginEntity> lastUserLoginList) {
     long loginAttemptErrorCount = lastUserLoginList.stream()
-            .filter(login-> !login.isLoginSuccess() && login.isHasToBeCheck())
+            .filter(login-> !login.getIsLoginSuccess() && login.getHasToBeCheck())
             .count();
 
     return loginAttemptErrorCount >= LOGIN_ERROR_ATTEMPT_AVAILABLE;

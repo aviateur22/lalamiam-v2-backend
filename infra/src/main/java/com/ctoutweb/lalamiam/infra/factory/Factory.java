@@ -4,13 +4,10 @@ import com.ctoutweb.lalamiam.core.entity.professionalInscription.IProfessionalIn
 import com.ctoutweb.lalamiam.infra.controller.validation.impl.DoubleDtoToValidateImpl;
 import com.ctoutweb.lalamiam.infra.controller.validation.impl.DtoToValidateImpl;
 import com.ctoutweb.lalamiam.infra.controller.validation.IDtoToValidate;
-import com.ctoutweb.lalamiam.infra.model.IApiLanguage;
-import com.ctoutweb.lalamiam.infra.model.IApiMessage;
-import com.ctoutweb.lalamiam.infra.model.IErrorMessage;
+import com.ctoutweb.lalamiam.infra.model.*;
 import com.ctoutweb.lalamiam.infra.model.impl.core.CreatedProfessionalAccountImpl;
 import com.ctoutweb.lalamiam.infra.model.param.AppParamImpl;
 import com.ctoutweb.lalamiam.infra.model.param.IAppParam;
-import com.ctoutweb.lalamiam.infra.model.IMessageResponse;
 import com.ctoutweb.lalamiam.infra.model.captcha.ICaptchaImage;
 import com.ctoutweb.lalamiam.infra.model.captcha.ICaptcha;
 import com.ctoutweb.lalamiam.infra.model.captcha.impl.CaptchaImageImpl;
@@ -115,5 +112,8 @@ public class Factory {
 
   public ICaptchaToken getImpl(TokenEntity captchaTokenEntity, String captchaResponseByUser, ICryptoService cryptoService) {
     return new CaptchaTokenImpl(cryptoService, captchaTokenEntity, captchaResponseByUser);
+  }
+  public IUserLoginStatus getImpl(boolean isLoginAuthorize, ZonedDateTime recoveryLoginTime) {
+    return new UserLoginStatusImpl(isLoginAuthorize, recoveryLoginTime);
   }
 }

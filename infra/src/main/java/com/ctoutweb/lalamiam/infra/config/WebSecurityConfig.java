@@ -1,11 +1,15 @@
 package com.ctoutweb.lalamiam.infra.config;
 
+import com.ctoutweb.lalamiam.infra.security.authentication.CustomAuthProvider;
+import com.ctoutweb.lalamiam.infra.security.authentication.UserPrincipalDetailService;
 import com.ctoutweb.lalamiam.infra.security.csrf.CustomCsrfFilter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -21,13 +25,18 @@ import java.util.Map;
 public class WebSecurityConfig {
   private final CustomCsrfFilter customCsrfFilter;
   private final CorsConfigurationSource corsConfigurationSource;
-
+  private final CustomAuthProvider customAuthProvider;
+  private final UserPrincipalDetailService userPrincipalDetailService;
   public WebSecurityConfig(
           CustomCsrfFilter customCsrfFilter,
-          @Qualifier("corsConfiguration") CorsConfigurationSource corsConfigurationSource
+          @Qualifier("corsConfiguration") CorsConfigurationSource corsConfigurationSource,
+          CustomAuthProvider customAuthProvider,
+          UserPrincipalDetailService userPrincipalDetailService
   ) {
     this.customCsrfFilter = customCsrfFilter;
     this.corsConfigurationSource = corsConfigurationSource;
+    this.customAuthProvider = customAuthProvider;
+    this.userPrincipalDetailService = userPrincipalDetailService;
   }
 
   @Bean
@@ -52,5 +61,13 @@ public class WebSecurityConfig {
             );
 
     return http.build();
+  }
+
+  @Bean
+  AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+return http.getSharedObject(AuthenticationManagerBuilder.class)
+        .authenticationProvider(customAuthProvider)
+        .userDetailsService(userPrincipalDetailService)
+        .and().build();
   }
 }

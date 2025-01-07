@@ -49,7 +49,7 @@ public class LoginEntity {
     this.id = id;
   }
 
-  public boolean isHasToBeCheck() {
+  public boolean getHasToBeCheck() {
     return hasToBeCheck;
   }
 
@@ -57,11 +57,11 @@ public class LoginEntity {
     this.hasToBeCheck = hasToBeCheck;
   }
 
-  public boolean isLoginSuccess() {
+  public boolean getIsLoginSuccess() {
     return isLoginSuccess;
   }
 
-  public void setLoginSuccess(boolean loginSuccess) {
+  public void setIsLoginSuccess(boolean loginSuccess) {
     isLoginSuccess = loginSuccess;
   }
 

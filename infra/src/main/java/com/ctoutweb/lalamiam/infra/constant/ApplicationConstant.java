@@ -40,7 +40,8 @@ public class ApplicationConstant {
   public static final int CRYPTO_KEY_LENGTH = 256;
 
   // LOGIN
-
-  public static final long LOGIN_ERROR_ATTEMPT_AVAILABLE = 4;
+  public static final int LOGIN_ERROR_ATTEMPT_AVAILABLE = 4;
+  public static final int USER_LAST_LOGIN_COUNT = LOGIN_ERROR_ATTEMPT_AVAILABLE;
+  public static final int LOGIN_DELAY = 3;
 
 }
