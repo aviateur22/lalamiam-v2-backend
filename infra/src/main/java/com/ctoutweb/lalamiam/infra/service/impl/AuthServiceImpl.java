@@ -7,6 +7,7 @@ import com.ctoutweb.lalamiam.core.useCase.impl.ClientInscriptionUseCase;
 import com.ctoutweb.lalamiam.core.useCase.impl.ProfessionalInscriptionUseCase;
 import com.ctoutweb.lalamiam.infra.dto.LoginDto;
 import com.ctoutweb.lalamiam.infra.dto.LoginResponseDto;
+import com.ctoutweb.lalamiam.infra.exception.AuthException;
 import com.ctoutweb.lalamiam.infra.mapper.boundaries.ProfessionalInscriptionBoundaryInputMapper;
 import com.ctoutweb.lalamiam.infra.dto.RegisterClientDto;
 import com.ctoutweb.lalamiam.infra.mapper.boundaries.ClientInscriptionBoundaryInputMapper;
@@ -85,7 +86,7 @@ public class AuthServiceImpl implements IAuthService {
   }
 
   @Override
-  @Transactional
+  @Transactional(dontRollbackOn = AuthException.class)
   public LoginResponseDto login(LoginDto dto) {
     // Destruction JWT existant
     jwtService.deleteJwtByUserEmail(dto.email());

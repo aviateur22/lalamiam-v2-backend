@@ -47,12 +47,13 @@ public class LoginServiceImpl implements ILoginService {
   @Override
   public List<LoginEntity> updateUserLoginInformation(UserEntity user, boolean isAuthenticationValid) {
     // Ajout des données de la connexion client
-    LocalDateTime loginTime = LocalDateTime.now();
+    ZonedDateTime loginTime = LocalDateTime.now().atZone(ZoneId.of(zoneId));
 
     LoginEntity loginEntity = new LoginEntity();
-    loginEntity.setLoginAt(loginTime.atZone(ZoneId.of(zoneId)));
+    loginEntity.setLoginAt(loginTime);
     loginEntity.setIsLoginSuccess(isAuthenticationValid);
     loginEntity.setUser(user);
+    loginEntity.setHasToBeCheck(true);
     loginRepository.save(loginEntity);
 
     // Récupération des 3 dernieres connexions

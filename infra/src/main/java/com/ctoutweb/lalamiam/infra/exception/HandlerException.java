@@ -52,4 +52,10 @@ public class HandlerException {
     LOGGER.error(()->String.format("PSQL Erreur: %s", psqlException.getMessage()));
     return new ResponseEntity<>(factory.getErrorMessageImpl(messageService.getMessage("error")), HttpStatus.INTERNAL_SERVER_ERROR);
   }
+
+  @ExceptionHandler(value = {AuthException.class})
+  public ResponseEntity<IErrorMessage> authException(AuthException authException) {
+    LOGGER.error(()->String.format("AuthException Erreur: %s", authException.getMessage()));
+    return new ResponseEntity<>(factory.getErrorMessageImpl(authException.getMessage()), HttpStatus.BAD_REQUEST);
+  }
 }

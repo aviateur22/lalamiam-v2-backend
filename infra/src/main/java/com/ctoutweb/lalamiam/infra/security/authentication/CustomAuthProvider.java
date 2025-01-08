@@ -7,9 +7,7 @@ import com.ctoutweb.lalamiam.infra.model.IUserLoginStatus;
 import com.ctoutweb.lalamiam.infra.model.email.HtmlTemplateType;
 import com.ctoutweb.lalamiam.infra.repository.entity.LoginEntity;
 import com.ctoutweb.lalamiam.infra.repository.entity.UserEntity;
-import com.ctoutweb.lalamiam.infra.service.IEmailService;
-import com.ctoutweb.lalamiam.infra.service.ILoginService;
-import com.ctoutweb.lalamiam.infra.service.IMessageService;
+import com.ctoutweb.lalamiam.infra.service.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,12 +29,12 @@ import static com.ctoutweb.lalamiam.infra.utility.TextUtility.replaceWordInText;
 
 @Component
 public class CustomAuthProvider implements AuthenticationProvider {
-  private final PasswordEncoder passwordEncoder;
   private final UserDetailsService userDetailsService;
   private final ILoginService loginService;
   private final IMessageService messageService;
   private final UserEntityMapper userEntityMapper;
   private final IEmailService mailService;
+  private final ICryptoService cryptoService;
   @Value("${application.name}")
   private String applicationName;
   public CustomAuthProvider(
@@ -45,14 +43,14 @@ public class CustomAuthProvider implements AuthenticationProvider {
           ILoginService loginService,
           IMessageService messageService,
           UserEntityMapper userEntityMapper,
-          IEmailService mailService) {
-
-    this.passwordEncoder = passwordEncoder;
+          IEmailService mailService,
+          ICryptoService cryptoService) {
     this.userDetailsService = userDetailsService;
     this.loginService = loginService;
     this.messageService = messageService;
     this.userEntityMapper = userEntityMapper;
     this.mailService = mailService;
+    this.cryptoService = cryptoService;
   }
 
   @Override
@@ -71,7 +69,7 @@ public class CustomAuthProvider implements AuthenticationProvider {
 
     // Récupération utilisateur
     if(user == null)
-      throw new BadRequestException(messageService.getMessage("email.unvalid"));
+      throw new AuthException(messageService.getMessage("email.unvalid"));
 
     // Vérification MDP
     UserPrincipal userLogin = (UserPrincipal) user;
@@ -84,7 +82,7 @@ public class CustomAuthProvider implements AuthenticationProvider {
       // Heure de reprise
       ZonedDateTime recoveryLoginTime = userLoginStatus.getRecoveryLoginTime();
 
-      // Generation d'un message d'erreur avec heur de reprise
+      // Generation d'un message d'erreur avec heure de reprise
       String errorMessage = replaceWordInText(
               messageService.getMessage("login.not.authorize"),
               "!%!recoveryLoginTime!%!",
@@ -94,7 +92,7 @@ public class CustomAuthProvider implements AuthenticationProvider {
     }
 
     // Vérification mot de passe
-    isAuthenticationValid = this.passwordEncoder.matches(presentedPassword, user.getPassword());
+    isAuthenticationValid = cryptoService.isHashValid(presentedPassword, user.getPassword());
 
     // Mise a jour des informations de connexion du client
     lastUserLoginList = loginService.updateUserLoginInformation(loginUser, isAuthenticationValid);

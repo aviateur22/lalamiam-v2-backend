@@ -1,0 +1,578 @@
+2025-01-07 21:18:37 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Starting Lalamiam using Java 21.0.3 with PID 6528 (C:\Programmation\java\lalamiam_v2\infra\target\classes started by Administrateur in C:\Programmation\java\lalamiam_v2)
+2025-01-07 21:18:37 [main] DEBUG c.ctoutweb.lalamiam.infra.Lalamiam - Running with Spring Boot v3.1.0, Spring v6.0.9
+2025-01-07 21:18:37 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - No active profile set, falling back to 1 default profile: "default"
+2025-01-07 21:18:39 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-07 21:18:39 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 370 ms. Found 14 JPA repository interfaces.
+2025-01-07 21:18:40 [main] DEBUG c.c.l.i.m.c.DynamicMessageSource - Clearing entire resource bundle cache
+2025-01-07 21:18:41 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-01-07 21:18:41 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4344 ms
+2025-01-07 21:18:42 [main] DEBUG c.c.l.i.s.csrf.CustomCsrfFilter - Filter 'csrfFilter' configured for use
+2025-01-07 21:18:43 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-07 21:18:46 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-07 21:18:47 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authController' defined in file [C:\Programmation\java\lalamiam_v2\infra\target\classes\com\ctoutweb\lalamiam\infra\controller\AuthController.class]: Unsatisfied dependency expressed through constructor parameter 4: Error creating bean with name 'authServiceImpl' defined in file [C:\Programmation\java\lalamiam_v2\infra\target\classes\com\ctoutweb\lalamiam\infra\service\impl\AuthServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 3: No qualifying bean of type 'org.springframework.security.authentication.AuthenticationManager' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-01-07 21:18:47 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-07 21:18:48 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-01-07 21:18:48 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 3 of constructor in com.ctoutweb.lalamiam.infra.service.impl.AuthServiceImpl required a bean of type 'org.springframework.security.authentication.AuthenticationManager' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.security.authentication.AuthenticationManager' in your configuration.
+
+2025-01-07 21:27:05 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Starting Lalamiam using Java 21.0.3 with PID 4344 (C:\Programmation\java\lalamiam_v2\infra\target\classes started by Administrateur in C:\Programmation\java\lalamiam_v2)
+2025-01-07 21:27:05 [main] DEBUG c.ctoutweb.lalamiam.infra.Lalamiam - Running with Spring Boot v3.1.0, Spring v6.0.9
+2025-01-07 21:27:05 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - No active profile set, falling back to 1 default profile: "default"
+2025-01-07 21:27:07 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-07 21:27:08 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 352 ms. Found 14 JPA repository interfaces.
+2025-01-07 21:27:09 [main] DEBUG c.c.l.i.m.c.DynamicMessageSource - Clearing entire resource bundle cache
+2025-01-07 21:27:09 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-01-07 21:27:10 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4146 ms
+2025-01-07 21:27:10 [main] DEBUG c.c.l.i.s.csrf.CustomCsrfFilter - Filter 'csrfFilter' configured for use
+2025-01-07 21:27:11 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-07 21:27:14 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-07 21:27:15 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfig' defined in file [C:\Programmation\java\lalamiam_v2\infra\target\classes\com\ctoutweb\lalamiam\infra\config\WebSecurityConfig.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'customAuthProvider' defined in file [C:\Programmation\java\lalamiam_v2\infra\target\classes\com\ctoutweb\lalamiam\infra\security\authentication\CustomAuthProvider.class]: Unsatisfied dependency expressed through constructor parameter 2: No qualifying bean of type 'com.ctoutweb.lalamiam.infra.service.ILoginService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-01-07 21:27:15 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-07 21:27:15 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-01-07 21:27:15 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.ctoutweb.lalamiam.infra.security.authentication.CustomAuthProvider required a bean of type 'com.ctoutweb.lalamiam.infra.service.ILoginService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.ctoutweb.lalamiam.infra.service.ILoginService' in your configuration.
+
+2025-01-07 22:07:39 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Starting Lalamiam using Java 21.0.3 with PID 11212 (C:\Programmation\java\lalamiam_v2\infra\target\classes started by Administrateur in C:\Programmation\java\lalamiam_v2)
+2025-01-07 22:07:39 [main] DEBUG c.ctoutweb.lalamiam.infra.Lalamiam - Running with Spring Boot v3.1.0, Spring v6.0.9
+2025-01-07 22:07:39 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - No active profile set, falling back to 1 default profile: "default"
+2025-01-07 22:07:41 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-07 22:07:41 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 334 ms. Found 14 JPA repository interfaces.
+2025-01-07 22:07:42 [main] DEBUG c.c.l.i.m.c.DynamicMessageSource - Clearing entire resource bundle cache
+2025-01-07 22:07:42 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-01-07 22:07:43 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3539 ms
+2025-01-07 22:07:43 [main] DEBUG c.c.l.i.s.csrf.CustomCsrfFilter - Filter 'csrfFilter' configured for use
+2025-01-07 22:07:44 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-07 22:07:47 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-07 22:07:48 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfig' defined in file [C:\Programmation\java\lalamiam_v2\infra\target\classes\com\ctoutweb\lalamiam\infra\config\WebSecurityConfig.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'customAuthProvider' defined in file [C:\Programmation\java\lalamiam_v2\infra\target\classes\com\ctoutweb\lalamiam\infra\security\authentication\CustomAuthProvider.class]: Unsatisfied dependency expressed through constructor parameter 4: No qualifying bean of type 'com.ctoutweb.lalamiam.infra.mapper.UserEntityMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-01-07 22:07:48 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-07 22:07:48 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-01-07 22:07:48 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 4 of constructor in com.ctoutweb.lalamiam.infra.security.authentication.CustomAuthProvider required a bean of type 'com.ctoutweb.lalamiam.infra.mapper.UserEntityMapper' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.ctoutweb.lalamiam.infra.mapper.UserEntityMapper' in your configuration.
+
+2025-01-07 22:08:46 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Starting Lalamiam using Java 21.0.3 with PID 3976 (C:\Programmation\java\lalamiam_v2\infra\target\classes started by Administrateur in C:\Programmation\java\lalamiam_v2)
+2025-01-07 22:08:46 [main] DEBUG c.ctoutweb.lalamiam.infra.Lalamiam - Running with Spring Boot v3.1.0, Spring v6.0.9
+2025-01-07 22:08:46 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - No active profile set, falling back to 1 default profile: "default"
+2025-01-07 22:08:48 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-07 22:08:48 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 322 ms. Found 14 JPA repository interfaces.
+2025-01-07 22:08:49 [main] DEBUG c.c.l.i.m.c.DynamicMessageSource - Clearing entire resource bundle cache
+2025-01-07 22:08:50 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-01-07 22:08:50 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3589 ms
+2025-01-07 22:08:50 [main] DEBUG c.c.l.i.s.csrf.CustomCsrfFilter - Filter 'csrfFilter' configured for use
+2025-01-07 22:08:51 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-07 22:08:54 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-07 22:08:54 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfig' defined in file [C:\Programmation\java\lalamiam_v2\infra\target\classes\com\ctoutweb\lalamiam\infra\config\WebSecurityConfig.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'customAuthProvider' defined in file [C:\Programmation\java\lalamiam_v2\infra\target\classes\com\ctoutweb\lalamiam\infra\security\authentication\CustomAuthProvider.class]: Unsatisfied dependency expressed through constructor parameter 5: No qualifying bean of type 'com.ctoutweb.lalamiam.infra.service.IEmailService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-01-07 22:08:54 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-07 22:08:55 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-01-07 22:08:55 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 5 of constructor in com.ctoutweb.lalamiam.infra.security.authentication.CustomAuthProvider required a bean of type 'com.ctoutweb.lalamiam.infra.service.IEmailService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.ctoutweb.lalamiam.infra.service.IEmailService' in your configuration.
+
+2025-01-07 22:10:08 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Starting Lalamiam using Java 21.0.3 with PID 11924 (C:\Programmation\java\lalamiam_v2\infra\target\classes started by Administrateur in C:\Programmation\java\lalamiam_v2)
+2025-01-07 22:10:08 [main] DEBUG c.ctoutweb.lalamiam.infra.Lalamiam - Running with Spring Boot v3.1.0, Spring v6.0.9
+2025-01-07 22:10:08 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - No active profile set, falling back to 1 default profile: "default"
+2025-01-07 22:10:09 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-07 22:10:10 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 358 ms. Found 14 JPA repository interfaces.
+2025-01-07 22:10:11 [main] DEBUG c.c.l.i.m.c.DynamicMessageSource - Clearing entire resource bundle cache
+2025-01-07 22:10:12 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-01-07 22:10:12 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3918 ms
+2025-01-07 22:10:12 [main] DEBUG c.c.l.i.s.csrf.CustomCsrfFilter - Filter 'csrfFilter' configured for use
+2025-01-07 22:10:13 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-07 22:10:16 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-07 22:10:17 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfig' defined in file [C:\Programmation\java\lalamiam_v2\infra\target\classes\com\ctoutweb\lalamiam\infra\config\WebSecurityConfig.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'customAuthProvider': Injection of autowired dependencies failed
+2025-01-07 22:10:17 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-07 22:10:17 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-01-07 22:10:17 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'webSecurityConfig' defined in file [C:\Programmation\java\lalamiam_v2\infra\target\classes\com\ctoutweb\lalamiam\infra\config\WebSecurityConfig.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'customAuthProvider': Injection of autowired dependencies failed
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:245)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1189)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:560)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:941)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:733)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:435)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:311)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1305)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1294)
+	at com.ctoutweb.lalamiam.infra.Lalamiam.main(Lalamiam.java:10)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'customAuthProvider': Injection of autowired dependencies failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:488)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1416)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:597)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1417)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:888)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 19 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'application.name' in value "${application.name}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180)
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239)
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210)
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:920)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1358)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:710)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:693)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:133)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:482)
+	... 31 common frames omitted
+2025-01-07 22:11:54 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Starting Lalamiam using Java 21.0.3 with PID 11576 (C:\Programmation\java\lalamiam_v2\infra\target\classes started by Administrateur in C:\Programmation\java\lalamiam_v2)
+2025-01-07 22:11:54 [main] DEBUG c.ctoutweb.lalamiam.infra.Lalamiam - Running with Spring Boot v3.1.0, Spring v6.0.9
+2025-01-07 22:11:54 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - No active profile set, falling back to 1 default profile: "default"
+2025-01-07 22:11:56 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-07 22:11:57 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 346 ms. Found 14 JPA repository interfaces.
+2025-01-07 22:11:57 [main] DEBUG c.c.l.i.m.c.DynamicMessageSource - Clearing entire resource bundle cache
+2025-01-07 22:11:58 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-01-07 22:11:58 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3568 ms
+2025-01-07 22:11:58 [main] ERROR o.s.b.w.e.tomcat.TomcatStarter - Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'csrfFilter' defined in class path resource [com/ctoutweb/lalamiam/infra/config/FilterConfig.class]: Unsatisfied dependency expressed through method 'csrfFilter' parameter 0: Error creating bean with name 'customCsrfTokenRepository' defined in class path resource [com/ctoutweb/lalamiam/infra/config/FilterConfig.class]: Unsatisfied dependency expressed through method 'customCsrfTokenRepository' parameter 0: Error creating bean with name 'cookieServiceImpl': Unsatisfied dependency expressed through field 'isCookieSecure': Failed to convert value of type 'java.lang.String' to required type 'boolean'; Invalid boolean value [@cookie.secure@]
+2025-01-07 22:11:58 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-01-07 22:11:58 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-01-07 22:11:58 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.context.ApplicationContextException: Unable to start web server
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:164)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:602)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:733)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:435)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:311)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1305)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1294)
+	at com.ctoutweb.lalamiam.infra.Lalamiam.main(Lalamiam.java:10)
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:142)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:104)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:489)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:211)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:183)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:161)
+	... 8 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'csrfFilter' defined in class path resource [com/ctoutweb/lalamiam/infra/config/FilterConfig.class]: Unsatisfied dependency expressed through method 'csrfFilter' parameter 0: Error creating bean with name 'customCsrfTokenRepository' defined in class path resource [com/ctoutweb/lalamiam/infra/config/FilterConfig.class]: Unsatisfied dependency expressed through method 'customCsrfTokenRepository' parameter 0: Error creating bean with name 'cookieServiceImpl': Unsatisfied dependency expressed through field 'isCookieSecure': Failed to convert value of type 'java.lang.String' to required type 'boolean'; Invalid boolean value [@cookie.secure@]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:550)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1332)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1162)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:560)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:210)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:173)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:168)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:153)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:86)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:261)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:235)
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:52)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4882)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1332)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1322)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:871)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:846)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1332)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1322)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:871)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:241)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:428)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:913)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:485)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:123)
+	... 13 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'customCsrfTokenRepository' defined in class path resource [com/ctoutweb/lalamiam/infra/config/FilterConfig.class]: Unsatisfied dependency expressed through method 'customCsrfTokenRepository' parameter 0: Error creating bean with name 'cookieServiceImpl': Unsatisfied dependency expressed through field 'isCookieSecure': Failed to convert value of type 'java.lang.String' to required type 'boolean'; Invalid boolean value [@cookie.secure@]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:550)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1332)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1162)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:560)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1417)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:888)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 54 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'cookieServiceImpl': Unsatisfied dependency expressed through field 'isCookieSecure': Failed to convert value of type 'java.lang.String' to required type 'boolean'; Invalid boolean value [@cookie.secure@]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:713)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:693)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:133)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:482)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1416)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:597)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1417)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:888)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 68 common frames omitted
+Caused by: org.springframework.beans.TypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'boolean'; Invalid boolean value [@cookie.secure@]
+	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:79)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1365)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:710)
+	... 83 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Invalid boolean value [@cookie.secure@]
+	at org.springframework.beans.propertyeditors.CustomBooleanEditor.setAsText(CustomBooleanEditor.java:154)
+	at org.springframework.beans.TypeConverterDelegate.doConvertTextValue(TypeConverterDelegate.java:425)
+	at org.springframework.beans.TypeConverterDelegate.doConvertValue(TypeConverterDelegate.java:398)
+	at org.springframework.beans.TypeConverterDelegate.convertIfNecessary(TypeConverterDelegate.java:155)
+	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:73)
+	... 86 common frames omitted
+2025-01-07 22:13:06 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Starting Lalamiam using Java 21.0.3 with PID 6980 (C:\Programmation\java\lalamiam_v2\infra\target\classes started by Administrateur in C:\Programmation\java\lalamiam_v2)
+2025-01-07 22:13:06 [main] DEBUG c.ctoutweb.lalamiam.infra.Lalamiam - Running with Spring Boot v3.1.0, Spring v6.0.9
+2025-01-07 22:13:06 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - No active profile set, falling back to 1 default profile: "default"
+2025-01-07 22:13:08 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-07 22:13:08 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 353 ms. Found 14 JPA repository interfaces.
+2025-01-07 22:13:09 [main] DEBUG c.c.l.i.m.c.DynamicMessageSource - Clearing entire resource bundle cache
+2025-01-07 22:13:09 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-01-07 22:13:10 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3838 ms
+2025-01-07 22:13:10 [main] DEBUG c.c.l.i.s.csrf.CustomCsrfFilter - Filter 'csrfFilter' configured for use
+2025-01-07 22:13:11 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-07 22:13:14 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-07 22:13:15 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-07 22:13:16 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AdminController:
+	{GET [/admin/get-professional-documents]}: getProfessionalDocuement()
+2025-01-07 22:13:16 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AuthController:
+	{POST [/auth/login]}: login(LoginDto)
+	{GET [/auth/generate-csrf]}: csrfToken(HttpServletRequest,HttpServletResponse)
+	{POST [/auth/register-professional]}: registerProfessional(RegisterProfessionalDto)
+	{POST [/auth/register-client]}: registerClient(RegisterClientDto)
+	{GET [/auth/generate-captcha]}: generateCaptcha(HttpServletRequest,HttpServletResponse)
+	{GET [/auth/app-param]}: getAppParam()
+2025-01-07 22:13:16 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2025-01-07 22:13:16 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'beanNameHandlerMapping' {}
+2025-01-07 22:13:16 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'resourceHandlerMapping' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]], /**=ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]}
+2025-01-07 22:13:16 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@53cba89f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@66ad7167, org.springframework.security.web.context.SecurityContextHolderFilter@27ada0e8, org.springframework.security.web.header.HeaderWriterFilter@423791, org.springframework.web.filter.CorsFilter@14aa2123, com.ctoutweb.lalamiam.infra.security.csrf.CustomCsrfFilter@4751e8b9, org.springframework.security.web.authentication.logout.LogoutFilter@53b579d2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4b6942a0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1f67d37f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7def62d0, org.springframework.security.web.session.SessionManagementFilter@48b1b469, org.springframework.security.web.access.ExceptionTranslationFilter@2bd8c8f1, org.springframework.security.web.access.intercept.AuthorizationFilter@d970881]
+2025-01-07 22:13:16 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/api/v1'
+2025-01-07 22:13:16 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Started Lalamiam in 11.944 seconds (process running for 13.058)
+2025-01-07 22:13:28 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-07 22:13:28 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-01-07 22:13:29 [http-nio-8080-exec-1] ERROR c.c.l.i.s.csrf.CustomCsrfFilter - CSRF token ou COOKIE token == null
+2025-01-07 22:13:47 [http-nio-8080-exec-3] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2025-01-07 22:13:47 [http-nio-8080-exec-3] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2025-01-07 22:13:47 [http-nio-8080-exec-3] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2025-01-07 22:13:47 [http-nio-8080-exec-3] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2025-01-07 22:13:47 [http-nio-8080-exec-3] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2025-01-07 22:13:47 [http-nio-8080-exec-3] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2025-01-07 22:13:47 [http-nio-8080-exec-3] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2025-01-07 22:13:47 [http-nio-8080-exec-3] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2025-01-07 22:13:55 [http-nio-8080-exec-4] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2025-01-07 22:13:55 [http-nio-8080-exec-4] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2025-01-07 22:13:55 [http-nio-8080-exec-4] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2025-01-07 22:13:55 [http-nio-8080-exec-4] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2025-01-07 22:15:29 [SIGINT handler] DEBUG java.lang.Runtime - Runtime.exit() called with status: 130
+java.lang.Throwable: Runtime.exit(130)
+	at java.base/java.lang.Shutdown.logRuntimeExit(Shutdown.java:179)
+	at java.base/java.lang.Shutdown.exit(Shutdown.java:160)
+	at java.base/java.lang.Terminator$1.handle(Terminator.java:51)
+	at java.base/jdk.internal.misc.Signal$1.run(Signal.java:218)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-01-07 22:15:29 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-07 22:15:38 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Starting Lalamiam using Java 21.0.3 with PID 2580 (C:\Programmation\java\lalamiam_v2\infra\target\classes started by Administrateur in C:\Programmation\java\lalamiam_v2)
+2025-01-07 22:15:38 [main] DEBUG c.ctoutweb.lalamiam.infra.Lalamiam - Running with Spring Boot v3.1.0, Spring v6.0.9
+2025-01-07 22:15:38 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - No active profile set, falling back to 1 default profile: "default"
+2025-01-07 22:15:40 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-07 22:15:41 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 351 ms. Found 14 JPA repository interfaces.
+2025-01-07 22:15:42 [main] DEBUG c.c.l.i.m.c.DynamicMessageSource - Clearing entire resource bundle cache
+2025-01-07 22:15:43 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-01-07 22:15:43 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4391 ms
+2025-01-07 22:15:43 [main] DEBUG c.c.l.i.s.csrf.CustomCsrfFilter - Filter 'csrfFilter' configured for use
+2025-01-07 22:15:45 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-07 22:15:48 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-07 22:15:49 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-07 22:15:49 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AdminController:
+	{GET [/admin/get-professional-documents]}: getProfessionalDocuement()
+2025-01-07 22:15:49 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AuthController:
+	{POST [/auth/register-professional]}: registerProfessional(RegisterProfessionalDto)
+	{POST [/auth/login]}: login(LoginDto)
+	{GET [/auth/generate-csrf]}: csrfToken(HttpServletRequest,HttpServletResponse)
+	{GET [/auth/app-param]}: getAppParam()
+	{GET [/auth/generate-captcha]}: generateCaptcha(HttpServletRequest,HttpServletResponse)
+	{POST [/auth/register-client]}: registerClient(RegisterClientDto)
+2025-01-07 22:15:49 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+	{ [/error]}: error(HttpServletRequest)
+2025-01-07 22:15:49 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'beanNameHandlerMapping' {}
+2025-01-07 22:15:50 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'resourceHandlerMapping' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]], /**=ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]}
+2025-01-07 22:15:50 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@67cd1db3, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7ccfed46, org.springframework.security.web.context.SecurityContextHolderFilter@3ddc5a75, org.springframework.security.web.header.HeaderWriterFilter@30b075b9, org.springframework.web.filter.CorsFilter@53630682, com.ctoutweb.lalamiam.infra.security.csrf.CustomCsrfFilter@68ddd415, org.springframework.security.web.authentication.logout.LogoutFilter@66c91224, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6bab8290, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1174ff02, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@71e2ddd, org.springframework.security.web.session.SessionManagementFilter@736eb2a2, org.springframework.security.web.access.ExceptionTranslationFilter@17d25e1d, org.springframework.security.web.access.intercept.AuthorizationFilter@2e76ade9]
+2025-01-07 22:15:50 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/api/v1'
+2025-01-07 22:15:50 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Started Lalamiam in 13.331 seconds (process running for 14.193)
+2025-01-07 22:16:00 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-07 22:16:00 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2025-01-07 22:16:00 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [/api/v1] threw exception [Request processing failed: com.ctoutweb.lalamiam.infra.exception.AuthException: Email or password unvalid] with root cause
+com.ctoutweb.lalamiam.infra.exception.AuthException: Email or password unvalid
+	at com.ctoutweb.lalamiam.infra.security.authentication.CustomAuthProvider.authenticate(CustomAuthProvider.java:73)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:182)
+	at com.ctoutweb.lalamiam.infra.service.impl.AuthServiceImpl.login(AuthServiceImpl.java:93)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:391)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:702)
+	at com.ctoutweb.lalamiam.infra.service.impl.AuthServiceImpl$$SpringCGLIB$$0.login(<generated>)
+	at com.ctoutweb.lalamiam.infra.controller.AuthController.login(AuthController.java:78)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:207)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:152)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.ctoutweb.lalamiam.infra.security.csrf.CustomCsrfFilter.doFilterInternal(CustomCsrfFilter.java:58)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-01-07 22:16:00 [http-nio-8080-exec-1] DEBUG c.c.l.i.m.c.DynamicMessageSource - No properties file found for [classpath:message/validatorErrorMessage] - neither plain properties nor XML
+2025-01-07 22:16:00 [http-nio-8080-exec-1] DEBUG c.c.l.i.m.c.DynamicMessageSource - Loading properties [validatorErrorMessage_fr.properties] with encoding 'UTF-8'
+2025-01-07 22:16:00 [http-nio-8080-exec-1] DEBUG c.c.l.i.m.c.DynamicMessageSource - No properties file found for [classpath:message/validatorErrorMessage_fr_FR] - neither plain properties nor XML
+2025-01-07 22:17:33 [SIGINT handler] DEBUG java.lang.Runtime - Runtime.exit() called with status: 130
+java.lang.Throwable: Runtime.exit(130)
+	at java.base/java.lang.Shutdown.logRuntimeExit(Shutdown.java:179)
+	at java.base/java.lang.Shutdown.exit(Shutdown.java:160)
+	at java.base/java.lang.Terminator$1.handle(Terminator.java:51)
+	at java.base/jdk.internal.misc.Signal$1.run(Signal.java:218)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-01-07 22:17:33 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-07 22:17:43 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Starting Lalamiam using Java 21.0.3 with PID 6988 (C:\Programmation\java\lalamiam_v2\infra\target\classes started by Administrateur in C:\Programmation\java\lalamiam_v2)
+2025-01-07 22:17:43 [main] DEBUG c.ctoutweb.lalamiam.infra.Lalamiam - Running with Spring Boot v3.1.0, Spring v6.0.9
+2025-01-07 22:17:43 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - No active profile set, falling back to 1 default profile: "default"
+2025-01-07 22:17:45 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-07 22:17:45 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 302 ms. Found 14 JPA repository interfaces.
+2025-01-07 22:17:46 [main] DEBUG c.c.l.i.m.c.DynamicMessageSource - Clearing entire resource bundle cache
+2025-01-07 22:17:47 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-01-07 22:17:47 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3848 ms
+2025-01-07 22:17:47 [main] DEBUG c.c.l.i.s.csrf.CustomCsrfFilter - Filter 'csrfFilter' configured for use
+2025-01-07 22:17:49 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-07 22:17:51 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-07 22:17:52 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-07 22:17:53 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AdminController:
+	{GET [/admin/get-professional-documents]}: getProfessionalDocuement()
+2025-01-07 22:17:53 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AuthController:
+	{GET [/auth/generate-csrf]}: csrfToken(HttpServletRequest,HttpServletResponse)
+	{POST [/auth/login]}: login(LoginDto)
+	{POST [/auth/register-professional]}: registerProfessional(RegisterProfessionalDto)
+	{GET [/auth/generate-captcha]}: generateCaptcha(HttpServletRequest,HttpServletResponse)
+	{GET [/auth/app-param]}: getAppParam()
+	{POST [/auth/register-client]}: registerClient(RegisterClientDto)
+2025-01-07 22:17:53 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2025-01-07 22:17:53 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'beanNameHandlerMapping' {}
+2025-01-07 22:17:53 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'resourceHandlerMapping' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]], /**=ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]}
+2025-01-07 22:17:53 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4884350b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@53cba89f, org.springframework.security.web.context.SecurityContextHolderFilter@15e748b5, org.springframework.security.web.header.HeaderWriterFilter@7db63a01, org.springframework.web.filter.CorsFilter@66ad7167, com.ctoutweb.lalamiam.infra.security.csrf.CustomCsrfFilter@7b25ab31, org.springframework.security.web.authentication.logout.LogoutFilter@1f39b3ba, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@62fa4a88, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1e9afe4e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@14aa2123, org.springframework.security.web.session.SessionManagementFilter@4a2f1ae3, org.springframework.security.web.access.ExceptionTranslationFilter@7c7b27c, org.springframework.security.web.access.intercept.AuthorizationFilter@2c56e044]
+2025-01-07 22:17:54 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/api/v1'
+2025-01-07 22:17:54 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Started Lalamiam in 11.729 seconds (process running for 12.604)
+2025-01-07 22:17:58 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-07 22:17:58 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 10 ms
+2025-01-07 22:20:24 [http-nio-8080-exec-6] ERROR c.c.l.i.s.impl.CaptchaServiceImpl - La réponse captcha n'existe pas en base de données
+2025-01-07 22:22:17 [http-nio-8080-exec-1] WARN  o.s.s.c.bcrypt.BCryptPasswordEncoder - Empty encoded password
+2025-01-07 22:22:17 [http-nio-8080-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: 42703
+2025-01-07 22:22:17 [http-nio-8080-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - ERREUR: la colonne « created_at » de la relation « login » n'existe pas
+  Position : 32
+2025-01-07 22:22:17 [http-nio-8080-exec-1] ERROR c.c.l.i.exception.HandlerException - PSQL Erreur: ERREUR: la colonne « created_at » de la relation « login » n'existe pas
+  Position : 32
+2025-01-07 22:23:53 [SIGINT handler] DEBUG java.lang.Runtime - Runtime.exit() called with status: 130
+java.lang.Throwable: Runtime.exit(130)
+	at java.base/java.lang.Shutdown.logRuntimeExit(Shutdown.java:179)
+	at java.base/java.lang.Shutdown.exit(Shutdown.java:160)
+	at java.base/java.lang.Terminator$1.handle(Terminator.java:51)
+	at java.base/jdk.internal.misc.Signal$1.run(Signal.java:218)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-01-07 22:23:53 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
