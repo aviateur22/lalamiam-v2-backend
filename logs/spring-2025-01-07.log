@@ -53,7 +53,7 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 2 of constructor in com.ctoutweb.lalamiam.infra.security.authentication.CustomAuthProvider required a bean of type 'com.ctoutweb.lalamiam.infra.service.ILoginService' that could not be found.
+Parameter 2 of constructor in com.ctoutweb.lalamiam.infra.security.authentication.CustomAuthProviderNEw required a bean of type 'com.ctoutweb.lalamiam.infra.service.ILoginService' that could not be found.
 
 
 Action:
@@ -84,7 +84,7 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 4 of constructor in com.ctoutweb.lalamiam.infra.security.authentication.CustomAuthProvider required a bean of type 'com.ctoutweb.lalamiam.infra.mapper.UserEntityMapper' that could not be found.
+Parameter 4 of constructor in com.ctoutweb.lalamiam.infra.security.authentication.CustomAuthProviderNEw required a bean of type 'com.ctoutweb.lalamiam.infra.mapper.UserEntityMapper' that could not be found.
 
 
 Action:
@@ -115,7 +115,7 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 5 of constructor in com.ctoutweb.lalamiam.infra.security.authentication.CustomAuthProvider required a bean of type 'com.ctoutweb.lalamiam.infra.service.IEmailService' that could not be found.
+Parameter 5 of constructor in com.ctoutweb.lalamiam.infra.security.authentication.CustomAuthProviderNEw required a bean of type 'com.ctoutweb.lalamiam.infra.service.IEmailService' that could not be found.
 
 
 Action:
@@ -404,7 +404,7 @@ java.lang.Throwable: Runtime.exit(130)
 2025-01-07 22:16:00 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
 2025-01-07 22:16:00 [http-nio-8080-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [/api/v1] threw exception [Request processing failed: com.ctoutweb.lalamiam.infra.exception.AuthException: Email or password unvalid] with root cause
 com.ctoutweb.lalamiam.infra.exception.AuthException: Email or password unvalid
-	at com.ctoutweb.lalamiam.infra.security.authentication.CustomAuthProvider.authenticate(CustomAuthProvider.java:73)
+	at com.ctoutweb.lalamiam.infra.security.authentication.CustomAuthProviderNEw.authenticate(CustomAuthProvider.java:73)
 	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:182)
 	at com.ctoutweb.lalamiam.infra.service.impl.AuthServiceImpl.login(AuthServiceImpl.java:93)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)

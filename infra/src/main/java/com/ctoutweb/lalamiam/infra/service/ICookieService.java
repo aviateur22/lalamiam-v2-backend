@@ -18,9 +18,10 @@ public interface ICookieService {
    * Creation Cookie
    * @param name Sreing - Nom cookie
    * @param value String - Contenu du cookie
+   * @param maxAge int - Validité du cookie
    * @return String - Données du cookie
    */
-  public String generateCookie(String name, String value);
+  public String generateCookie(String name, String value, int maxAge);
 
   /**
    * Recherche d'un cookie

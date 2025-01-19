@@ -1,0 +1,68 @@
+2025-01-13 20:16:41 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Starting Lalamiam using Java 21.0.3 with PID 3920 (C:\Programmation\java\lalamiam_v2\infra\target\classes started by Administrateur in C:\Programmation\java\lalamiam_v2)
+2025-01-13 20:16:41 [main] DEBUG c.ctoutweb.lalamiam.infra.Lalamiam - Running with Spring Boot v3.1.0, Spring v6.0.9
+2025-01-13 20:16:41 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - No active profile set, falling back to 1 default profile: "default"
+2025-01-13 20:16:44 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-13 20:16:44 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 397 ms. Found 14 JPA repository interfaces.
+2025-01-13 20:16:46 [main] DEBUG c.c.l.i.m.c.DynamicMessageSource - Clearing entire resource bundle cache
+2025-01-13 20:16:47 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2025-01-13 20:16:47 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 6099 ms
+2025-01-13 20:16:47 [main] DEBUG c.c.l.i.s.csrf.CustomCsrfFilter - Filter 'csrfFilter' configured for use
+2025-01-13 20:16:50 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-13 20:16:54 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-13 20:16:55 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-13 20:16:56 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AdminController:
+	{GET [/admin/get-professional-documents]}: getProfessionalDocuement()
+2025-01-13 20:16:56 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	c.c.l.i.c.AuthController:
+	{POST [/auth/register-professional]}: registerProfessional(RegisterProfessionalDto)
+	{GET [/auth/app-param]}: getAppParam()
+	{POST [/auth/register-client]}: registerClient(RegisterClientDto)
+	{GET [/auth/generate-captcha]}: generateCaptcha(HttpServletRequest,HttpServletResponse)
+	{GET [/auth/generate-csrf]}: csrfToken(HttpServletRequest,HttpServletResponse)
+	{POST [/auth/login]}: login(LoginDto)
+2025-01-13 20:16:56 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2025-01-13 20:16:56 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'beanNameHandlerMapping' {}
+2025-01-13 20:16:56 [main] DEBUG _.s.w.s.HandlerMapping.Mappings - 'resourceHandlerMapping' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]], /**=ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]}
+2025-01-13 20:16:57 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@657e7e8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1b4ade78, org.springframework.security.web.context.SecurityContextHolderFilter@dd025d9, org.springframework.security.web.header.HeaderWriterFilter@66ad7167, org.springframework.web.filter.CorsFilter@45fa7fb7, com.ctoutweb.lalamiam.infra.security.csrf.CustomCsrfFilter@3a479fda, org.springframework.security.web.authentication.logout.LogoutFilter@29682244, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@65192f16, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3338d706, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@32eeef08, org.springframework.security.web.session.SessionManagementFilter@1174ff02, org.springframework.security.web.access.ExceptionTranslationFilter@4884350b, org.springframework.security.web.access.intercept.AuthorizationFilter@408bb173]
+2025-01-13 20:16:57 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/api/v1'
+2025-01-13 20:16:57 [main] INFO  c.ctoutweb.lalamiam.infra.Lalamiam - Started Lalamiam in 18.188 seconds (process running for 20.004)
+2025-01-13 20:21:44 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-13 20:21:44 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2025-01-13 20:21:45 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2025-01-13 20:21:45 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2025-01-13 20:21:45 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2025-01-13 20:21:45 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2025-01-13 20:21:45 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2025-01-13 20:21:45 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2025-01-13 20:21:45 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2025-01-13 20:21:45 [http-nio-8080-exec-1] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2025-01-13 20:22:34 [http-nio-8080-exec-8] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2025-01-13 20:22:34 [http-nio-8080-exec-8] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2025-01-13 20:22:34 [http-nio-8080-exec-8] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2025-01-13 20:22:34 [http-nio-8080-exec-8] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2025-01-13 20:22:34 [http-nio-8080-exec-8] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2025-01-13 20:22:34 [http-nio-8080-exec-8] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2025-01-13 20:22:34 [http-nio-8080-exec-8] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2025-01-13 20:22:34 [http-nio-8080-exec-8] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2025-01-13 20:22:34 [http-nio-8080-exec-6] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2025-01-13 20:22:34 [http-nio-8080-exec-6] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2025-01-13 20:22:34 [http-nio-8080-exec-6] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2025-01-13 20:22:34 [http-nio-8080-exec-6] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2025-01-13 20:25:24 [http-nio-8080-exec-1] ERROR c.c.l.i.exception.HandlerException - AuthException Erreur: Email or password unvalid
+2025-01-13 20:43:08 [http-nio-8080-exec-5] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2025-01-13 20:43:08 [http-nio-8080-exec-5] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2025-01-13 20:43:08 [http-nio-8080-exec-5] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2025-01-13 20:43:08 [http-nio-8080-exec-5] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2025-01-13 20:43:09 [http-nio-8080-exec-5] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2025-01-13 20:43:09 [http-nio-8080-exec-5] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2025-01-13 20:43:09 [http-nio-8080-exec-5] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2025-01-13 20:43:09 [http-nio-8080-exec-5] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2025-01-13 20:43:09 [http-nio-8080-exec-9] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2025-01-13 20:43:09 [http-nio-8080-exec-9] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2025-01-13 20:43:09 [http-nio-8080-exec-9] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2025-01-13 20:43:09 [http-nio-8080-exec-9] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2025-01-13 20:43:21 [http-nio-8080-exec-10] ERROR c.c.l.i.exception.HandlerException - AuthException Erreur: Email or password unvalid

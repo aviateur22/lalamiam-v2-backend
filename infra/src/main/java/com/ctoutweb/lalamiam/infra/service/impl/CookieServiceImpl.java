@@ -31,7 +31,7 @@ public class CookieServiceImpl implements ICookieService {
   }
 
   @Override
-  public String generateCookie(String name, String value) {
+  public String generateCookie(String name, String value, int maxAge) {
     Cookie cookie = new Cookie(name, value);
     String cookieHeader = "";
 
@@ -43,14 +43,14 @@ public class CookieServiceImpl implements ICookieService {
 
     if(isCookieHttpOnly) {
       cookieHeader = isCookieSecure ?
-              String.format("%s=%s; HttpOnly; Secure; Path=%s; SameSite=%S; Max-Age=3600", cookie.getName(), cookie.getValue(), cookiePath, cookieSameSite) :
-              String.format("%s=%s; HttpOnly; Path=%s; SameSite=%S; Max-Age=3600", cookie.getName(), cookie.getValue(), cookiePath, cookieSameSite);
+              String.format("%s=%s; HttpOnly; Secure; Path=%s; SameSite=%S; Max-Age=%s", cookie.getName(), cookie.getValue(), cookiePath, cookieSameSite, maxAge) :
+              String.format("%s=%s; HttpOnly; Path=%s; SameSite=%S; Max-Age=%s", cookie.getName(), cookie.getValue(), cookiePath, cookieSameSite, maxAge);
       return cookieHeader;
     }
 
     cookieHeader = isCookieSecure ?
-            String.format("%s=%s; Secure; Path=%s; SameSite=%S; Max-Age=3600", cookie.getName(), cookie.getValue(), cookiePath, cookieSameSite) :
-            String.format("%s=%s; Path=%s; SameSite=%S; Max-Age=3600", cookie.getName(), cookie.getValue(), cookiePath, cookieSameSite);
+            String.format("%s=%s; Secure; Path=%s; SameSite=%S; Max-Age=%s", cookie.getName(), cookie.getValue(), cookiePath, cookieSameSite, maxAge) :
+            String.format("%s=%s; Path=%s; SameSite=%S; Max-Age=%s", cookie.getName(), cookie.getValue(), cookiePath, cookieSameSite, maxAge);
 
     return cookieHeader;
   }

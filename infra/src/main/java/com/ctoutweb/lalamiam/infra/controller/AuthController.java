@@ -65,6 +65,10 @@ public class AuthController {
     // Validation dto
     factory.getImpl(registerProfessionalDto).validateDto(validator);
 
+    // Validation captcha
+    if(!securityService.isUserCaptchaResponseValid(registerProfessionalDto.userCaptchaResponse()))
+      throw new BadRequestException(messageService.getMessage("captcha.invalid.response"));
+
     // Creation compte client
     authService.registerProfessional(registerProfessionalDto);
 
@@ -75,9 +79,9 @@ public class AuthController {
   ResponseEntity<LoginResponseDto> login(@RequestBody LoginDto loginDto) {
     factory.getImpl(loginDto).validateDto(validator);
 
-    authService.login(loginDto);
+    LoginResponseDto loginResponseDto = authService.login(loginDto);
 
-    return new ResponseEntity<>(new LoginResponseDto("email", "151L", 1L , List.of(),"Message"), HttpStatus.OK);
+    return new ResponseEntity<>(loginResponseDto, HttpStatus.OK);
   }
 
   @GetMapping("/generate-csrf")

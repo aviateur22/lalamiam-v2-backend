@@ -15,6 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Service;
 
+import static com.ctoutweb.lalamiam.infra.constant.ApplicationConstant.ACCESS_CSRF_COOKIE_MAX_AGE;
 import static com.ctoutweb.lalamiam.infra.constant.ApplicationConstant.COOKIE_CSRF_ACCESS_KEY_PARAM_NAME;
 
 @Service
@@ -55,7 +56,10 @@ public class CsrfServiceImpl implements ICsrfService {
   public HttpHeaders generateCsrfAccessKey() {
     HttpHeaders headers = new HttpHeaders();
     IJwtIssue jwt = jwtService.generate(cryptoService.hashText(csrfAccessToken));
-    headers.add(HttpHeaders.SET_COOKIE, cookieService.generateCookie(COOKIE_CSRF_ACCESS_KEY_PARAM_NAME, jwt.getJwtToken()));
+    headers.add(HttpHeaders.SET_COOKIE, cookieService.generateCookie(
+            COOKIE_CSRF_ACCESS_KEY_PARAM_NAME, jwt.getJwtToken(),
+            ACCESS_CSRF_COOKIE_MAX_AGE
+            ));
     return headers;
   }
 

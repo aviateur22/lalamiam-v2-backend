@@ -21,7 +21,7 @@ public class UserPrincipalDetailService implements UserDetailsService {
   }
 
   @Override
-  public UserDetails loadUserByUsername(String email)  {
+  public UserPrincipal loadUserByUsername(String email)  {
     UserEntity user = userRepository.findByEmail(email).orElse(null);
 
     if(user == null)

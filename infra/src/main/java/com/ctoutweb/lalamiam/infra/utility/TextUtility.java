@@ -1,9 +1,13 @@
 package com.ctoutweb.lalamiam.infra.utility;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Map;
 import java.util.Random;
 
 public class TextUtility {
-
+  private static final Logger LOGGER = LogManager.getLogger();
   private TextUtility() {
     throw new IllegalStateException("Class utilitaire");
   }
@@ -32,5 +36,19 @@ public class TextUtility {
             .mapToObj(c->(char) c)
             .collect(StringBuffer::new , StringBuffer::append, StringBuffer::append)
             .toString();
+  }
+
+  /**
+   * Remplace une liste de mot dans 1 text
+   * @param initialText String - Text devant être mise à jour
+   * @param mapOfWordToReplace Map<String, String> - Mot devant être mis dans le text
+   * @return String - Text mise à jour
+   */
+  public static String replaceWordInText(String initialText, Map<String, String> mapOfWordToReplace) {
+    for(Map.Entry<String, String> k: mapOfWordToReplace.entrySet()) {
+      LOGGER.debug(k.getKey());
+      initialText =   initialText.replace(k.getKey(), k.getValue());
+    }
+    return initialText;
   }
 }

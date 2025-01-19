@@ -35,6 +35,12 @@ public class ApplicationConstant {
   public static final int IMAGE_HEIGHT = 100;
   public static final ImageType APP_IMAGE_TYPE = ImageType.PNG;
 
+  // Cookie
+  public static final int ACCESS_CSRF_COOKIE_MAX_AGE = 43200;
+  public static final int ACCESS_CAPTCHA_COOKIE_MAX_AGE = 43200;
+  public static final int CSRF_COOKIE_MAX_AGE = 10800;
+
+
   // Crypto
   public static final int CRYPTO_ITERATION_COUNT = 65536;
   public static final int CRYPTO_KEY_LENGTH = 256;
@@ -42,6 +48,9 @@ public class ApplicationConstant {
   // LOGIN
   public static final int LOGIN_ERROR_ATTEMPT_AVAILABLE = 4;
   public static final int USER_LAST_LOGIN_COUNT = LOGIN_ERROR_ATTEMPT_AVAILABLE;
-  public static final int LOGIN_DELAY = 3;
+  public static final int LOGIN_DELAY_IN_MINUTE = 3;
+
+  // EMAIL
+  public static final String HTML_TEMPLATE_FOLDER = "html/";
 
 }

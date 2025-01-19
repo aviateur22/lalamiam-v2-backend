@@ -1,0 +1,13 @@
+2025-01-16 21:12:09 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=23h15m12s651ms813µs599ns).
+2025-01-16 21:28:18 [http-nio-8080-exec-8] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2025-01-16 21:28:18 [http-nio-8080-exec-8] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2025-01-16 21:28:18 [http-nio-8080-exec-8] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2025-01-16 21:28:18 [http-nio-8080-exec-8] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2025-01-16 21:28:19 [http-nio-8080-exec-8] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2025-01-16 21:28:19 [http-nio-8080-exec-8] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2025-01-16 21:28:19 [http-nio-8080-exec-8] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2025-01-16 21:28:19 [http-nio-8080-exec-8] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /
+2025-01-16 21:28:19 [http-nio-8080-exec-6] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie samesite: Lax
+2025-01-16 21:28:19 [http-nio-8080-exec-6] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie domain: customDomain
+2025-01-16 21:28:19 [http-nio-8080-exec-6] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie secure: false
+2025-01-16 21:28:19 [http-nio-8080-exec-6] DEBUG c.c.l.i.s.impl.CookieServiceImpl - Cookie path: /

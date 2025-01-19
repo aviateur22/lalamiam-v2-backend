@@ -1,12 +1,10 @@
 package com.ctoutweb.lalamiam.infra.security.authentication;
 
 import com.ctoutweb.lalamiam.infra.exception.AuthException;
-import com.ctoutweb.lalamiam.infra.exception.BadRequestException;
 import com.ctoutweb.lalamiam.infra.mapper.UserEntityMapper;
 import com.ctoutweb.lalamiam.infra.model.IUserLoginStatus;
 import com.ctoutweb.lalamiam.infra.model.email.HtmlTemplateType;
 import com.ctoutweb.lalamiam.infra.repository.entity.LoginEntity;
-import com.ctoutweb.lalamiam.infra.repository.entity.UserEntity;
 import com.ctoutweb.lalamiam.infra.service.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -52,80 +50,122 @@ public class CustomAuthProvider implements AuthenticationProvider {
     this.mailService = mailService;
     this.cryptoService = cryptoService;
   }
-
   @Override
   public Authentication authenticate(Authentication authentication) throws AuthException {
-    // Authentification utilisateur
-    boolean isAuthenticationValid = authentication.getCredentials() != null;
 
-    // List des dernieres connexions du client
-    List<LoginEntity> lastUserLoginList = List.of();
+    validateAuthenticationRequest(authentication);
 
-    // Client souhaitant se connecter
-    UserEntity loginUser = null;
-
-    String presentedPassword = authentication.getCredentials().toString();
-    UserDetails user = userDetailsService.loadUserByUsername(authentication.getName());
-
-    // Récupération utilisateur
-    if(user == null)
-      throw new AuthException(messageService.getMessage("email.unvalid"));
-
-    // Vérification MDP
-    UserPrincipal userLogin = (UserPrincipal) user;
-    loginUser = userEntityMapper.map((UserPrincipal) user);
-
-    // Vérification si connxion au compte possible
-    IUserLoginStatus userLoginStatus = loginService.isLoginAuthorize(loginUser.getId());
-
-    if(!userLoginStatus.isLoginAuthorize()) {
-      // Heure de reprise
-      ZonedDateTime recoveryLoginTime = userLoginStatus.getRecoveryLoginTime();
-
-      // Generation d'un message d'erreur avec heure de reprise
-      String errorMessage = replaceWordInText(
-              messageService.getMessage("login.not.authorize"),
-              "!%!recoveryLoginTime!%!",
-              toDateHour(recoveryLoginTime)
-      );
-      throw new AuthException(errorMessage);
-    }
+    // Recherche Utilisateur
+    UserPrincipal userPrincipal = findUser(authentication.getName());
 
     // Vérification mot de passe
-    isAuthenticationValid = cryptoService.isHashValid(presentedPassword, user.getPassword());
+    boolean isAuthenticationValid = this.validatePassword(authentication.getCredentials().toString(), userPrincipal.password());
 
-    // Mise a jour des informations de connexion du client
-    lastUserLoginList = loginService.updateUserLoginInformation(loginUser, isAuthenticationValid);
+    // Vérification si connexion autorisé
+    IUserLoginStatus userLoginStatus = validateLoginAuthorization(userPrincipal.id());
 
-    // Vérification si délai de connexion à rajouter
-    if(!isAuthenticationValid) {
-      // Nombre de tentative de connexion disponible
-      int loginRemainingCount = loginService.getUserRemainingLogin(lastUserLoginList);
+    if(!userLoginStatus.isLoginAuthorize())
+      handleLoginNotAuthorize(userLoginStatus);
 
-      if(isDelayOnLoginToAdd(lastUserLoginList)) {
-        // Ajout d'un temps blocant le login
-        loginService.addDelayOnLogin(loginUser, lastUserLoginList);
+    // Mise a jour des information de connexion
+    loginService.updateUserLoginInformation(userPrincipal.id(), isAuthenticationValid);
 
-        // Reset des données de connexion du client
-        loginService.resetUserConnexionStatus(lastUserLoginList);
+    if(!isAuthenticationValid)
+      handleFailedLogin(userPrincipal);
 
-        // envoi d'un email
-        sendEmail(loginUser);
-      }
-      throw new AuthException(getExceptionMessage(loginRemainingCount));
-    }
-
-    loginService.resetUserConnexionStatus(lastUserLoginList);
-    return new UsernamePasswordAuthenticationToken(user, authentication.getCredentials().toString());
-
-
+    return new UsernamePasswordAuthenticationToken(userPrincipal, authentication.getCredentials().toString());
   }
-
   @Override
   public boolean supports(Class<?> authentication) {
     return authentication.equals(UsernamePasswordAuthenticationToken.class);
   }
 
+  public void validateAuthenticationRequest(Authentication authentication) {
+
+    if(authentication.getCredentials() == null)
+      throw new AuthException(messageService.getMessage("email.unvalid"));
+
+  }
+
+  public UserPrincipal findUser(String userName) throws AuthException {
+    UserDetails user = userDetailsService.loadUserByUsername(userName);
+    // Récupération utilisateur
+    if(user == null)
+      throw new AuthException(messageService.getMessage("email.unvalid"));
+
+    return (UserPrincipal) user;
+  }
+
+  /**
+   * Vérification si un user peut se connecter (pas de délais d'attente en cours)
+   * @param loginUserId Long - Id de la personne qui se connecte
+   * @throws AuthException
+   */
+  public IUserLoginStatus validateLoginAuthorization(Long loginUserId) throws AuthException {
+    return loginService.isLoginAuthorize(loginUserId);
+  }
+
+  /**
+   * Validation du mot de passe
+   * @param presentedPAssword String - Mot de passe en claire
+   * @param cryptoPassword String - HAsh password
+   * @return Boolean
+   */
+  public boolean validatePassword(String presentedPAssword, String cryptoPassword) {
+    return cryptoService.isHashValid(presentedPAssword, cryptoPassword);
+  }
+
+  /**
+   * Gestion d'une Authentification en echec (Erreur de mot de passe)
+   * @param loginUser UserPrincipal -  Personne qui se connecte
+   * @throws AuthException
+   */
+  public void handleFailedLogin(UserPrincipal loginUser) throws AuthException {
+    // List des dernieres connexions du client
+    List<LoginEntity> lastUserLoginList = loginService.getLastUserLoginInformation(loginUser.id());
+
+    // Nombre de tentative de connexion disponible
+    int loginRemainingCount = loginService.getUserRemainingLogin(lastUserLoginList);
+
+    if(isDelayOnLoginToAdd(lastUserLoginList))
+      handleAddingLoginDelay(loginUser, lastUserLoginList);
+
+    throw new AuthException(getExceptionMessage(loginRemainingCount));
+  }
+
+  /**
+   * Gestion d'une authentication non autrorisé (Delais d'attente avant prochaine connexion)
+   * @param userLoginStatus
+   * @throws AuthException
+   */
+  public void handleLoginNotAuthorize(IUserLoginStatus userLoginStatus) throws AuthException  {
+    // Heure de reprise
+    ZonedDateTime recoveryLoginTime = userLoginStatus.getRecoveryLoginTime();
+
+    // Generation d'un message d'erreur avec heure de reprise
+    String errorMessage = replaceWordInText(
+            messageService.getMessage("login.not.authorize"),
+            "!%!recoveryLoginTime!%!",
+            toDateHour(recoveryLoginTime)
+    );
+    throw new AuthException(errorMessage);
+  }
+
+  /**
+   * Gestion de l'ajout d'un délais de connexion en cas d'erreur multiple
+   * @param userLogin UserPrincipal - Personne se connectant
+   * @param lastUserLogins List<LoginEntity> - Liste des dernière connexion
+   */
+  public void handleAddingLoginDelay(UserPrincipal userLogin, List<LoginEntity> lastUserLogins) {
+    // Ajout d'un temps blocant le login
+    loginService.addDelayOnLogin(userLogin.id(), lastUserLogins);
+
+    // Reset des données de connexion du client
+    loginService.resetUserConnexionStatus(lastUserLogins);
+
+    // envoi d'un email
+    sendEmail(userLogin.email());
+  }
   /**
    * Vérification si un temps d'attente doit être mis à la connexion
    * @param lastUserLoginList List<UserLoginEntity>
@@ -138,7 +178,6 @@ public class CustomAuthProvider implements AuthenticationProvider {
 
     return loginAttemptErrorCount >= LOGIN_ERROR_ATTEMPT_AVAILABLE;
   }
-
 
   /**
    * Message sur le nombre de connexion disponible
@@ -155,29 +194,18 @@ public class CustomAuthProvider implements AuthenticationProvider {
       default-> messageService.getMessage("email.unvalid");
     };
   }
-
-  public void sendEmail(UserEntity user) {
-
+  public void sendEmail(String loginUserEmail) {
     // Generation d'un email d'alerte
     Map<String, String> listWordsToReplaceInHtmlTemplate = new HashMap<>();
 
     listWordsToReplaceInHtmlTemplate.put("year", String.valueOf(LocalDateTime.now().getYear()));
-    listWordsToReplaceInHtmlTemplate.put("email", user.getEmail());
-    listWordsToReplaceInHtmlTemplate.put("email", user.getEmail());
+    listWordsToReplaceInHtmlTemplate.put("email", loginUserEmail);
+    listWordsToReplaceInHtmlTemplate.put("email", loginUserEmail);
     listWordsToReplaceInHtmlTemplate.put("appName", applicationName.toUpperCase());
 
-    // Sujet du mail
-    String emailSubject = messageService.getMessage("email.login.account.failed.subject");
-    emailSubject =  replaceWordInText(emailSubject, "!%!applicationName!%!", applicationName.toUpperCase());
-
-    String templateHtml = mailService.generateHtml(HtmlTemplateType.LOGIN_CONNEXION_ALERT, listWordsToReplaceInHtmlTemplate);
-    mailService.sendEmail(
-            emailSubject,
-            user.getEmail(),
-            templateHtml,
-            messageService.getMessage("mailing.error")
-    );
-
+    mailService
+            .setEmailInformation(HtmlTemplateType.LOGIN_CONNEXION_ALERT, loginUserEmail)
+            .replaceWordInHtmlTemplate(HtmlTemplateType.LOGIN_CONNEXION_ALERT, listWordsToReplaceInHtmlTemplate)
+            .sendEmail();
   }
-
 }

@@ -94,6 +94,7 @@ public class CaptchaGenerationImpl implements ICaptchaGeneration {
   }
   @Override
   public CaptchaGenerationImpl generate(CaptchaType captchaType) {
+    resetValue();
     switch (captchaType) {
       case TEXT -> captchaTypeText();
       default -> captchaTypeCalcul();
@@ -102,6 +103,7 @@ public class CaptchaGenerationImpl implements ICaptchaGeneration {
   }
   @Override
   public ICaptchaGeneration generate(List<ICaptchaImage> captchaImages, List<File> captchaImageFiles) {
+    resetValue();
     captchaTypeImage(captchaImages, captchaImageFiles);
     return this;
   }
@@ -197,6 +199,18 @@ public class CaptchaGenerationImpl implements ICaptchaGeneration {
     captchaResponse = generateCalculResponse(RANDOM_NUMBER_1, RANDOM_NUMBER_2, RANDOM_MATH_OPERATION).toString();
 
     captchaQuestion = String.format("%02d %c %02d", RANDOM_NUMBER_1, RANDOM_MATH_OPERATION, RANDOM_NUMBER_2);
+  }
+
+  /**
+   * Reset les valeurs des données pour un captcha
+   */
+  private void resetValue() {
+    this.imageFile = null;
+    this.captchaResponseId = null;
+    this.captchaResponse = null;
+    this.captchaQuestion = null;
+    this.captchaQuestionBase64 = null;
+    this.captchaTitle = null;
   }
 
   /**

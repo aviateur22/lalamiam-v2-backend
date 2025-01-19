@@ -54,7 +54,10 @@ public class CustomCsrfTokenRepositoryImpl implements ICustomCsrfTokenRepository
       return;
     }
 
-    response.addHeader("Set-Cookie", cookieService.generateCookie(COOKIE_CSRF_PARAM_NAME, token.getToken()));
+    response.addHeader("Set-Cookie", cookieService.generateCookie(
+            COOKIE_CSRF_PARAM_NAME,
+            token.getToken(),
+            CSRF_COOKIE_MAX_AGE));
     response.addHeader(POST_CSRF_TOKEN, token.getToken());
 
   }

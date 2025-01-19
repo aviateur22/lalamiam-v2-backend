@@ -22,6 +22,7 @@ import com.ctoutweb.lalamiam.infra.service.ICryptoService;
 import com.ctoutweb.lalamiam.infra.service.IJwtService;
 import com.ctoutweb.lalamiam.infra.service.IMessageService;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -46,7 +47,8 @@ public class AuthServiceImpl implements IAuthService {
 
   public AuthServiceImpl(
           IApiLanguage apiLanguage,
-          IMessageService messageService, IJwtService jwtService,
+          IMessageService messageService,
+          IJwtService jwtService,
           AuthenticationManager authenticationManager,
           ClientInscriptionUseCase clientInscriptionUseCase,
           Factory factory,
@@ -73,7 +75,6 @@ public class AuthServiceImpl implements IAuthService {
       IBoundaryInputAdapter boundaryInputAdapter = clientInscriptionMapper.map(dto, hashPassword);
       ClientInscriptionUseCase.Input input = ClientInscriptionUseCase.Input.getUseCaseInput(boundaryInputAdapter);
       ClientInscriptionUseCase.Output output = clientInscriptionUseCase.execute(input);
-
   }
 
   @Override

@@ -10,19 +10,25 @@ public interface ILoginService {
 
   /**
    * Mise a jour des information de connexion d'un utilisateur
-   * @param user - UserEntity - Utilisateur voulant se connecter
+   * @param userId - Long - Id Utilisateur voulant se connecter
    * @param isAuthenticationValid boolean - Validité de l'authentication
    * @return List<LoginEntity>
    */
-  public List<LoginEntity> updateUserLoginInformation(UserEntity user, boolean isAuthenticationValid);
+  public void updateUserLoginInformation(Long userId, boolean isAuthenticationValid);
 
+  /**
+   * Récupération des dernière info de connexion d'un utilisateurs
+   * @param userId - Long - Utilisateur ID voulant se connecter
+   * @return List<LoginEntity>
+   */
+  public List<LoginEntity> getLastUserLoginInformation(Long userId);
 
   /**
    * Ajout d'un délai de blocage de connexion dans le connexion utilisateur
-   * @param user UserEntity - Personne souhaitant se connnecter
+   * @param userId Long - Personne Id souhaitant se connnecter
    * @param lastUserLoginList - List des dernieres connexion du client
    */
-  public void addDelayOnLogin(UserEntity user, List<LoginEntity> lastUserLoginList);
+  public void addDelayOnLogin(Long userId, List<LoginEntity> lastUserLoginList);
 
   /**
    * Vérification si une connexion peut avoir lieu

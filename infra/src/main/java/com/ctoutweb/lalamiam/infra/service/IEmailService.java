@@ -6,27 +6,24 @@ import java.util.Map;
 
 public interface IEmailService {
   /**
-   * Envoie d'un email
-   * @param mailSubject - String
-   * @param to - destinataire
-   * @param mailContent String
-   * @param exceptionMessage - Message d'exception
+   * Generation du corps de l'email à partir d'un template.
+   * Le template aura des mise à jour de données
+   * @param type HtmlTemplateType - Type de email a envoyer
+   * @param wordsToReplaceInHtmlTemplate Map<String, String> - List
+   * @return
    */
-  public void sendEmail(
-          String mailSubject,
-          String to,
-          String mailContent,
-          String exceptionMessage
-  );
+  IEmailService replaceWordInHtmlTemplate(HtmlTemplateType type, Map<String, String> wordsToReplaceInHtmlTemplate);
 
   /**
-   * Récupération d'un templateHtml et évaluation des variables à remplacer
-   * @param type - HtmlTemplateType
-   * @param wordsToReplaceInHtmlTemplate Map<String, String>
-   * @return String - TemplateHtml mis a jour
+   * Mise à jour des données pour envoyer un email : sujet du mail et email destinataire,
+   * @param to String - Destinataire du mail
+   * @param type HtmlTemplateType - Type de email a envoyer (activation, ...)
+   * @return IEmailFormater
    */
-  public String generateHtml(
-          HtmlTemplateType type,
-          Map<String, String> wordsToReplaceInHtmlTemplate
-  );
+  IEmailService setEmailInformation(HtmlTemplateType type, String to);
+
+  /**
+   * Envoie d'un email
+   */
+  public void sendEmail();
 }
