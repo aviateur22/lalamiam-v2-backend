@@ -1,5 +1,6 @@
 package com.ctoutweb.lalamiam.infra.config;
 
+import jakarta.activation.MailcapCommandMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
@@ -46,6 +47,15 @@ public class EmailConfig {
     props.put("mail.smtp.auth", smtpAuth);
     props.put("mail.smtp.starttls.enable", isSecure);
     props.put("mail.debug", "false");
+
+    // Ajout config pour eviter l'exception fichier .mailcap not found
+    MailcapCommandMap mailcapCommandMap = new MailcapCommandMap();
+    mailcapCommandMap.addMailcap("text/plain;; x-java-content-handler=com.sun.mail.handlers.text_plain");
+    mailcapCommandMap.addMailcap("text/html;; x-java-content-handler=com.sun.mail.handlers.text_html");
+    mailcapCommandMap.addMailcap("application/xml;; x-java-content-handler=com.sun.mail.handlers.text_xml");
+    mailcapCommandMap.addMailcap("multipart/*;; x-java-content-handler=com.sun.mail.handlers.multipart_mixed");
+    mailcapCommandMap.addMailcap("message/rfc822;; x-java-content-handler=com.sun.mail.handlers.message_rfc822");
+    mailcapCommandMap.setDefaultCommandMap(mailcapCommandMap);
 
     return javaMailSenderImpl;
   }

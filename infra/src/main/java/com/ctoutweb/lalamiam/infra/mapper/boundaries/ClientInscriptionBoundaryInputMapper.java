@@ -10,7 +10,7 @@ public record ClientInscriptionBoundaryInputMapper() {
 
   public IBoundaryInputAdapter map(RegisterClientDto dto, String hashPassword) {
     String email = dto.email();
-    String nickName = dto.nickname();
+    String nickName = dto.nickName();
     return new ClientRegisterBoundaryInputImpl(
             hashPassword,
             email,

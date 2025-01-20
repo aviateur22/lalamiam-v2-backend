@@ -19,7 +19,7 @@ public record RegisterClientDto(
 
         @NotNull(message = "{nickname.missing}")
         @NotBlank(message = "{nickname.missing}")
-        String nickname,
+        String nickName,
         @NotNull(message = "{captcha.response.missing}")
         UserCaptchaResponseDto userCaptchaResponse
 ) {
