@@ -30,6 +30,8 @@
         <profile>
             <id>local</id>
             <properties>
+                <war.name>lalamiam-app</war.name>
+
                 <!-- API version-->
                 <api.language>en</api.language>
 
@@ -58,7 +60,11 @@
                 <mailer.secure>true</mailer.secure>
                 <mailer.smtp.auth>true</mailer.smtp.auth>
 
-                <war.name>lalamiam-app</war.name>
+                <!-- front-end link-->
+                <domain.front>http://localhost:4200</domain.front>
+                <activate.user.account.link>%s/auth/account-activation/user-email/%s/confirmation-token/%s</activate.user.account.link>
+                <professional.confirm.register.link>%s/auth/professional-register-confirmation/user-email/%s/confirmation-token/%s</professional.confirm.register.link>
+                <change.account.password.link>%s/auth/change-account-password/user-email/%s/change-account-password-token/</change.account.password.link>
 
                 <!--JWT -->
                 <jwt.validity.hour>72</jwt.validity.hour>

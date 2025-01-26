@@ -16,13 +16,8 @@ import com.ctoutweb.lalamiam.core.entity.cryptographic.ICryptography;
 import com.ctoutweb.lalamiam.core.entity.professionalInscription.IProfessionalInscription;
 import com.ctoutweb.lalamiam.core.entity.professionalInscriptionConfirmation.IProfessionalInscriptionConfirmation;
 import com.ctoutweb.lalamiam.core.entity.professionalInscriptionConfirmation.impl.boundary.BoundaryOutputImpl;
-import com.ctoutweb.lalamiam.core.entity.captcha.strategy.ICaptchaStrategy;
-import com.ctoutweb.lalamiam.core.entity.captcha.strategy.impl.strategy.CaptchaCalculStrategyImpl;
-import com.ctoutweb.lalamiam.core.entity.captcha.strategy.impl.strategy.CaptchaImageStrategyImpl;
-import com.ctoutweb.lalamiam.core.entity.captcha.strategy.impl.strategy.CaptchaTextStrategyImpl;
 import com.ctoutweb.lalamiam.core.provider.ICaptchaConfiguration;
 import com.ctoutweb.lalamiam.core.provider.ICaptchaRepository;
-import com.ctoutweb.lalamiam.core.provider.ICryptographicService;
 import com.ctoutweb.lalamiam.core.provider.IMessageService;
 
 import java.awt.image.BufferedImage;
@@ -405,18 +400,6 @@ public class DataForTest {
     return new ProfessionalInscriptionDocumentImpl(fakeProfessionalInscriptionDocument());
   }
 
-  public static ICaptchaStrategy fakeCaptchaTextStrategy(IMessageService messageService, ICryptographicService cryptographicService) {
-    return new CaptchaTextStrategyImpl(messageService, cryptographicService, fakeCaptchaRepository(), fakeCaptchaConfiguration());
-  }
-
-  public static ICaptchaStrategy fakeCaptchaCalculStrategy(IMessageService messageService,ICryptographicService cryptographicService) {
-     return new CaptchaCalculStrategyImpl(messageService, cryptographicService, fakeCaptchaRepository(), fakeCaptchaConfiguration());
-  }
-
-  public static ICaptchaStrategy fakeCaptchaImageStrategy(IMessageService messageService,ICryptographicService cryptographicService, ICaptchaRepository captchaRepository) {
-    return new CaptchaImageStrategyImpl(messageService, cryptographicService, captchaRepository, fakeCaptchaConfiguration());
-  }
-
   public static InputBoundaryAdapter getCreateImageInputBoundaryAdapter() {
     return new InputBoundaryAdapter() {
       @Override
@@ -432,35 +415,6 @@ public class DataForTest {
 
   public static BufferedImage fakeImage() {
     return new BufferedImage(20, 20, TYPE_INT_RGB);
-  }
-
-  public static com.ctoutweb.lalamiam.core.adapter.executeCaptchaStrategy.IBoundariesAdapter.IBoundaryInputAdapter getExecuteCaptchaStrategyInputBoundaryAdapter(IMessageService messageService, ICryptographicService cryptographicService) {
-    CaptchaContextImpl captchaContext = fakeCaptchaContextCalculStrategy( messageService, cryptographicService);
-
-    return new com.ctoutweb.lalamiam.core.adapter.executeCaptchaStrategy.IBoundariesAdapter.IBoundaryInputAdapter() {
-      @Override
-      public CaptchaContextImpl getCaptchaContext() {
-        return captchaContext;
-      }
-    };
-  }
-
-  public static CaptchaContextImpl fakeCaptchaContextCalculStrategy(IMessageService messageService,ICryptographicService cryptographicService) {
-    CaptchaContextImpl captchaContext = new CaptchaContextImpl();
-    captchaContext.setCaptchaStrategy(fakeCaptchaCalculStrategy(messageService, cryptographicService));
-    return captchaContext;
-  }
-
-  public static CaptchaContextImpl fakeCaptchaContextTextStrategy(IMessageService messageService, ICryptographicService cryptographicService) {
-    CaptchaContextImpl captchaContext = new CaptchaContextImpl();
-    captchaContext.setCaptchaStrategy(fakeCaptchaTextStrategy(messageService, cryptographicService));
-    return captchaContext;
-  }
-
-  public static CaptchaContextImpl fakeCaptchaContextImageStrategy(IMessageService messageService, ICryptographicService cryptographicService, ICaptchaRepository captchaRepository) {
-    CaptchaContextImpl captchaContext = new CaptchaContextImpl();
-    captchaContext.setCaptchaStrategy(fakeCaptchaImageStrategy(messageService, cryptographicService, captchaRepository));
-    return captchaContext;
   }
 
   public static IProfessionalInscription.ICreatedProfessionalAccount fakeProfessionalAccount() {

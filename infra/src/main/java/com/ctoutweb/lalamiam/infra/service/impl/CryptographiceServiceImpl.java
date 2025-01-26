@@ -1,9 +1,5 @@
 package com.ctoutweb.lalamiam.infra.service.impl;
 
-import com.ctoutweb.lalamiam.core.entity.common.ITokenToValidate;
-import com.ctoutweb.lalamiam.core.entity.cryptographic.CryptographicType;
-import com.ctoutweb.lalamiam.core.entity.cryptographic.ICryptography.ICryptographySaveResult;
-import com.ctoutweb.lalamiam.core.provider.ICryptographicService;
 import com.ctoutweb.lalamiam.infra.service.ICryptoService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,7 +18,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Base64;
 
 import static com.ctoutweb.lalamiam.infra.constant.ApplicationConstant.CRYPTO_ITERATION_COUNT;
@@ -30,7 +26,7 @@ import static com.ctoutweb.lalamiam.infra.constant.ApplicationConstant.CRYPTO_KE
 
 @Service
 @PropertySource({"classpath:application.properties"})
-public class CryptographiceServiceImpl implements ICryptographicService, ICryptoService {
+public class CryptographiceServiceImpl implements ICryptoService {
   private static final Logger LOGGER = LogManager.getLogger();
   private final PasswordEncoder passwordEncoder;
   @Value("${crypto.algorithm}")
@@ -44,24 +40,13 @@ public class CryptographiceServiceImpl implements ICryptographicService, ICrypto
   @Value("${crypto.secret.key.algo}")
   private String cryptoSecretkeyAlgo;
 
-
   public CryptographiceServiceImpl(PasswordEncoder passwordEncoder) {
     this.passwordEncoder = passwordEncoder;
   }
 
   @Override
-  public ICryptographySaveResult cryptographyTextAndSave(CryptographicType cryptographicType, String plainText, LocalDateTime limitValidity) {
-    return null;
-  }
-
-  @Override
   public boolean isHashValid(String plainText, String hash) {
     return passwordEncoder.matches(plainText, hash);
-  }
-
-  @Override
-  public Boolean isHashValid(ITokenToValidate tokenToValidate) {
-    return null;
   }
 
   @Override

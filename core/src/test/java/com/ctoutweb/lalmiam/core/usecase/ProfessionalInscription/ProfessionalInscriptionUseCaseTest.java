@@ -93,7 +93,7 @@ public class ProfessionalInscriptionUseCaseTest {
         return 1l;
       }
     });
-    Mockito.when(professionalInscriptionRepository.addProfessionalAccount(eq(1L), eq(false), any())).thenReturn(new IProfessionalInscription.ICreatedProfessionalAccount()
+    Mockito.when(professionalInscriptionRepository.addProfessionalAccount(eq(1L))).thenReturn(new IProfessionalInscription.ICreatedProfessionalAccount()
     {
       @Override
       public Long getAccountId() {
@@ -172,7 +172,7 @@ public class ProfessionalInscriptionUseCaseTest {
      */
     long professionalId = 1l;
 
-    when(professionalInscriptionRepository.addProfessionalAccount(eq(professionalId), eq(false), any())).thenReturn(DataForTest.fakeProfessionalAccount());
+    when(professionalInscriptionRepository.addProfessionalAccount(eq(professionalId))).thenReturn(DataForTest.fakeProfessionalAccount());
 
     /**
      * when

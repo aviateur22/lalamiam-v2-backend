@@ -16,7 +16,7 @@ public record RegisterProfessionalDto(
 
         @NotNull(message = "{nickname.missing}")
         @NotBlank(message = "{nickname.missing}")
-        String nickName,
+        String nickname,
 
         @NotNull(message = "{firstname.missing}")
         @NotBlank(message = "{firstname.missing}")

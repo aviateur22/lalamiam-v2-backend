@@ -1,6 +1,7 @@
 package com.ctoutweb.lalamiam.infra.security.authentication;
 
 import com.ctoutweb.lalamiam.infra.exception.AuthException;
+import com.ctoutweb.lalamiam.infra.helper.EmailHelper;
 import com.ctoutweb.lalamiam.infra.mapper.UserEntityMapper;
 import com.ctoutweb.lalamiam.infra.model.IUserLoginStatus;
 import com.ctoutweb.lalamiam.infra.model.email.HtmlTemplateType;
@@ -15,9 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,6 +32,7 @@ public class CustomAuthProvider implements AuthenticationProvider {
   private final UserEntityMapper userEntityMapper;
   private final IEmailService mailService;
   private final ICryptoService cryptoService;
+  private final EmailHelper emailHelper;
   @Value("${application.name}")
   private String applicationName;
   public CustomAuthProvider(
@@ -42,13 +42,15 @@ public class CustomAuthProvider implements AuthenticationProvider {
           IMessageService messageService,
           UserEntityMapper userEntityMapper,
           IEmailService mailService,
-          ICryptoService cryptoService) {
+          ICryptoService cryptoService,
+          EmailHelper emailHelper) {
     this.userDetailsService = userDetailsService;
     this.loginService = loginService;
     this.messageService = messageService;
     this.userEntityMapper = userEntityMapper;
     this.mailService = mailService;
     this.cryptoService = cryptoService;
+    this.emailHelper = emailHelper;
   }
   @Override
   public Authentication authenticate(Authentication authentication) throws AuthException {
@@ -196,12 +198,7 @@ public class CustomAuthProvider implements AuthenticationProvider {
   }
   public void sendEmail(String loginUserEmail) {
     // Generation d'un email d'alerte
-    Map<String, String> listWordsToReplaceInHtmlTemplate = new HashMap<>();
-
-    listWordsToReplaceInHtmlTemplate.put("year", String.valueOf(LocalDateTime.now().getYear()));
-    listWordsToReplaceInHtmlTemplate.put("email", loginUserEmail);
-    listWordsToReplaceInHtmlTemplate.put("email", loginUserEmail);
-    listWordsToReplaceInHtmlTemplate.put("appName", applicationName.toUpperCase());
+    Map<String, String> listWordsToReplaceInHtmlTemplate = emailHelper.listOfWordToReplaceCaseLoginAttemptFailed(loginUserEmail);
 
     mailService
             .setEmailInformation(HtmlTemplateType.LOGIN_CONNEXION_ALERT, loginUserEmail)

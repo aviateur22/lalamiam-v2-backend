@@ -98,8 +98,10 @@ create table IF NOT EXISTS sc_lalamiam.professional_account(
     "id" BIGINT PRIMARY KEY,
     "user_id" BIGINT NOT NULL REFERENCES sc_lalamiam."users"("id") on delete cascade,
     "account_activation_at" TIMESTAMPTZ,
-    "account_activation_limit_date_at" TIMESTAMPTZ,
+    "account_register_confirmation_at" TIMESTAMPTZ,
+    "account_register_confirmation_limit_date_at" TIMESTAMPTZ,
     "is_account_active" BOOLEAN NOT NULL DEFAULT TRUE,
+    "is_account_register_confirm_by_professional" BOOLEAN NOT NULL DEFAULT TRUE,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );

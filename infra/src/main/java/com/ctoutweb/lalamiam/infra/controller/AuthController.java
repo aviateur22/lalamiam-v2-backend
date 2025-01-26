@@ -1,10 +1,7 @@
 package com.ctoutweb.lalamiam.infra.controller;
 
 import com.ctoutweb.lalamiam.core.provider.IMessageService;
-import com.ctoutweb.lalamiam.infra.dto.LoginDto;
-import com.ctoutweb.lalamiam.infra.dto.LoginResponseDto;
-import com.ctoutweb.lalamiam.infra.dto.RegisterClientDto;
-import com.ctoutweb.lalamiam.infra.dto.RegisterProfessionalDto;
+import com.ctoutweb.lalamiam.infra.dto.*;
 import com.ctoutweb.lalamiam.infra.exception.BadRequestException;
 import com.ctoutweb.lalamiam.infra.factory.Factory;
 import com.ctoutweb.lalamiam.infra.model.impl.MessageResponseImpl;
@@ -75,6 +72,15 @@ public class AuthController {
     return new ResponseEntity<>(factory.getMessageResponseImpl(messageService.getMessage("register.success")), HttpStatus.OK);
   }
 
+  @PostMapping("/register-confirm-by-professional")
+  ResponseEntity<IMessageResponse> registerConfirmByProfessional(@RequestBody RegisterConfirmByProfessionalDto registerConfirmByProfessionalDto) {
+    // Validation dto
+    factory.getImpl(registerConfirmByProfessionalDto).validateDto(validator);
+
+    IMessageResponse response = authService.registerConfirmByProfessional(registerConfirmByProfessionalDto);
+    
+    return new ResponseEntity<>(response, HttpStatus.OK);
+  }
   @PostMapping("/login")
   ResponseEntity<LoginResponseDto> login(@RequestBody LoginDto loginDto) {
     factory.getImpl(loginDto).validateDto(validator);

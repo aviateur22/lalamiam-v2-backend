@@ -1,5 +1,6 @@
 package com.ctoutweb.lalamiam.infra.utility;
 
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -25,5 +26,14 @@ public class DateUtility {
     return utcTime.withZoneSameInstant(zoneId);
   }
 
+  /**
+   * Convertion d'une LocalDateTime to ZonedDateTime with specific ZoneId
+   * @param zoneId
+   * @param localDateTime
+   * @return ZonedDateTime
+   */
+  public static ZonedDateTime localDateTimeToZonedDateTime(ZoneId zoneId, LocalDateTime localDateTime) {
+    return localDateTime.atZone(zoneId);
+  }
 
 }

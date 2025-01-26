@@ -11,9 +11,5 @@ import java.time.ZonedDateTime;
 public interface IProfessionalInscriptionRepository {
 public ICreatedProfessional addProfessional (Long clientId, IBoundaryInputAdapter boundaryInputAdapter);
 
-  public ICreatedProfessionalAccount addProfessionalAccount(
-          Long professionalId,
-          boolean isUserAccountActif,
-          LocalDateTime activationLimiteDate
-  );
+  public ICreatedProfessionalAccount addProfessionalAccount(Long professionalId);
 }

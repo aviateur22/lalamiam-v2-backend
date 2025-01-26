@@ -50,14 +50,6 @@ public class ProfessionalInscriptionUseCase implements UseCase<ProfessionalInscr
    // Création du compte professionel
     createProfessionalAccount(professionalId);
 
-//    // Génération d'une URL pour confirmer la création du compte
-//    InscriptionConfirmationElement inscriptionConfirmationElement = professionalInscriptionService.createInscriptionConfirmationElement(userInscription);
-//
-//
-//    professionalInscriptionService.sendEmailConfirmation();
-//
-//    return new Output(professionalInscriptionResult);
-
     BoundaryOutputImpl boundaryOutput = BoundaryOutputImpl.getBoundaryInputImpl(
             messageService.getMessage("register.success"),
             professionalId
@@ -94,9 +86,9 @@ public class ProfessionalInscriptionUseCase implements UseCase<ProfessionalInscr
    */
   public Long createProfessionalAccount(long professionalId) {
     boolean isAccountActif = ApplicationConstant.DEFAULT_VALUE_PROFESSIONAL_ACTIVATION_ACCOUNT;
-    LocalDateTime creationAccountDate = LocalDateTime.now();
+
     ICreatedProfessionalAccount createdProfessionalAccount = professionalInscriptionRepository.addProfessionalAccount(
-            professionalId, isAccountActif, creationAccountDate
+            professionalId
     );
     return createdProfessionalAccount.getAccountId();
   }

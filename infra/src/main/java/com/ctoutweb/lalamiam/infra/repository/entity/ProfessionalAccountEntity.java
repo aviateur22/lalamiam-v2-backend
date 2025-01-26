@@ -17,12 +17,18 @@ public class ProfessionalAccountEntity {
   @Column(name = "account_activation_at")
   private ZonedDateTime accountActivationAt;
 
+  @Column(name = "account_register_confirmation_at")
+  private ZonedDateTime accountRegisterConfirmationAt;
+
   @Column(name = "is_account_active")
   private Boolean isAccountActive;
 
-  @CreationTimestamp
-  @Column(name = "account_activation_limit_date_at")
-  private ZonedDateTime accountActivationLimitDate;
+  @Column(name = "is_account_register_confirm_by_professional")
+  private Boolean isAccountRegisterConfirmByProfessional;
+
+  //@CreationTimestamp
+  @Column(name = "account_register_confirmation_limit_date_at")
+  private ZonedDateTime accountRegisterConfirmationLimitDate;
 
   @CreationTimestamp
   @Column(name = "created_at")
@@ -58,12 +64,36 @@ public class ProfessionalAccountEntity {
     this.accountActivationAt = accountActivationAt;
   }
 
+  public ZonedDateTime getAccountRegisterConfirmationAt() {
+    return accountRegisterConfirmationAt;
+  }
+
+  public void setAccountRegisterConfirmationAt(ZonedDateTime accountRegisterConfirmationAt) {
+    this.accountRegisterConfirmationAt = accountRegisterConfirmationAt;
+  }
+
   public Boolean getIsAccountActive() {
     return isAccountActive;
   }
 
   public void setIsAccountActive(Boolean accountActive) {
     isAccountActive = accountActive;
+  }
+
+  public Boolean getIsAccountRegisterConfirmByProfessional() {
+    return isAccountRegisterConfirmByProfessional;
+  }
+
+  public void setIsAccountRegisterConfirmByProfessional(Boolean accountRegisterConfirmByProfessional) {
+    isAccountRegisterConfirmByProfessional = accountRegisterConfirmByProfessional;
+  }
+
+  public ZonedDateTime getAccountRegisterConfirmationLimitDate() {
+    return accountRegisterConfirmationLimitDate;
+  }
+
+  public void setAccountRegisterConfirmationLimitDate(ZonedDateTime accountRegisterConfirmationLimitDate) {
+    this.accountRegisterConfirmationLimitDate = accountRegisterConfirmationLimitDate;
   }
 
   public ZonedDateTime getCreatedAt() {
@@ -90,25 +120,17 @@ public class ProfessionalAccountEntity {
     this.user = user;
   }
 
-  public ZonedDateTime getAccountActivationLimitDate() {
-    return accountActivationLimitDate;
-  }
-
-  public void setAccountActivationLimitDate(ZonedDateTime accountActivationLimitDate) {
-    this.accountActivationLimitDate = accountActivationLimitDate;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ProfessionalAccountEntity that = (ProfessionalAccountEntity) o;
-    return Objects.equals(id, that.id) && Objects.equals(accountActivationAt, that.accountActivationAt) && Objects.equals(isAccountActive, that.isAccountActive) && Objects.equals(accountActivationLimitDate, that.accountActivationLimitDate) && Objects.equals(createdAt, that.createdAt) && Objects.equals(updatedAt, that.updatedAt) && Objects.equals(user, that.user);
+    return Objects.equals(id, that.id) && Objects.equals(accountActivationAt, that.accountActivationAt) && Objects.equals(accountRegisterConfirmationAt, that.accountRegisterConfirmationAt) && Objects.equals(isAccountActive, that.isAccountActive) && Objects.equals(isAccountRegisterConfirmByProfessional, that.isAccountRegisterConfirmByProfessional) && Objects.equals(accountRegisterConfirmationLimitDate, that.accountRegisterConfirmationLimitDate) && Objects.equals(createdAt, that.createdAt) && Objects.equals(updatedAt, that.updatedAt) && Objects.equals(user, that.user);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, accountActivationAt, isAccountActive, accountActivationLimitDate, createdAt, updatedAt, user);
+    return Objects.hash(id, accountActivationAt, accountRegisterConfirmationAt, isAccountActive, isAccountRegisterConfirmByProfessional, accountRegisterConfirmationLimitDate, createdAt, updatedAt, user);
   }
 
   @Override
@@ -116,11 +138,13 @@ public class ProfessionalAccountEntity {
     return "ProfessionalAccountEntity{" +
             "id=" + id +
             ", accountActivationAt=" + accountActivationAt +
+            ", accountRegisterConfirmationAt=" + accountRegisterConfirmationAt +
             ", isAccountActive=" + isAccountActive +
-            ", accountActivationLimitDate=" + accountActivationLimitDate +
+            ", isAccountRegisterConfirmByProfessional=" + isAccountRegisterConfirmByProfessional +
+            ", accountRegisterConfirmationLimitDate=" + accountRegisterConfirmationLimitDate +
             ", createdAt=" + createdAt +
             ", updatedAt=" + updatedAt +
-            //", user=" + user +
+            ", user=" + user +
             '}';
   }
 }

@@ -9,7 +9,7 @@ import org.springframework.http.HttpHeaders;
 import java.io.IOException;
 
 /**
- * Service permettant de gérer la config de l'applicvation
+ * Service permettant de gérer la config de l'application
  */
 public interface ISecurityService {
   /**

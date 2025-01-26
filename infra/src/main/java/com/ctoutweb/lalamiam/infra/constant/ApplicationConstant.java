@@ -53,4 +53,7 @@ public class ApplicationConstant {
   // EMAIL
   public static final String HTML_TEMPLATE_FOLDER = "html/";
 
+  // PROFESSIONAL REGISTER
+  public static final int LIMIT_DAY_TO_VALIDATE_INSCRIPTION = 10;
+
 }

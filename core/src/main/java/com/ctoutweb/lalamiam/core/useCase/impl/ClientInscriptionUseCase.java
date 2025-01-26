@@ -57,13 +57,13 @@ public class ClientInscriptionUseCase implements UseCase<ClientInscriptionUseCas
     return Output.getUseCaseOutput(boundaryOutput);
   }
 
-  public ValidateCaptchaResponseUseCase.Output executeCaptchaValidateClientResponseUseCase(IBoundaryInputAdapter boundaryInputAdapter) {
-//    // Donnéd a injecté dans le useCase CaptchaValidateClientResponseUseCase
-//    CaptchaValidateClientResponseUseCase.Input captchaInput = new CaptchaValidateClientResponseUseCase.Input(clientInscriptionAdapter, captchaService);
-//
-//    return this.captchaValidateClientResponseUseCase.execute(captchaInput);
-    return null;
-  }
+//  public ValidateCaptchaResponseUseCase.Output executeCaptchaValidateClientResponseUseCase(IBoundaryInputAdapter boundaryInputAdapter) {
+////    // Donnéd a injecté dans le useCase CaptchaValidateClientResponseUseCase
+////    CaptchaValidateClientResponseUseCase.Input captchaInput = new CaptchaValidateClientResponseUseCase.Input(clientInscriptionAdapter, captchaService);
+////
+////    return this.captchaValidateClientResponseUseCase.execute(captchaInput);
+//    return null;
+//  }
 
   /**
    * Vérification diponibilté email

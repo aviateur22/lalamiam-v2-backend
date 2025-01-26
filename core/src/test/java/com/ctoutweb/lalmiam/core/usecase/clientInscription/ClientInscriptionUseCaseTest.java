@@ -17,7 +17,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import com.ctoutweb.lalamiam.core.useCase.impl.ValidateCaptchaResponseUseCase;
 import com.ctoutweb.lalamiam.core.useCase.impl.ClientInscriptionUseCase;
 
 import static common.DataForTest.fakeClientInscriptionAdapter;
@@ -81,19 +80,6 @@ public class ClientInscriptionUseCaseTest {
      */
     Assertions.assertEquals(expectedResponse.getUserId(),actualOutput.getOutputBoundaryAdapter().getUserId());
     Assertions.assertEquals(expectedResponse.getResponseMessage(),actualOutput.getOutputBoundaryAdapter().getResponseMessage());
-  }
-
-  @Test
-  public void clientInscriptionUseCase_execute_captchaValidateClientResponseUseCase_should_failed_capatcha_result() {
-    IBoundaryInputAdapter clientInscriptionAdapter = fakeClientInscriptionAdapter();
-
-    ClientInscriptionUseCase clientInscriptionUseCase = new ClientInscriptionUseCase(
-            messageService,
-            notificationService,
-            clientInscriptionRepository
-    );
-
-    ValidateCaptchaResponseUseCase.Output output = clientInscriptionUseCase.executeCaptchaValidateClientResponseUseCase(clientInscriptionAdapter);
   }
 
   @Test

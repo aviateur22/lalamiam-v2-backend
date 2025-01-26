@@ -51,7 +51,7 @@ public class EmailServiceImpl implements IEmailService {
       case ACCOUNT_ACTIVATION -> HtmlTemplateType.ACCOUNT_ACTIVATION.getFileName(apiLanguage.getValidatedLanguage());
       case CHANGE_PASSWORD -> HtmlTemplateType.CHANGE_PASSWORD.getFileName(apiLanguage.getValidatedLanguage());
       case LOGIN_CONNEXION_ALERT -> HtmlTemplateType.LOGIN_CONNEXION_ALERT.getFileName(apiLanguage.getValidatedLanguage());
-      case PROFESSIONAL_ACCOUNT_ACTIVATION -> HtmlTemplateType.PROFESSIONAL_ACCOUNT_ACTIVATION.getFileName(apiLanguage.getValidatedLanguage());
+      case PROFESSIONAL_REGISTER_ACCOUNT_CONFIRMATION -> HtmlTemplateType.PROFESSIONAL_REGISTER_ACCOUNT_CONFIRMATION.getFileName(apiLanguage.getValidatedLanguage());
     };
 
     String filePath = HTML_TEMPLATE_FOLDER + fileName;
@@ -80,7 +80,7 @@ public class EmailServiceImpl implements IEmailService {
       case ACCOUNT_ACTIVATION -> messageService.getMessage("email.register.subject");
       case CHANGE_PASSWORD -> messageService.getMessage("email.reinitialize.password.subject");
       case LOGIN_CONNEXION_ALERT -> messageService.getMessage("email.login.account.failed.subject");
-      case PROFESSIONAL_ACCOUNT_ACTIVATION -> messageService.getMessage("email.register.professional.subject");
+      case PROFESSIONAL_REGISTER_ACCOUNT_CONFIRMATION -> messageService.getMessage("email.register.professional.subject");
     };
 
     this.mailSubject = replaceWordInText(emailSubject, "!%!applicationName!%!", applicationName.toUpperCase());
