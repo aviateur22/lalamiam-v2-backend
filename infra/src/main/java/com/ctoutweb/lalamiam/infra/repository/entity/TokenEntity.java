@@ -28,7 +28,7 @@ public class TokenEntity {
   /**
    * Relation
    */
-  @OneToOne
+  @ManyToOne
   @JoinColumn(name = "user_id", referencedColumnName = "id")
   private UserEntity user;
 

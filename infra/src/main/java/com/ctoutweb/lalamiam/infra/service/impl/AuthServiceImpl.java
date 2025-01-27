@@ -9,8 +9,6 @@ import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.ad
 import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.useCase.ProfessionalInscriptionConfirmationUseCase;
 import com.ctoutweb.lalamiam.infra.dto.*;
 import com.ctoutweb.lalamiam.infra.exception.AuthException;
-import com.ctoutweb.lalamiam.infra.helper.EmailHelper;
-import com.ctoutweb.lalamiam.infra.helper.FrontEndLinkHelper;
 import com.ctoutweb.lalamiam.infra.helper.AuthServiceHelper;
 import com.ctoutweb.lalamiam.infra.mapper.core.ProfessionalInscriptionBoundaryInputMapper;
 import com.ctoutweb.lalamiam.infra.mapper.core.ClientInscriptionBoundaryInputMapper;
@@ -18,8 +16,6 @@ import com.ctoutweb.lalamiam.infra.factory.Factory;
 import com.ctoutweb.lalamiam.infra.mapper.core.ProfessionalRegisterConfirmationInputMapper;
 import com.ctoutweb.lalamiam.infra.model.IApiLanguage;
 import com.ctoutweb.lalamiam.infra.model.IMessageResponse;
-import com.ctoutweb.lalamiam.infra.model.auth.IProfessionalRegisterToken;
-import com.ctoutweb.lalamiam.infra.model.email.HtmlTemplateType;
 import com.ctoutweb.lalamiam.infra.model.param.IAppParam;
 import com.ctoutweb.lalamiam.infra.security.authentication.UserPrincipal;
 import com.ctoutweb.lalamiam.infra.security.jwt.IJwtIssue;
@@ -31,7 +27,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -49,10 +44,9 @@ public class AuthServiceImpl implements IAuthService {
   private final ClientInscriptionBoundaryInputMapper clientInscriptionMapper;
   private final ProfessionalInscriptionBoundaryInputMapper professionalInscriptionMapper;
   private final ProfessionalRegisterConfirmationInputMapper professionalRegisterConfirmationInputMapper;
-  private final IEmailService emailService;
-  private final EmailHelper emailHelper;
-  private final FrontEndLinkHelper frontEndLinkHelper;
-  private final AuthServiceHelper serviceHelper;
+  private final AuthServiceHelper authServiceHelper;
+
+
   public AuthServiceImpl(
           IApiLanguage apiLanguage,
           IMessageService messageService,
@@ -66,10 +60,7 @@ public class AuthServiceImpl implements IAuthService {
           ProfessionalInscriptionConfirmationUseCase professionalInscriptionConfirmationUseCase,
           ProfessionalInscriptionBoundaryInputMapper professionalInscriptionMapper,
           ProfessionalRegisterConfirmationInputMapper professionalRegisterConfirmationInputMapper,
-          IEmailService emailService,
-          EmailHelper emailHelper,
-          FrontEndLinkHelper frontEndLinkHelper,
-          AuthServiceHelper serviceHelper) {
+          AuthServiceHelper authServiceHelper) {
     this.apiLanguage = apiLanguage;
     this.messageService = messageService;
     this.jwtService = jwtService;
@@ -82,10 +73,7 @@ public class AuthServiceImpl implements IAuthService {
     this.professionalInscriptionConfirmationUseCase = professionalInscriptionConfirmationUseCase;
     this.professionalInscriptionMapper = professionalInscriptionMapper;
     this.professionalRegisterConfirmationInputMapper = professionalRegisterConfirmationInputMapper;
-    this.emailService = emailService;
-    this.emailHelper = emailHelper;
-    this.frontEndLinkHelper = frontEndLinkHelper;
-    this.serviceHelper = serviceHelper;
+    this.authServiceHelper = authServiceHelper;
   }
 
   @Override
@@ -105,24 +93,15 @@ public class AuthServiceImpl implements IAuthService {
     ProfessionalInscriptionUseCase.Input input = ProfessionalInscriptionUseCase.Input.getUseCaseInput(boundaryInputAdapter);
     ProfessionalInscriptionUseCase.Output output = professionalInscriptionUseCase.execute(input);
 
-    // Generation de token
-    IProfessionalRegisterToken professionalRegisterToken = serviceHelper.generateTokenForProfessionalRegister(dto.email());
-
-    // Generation d'un email
-    String frontUrl = frontEndLinkHelper.getProfessionalConfirmationRegisterLink(dto.email(), professionalRegisterToken.getEncryptUrlToken());
-    Map<String, String> listOfWordCaseRegisterConfirmation = emailHelper.listOfWordCaseRegisterConfirmation(
-            dto.email(),
-            professionalRegisterToken.getPlainTextEmailToken(),
-            frontUrl
-    );
-    emailService
-            .setEmailInformation(HtmlTemplateType.PROFESSIONAL_REGISTER_ACCOUNT_CONFIRMATION, dto.email())
-            .replaceWordInHtmlTemplate(HtmlTemplateType.PROFESSIONAL_REGISTER_ACCOUNT_CONFIRMATION, listOfWordCaseRegisterConfirmation)
-            .sendEmail();
+    // Gneration des tokens pour l'email + envoie email
+    authServiceHelper.finalizeProfessionalRegister(dto.email());
   }
 
   @Override
   public IMessageResponse registerConfirmByProfessional(RegisterConfirmByProfessionalDto dto) {
+
+    // Vérification des tokens envoyé
+    boolean aretokenValid = authServiceHelper.areProfessionalRegisterTokensValid(dto.email(), dto.emailToken(), dto.urlToken());
 
     IProfessionalInscriptionConfirmationInput professionalInscriptionConfirmationInput = professionalRegisterConfirmationInputMapper.map(dto);
     ProfessionalInscriptionConfirmationUseCase.Input input = ProfessionalInscriptionConfirmationUseCase.Input.getInput(professionalInscriptionConfirmationInput);

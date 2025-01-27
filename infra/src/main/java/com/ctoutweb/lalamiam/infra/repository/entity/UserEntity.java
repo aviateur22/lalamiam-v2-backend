@@ -50,8 +50,8 @@ public class UserEntity {
   private JwtEntity jwt;
   @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
   private List<RoleUserEntity> userRoles;
-  @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
-  private TokenEntity token;
+  @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+  private List<TokenEntity> userTokens;
 
   //////////////////////////////////////////////////////////////
 
@@ -176,11 +176,11 @@ public class UserEntity {
     this.userRoles = userRoles;
   }
 
-  public TokenEntity getToken() {
-    return token;
+  public List<TokenEntity> getToken() {
+    return userTokens;
   }
 
-  public void setToken(TokenEntity token) {
-    this.token = token;
+  public void setToken(List<TokenEntity> userTokens) {
+    this.userTokens = userTokens;
   }
 }
