@@ -1,4 +1,4 @@
-package com.ctoutweb.lalamiam.infra.helper;
+package com.ctoutweb.lalamiam.infra.service.helper;
 
 import com.ctoutweb.lalamiam.infra.model.security.CryptographyType;
 import com.ctoutweb.lalamiam.infra.service.helper.IProfessionalRegisterConfirmationHelper;

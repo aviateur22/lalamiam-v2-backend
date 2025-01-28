@@ -1,7 +1,7 @@
 package com.ctoutweb.lalamiam.infra.security.authentication;
 
 import com.ctoutweb.lalamiam.infra.exception.AuthException;
-import com.ctoutweb.lalamiam.infra.helper.EmailHelper;
+import com.ctoutweb.lalamiam.infra.service.helper.EmailHelper;
 import com.ctoutweb.lalamiam.infra.mapper.UserEntityMapper;
 import com.ctoutweb.lalamiam.infra.model.IUserLoginStatus;
 import com.ctoutweb.lalamiam.infra.model.email.HtmlTemplateType;

@@ -9,7 +9,7 @@ import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.ad
 import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.useCase.ProfessionalInscriptionConfirmationUseCase;
 import com.ctoutweb.lalamiam.infra.dto.*;
 import com.ctoutweb.lalamiam.infra.exception.AuthException;
-import com.ctoutweb.lalamiam.infra.helper.AuthServiceHelper;
+import com.ctoutweb.lalamiam.infra.service.helper.AuthServiceHelper;
 import com.ctoutweb.lalamiam.infra.mapper.core.ProfessionalInscriptionBoundaryInputMapper;
 import com.ctoutweb.lalamiam.infra.mapper.core.ClientInscriptionBoundaryInputMapper;
 import com.ctoutweb.lalamiam.infra.factory.Factory;

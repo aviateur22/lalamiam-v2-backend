@@ -1,4 +1,4 @@
-package com.ctoutweb.lalamiam.infra.helper;
+package com.ctoutweb.lalamiam.infra.service.helper;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

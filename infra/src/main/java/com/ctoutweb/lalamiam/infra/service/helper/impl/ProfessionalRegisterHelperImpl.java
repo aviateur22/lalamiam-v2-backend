@@ -1,7 +1,7 @@
 package com.ctoutweb.lalamiam.infra.service.helper.impl;
 
-import com.ctoutweb.lalamiam.infra.helper.EmailHelper;
-import com.ctoutweb.lalamiam.infra.helper.FrontEndLinkHelper;
+import com.ctoutweb.lalamiam.infra.service.helper.EmailHelper;
+import com.ctoutweb.lalamiam.infra.service.helper.FrontEndLinkHelper;
 import com.ctoutweb.lalamiam.infra.model.email.HtmlTemplateType;
 import com.ctoutweb.lalamiam.infra.model.security.CryptographyType;
 import com.ctoutweb.lalamiam.infra.repository.ITokenRepository;
