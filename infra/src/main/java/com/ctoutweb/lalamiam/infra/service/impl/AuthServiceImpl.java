@@ -98,6 +98,7 @@ public class AuthServiceImpl implements IAuthService {
   }
 
   @Override
+  @Transactional
   public IMessageResponse registerConfirmByProfessional(RegisterConfirmByProfessionalDto dto) {
 
     // Vérification des tokens envoyé
@@ -136,6 +137,13 @@ public class AuthServiceImpl implements IAuthService {
             userPrincipal.id(),
             userPrincipal.getAuthorities().stream().map(authority->authority.getAuthority()).collect(Collectors.toList()),
             responseMessage);
+  }
+
+  @Override
+  @Transactional
+  public IMessageResponse logout(LogoutDto dto) {
+    jwtService.deleteJwtByUserEmail(dto.email());
+    return factory.getMessageResponseImpl(messageService.getMessage("logout"));
   }
 
   @Override

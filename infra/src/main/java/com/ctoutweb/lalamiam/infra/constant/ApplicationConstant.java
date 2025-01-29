@@ -38,7 +38,10 @@ public class ApplicationConstant {
   // Cookie
   public static final int ACCESS_CSRF_COOKIE_MAX_AGE = 43200;
   public static final int ACCESS_CAPTCHA_COOKIE_MAX_AGE = 43200;
+  public static final int ACCESS_CAPTCHA_COOKIE_MIN_AGE = 0;
+
   public static final int CSRF_COOKIE_MAX_AGE = 10800;
+  public static final int CSRF_COOKIE_MIN_AGE = 0;
 
 
   // Crypto

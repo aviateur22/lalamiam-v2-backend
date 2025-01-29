@@ -26,6 +26,12 @@ public interface ISecurityService {
   public HttpHeaders generateCsrfAccessKey();
 
   /**
+   * Suppression du token permettant de créer des token CSRF
+   * @return HttpHeader
+   */
+  public HttpHeaders clearCsrfAccessKey();
+
+  /**
    * Validation du token CSRF
    * @return boolean
    */
@@ -44,6 +50,12 @@ public interface ISecurityService {
    * @return HttpHeaders
    */
   public HttpHeaders generateCaptchaAccessKey(HttpHeaders headers);
+
+  /**
+   * Suppression du token permettant de générer des captcha
+   * @return HttpHeaders
+   */
+  HttpHeaders clearCaptchaAccessKey(HttpHeaders httpHeaders);
 
   /**
    * Génération des données captcha

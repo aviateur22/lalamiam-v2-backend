@@ -22,4 +22,10 @@ public interface ICsrfService {
    * @return HttpHeader
    */
   public HttpHeaders generateCsrfAccessKey();
+
+  /**
+   * Suppression du token permettant de créer des token CSRF
+   * @return HttpHeader
+   */
+  public HttpHeaders clearCsrfAccessKey();
 }

@@ -33,6 +33,12 @@ public interface ICaptchaService {
   HttpHeaders generateCaptchaAccessKey();
 
   /**
+   * Suppression du token permettant de générer des captcha
+   * @return HttpHeaders
+   */
+  HttpHeaders clearCaptchaAccessKey(HttpHeaders httpHeaders);
+
+  /**
    * Renvoie un Token JWT permettant de générer des captcha
    * Headers en paramètre quand des données sont déja presente
    * @param httpHeaders HttpHeaders

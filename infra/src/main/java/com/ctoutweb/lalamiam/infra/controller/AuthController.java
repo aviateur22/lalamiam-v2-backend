@@ -112,4 +112,16 @@ public class AuthController {
     headers = securityService.generateCaptchaAccessKey(headers);
     return ResponseEntity.status(HttpStatus.OK).headers(headers).body(authService.getAppParamter());
   }
+
+  @PostMapping("/logout")
+  ResponseEntity<IMessageResponse> logout(@RequestBody LogoutDto dto) {
+    // Suppression CRF accessKey et Capctcha accessKey
+    var headers = securityService.clearCsrfAccessKey();
+
+    // Suppression Captcha access key
+    headers= securityService.clearCaptchaAccessKey(headers);
+
+    IMessageResponse response = authService.logout(dto);
+    return ResponseEntity.status(HttpStatus.OK).headers(headers).body(new MessageResponseImpl(response.getResponseMessage()));
+  }
 }

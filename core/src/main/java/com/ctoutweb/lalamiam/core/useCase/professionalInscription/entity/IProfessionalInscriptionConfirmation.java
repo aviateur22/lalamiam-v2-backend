@@ -1,4 +1,4 @@
-package com.ctoutweb.lalamiam.core.useCase.ProfessionalInscription.entity;
+package com.ctoutweb.lalamiam.core.useCase.professionalInscription.entity;
 
 import java.time.ZonedDateTime;
 

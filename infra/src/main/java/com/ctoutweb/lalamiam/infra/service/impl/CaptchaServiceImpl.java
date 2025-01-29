@@ -23,8 +23,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
-import static com.ctoutweb.lalamiam.infra.constant.ApplicationConstant.ACCESS_CAPTCHA_COOKIE_MAX_AGE;
-import static com.ctoutweb.lalamiam.infra.constant.ApplicationConstant.CAPTCHA_ACCESS_KEY_PARAM_NAME;
+import static com.ctoutweb.lalamiam.infra.constant.ApplicationConstant.*;
 
 @Service
 public class CaptchaServiceImpl implements ICaptchaService {
@@ -130,6 +129,15 @@ public class CaptchaServiceImpl implements ICaptchaService {
             CAPTCHA_ACCESS_KEY_PARAM_NAME,
             jwt.getJwtToken(),
             ACCESS_CAPTCHA_COOKIE_MAX_AGE
+    ));
+    return headers;
+  }
+
+  @Override
+  public HttpHeaders clearCaptchaAccessKey(HttpHeaders headers) {
+    headers.add(HttpHeaders.SET_COOKIE, cookieService.generateCookie(
+            CAPTCHA_ACCESS_KEY_PARAM_NAME,"",
+            ACCESS_CAPTCHA_COOKIE_MIN_AGE
     ));
     return headers;
   }

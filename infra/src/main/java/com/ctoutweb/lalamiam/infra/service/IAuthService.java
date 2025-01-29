@@ -15,7 +15,27 @@ public interface IAuthService {
    * @return IMessageResponse
    */
   public IMessageResponse registerConfirmByProfessional(RegisterConfirmByProfessionalDto dto);
+
+  /**
+   * Login
+   * @param dto LoginDto
+   * @return LoginResponseDto
+   */
   public LoginResponseDto login(LoginDto dto);
 
+  /***
+   * Déconnexion
+   * @param dto LogoutDto
+   * @return IMessageResponse
+   */
+  public IMessageResponse logout(LogoutDto dto);
+
+  /**
+   * Généaration des données de l'application
+   * -> recupération du language API
+   * -> Token pour génération CSRF (Cookies)
+   * -> Token pour la gnération de captcha (Cookie)
+   * @return IAppParam
+   */
   public IAppParam getAppParamter();
 }

@@ -22,10 +22,13 @@ import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.font.TextAttribute;
+import java.awt.font.TextLayout;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.text.AttributedString;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -299,29 +302,46 @@ public class CaptchaGenerationImpl implements ICaptchaGeneration {
 
     // Create a BufferedImage object
     BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-
-    // Get the Graphics2D object
     Graphics2D g2d = image.createGraphics();
 
-    // Set rendering hints for better text rendering
+    // Enable anti-aliasing for better rendering
     g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-    // Set the background color and clear the image
-    g2d.setColor(Color.lightGray);
+    // Set background color and fill the image
+    g2d.setColor(Color.LIGHT_GRAY);
     g2d.fillRect(0, 0, width, height);
 
-    // Set the font and color for the text
-    g2d.setFont(new Font("Serif", Font.BOLD, 20));
+    // Set font and color
+    Font font = new Font("Serif", Font.BOLD, 20);
+    g2d.setFont(font);
     g2d.setColor(Color.BLACK);
 
-    // Get the font metrics for calculating the position
+    // Get font metrics
     FontMetrics fm = g2d.getFontMetrics();
-    int x = (width - fm.stringWidth(captchaQuestion)) / 2;
+    int totalWidth = 0;
+
+    // Calculate total width of the string with additional spacing
+    for (int i = 0; i < captchaQuestion.length(); i++) {
+      totalWidth += fm.charWidth(captchaQuestion.charAt(i));
+    }
+
+    // Add custom letter spacing
+    int letterSpacing = 5;
+    totalWidth += (captchaQuestion.length() - 1) * letterSpacing;
+
+    // Calculate the x position to center the captchaQuestion
+    int x = (width - totalWidth) / 2;
     int y = ((height - fm.getHeight()) / 2) + fm.getAscent();
 
-    // Draw the text on the image
-    g2d.drawString(captchaQuestion, x, y);
+
+    // Main Text: Draw the actual captchaQuestion in black
+    g2d.setColor(Color.BLACK);
+    x = (width - totalWidth) / 2;  // Reset x to original position
+    for (int i = 0; i < captchaQuestion.length(); i++) {
+      g2d.drawString(String.valueOf(captchaQuestion.charAt(i)), x, y);
+      x += fm.charWidth(captchaQuestion.charAt(i)) + letterSpacing;
+    }
 
     // Dispose of the Graphics2D object
     g2d.dispose();

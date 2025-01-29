@@ -33,6 +33,11 @@ public class SecurityServiceImpl implements ISecurityService {
   }
 
   @Override
+  public HttpHeaders clearCsrfAccessKey() {
+    return this.csrfService.clearCsrfAccessKey();
+  }
+
+  @Override
   public boolean isCsrfValid(String csrf) {
     return false;
   }
@@ -45,6 +50,11 @@ public class SecurityServiceImpl implements ISecurityService {
   @Override
   public HttpHeaders generateCaptchaAccessKey(HttpHeaders headers) {
     return captchaService.generateCaptchaAccessKey(headers);
+  }
+
+  @Override
+  public HttpHeaders clearCaptchaAccessKey(HttpHeaders httpHeaders) {
+    return this.captchaService.clearCaptchaAccessKey(httpHeaders);
   }
 
   @Override
