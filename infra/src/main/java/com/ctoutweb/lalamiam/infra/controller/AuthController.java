@@ -18,7 +18,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.List;
 
 @RestController
 @RequestMapping("/auth")
@@ -88,6 +87,32 @@ public class AuthController {
     LoginResponseDto loginResponseDto = authService.login(loginDto);
 
     return new ResponseEntity<>(loginResponseDto, HttpStatus.OK);
+  }
+
+  /**
+   * Traitement d'un mot de passe oublié
+   * Generation de token + envoi email pour réinitialiser son mot de passe
+   * @param dto HandleLostPasswordDto
+   */
+  @PostMapping("/handle-lost-password")
+  public ResponseEntity<IMessageResponse> lostPasswordMailing(@RequestBody HandleLostPasswordDto dto) {
+
+    // Validation des données
+    factory.getImpl(dto).validateDto(validator);
+
+    // Validation du control mail + encoie email
+    return new ResponseEntity<>(authService.lostPasswordMailing(dto), HttpStatus.OK);
+
+  }
+
+  @PostMapping("/reinitialize-lost-password")
+  public ResponseEntity<IMessageResponse> reinitializeLostPassword(@RequestBody ReinitializeLostPasswordDto dto) {
+    // Validation du format du mot de passe
+    factory.getImpl(dto).validateDto(validator);
+
+    // verificationToken et mise a jour password
+    IMessageResponse response = authService.reinitializeLostPassword(dto);
+   return new ResponseEntity<>(response, HttpStatus.OK);
   }
 
   @GetMapping("/generate-csrf")

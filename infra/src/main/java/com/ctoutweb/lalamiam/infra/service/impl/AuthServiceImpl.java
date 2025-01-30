@@ -9,6 +9,7 @@ import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.ad
 import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.useCase.ProfessionalInscriptionConfirmationUseCase;
 import com.ctoutweb.lalamiam.infra.dto.*;
 import com.ctoutweb.lalamiam.infra.exception.AuthException;
+import com.ctoutweb.lalamiam.infra.exception.BadRequestException;
 import com.ctoutweb.lalamiam.infra.service.helper.AuthServiceHelper;
 import com.ctoutweb.lalamiam.infra.mapper.core.ProfessionalInscriptionBoundaryInputMapper;
 import com.ctoutweb.lalamiam.infra.mapper.core.ClientInscriptionBoundaryInputMapper;
@@ -89,6 +90,8 @@ public class AuthServiceImpl implements IAuthService {
   @Transactional
   public void registerProfessional(RegisterProfessionalDto dto) {
     String hashPassword = cryptoService.hashText(dto.password());
+
+
     IBoundariesAdapter.IBoundaryInputAdapter boundaryInputAdapter = professionalInscriptionMapper.map(dto, hashPassword);
     ProfessionalInscriptionUseCase.Input input = ProfessionalInscriptionUseCase.Input.getUseCaseInput(boundaryInputAdapter);
     ProfessionalInscriptionUseCase.Output output = professionalInscriptionUseCase.execute(input);
@@ -103,6 +106,9 @@ public class AuthServiceImpl implements IAuthService {
 
     // Vérification des tokens envoyé
     boolean aretokenValid = authServiceHelper.areProfessionalRegisterTokensValid(dto.email(), dto.emailToken(), dto.urlToken());
+
+    if(!aretokenValid)
+      throw new BadRequestException(messageService.getMessage("professional.confirmation.account.token.error"));
 
     IProfessionalInscriptionConfirmationInput professionalInscriptionConfirmationInput = professionalRegisterConfirmationInputMapper.map(dto);
     ProfessionalInscriptionConfirmationUseCase.Input input = ProfessionalInscriptionConfirmationUseCase.Input.getInput(professionalInscriptionConfirmationInput);
@@ -137,6 +143,18 @@ public class AuthServiceImpl implements IAuthService {
             userPrincipal.id(),
             userPrincipal.getAuthorities().stream().map(authority->authority.getAuthority()).collect(Collectors.toList()),
             responseMessage);
+  }
+
+  @Override
+  public IMessageResponse lostPasswordMailing(HandleLostPasswordDto dto) {
+    return authServiceHelper.lostPasswordMailing(dto.email());
+  }
+
+  @Override
+  @Transactional
+  public IMessageResponse reinitializeLostPassword(ReinitializeLostPasswordDto dto) {
+    authServiceHelper.reinitializeLostPassword(dto);
+    return factory.getMessageResponseImpl(messageService.getMessage("change.password.success"));
   }
 
   @Override

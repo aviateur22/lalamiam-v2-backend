@@ -13,6 +13,7 @@ public class FrontEndLinkHelper {
   private String domainFront;
   @Value("${professional.confirm.register.link}")
   private String professionalConfirmationRegisterLink;
+
   @Value("${change.account.password.link}")
   private String changeAccountPasswordLink;
 
@@ -24,5 +25,15 @@ public class FrontEndLinkHelper {
    */
   public String getProfessionalConfirmationRegisterLink(String email, String urlToken) {
     return String.format(professionalConfirmationRegisterLink , domainFront, email, urlToken);
+  }
+
+  /**
+   * Renvoie le front URL pour confirmer la création d'un compte professionel
+   * @param email String
+   * @param urlToken String
+   * @return String
+   */
+  public String getUserLostPasswordLink(String email, String urlToken) {
+    return String.format(changeAccountPasswordLink , domainFront, email, urlToken);
   }
 }

@@ -69,21 +69,33 @@ public class CryptographiceServiceImpl implements ICryptoService {
       return null;
 
     } catch (BadPaddingException exception) {
+      LOGGER.error(()->String.format("[CryptographiceServiceImpl - encrypt - BadPaddingException] - Erreur pour chiffrement pour: %s", text));
+      LOGGER.error(()->String.format("Exception: %s", exception));
       return null;
 
     } catch (NoSuchPaddingException exception) {
+      LOGGER.error(()->String.format("[CryptographiceServiceImpl - encrypt - NoSuchPaddingException] - Erreur pour chiffrement pour: %s", text));
+      LOGGER.error(()->String.format("Exception: %s", exception));
       return null;
 
     } catch (NoSuchAlgorithmException exception) {
+      LOGGER.error(()->String.format("[CryptographiceServiceImpl - encrypt - NoSuchAlgorithmException] - Erreur pour chiffrement pour: %s", text));
+      LOGGER.error(()->String.format("Exception: %s", exception));
       return null;
 
     } catch (InvalidKeySpecException exception) {
+      LOGGER.error(()->String.format("[CryptographiceServiceImpl - encrypt - InvalidKeySpecException] - Erreur pour chiffrement pour: %s", text));
+      LOGGER.error(()->String.format("Exception: %s", exception));
       return null;
 
     } catch (InvalidAlgorithmParameterException exception) {
+      LOGGER.error(()->String.format("[CryptographiceServiceImpl - encrypt - InvalidAlgorithmParameterException] - Erreur pour chiffrement pour: %s", text));
+      LOGGER.error(()->String.format("Exception: %s", exception));
       return null;
 
     } catch (InvalidKeyException exception) {
+      LOGGER.error(()->String.format("[CryptographiceServiceImpl - encrypt - InvalidKeyException] - Erreur pour chiffrement pour: %s", text));
+      LOGGER.error(()->String.format("Exception: %s", exception));
       return null;
     }
   }
@@ -101,21 +113,37 @@ public class CryptographiceServiceImpl implements ICryptoService {
       return null;
 
     } catch (BadPaddingException exception) {
+      LOGGER.error(()->String.format("[CryptographiceServiceImpl - decrypt - BadPaddingException] - Erreur de déchiffrement pour: %s", cipherText));
+      LOGGER.error(()->String.format("Exception: %s", exception));
       return null;
 
     } catch (NoSuchPaddingException exception) {
+      LOGGER.error(()->String.format("[CryptographiceServiceImpl - decrypt - NoSuchPaddingException] - Erreur de déchiffrement pour: %s", cipherText));
+      LOGGER.error(()->String.format("Exception: %s", exception));
       return null;
 
     } catch (NoSuchAlgorithmException exception) {
+      LOGGER.error(()->String.format("[CryptographiceServiceImpl - decrypt - NoSuchAlgorithmException] - Erreur de déchiffrement pour: %s", cipherText));
+      LOGGER.error(()->String.format("Exception: %s", exception));
       return null;
 
     } catch (InvalidKeySpecException exception) {
+      LOGGER.error(()->String.format("[CryptographiceServiceImpl - decrypt - InvalidKeySpecException] - Erreur de déchiffrement pour: %s", cipherText));
+      LOGGER.error(()->String.format("Exception: %s", exception));
       return null;
 
     } catch (InvalidAlgorithmParameterException exception) {
+      LOGGER.error(()->String.format("[CryptographiceServiceImpl - decrypt - BadPaddingException] - Erreur de déchiffrement pour: %s", cipherText));
+      LOGGER.error(()->String.format("Exception: %s", exception));
       return null;
 
     } catch (InvalidKeyException exception) {
+      LOGGER.error(()->String.format("[CryptographiceServiceImpl - decrypt - InvalidAlgorithmParameterException] - Erreur de déchiffrement pour: %s", cipherText));
+      LOGGER.error(()->String.format("Exception: %s", exception));
+      return null;
+    } catch (Exception exception) {
+      LOGGER.error(()->String.format("[CryptographiceServiceImpl - decrypt - Exception] - Erreur de déchiffrement pour: %s", cipherText));
+      LOGGER.error(()->String.format("Exception: %s", exception));
       return null;
     }
   }

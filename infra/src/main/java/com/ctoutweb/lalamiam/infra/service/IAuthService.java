@@ -23,6 +23,20 @@ public interface IAuthService {
    */
   public LoginResponseDto login(LoginDto dto);
 
+  /**
+   * Gestion de la perte d'un mot de passe
+   * @param dto HandleLostPasswordDto
+   * @return IMessageResponse
+   */
+  public IMessageResponse lostPasswordMailing(HandleLostPasswordDto dto);
+
+  /**
+   * Mise à jour d'un mot de passe perdu
+   * @param dto ReinitializeLostPasswordDto
+   * @return IMessageResponse
+   */
+  public IMessageResponse reinitializeLostPassword(ReinitializeLostPasswordDto dto);
+
   /***
    * Déconnexion
    * @param dto LogoutDto

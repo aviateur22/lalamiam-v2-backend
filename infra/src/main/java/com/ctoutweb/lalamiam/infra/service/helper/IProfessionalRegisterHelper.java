@@ -8,7 +8,7 @@ public interface IProfessionalRegisterHelper {
 
   /**
    * Recherche des données du professionenl
-   * @param email
+   * @param email String
    * @return IProfessionalRegisterHelper
    */
   public IProfessionalRegisterHelper findProfessionalInformation(String email);

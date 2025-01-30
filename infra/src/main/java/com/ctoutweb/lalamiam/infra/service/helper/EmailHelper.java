@@ -49,4 +49,21 @@ public class EmailHelper {
 
     return listWordsToReplaceInHtmlTemplate;
   }
+
+  /**
+   * Génération d'un liste de mot pour l'envoie d'un email de type connexion failed
+   * @param email String - Email de la personne ayant plusieurs connexion en echec
+   * @return Map<String, String>
+   */
+  public Map<String, String> listOfWordToReplaceCaseLostPasswordEmail(String email, String link) {
+    // Generation d'un email d'alerte
+    Map<String, String> listWordsToReplaceInHtmlTemplate = new HashMap<>();
+
+    listWordsToReplaceInHtmlTemplate.put("!%!year!%!", String.valueOf(LocalDateTime.now().getYear()));
+    listWordsToReplaceInHtmlTemplate.put("!%!link!%!", link);
+    listWordsToReplaceInHtmlTemplate.put("!%!email!%!", email);
+    listWordsToReplaceInHtmlTemplate.put("!%!appName!%!", applicationName.toUpperCase());
+
+    return listWordsToReplaceInHtmlTemplate;
+  }
 }

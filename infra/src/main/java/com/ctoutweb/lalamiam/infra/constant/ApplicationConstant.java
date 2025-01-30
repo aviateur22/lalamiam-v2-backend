@@ -18,7 +18,7 @@ public class ApplicationConstant {
   // MessageSource pour  @Javax.validation.constraint.message
   public static final String DEFAULT_ENCODING = "UTF-8";
   public static final String BUNDLE_CLASSPATH ="classpath:";
-  public static final String BUNDLE_ERROR_MESSAGE_PATH = "message/validatorErrorMessage";
+  public static final String BUNDLE_ERROR_MESSAGE_PATH = "message/validatorErrorMessage_%S";
 
   // CSRF Token
   public static final String POST_CSRF_TOKEN = "POST-CSRF-TOKEN";  // Header key pour l'envoie et récupération token CSRF
@@ -58,5 +58,8 @@ public class ApplicationConstant {
 
   // PROFESSIONAL REGISTER
   public static final int LIMIT_DAY_TO_VALIDATE_INSCRIPTION = 10;
+
+  // TEMPS POUR REGENERER SONT PASSWORD
+  public static final int LOST_PASSWORD_TOKEN_VALIDITY = 2;
 
 }

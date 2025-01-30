@@ -1,8 +1,9 @@
 package com.ctoutweb.lalamiam.infra.service.helper;
 
-import com.ctoutweb.lalamiam.infra.model.security.CryptographyType;
-import com.ctoutweb.lalamiam.infra.service.helper.IProfessionalRegisterConfirmationHelper;
-import com.ctoutweb.lalamiam.infra.service.helper.IProfessionalRegisterHelper;
+import com.ctoutweb.lalamiam.infra.dto.ReinitializeLostPasswordDto;
+import com.ctoutweb.lalamiam.infra.factory.Factory;
+import com.ctoutweb.lalamiam.infra.model.IMessageResponse;
+import com.ctoutweb.lalamiam.infra.service.IMessageService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,34 +18,42 @@ public class AuthServiceHelper {
   @Value("${zone.id}")
   String zoneId;
 
+  private final IMessageService messageService;
   private final IProfessionalRegisterConfirmationHelper professionalRegisterConfirmationHelper;
   private final IProfessionalRegisterHelper professionalRegisterHelper;
+  private final ILostPasswordHelper lostPasswordHelper;
+  private final IReinitializeLostPassword reinitializeLostPassword;
+  private final Factory factory;
 
   public AuthServiceHelper(
+          IMessageService messageService,
           IProfessionalRegisterConfirmationHelper professionalRegisterConfirmationHelper,
-          IProfessionalRegisterHelper professionalRegisterHelper) {
+          IProfessionalRegisterHelper professionalRegisterHelper,
+          ILostPasswordHelper lostPasswordHelper,
+          IReinitializeLostPassword reinitializeLostPassword, Factory factory) {
+    this.messageService = messageService;
     this.professionalRegisterConfirmationHelper = professionalRegisterConfirmationHelper;
     this.professionalRegisterHelper = professionalRegisterHelper;
+    this.lostPasswordHelper = lostPasswordHelper;
+    this.reinitializeLostPassword = reinitializeLostPassword;
+    this.factory = factory;
   }
 
   /**
    * Validation des tokens envoyés pour validation de l'inscription d'un professionel
    * @param professionalEmail String - email professionel
-   * @param emailToken String - token contenu dans l'email
-   * @param urlToken String- token de url
+   * @param frontEndEmailToken String - token contenu dans l'email
+   * @param frontEndUrlToken String- token de url
    * @return boolean
    */
-  public Boolean areProfessionalRegisterTokensValid(String professionalEmail, String emailToken, String urlToken) {
-    // Verification des tokens
-    boolean isEmailTokenValid = professionalRegisterConfirmationHelper
-            .findUserRegisterToken(professionalEmail, CryptographyType.HASH)
-            .isFrontEndTokenValid(emailToken);
+  public Boolean areProfessionalRegisterTokensValid(String professionalEmail, String frontEndEmailToken, String frontEndUrlToken) {
 
-    boolean isUrlTokenValid = professionalRegisterConfirmationHelper
-            .findUserRegisterToken(professionalEmail, CryptographyType.ENCRYPT)
-            .isFrontEndTokenValid(urlToken);
-
-    return isEmailTokenValid && isUrlTokenValid;
+    return professionalRegisterConfirmationHelper
+            .findUserRegisterToken(professionalEmail)
+            .isEmailTokenValid(frontEndEmailToken)
+            .isUrlTokenValid(frontEndUrlToken)
+            .deleteTokenOnSuccess()
+            .areTokensValid();
   }
 
   /**
@@ -60,6 +69,35 @@ public class AuthServiceHelper {
             .saveGeneratedHashTokenWithUser()
             .saveGeneratedEncryptTokenWithUser()
             .sendRegisterEmail(professionalEmail);
+  }
+
+  /**
+   * Generation des Token de l'email + URL
+   * Envoie Email pour regenerer son mot de passe
+   **/
+  public IMessageResponse lostPasswordMailing(String email) {
+
+    lostPasswordHelper
+            .findUserInformation(email)
+            .generateRenewalPasswordToken()
+            .encryptToken()
+            .saveGeneratedEncryptTokenWithUser()
+            .sendLostPasswordEmail(email);
+
+    return factory.getMessageResponseImpl(messageService.getMessage("lost.password.mail.send"));
+
+  }
+
+  /**
+   * Mise à jour du mot de passe
+   * @param dto ReinitializeLostPasswordDto
+   */
+  public void reinitializeLostPassword(ReinitializeLostPasswordDto dto) {
+    this.reinitializeLostPassword
+            .findUserToken(dto.email())
+            .isFrontEndTokenValid(dto.urlToken())
+            .deleteUserToken()
+            .updatePassword(dto.password());
   }
 
 }

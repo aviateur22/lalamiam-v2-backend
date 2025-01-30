@@ -1,5 +1,6 @@
 package com.ctoutweb.lalamiam.infra.config;
 
+import com.ctoutweb.lalamiam.infra.model.IApiLanguage;
 import com.ctoutweb.lalamiam.infra.model.config.DynamicMessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,11 +21,19 @@ import static com.ctoutweb.lalamiam.infra.constant.ApplicationConstant.BUNDLE_ER
  */
 @Configuration
 public class ValidatorResourceMessageConfig {
+  private final IApiLanguage apiLanguage;
+
+  public ValidatorResourceMessageConfig(IApiLanguage apiLanguage) {
+    this.apiLanguage = apiLanguage;
+  }
+
 
   @Bean
   public MessageSource messageSource() {
+    String languauage = apiLanguage.getValidatedLanguage();
+    String bundleMessagePath = String.format(BUNDLE_ERROR_MESSAGE_PATH, languauage);
     DynamicMessageSource dynamicMessageSource = new DynamicMessageSource();
-    dynamicMessageSource.updateMessageSource(BUNDLE_ERROR_MESSAGE_PATH);
+    dynamicMessageSource.updateMessageSource(bundleMessagePath);
     return dynamicMessageSource;
   }
 
