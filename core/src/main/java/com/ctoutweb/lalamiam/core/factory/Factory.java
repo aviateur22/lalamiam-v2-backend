@@ -9,6 +9,8 @@ import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.en
 import com.ctoutweb.lalamiam.core.provider.IMessageService;
 import com.ctoutweb.lalamiam.core.provider.IProfessionalInscriptionConfirmationRepository;
 
+import java.util.List;
+
 public class Factory {
 
   public static IProfessionalInscriptionConfirmationInput getProfessionalInscriptionConfirmationInputImpl(String email) {
@@ -29,4 +31,5 @@ public class Factory {
             messageService
     );
   }
+
 }

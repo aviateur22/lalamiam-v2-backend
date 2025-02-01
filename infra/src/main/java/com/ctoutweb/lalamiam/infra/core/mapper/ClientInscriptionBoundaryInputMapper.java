@@ -1,8 +1,8 @@
-package com.ctoutweb.lalamiam.infra.mapper.core;
+package com.ctoutweb.lalamiam.infra.core.mapper;
 
 import com.ctoutweb.lalamiam.core.adapter.clientInscription.boundary.IBoundariesAdapter.IBoundaryInputAdapter;
 import com.ctoutweb.lalamiam.infra.dto.RegisterClientDto;
-import com.ctoutweb.lalamiam.infra.model.core.adapter.ClientRegisterBoundaryInputImpl;
+import com.ctoutweb.lalamiam.infra.core.model.ClientRegisterBoundaryInputImpl;
 import org.springframework.stereotype.Component;
 
 @Component

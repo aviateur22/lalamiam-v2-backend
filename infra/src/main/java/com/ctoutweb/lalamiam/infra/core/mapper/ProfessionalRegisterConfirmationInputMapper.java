@@ -1,9 +1,8 @@
-package com.ctoutweb.lalamiam.infra.mapper.core;
+package com.ctoutweb.lalamiam.infra.core.mapper;
 
 import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.adapter.IProfessionalInscriptionConfirmationInput;
+import com.ctoutweb.lalamiam.infra.core.factory.CoreFactory;
 import com.ctoutweb.lalamiam.infra.dto.RegisterConfirmByProfessionalDto;
-import com.ctoutweb.lalamiam.infra.factory.Factory;
-import com.ctoutweb.lalamiam.infra.model.core.adapter.ProfessionalRegisterConfirmationInputBoundaryImpl;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,9 +10,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ProfessionalRegisterConfirmationInputMapper {
-  private final Factory factory;
+  private final CoreFactory factory;
 
-  public ProfessionalRegisterConfirmationInputMapper(Factory factory) {
+  public ProfessionalRegisterConfirmationInputMapper(CoreFactory factory) {
     this.factory = factory;
   }
 

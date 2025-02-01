@@ -1,10 +1,10 @@
-package com.ctoutweb.lalamiam.infra.repository.core;
+package com.ctoutweb.lalamiam.infra.core.repository;
 
 import com.ctoutweb.lalamiam.core.provider.IProfessionalInscriptionConfirmationRepository;
 import com.ctoutweb.lalamiam.core.useCase.base.adapter.IProfessionalAccountInformation;
 import com.ctoutweb.lalamiam.core.useCase.base.adapter.IProfessionalInformation;
-import com.ctoutweb.lalamiam.infra.factory.Factory;
-import com.ctoutweb.lalamiam.infra.mapper.core.ProfessionalInformationMapper;
+import com.ctoutweb.lalamiam.infra.core.factory.CoreFactory;
+import com.ctoutweb.lalamiam.infra.core.mapper.ProfessionalInformationMapper;
 import com.ctoutweb.lalamiam.infra.repository.IProfessionalAccountRepository;
 import com.ctoutweb.lalamiam.infra.repository.IUserRepository;
 import com.ctoutweb.lalamiam.infra.repository.entity.ProfessionalAccountEntity;
@@ -17,13 +17,13 @@ public class ProfessionalInscriptionConfirmationRepository implements IProfessio
   private final IProfessionalAccountRepository professionalAccountRepository;
   private final IUserRepository userRepository;
   private final ProfessionalInformationMapper professionalInformationMapper;
-  private final Factory factory;
+  private final CoreFactory factory;
 
   public ProfessionalInscriptionConfirmationRepository(
           IProfessionalAccountRepository professionalAccountRepository,
           IUserRepository userRepository,
           ProfessionalInformationMapper professionalInformationMapper,
-          Factory factory) {
+          CoreFactory factory) {
     this.professionalAccountRepository = professionalAccountRepository;
     this.userRepository = userRepository;
     this.professionalInformationMapper = professionalInformationMapper;

@@ -26,7 +26,6 @@ public class ProfessionalAccountEntity {
   @Column(name = "is_account_register_confirm_by_professional")
   private Boolean isAccountRegisterConfirmByProfessional;
 
-  //@CreationTimestamp
   @Column(name = "account_register_confirmation_limit_date_at")
   private ZonedDateTime accountRegisterConfirmationLimitDate;
 

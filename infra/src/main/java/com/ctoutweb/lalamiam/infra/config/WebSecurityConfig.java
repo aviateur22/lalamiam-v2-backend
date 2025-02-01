@@ -57,6 +57,7 @@ public class WebSecurityConfig {
             ))
             .authorizeHttpRequests(request->request
                     .requestMatchers("/auth/**").permitAll()
+                    .requestMatchers("/admin/**").permitAll()
                     .anyRequest().authenticated()
             );
 

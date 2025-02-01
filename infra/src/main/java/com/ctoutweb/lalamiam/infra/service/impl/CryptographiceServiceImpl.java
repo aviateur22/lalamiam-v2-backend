@@ -63,7 +63,7 @@ public class CryptographiceServiceImpl implements ICryptoService {
 
       byte[] cipherText = cipher.doFinal(text.getBytes());
 
-      return Base64.getUrlEncoder().encodeToString(cipherText);
+      return Base64.getUrlEncoder().withoutPadding().encodeToString(cipherText);
 
     } catch (IllegalBlockSizeException exception) {
       return null;

@@ -1,9 +1,9 @@
-package com.ctoutweb.lalamiam.infra.repository.core;
+package com.ctoutweb.lalamiam.infra.core.repository;
 
 import com.ctoutweb.lalamiam.core.adapter.professionalInscription.IBoundariesAdapter;
 import com.ctoutweb.lalamiam.core.entity.professionalInscription.IProfessionalInscription;
 import com.ctoutweb.lalamiam.core.provider.IProfessionalInscriptionRepository;
-import com.ctoutweb.lalamiam.infra.factory.Factory;
+import com.ctoutweb.lalamiam.infra.core.factory.CoreFactory;
 import com.ctoutweb.lalamiam.infra.repository.IProfessionalAccountRepository;
 import com.ctoutweb.lalamiam.infra.repository.IProfessionalRepository;
 import com.ctoutweb.lalamiam.infra.repository.IUserRepository;
@@ -25,14 +25,14 @@ public class ProfessionalInscriptionRepositoryImpl implements IProfessionalInscr
   private final IProfessionalRepository professionalRepository;
   private final IProfessionalAccountRepository professionalAccountRepository;
   private final IUserRepository userRepository;
-  private final Factory factory;
+  private final CoreFactory factory;
   @Value("${zone.id}")
   String zoneId;
 
   public ProfessionalInscriptionRepositoryImpl(
           IProfessionalRepository professionalRepository,
           IProfessionalAccountRepository professionalAccountRepository,
-          IUserRepository userRepository, Factory factory) {
+          IUserRepository userRepository, CoreFactory factory) {
     this.professionalRepository = professionalRepository;
     this.professionalAccountRepository = professionalAccountRepository;
     this.userRepository = userRepository;

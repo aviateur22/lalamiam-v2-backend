@@ -1,4 +1,4 @@
-package com.ctoutweb.lalamiam.infra.repository.core;
+package com.ctoutweb.lalamiam.infra.core.repository;
 
 import com.ctoutweb.lalamiam.core.entity.adminDisplayProfessionalDocument.IAdminDisplayProfessionalDocument;
 import com.ctoutweb.lalamiam.core.entity.common.IProfessional;

@@ -1,10 +1,10 @@
-package com.ctoutweb.lalamiam.infra.repository.core;
+package com.ctoutweb.lalamiam.infra.core.repository;
 
 import com.ctoutweb.lalamiam.core.entity.clientInscription.IClientInscription.ICreatedClient;
 import com.ctoutweb.lalamiam.core.entity.clientInscription.IClientInscription.ICreatedRole;
 import com.ctoutweb.lalamiam.core.entity.clientInscription.IClientInscription.ICreatedAccount;
 import com.ctoutweb.lalamiam.core.provider.IClientInscriptionRepository;
-import com.ctoutweb.lalamiam.infra.factory.Factory;
+import com.ctoutweb.lalamiam.infra.core.factory.CoreFactory;
 import com.ctoutweb.lalamiam.infra.repository.IRoleUserRepository;
 import com.ctoutweb.lalamiam.infra.repository.IUserAccountRepository;
 import com.ctoutweb.lalamiam.infra.repository.IUserRepository;
@@ -19,13 +19,13 @@ public class ClientInscriptionRepositoryImpl implements IClientInscriptionReposi
   private final IUserRepository userRepository;
   private final IUserAccountRepository userAccountRepository;
   private final IRoleUserRepository roleUserRepository;
-  private final Factory factory;
+  private final CoreFactory factory;
 
   public ClientInscriptionRepositoryImpl(
           IUserRepository userRepository,
           IUserAccountRepository userAccountRepository,
           IRoleUserRepository roleUserRepository,
-          Factory factory
+          CoreFactory factory
   ) {
     this.userRepository = userRepository;
     this.userAccountRepository = userAccountRepository;
