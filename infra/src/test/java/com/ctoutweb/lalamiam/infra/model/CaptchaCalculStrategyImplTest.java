@@ -78,7 +78,7 @@ public class CaptchaCalculStrategyImplTest {
     Assertions.assertNotNull(captcha.getCaptchaQuestionImageBase64().getBase64Format());
     Assertions.assertNotNull(captcha.getCaptchaQuestionImageBase64().getMimeType());
     Assertions.assertNotNull(captcha.getCaptchaResponseIdEncrypt());
-    Assertions.assertEquals("xYx7LtKKzPJST6TTqfg8Aw==", captcha.getCaptchaResponseIdEncrypt());
+    Assertions.assertEquals("xYx7LtKKzPJST6TTqfg8Aw", captcha.getCaptchaResponseIdEncrypt());
     Assertions.assertEquals(captchaTile, captcha.getCaptchaTitle());
 
   }

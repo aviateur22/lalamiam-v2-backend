@@ -1,6 +1,6 @@
 package com.ctoutweb.lalamiam.infra.core.mapper;
 
-import com.ctoutweb.lalamiam.core.useCase.professionalToActivateList.entity.IProfessionalToActivate;
+import com.ctoutweb.lalamiam.core.useCase.adminDisplayProfessionalToActivateList.adapter.IProfessionalToActivate;
 import com.ctoutweb.lalamiam.infra.core.factory.CoreFactory;
 import com.ctoutweb.lalamiam.infra.repository.entity.ProfessionalAccountEntity;
 import com.ctoutweb.lalamiam.infra.repository.entity.UserEntity;

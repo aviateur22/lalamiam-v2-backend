@@ -78,7 +78,7 @@ public class CaptchaTextStrategyImplTest {
     Assertions.assertNotNull(captcha.getCaptchaQuestionImageBase64().getBase64Format());
     Assertions.assertNotNull(captcha.getCaptchaQuestionImageBase64().getMimeType());
     Assertions.assertNotNull(captcha.getCaptchaResponseIdEncrypt());
-    Assertions.assertEquals("CzY3Q89XFanTbxlIpTvpaw==", captcha.getCaptchaResponseIdEncrypt());
+    Assertions.assertEquals("CzY3Q89XFanTbxlIpTvpaw", captcha.getCaptchaResponseIdEncrypt());
     Assertions.assertEquals(captchaTile, captcha.getCaptchaTitle());
 
   }

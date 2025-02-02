@@ -2,22 +2,23 @@ package com.ctoutweb.lalamiam.infra.core.factory;
 
 import com.ctoutweb.lalamiam.core.entity.clientInscription.IClientInscription;
 import com.ctoutweb.lalamiam.core.entity.professionalInscription.IProfessionalInscription;
+import com.ctoutweb.lalamiam.core.useCase.adminDisplayProfessionalDetail.adapter.IAdminDisplayProfessionalDetailInput;
+import com.ctoutweb.lalamiam.core.useCase.adminDisplayProfessionalDetail.adapter.IProfessionalDetail;
 import com.ctoutweb.lalamiam.core.useCase.base.adapter.IProfessionalAccountInformation;
 import com.ctoutweb.lalamiam.core.useCase.base.adapter.IProfessionalInformation;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.adapter.IProfessionalInscriptionConfirmationInput;
-import com.ctoutweb.lalamiam.core.useCase.professionalToActivateList.entity.IProfessionalToActivate;
+import com.ctoutweb.lalamiam.core.useCase.adminDisplayProfessionalToActivateList.adapter.IProfessionalToActivate;
 import com.ctoutweb.lalamiam.infra.core.model.*;
 import com.ctoutweb.lalamiam.infra.dto.RegisterConfirmByProfessionalDto;
 import com.ctoutweb.lalamiam.infra.model.impl.CreateProfessionalImpl;
 import com.ctoutweb.lalamiam.infra.model.impl.CreatedAccountImpl;
 import com.ctoutweb.lalamiam.infra.model.impl.CreatedClientImpl;
 import com.ctoutweb.lalamiam.infra.model.impl.CreatedRoleImpl;
-import com.ctoutweb.lalamiam.infra.repository.entity.RoleUserEntity;
-import com.ctoutweb.lalamiam.infra.repository.entity.UserAccountEntity;
-import com.ctoutweb.lalamiam.infra.repository.entity.UserEntity;
+import com.ctoutweb.lalamiam.infra.repository.entity.*;
 import org.springframework.stereotype.Component;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 
 @Component
 public class CoreFactory {
@@ -64,5 +65,17 @@ public class CoreFactory {
 
   public IProfessionalToActivate getProfessionalToActivateImpl(String email, Long id, ZonedDateTime createdAt) {
     return new ProfessionalToActivateImpl(id, email, createdAt);
+  }
+
+  public IAdminDisplayProfessionalDetailInput getAdminDisplayProfessionalDetailInput(String email) {
+    return new AdminDisplayProfessionalDetailInputImpl(email);
+  }
+
+  public IProfessionalDetail getProfessionalDetailImpl(
+          String professionalEmail,
+          ProfessionalEntity professional,
+          ProfessionalAccountEntity professionalAccount,
+          List<DocumentEntity> documents) {
+    return new ProfessionalDetailImpl(professionalEmail, professional, professionalAccount, documents);
   }
 }

@@ -10,6 +10,7 @@ import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.us
 import com.ctoutweb.lalamiam.infra.dto.*;
 import com.ctoutweb.lalamiam.infra.exception.AuthException;
 import com.ctoutweb.lalamiam.infra.exception.BadRequestException;
+import com.ctoutweb.lalamiam.infra.exception.InternalException;
 import com.ctoutweb.lalamiam.infra.service.helper.AuthServiceHelper;
 import com.ctoutweb.lalamiam.infra.core.mapper.ProfessionalInscriptionBoundaryInputMapper;
 import com.ctoutweb.lalamiam.infra.core.mapper.ClientInscriptionBoundaryInputMapper;
@@ -28,6 +29,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,6 +47,8 @@ public class AuthServiceImpl implements IAuthService {
   private final ClientInscriptionBoundaryInputMapper clientInscriptionMapper;
   private final ProfessionalInscriptionBoundaryInputMapper professionalInscriptionMapper;
   private final ProfessionalRegisterConfirmationInputMapper professionalRegisterConfirmationInputMapper;
+
+  private final FileService fileService;
   private final AuthServiceHelper authServiceHelper;
 
 
@@ -61,7 +65,7 @@ public class AuthServiceImpl implements IAuthService {
           ProfessionalInscriptionConfirmationUseCase professionalInscriptionConfirmationUseCase,
           ProfessionalInscriptionBoundaryInputMapper professionalInscriptionMapper,
           ProfessionalRegisterConfirmationInputMapper professionalRegisterConfirmationInputMapper,
-          AuthServiceHelper authServiceHelper) {
+          FileService fileService, AuthServiceHelper authServiceHelper) {
     this.apiLanguage = apiLanguage;
     this.messageService = messageService;
     this.jwtService = jwtService;
@@ -74,6 +78,7 @@ public class AuthServiceImpl implements IAuthService {
     this.professionalInscriptionConfirmationUseCase = professionalInscriptionConfirmationUseCase;
     this.professionalInscriptionMapper = professionalInscriptionMapper;
     this.professionalRegisterConfirmationInputMapper = professionalRegisterConfirmationInputMapper;
+    this.fileService = fileService;
     this.authServiceHelper = authServiceHelper;
   }
 
@@ -89,15 +94,22 @@ public class AuthServiceImpl implements IAuthService {
   @Override
   @Transactional
   public void registerProfessional(RegisterProfessionalDto dto) {
-    String hashPassword = cryptoService.hashText(dto.password());
+    String hashPassword = cryptoService.hashText(dto.getPassword());
 
 
     IBoundariesAdapter.IBoundaryInputAdapter boundaryInputAdapter = professionalInscriptionMapper.map(dto, hashPassword);
     ProfessionalInscriptionUseCase.Input input = ProfessionalInscriptionUseCase.Input.getUseCaseInput(boundaryInputAdapter);
     ProfessionalInscriptionUseCase.Output output = professionalInscriptionUseCase.execute(input);
 
-    // Gneration des tokens pour l'email + envoie email
-    authServiceHelper.finalizeProfessionalRegister(dto.email());
+    // Test sauvegarde fichier
+    try {
+      fileService.uploadFile(dto.getFile1());
+    } catch (IOException e) {
+      throw new InternalException( messageService.getMessage("transfer.file.error"));
+    }
+
+    // Generation des tokens pour l'email + envoie email
+    authServiceHelper.finalizeProfessionalRegister(dto.getEmail());
   }
 
   @Override

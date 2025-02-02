@@ -87,6 +87,10 @@
                 <crypto.algorithm>AES/CBC/PKCS5Padding</crypto.algorithm>
                 <crypto.secret.key.algo>PBKDF2WithHmacSHA256</crypto.secret.key.algo>
 
+                <!--AWS -->
+                <aws.region>eu-central-1</aws.region>
+                <aws.bucket.name>lalamiam-app</aws.bucket.name>
+
                 <war.name>lalamiam-app</war.name>
 
 

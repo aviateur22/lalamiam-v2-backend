@@ -13,27 +13,27 @@ public record ProfessionalRegisterBoundaryInputImpl(RegisterProfessionalDto dto,
 
   @Override
   public String getEmail() {
-    return dto.email();
+    return dto.getEmail();
   }
 
   @Override
   public String getNickName() {
-    return dto.nickname();
+    return dto.getNickname();
   }
 
   @Override
   public String getLastName() {
-    return dto.lastName();
+    return dto.getLastName();
   }
 
   @Override
   public String getFirstName() {
-    return dto.firstName();
+    return dto.getFirstName();
   }
 
   @Override
   public String getPhone() {
-    return dto.phone();
+    return dto.getPhone();
   }
 
   @Override

@@ -4,32 +4,108 @@ import com.ctoutweb.lalamiam.infra.annotation.custom.PasswordConstraint;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.web.multipart.MultipartFile;
 
-public record RegisterProfessionalDto(
+public class RegisterProfessionalDto {
         @NotNull(message = "{email.missing}")
         @NotBlank(message = "{email.missing}")
         @Email(message = "{email.bad.format}")
-        String email,
+        private String email;
 
         @PasswordConstraint(message = "{password.bad.format}")
-        String password,
+        private String password;
 
         @NotNull(message = "{nickname.missing}")
         @NotBlank(message = "{nickname.missing}")
-        String nickname,
+        private String nickname;
 
         @NotNull(message = "{firstname.missing}")
         @NotBlank(message = "{firstname.missing}")
-        String firstName,
+        private String firstName;
 
         @NotNull(message = "{lastname.missing}")
         @NotBlank(message = "{lastname.missing}")
-        String lastName,
+        private String lastName;
 
         @NotNull(message = "{phone.missing}")
         @NotBlank(message = "{phone.missing}")
-        String phone,
+        private String phone;
+
+        private MultipartFile file1;
+
+        private MultipartFile file2;
         @NotNull(message = "{captcha.response.missing}")
-        UserCaptchaResponseDto userCaptchaResponse
-) {
+        private UserCaptchaResponseDto userCaptchaResponse;
+
+        public String getEmail() {
+                return email;
+        }
+
+        public void setEmail(String email) {
+                this.email = email;
+        }
+
+        public String getPassword() {
+                return password;
+        }
+
+        public void setPassword(String password) {
+                this.password = password;
+        }
+
+        public String getNickname() {
+                return nickname;
+        }
+
+        public void setNickname(String nickname) {
+                this.nickname = nickname;
+        }
+
+        public String getFirstName() {
+                return firstName;
+        }
+
+        public void setFirstName(String firstName) {
+                this.firstName = firstName;
+        }
+
+        public String getLastName() {
+                return lastName;
+        }
+
+        public void setLastName(String lastName) {
+                this.lastName = lastName;
+        }
+
+        public String getPhone() {
+                return phone;
+        }
+
+        public void setPhone(String phone) {
+                this.phone = phone;
+        }
+
+        public MultipartFile getFile1() {
+                return file1;
+        }
+
+        public void setFile1(MultipartFile file1) {
+                this.file1 = file1;
+        }
+
+        public MultipartFile getFile2() {
+                return file2;
+        }
+
+        public void setFile2(MultipartFile file2) {
+                this.file2 = file2 != null ? file2 : null;
+        }
+
+        public UserCaptchaResponseDto getUserCaptchaResponse() {
+                return userCaptchaResponse;
+        }
+
+        public void setUserCaptchaResponse(UserCaptchaResponseDto userCaptchaResponse) {
+                this.userCaptchaResponse = userCaptchaResponse;
+        }
 }

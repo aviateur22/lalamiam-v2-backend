@@ -24,6 +24,10 @@ public class HandlerException {
     this.messageService = messageService;
   }
 
+  @ExceptionHandler(value = {InternalException.class})
+  public ResponseEntity<IErrorMessage> internalException(InternalException exception) {
+    return new ResponseEntity<>(factory.getErrorMessageImpl(exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+  }
   @ExceptionHandler(value = {com.ctoutweb.lalamiam.infra.exception.BadRequestException.class})
   public ResponseEntity<IErrorMessage> badRequestException(com.ctoutweb.lalamiam.infra.exception.BadRequestException badRequestException) {
     return new ResponseEntity<>(factory.getErrorMessageImpl(badRequestException.getMessage()), HttpStatus.BAD_REQUEST);

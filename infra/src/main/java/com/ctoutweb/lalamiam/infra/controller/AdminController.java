@@ -1,16 +1,13 @@
 package com.ctoutweb.lalamiam.infra.controller;
 
-import com.ctoutweb.lalamiam.core.useCase.professionalToActivateList.useCase.AdminDisplayProfessionalToActivateListUseCase;
 import com.ctoutweb.lalamiam.infra.dto.admin.ActivateProfessionalDto;
+import com.ctoutweb.lalamiam.infra.dto.admin.activateProfessional.ProfessionalToActivateDetailDto;
 import com.ctoutweb.lalamiam.infra.dto.admin.activateProfessional.ProfessionalToActivateResumeDto;
 import com.ctoutweb.lalamiam.infra.dto.admin.activateProfessional.ProfessionalToActivateResumeListDto;
 import com.ctoutweb.lalamiam.infra.service.IAdminService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +27,13 @@ public class AdminController {
     List<ProfessionalToActivateResumeDto> professionals = adminService.findProfessionalsToActivates();
 
     return new ResponseEntity<>(new ProfessionalToActivateResumeListDto(professionals), HttpStatus.OK);
+  }
+
+  @GetMapping("/professional-detail/email/{professionalEmail}")
+  public ResponseEntity<ProfessionalToActivateDetailDto> getProfessionalDetail(@PathVariable("professionalEmail")
+     String professionalEmail) {
+    ProfessionalToActivateDetailDto dto = adminService.findProfessionalDetail(professionalEmail);
+    return new ResponseEntity<>(dto, HttpStatus.OK);
   }
 
   @PostMapping("/activate-professional-account")

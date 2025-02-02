@@ -23,6 +23,9 @@ public class DateUtility {
    * @return ZonedDateTime
    */
   public static ZonedDateTime uctToZonedDateTime(ZoneId zoneId, ZonedDateTime utcTime) {
+    if(utcTime == null)
+      return null;
+
     return utcTime.withZoneSameInstant(zoneId);
   }
 

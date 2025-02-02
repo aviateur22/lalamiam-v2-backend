@@ -14,8 +14,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Validator;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
@@ -56,13 +58,13 @@ public class AuthController {
     return new ResponseEntity<>(factory.getMessageResponseImpl(messageService.getMessage("register.success")), HttpStatus.OK);
   }
 
-  @PostMapping("/register-professional")
-  ResponseEntity<IMessageResponse> registerProfessional(@RequestBody RegisterProfessionalDto registerProfessionalDto) {
+  @PostMapping(value = "/register-professional", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+  ResponseEntity<IMessageResponse> registerProfessional(@ModelAttribute RegisterProfessionalDto registerProfessionalDto) {
     // Validation dto
     factory.getImpl(registerProfessionalDto).validateDto(validator);
 
     // Validation captcha
-    if(!securityService.isUserCaptchaResponseValid(registerProfessionalDto.userCaptchaResponse()))
+    if(!securityService.isUserCaptchaResponseValid(registerProfessionalDto.getUserCaptchaResponse()))
       throw new BadRequestException(messageService.getMessage("captcha.invalid.response"));
 
     // Creation compte client
