@@ -1,6 +1,7 @@
 package com.ctoutweb.lalamiam.infra.service.impl;
 
 import com.ctoutweb.lalamiam.infra.service.FileService;
+import com.ctoutweb.lalamiam.infra.utility.TextUtility;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,8 @@ import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 import java.io.*;
+
+import static com.ctoutweb.lalamiam.infra.constant.ApplicationConstant.AWS_S3_PATH;
 
 @Service
 public class FileServiceImpl implements FileService {
@@ -32,9 +35,6 @@ public class FileServiceImpl implements FileService {
 
   @PostConstruct
   public void checkCredentials() {
-    System.out.println("AWS Access Key: " + accessKey);
-    System.out.println("AWS Secret Key: " + secretKey);
-
 
     var credentials = AwsBasicCredentials.create(accessKey, secretKey);
     client = S3Client
@@ -45,12 +45,17 @@ public class FileServiceImpl implements FileService {
   }
   @Override
   public String uploadFile(MultipartFile file) throws IOException {
+    // Génération d'un nom de fichier
+    String randomFileName = TextUtility.getRandomNameUUID();
 
+    // Flux sur le fichier
     InputStream inputStream = file.getInputStream();
 
-    PutObjectRequest putObjectRequest = PutObjectRequest.builder().bucket(bucketName).key(file.getOriginalFilename()).build();
-    var response = client.putObject(putObjectRequest, RequestBody.fromInputStream(inputStream, file.getSize()));
-    return "https://" + bucketName + ".s3." + region + ".amazonaws.com/" + file.getName();
+    PutObjectRequest putObjectRequest = PutObjectRequest.builder().bucket(bucketName).key(randomFileName).build();
+    client.putObject(putObjectRequest, RequestBody.fromInputStream(inputStream, file.getSize()));
+
+    // Renvoie le path du fichier sur AWS
+    return String.format(AWS_S3_PATH, bucketName, region, randomFileName);
 
   }
 
@@ -71,4 +76,5 @@ public class FileServiceImpl implements FileService {
     }
     return new ByteArrayInputStream(file.getBytes()); // No need for a physical file
   }
+
 }

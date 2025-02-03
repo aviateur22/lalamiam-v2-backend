@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 
 public class TextUtility {
   private static final Logger LOGGER = LogManager.getLogger();
@@ -50,5 +51,15 @@ public class TextUtility {
       initialText =   initialText.replace(k.getKey(), k.getValue());
     }
     return initialText;
+  }
+
+
+  /**
+   * Génération d'un String Aléatoire de type UUID
+   * @return String
+   */
+  public static String getRandomNameUUID() {
+    byte[] timeNow = ("time now" +" " + System.currentTimeMillis()).getBytes();
+    return UUID.nameUUIDFromBytes(timeNow).toString();
   }
 }

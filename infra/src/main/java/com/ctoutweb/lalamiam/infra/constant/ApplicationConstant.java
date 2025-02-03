@@ -62,4 +62,7 @@ public class ApplicationConstant {
   // TEMPS POUR REGENERER SONT PASSWORD
   public static final int LOST_PASSWORD_TOKEN_VALIDITY = 2;
 
+  // PATH GENERIQUE FICHIER AWS
+  public static final String AWS_S3_PATH = "https://%s.s3.%s.amazonaws.com/%s";
+
 }

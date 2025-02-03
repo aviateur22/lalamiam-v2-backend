@@ -1,5 +1,7 @@
 package com.ctoutweb.lalamiam.core.useCase.professionalInscription.adapter;
 
-public interface IProfessioanlInscriptionOutput {
-  public String getResponseMessage();
+import com.ctoutweb.lalamiam.core.useCase.base.adapter.IResponse;
+
+public interface IProfessioanlInscriptionOutput extends IResponse {
+  Long getProfessionalId();
 }
