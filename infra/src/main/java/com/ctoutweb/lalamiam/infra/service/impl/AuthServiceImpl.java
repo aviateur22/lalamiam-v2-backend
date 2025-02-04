@@ -5,7 +5,7 @@ import com.ctoutweb.lalamiam.core.adapter.professionalInscription.*;
 import com.ctoutweb.lalamiam.core.exception.ConflictException;
 import com.ctoutweb.lalamiam.core.useCase.impl.ClientInscriptionUseCase;
 import com.ctoutweb.lalamiam.core.useCase.impl.ProfessionalInscriptionUseCase;
-import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.adapter.IProfessionalInscriptionConfirmationInput;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.port.IProfessionalInscriptionConfirmationInput;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.useCase.ProfessionalInscriptionConfirmationUseCase;
 import com.ctoutweb.lalamiam.infra.dto.*;
 import com.ctoutweb.lalamiam.infra.exception.AuthException;

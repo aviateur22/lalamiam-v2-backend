@@ -1,6 +1,6 @@
 package com.ctoutweb.lalamiam.infra.core.model;
 
-import com.ctoutweb.lalamiam.core.useCase.base.adapter.IProfessionalAccountInformation;
+import com.ctoutweb.lalamiam.core.useCase.base.gateway.IProfessionalAccountInformation;
 
 import java.time.ZonedDateTime;
 

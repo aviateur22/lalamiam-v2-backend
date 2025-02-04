@@ -1,12 +1,12 @@
 package com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.entity.impl;
 
 import com.ctoutweb.lalamiam.core.exception.BadRequestException;
-import com.ctoutweb.lalamiam.core.useCase.base.adapter.IProfessionalAccountInformation;
-import com.ctoutweb.lalamiam.core.useCase.base.adapter.IProfessionalInformation;
-import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.adapter.IProfessionalInscriptionConfirmationInput;
+import com.ctoutweb.lalamiam.core.useCase.base.gateway.IProfessionalAccountInformation;
+import com.ctoutweb.lalamiam.core.useCase.base.gateway.IProfessionalInformation;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.port.IProfessionalInscriptionConfirmationInput;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.entity.IProfessionalInscriptionConfirmation;
 import com.ctoutweb.lalamiam.core.provider.IMessageService;
-import com.ctoutweb.lalamiam.core.provider.IProfessionalInscriptionConfirmationRepository;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.gateway.IProfessionalInscriptionConfirmationRepository;
 
 import java.time.ZonedDateTime;
 

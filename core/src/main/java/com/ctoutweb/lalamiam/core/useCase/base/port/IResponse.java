@@ -1,4 +1,4 @@
-package com.ctoutweb.lalamiam.core.useCase.base.adapter;
+package com.ctoutweb.lalamiam.core.useCase.base.port;
 
 /**
  * Abstraction réponse du UseCase

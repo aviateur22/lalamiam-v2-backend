@@ -1,6 +1,6 @@
 package com.ctoutweb.lalamiam.infra.core.model;
 
-import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.adapter.IProfessionalInscriptionConfirmationInput;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.port.IProfessionalInscriptionConfirmationInput;
 
 public record ProfessionalRegisterConfirmationInputBoundaryImpl(String email)
         implements IProfessionalInscriptionConfirmationInput {

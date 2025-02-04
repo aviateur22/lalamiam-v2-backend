@@ -1,6 +1,4 @@
-package com.ctoutweb.lalamiam.core.useCase.base.adapter;
-
-import java.time.ZonedDateTime;
+package com.ctoutweb.lalamiam.core.useCase.base.gateway;
 
 public interface IProfessionalInformation {
   Long getProfessionalId();

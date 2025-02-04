@@ -9,7 +9,7 @@
 //import com.ctoutweb.lalamiam.core.exception.BadRequestException;
 //import com.ctoutweb.lalamiam.core.provider.IMessageService;
 //import com.ctoutweb.lalamiam.core.provider.INotificationService;
-//import com.ctoutweb.lalamiam.core.provider.IProfessionalInscriptionConfirmationRepository;
+//import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.gateway.IProfessionalInscriptionConfirmationRepository;
 //import com.ctoutweb.lalamiam.core.provider.IValidateTokenService;
 //import com.ctoutweb.lalamiam.core.useCase.InputBase;
 //import com.ctoutweb.lalamiam.core.useCase.UseCase;

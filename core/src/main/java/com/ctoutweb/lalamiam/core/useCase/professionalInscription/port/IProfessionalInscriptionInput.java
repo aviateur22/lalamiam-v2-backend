@@ -1,6 +1,6 @@
-package com.ctoutweb.lalamiam.core.useCase.professionalInscription.adapter;
+package com.ctoutweb.lalamiam.core.useCase.professionalInscription.port;
 
-import com.ctoutweb.lalamiam.core.useCase.clientInscription.adapter.IClientInscriptionInput;
+import com.ctoutweb.lalamiam.core.useCase.clientInscription.port.IClientInscriptionInput;
 
 import java.io.File;
 import java.util.List;

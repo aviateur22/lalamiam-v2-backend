@@ -2,10 +2,10 @@ package com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.u
 
 import com.ctoutweb.lalamiam.core.annotation.CoreService;
 import com.ctoutweb.lalamiam.core.factory.Factory;
-import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.adapter.IProfessioanlInscriptionConfirmationOutput;
-import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.adapter.IProfessionalInscriptionConfirmationInput;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.port.IProfessioanlInscriptionConfirmationOutput;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.port.IProfessionalInscriptionConfirmationInput;
 import com.ctoutweb.lalamiam.core.provider.IMessageService;
-import com.ctoutweb.lalamiam.core.provider.IProfessionalInscriptionConfirmationRepository;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.gateway.IProfessionalInscriptionConfirmationRepository;
 import com.ctoutweb.lalamiam.core.useCase.base.useCase.InputBaseNew;
 import com.ctoutweb.lalamiam.core.useCase.base.useCase.OutputBaseNew;
 import com.ctoutweb.lalamiam.core.useCase.UseCase;

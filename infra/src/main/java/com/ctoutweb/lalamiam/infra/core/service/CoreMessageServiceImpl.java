@@ -1,6 +1,6 @@
 package com.ctoutweb.lalamiam.infra.core.service;
 
-import com.ctoutweb.lalamiam.core.useCase.base.adapter.ICoreMessageService;
+import com.ctoutweb.lalamiam.core.useCase.base.gateway.ICoreMessageService;
 import com.ctoutweb.lalamiam.infra.service.IMessageService;
 import org.springframework.stereotype.Component;
 

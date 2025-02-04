@@ -1,6 +1,6 @@
-package com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.adapter.impl;
+package com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.port.impl;
 
-import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.adapter.IProfessioanlInscriptionConfirmationOutput;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.port.IProfessioanlInscriptionConfirmationOutput;
 
 public record ProfessionalInscriptionConfirmationOutputBoundaryImpl(String responseMessage) implements IProfessioanlInscriptionConfirmationOutput {
   @Override

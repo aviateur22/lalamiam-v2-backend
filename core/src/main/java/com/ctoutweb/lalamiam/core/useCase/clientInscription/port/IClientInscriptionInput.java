@@ -1,4 +1,4 @@
-package com.ctoutweb.lalamiam.core.useCase.clientInscription.adapter;
+package com.ctoutweb.lalamiam.core.useCase.clientInscription.port;
 
 public interface IClientInscriptionInput {
   String getHashPassword();

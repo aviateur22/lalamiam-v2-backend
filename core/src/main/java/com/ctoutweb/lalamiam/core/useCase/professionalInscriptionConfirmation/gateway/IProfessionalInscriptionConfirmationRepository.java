@@ -1,6 +1,6 @@
-package com.ctoutweb.lalamiam.core.provider;
+package com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.gateway;
 
-import com.ctoutweb.lalamiam.core.useCase.base.adapter.IProfessionalInformation;
+import com.ctoutweb.lalamiam.core.useCase.base.gateway.IProfessionalInformation;
 
 public interface IProfessionalInscriptionConfirmationRepository {
 

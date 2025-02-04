@@ -5,8 +5,8 @@ import com.ctoutweb.lalamiam.core.useCase.adminDisplayProfessionalDetail.adapter
 import com.ctoutweb.lalamiam.core.useCase.adminDisplayProfessionalDetail.adapter.IAdminDisplayProfessionalDetailRepository;
 import com.ctoutweb.lalamiam.core.useCase.adminDisplayProfessionalDetail.adapter.IProfessionalDetail;
 import com.ctoutweb.lalamiam.core.useCase.adminDisplayProfessionalDetail.useCase.AdminDisplayProfessionalDetailUseCase;
-import com.ctoutweb.lalamiam.core.useCase.base.adapter.ICoreMessageService;
-import com.ctoutweb.lalamiam.core.useCase.base.adapter.ICoreEmailService;
+import com.ctoutweb.lalamiam.core.useCase.base.gateway.ICoreMessageService;
+import com.ctoutweb.lalamiam.core.useCase.base.gateway.ICoreEmailService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

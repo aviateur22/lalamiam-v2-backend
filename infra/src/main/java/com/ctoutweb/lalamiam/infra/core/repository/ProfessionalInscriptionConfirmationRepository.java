@@ -1,8 +1,8 @@
 package com.ctoutweb.lalamiam.infra.core.repository;
 
-import com.ctoutweb.lalamiam.core.provider.IProfessionalInscriptionConfirmationRepository;
-import com.ctoutweb.lalamiam.core.useCase.base.adapter.IProfessionalAccountInformation;
-import com.ctoutweb.lalamiam.core.useCase.base.adapter.IProfessionalInformation;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.gateway.IProfessionalInscriptionConfirmationRepository;
+import com.ctoutweb.lalamiam.core.useCase.base.gateway.IProfessionalAccountInformation;
+import com.ctoutweb.lalamiam.core.useCase.base.gateway.IProfessionalInformation;
 import com.ctoutweb.lalamiam.infra.core.factory.CoreFactory;
 import com.ctoutweb.lalamiam.infra.core.mapper.ProfessionalInformationMapper;
 import com.ctoutweb.lalamiam.infra.repository.IProfessionalAccountRepository;

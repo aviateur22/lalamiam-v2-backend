@@ -1,7 +1,7 @@
 package com.ctoutweb.lalamiam.infra.core.model;
 
-import com.ctoutweb.lalamiam.core.useCase.base.adapter.IProfessionalAccountInformation;
-import com.ctoutweb.lalamiam.core.useCase.base.adapter.IProfessionalInformation;
+import com.ctoutweb.lalamiam.core.useCase.base.gateway.IProfessionalAccountInformation;
+import com.ctoutweb.lalamiam.core.useCase.base.gateway.IProfessionalInformation;
 
 public record ProfessionalInformationImpl(Long professionalId, String email, IProfessionalAccountInformation professionalAccountInformation) implements IProfessionalInformation {
   @Override

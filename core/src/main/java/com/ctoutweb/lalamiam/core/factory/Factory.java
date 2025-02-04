@@ -1,15 +1,13 @@
 package com.ctoutweb.lalamiam.core.factory;
 
-import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.adapter.IProfessioanlInscriptionConfirmationOutput;
-import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.adapter.IProfessionalInscriptionConfirmationInput;
-import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.adapter.impl.ProfessionalInscriptionConfirmationInputBoundaryImpl;
-import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.adapter.impl.ProfessionalInscriptionConfirmationOutputBoundaryImpl;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.port.IProfessioanlInscriptionConfirmationOutput;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.port.IProfessionalInscriptionConfirmationInput;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.port.impl.ProfessionalInscriptionConfirmationInputBoundaryImpl;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.port.impl.ProfessionalInscriptionConfirmationOutputBoundaryImpl;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.entity.IProfessionalInscriptionConfirmation;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.entity.impl.ProfessionalInscriptionConfirmationImpl;
 import com.ctoutweb.lalamiam.core.provider.IMessageService;
-import com.ctoutweb.lalamiam.core.provider.IProfessionalInscriptionConfirmationRepository;
-
-import java.util.List;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.gateway.IProfessionalInscriptionConfirmationRepository;
 
 public class Factory {
 

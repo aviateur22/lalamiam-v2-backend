@@ -2,14 +2,14 @@ package com.ctoutweb.lalamiam.core.useCase.adminDisplayProfessionalDetail.useCas
 
 import com.ctoutweb.lalamiam.core.annotation.CoreService;
 import com.ctoutweb.lalamiam.core.exception.BadRequestException;
-import com.ctoutweb.lalamiam.core.useCase.base.adapter.ICoreMessageService;
+import com.ctoutweb.lalamiam.core.useCase.base.gateway.ICoreMessageService;
 import com.ctoutweb.lalamiam.core.useCase.UseCase;
 import com.ctoutweb.lalamiam.core.useCase.adminDisplayProfessionalDetail.adapter.IAdminDisplayProfessionalDetailInput;
 import com.ctoutweb.lalamiam.core.useCase.adminDisplayProfessionalDetail.adapter.IAdminDisplayProfessionalDetailOutput;
 import com.ctoutweb.lalamiam.core.useCase.adminDisplayProfessionalDetail.adapter.IAdminDisplayProfessionalDetailRepository;
 import com.ctoutweb.lalamiam.core.useCase.adminDisplayProfessionalDetail.adapter.IProfessionalDetail;
 import com.ctoutweb.lalamiam.core.useCase.adminDisplayProfessionalDetail.factory.Factory;
-import com.ctoutweb.lalamiam.core.useCase.base.adapter.ICoreEmailService;
+import com.ctoutweb.lalamiam.core.useCase.base.gateway.ICoreEmailService;
 import com.ctoutweb.lalamiam.core.useCase.base.useCase.InputBaseNew;
 import com.ctoutweb.lalamiam.core.useCase.base.useCase.OutputBaseNew;
 
