@@ -1,9 +1,8 @@
 package com.ctoutweb.lalamiam.infra.core.repository;
 
-import com.ctoutweb.lalamiam.core.entity.clientInscription.IClientInscription.ICreatedClient;
-import com.ctoutweb.lalamiam.core.entity.clientInscription.IClientInscription.ICreatedRole;
-import com.ctoutweb.lalamiam.core.entity.clientInscription.IClientInscription.ICreatedAccount;
-import com.ctoutweb.lalamiam.core.provider.IClientInscriptionRepository;
+import com.ctoutweb.lalamiam.core.useCase.clientInscription.gateway.IClientInscriptionRepository;
+import com.ctoutweb.lalamiam.core.useCase.clientInscription.gateway.ICreatedAccount;
+import com.ctoutweb.lalamiam.core.useCase.clientInscription.gateway.ICreatedClient;
 import com.ctoutweb.lalamiam.infra.core.factory.CoreFactory;
 import com.ctoutweb.lalamiam.infra.repository.IRoleUserRepository;
 import com.ctoutweb.lalamiam.infra.repository.IUserAccountRepository;
@@ -34,13 +33,13 @@ public class ClientInscriptionRepositoryImpl implements IClientInscriptionReposi
   }
 
   @Override
-  public ICreatedClient findUserByEmail(String email) {
+  public Boolean isEmailAvailable(String email) {
     UserEntity findUserByMail = userRepository.findByEmail(email).orElse(null);
 
     if(findUserByMail == null)
-      return null;
+      return true;
 
-    return factory.getImlpl(findUserByMail);
+    return false;
   }
 
   @Override
@@ -53,11 +52,13 @@ public class ClientInscriptionRepositoryImpl implements IClientInscriptionReposi
 
     UserEntity addUser = userRepository.save(user);
 
-    return factory.getImlpl(addUser);
+    // Création des rols utilisateurs
+    Long roleId = createRoleClient(addUser.getId());
+
+    return factory.getImlpl(addUser.getId(), roleId);
   }
 
-  @Override
-  public ICreatedRole createRoleClient(long clientId, int clientRoleId) {
+  private Long createRoleClient(long clientId) {
 
     RoleUserEntity roleUser = new RoleUserEntity();
 
@@ -71,7 +72,8 @@ public class ClientInscriptionRepositoryImpl implements IClientInscriptionReposi
     roleUser.setRole(role);
 
     RoleUserEntity addRoleUser = roleUserRepository.save(roleUser);
-    return factory.getImpl(addRoleUser);
+
+    return addRoleUser.getId();
   }
 
   @Override

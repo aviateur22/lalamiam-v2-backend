@@ -1,15 +1,13 @@
 package com.ctoutweb.lalamiam.core.provider;
 
-import com.ctoutweb.lalamiam.core.adapter.professionalInscription.IBoundariesAdapter.IBoundaryInputAdapter;
-import com.ctoutweb.lalamiam.core.entity.professionalInscription.IProfessionalInscription.ICreatedProfessional;
-import com.ctoutweb.lalamiam.core.entity.professionalInscription.IProfessionalInscription.ICreatedProfessionalAccount;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscription.gateway.ICreatedProfessional;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscription.gateway.ICreatedProfessionalAccount;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscription.port.IProfessionalInscriptionInput;
 
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 
 
 public interface IProfessionalInscriptionRepository {
-public ICreatedProfessional addProfessional (Long clientId, IBoundaryInputAdapter boundaryInputAdapter);
+public ICreatedProfessional addProfessional (Long clientId, IProfessionalInscriptionInput professionalInscriptionInput);
 
   public ICreatedProfessionalAccount addProfessionalAccount(Long professionalId);
 }

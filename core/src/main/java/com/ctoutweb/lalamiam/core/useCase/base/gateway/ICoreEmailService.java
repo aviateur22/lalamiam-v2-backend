@@ -3,6 +3,12 @@ package com.ctoutweb.lalamiam.core.useCase.base.gateway;
 public interface ICoreEmailService {
 
   /**
+   * Envoie d'un email pour activer un compte d'un client
+   * @param clientEmail
+   */
+  public void sendClientEmailRegisterActivation(String clientEmail);
+
+  /**
    * Envoie d'un email pour demander la confirmation d'inscription a un professionel
    * @param professionalEmail
    */

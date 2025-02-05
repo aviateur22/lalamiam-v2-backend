@@ -1,10 +1,10 @@
 package com.ctoutweb.lalamiam.infra.service.impl;
 
-import com.ctoutweb.lalamiam.core.adapter.clientInscription.boundary.IBoundariesAdapter.IBoundaryInputAdapter;
-import com.ctoutweb.lalamiam.core.adapter.professionalInscription.*;
 import com.ctoutweb.lalamiam.core.exception.ConflictException;
-import com.ctoutweb.lalamiam.core.useCase.impl.ClientInscriptionUseCase;
-import com.ctoutweb.lalamiam.core.useCase.impl.ProfessionalInscriptionUseCase;
+import com.ctoutweb.lalamiam.core.useCase.clientInscription.port.IClientInscriptionInput;
+import com.ctoutweb.lalamiam.core.useCase.clientInscription.useCase.ClientInscriptionUseCase;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscription.port.IProfessionalInscriptionInput;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscription.useCase.ProfessionalInscriptionUseCase;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.port.IProfessionalInscriptionConfirmationInput;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.useCase.ProfessionalInscriptionConfirmationUseCase;
 import com.ctoutweb.lalamiam.infra.dto.*;
@@ -12,8 +12,8 @@ import com.ctoutweb.lalamiam.infra.exception.AuthException;
 import com.ctoutweb.lalamiam.infra.exception.BadRequestException;
 import com.ctoutweb.lalamiam.infra.exception.InternalException;
 import com.ctoutweb.lalamiam.infra.service.helper.AuthServiceHelper;
-import com.ctoutweb.lalamiam.infra.core.mapper.ProfessionalInscriptionBoundaryInputMapper;
-import com.ctoutweb.lalamiam.infra.core.mapper.ClientInscriptionBoundaryInputMapper;
+import com.ctoutweb.lalamiam.infra.core.mapper.ProfessionalInscriptionInputMapper;
+import com.ctoutweb.lalamiam.infra.core.mapper.ClientInscriptionInputMapper;
 import com.ctoutweb.lalamiam.infra.factory.Factory;
 import com.ctoutweb.lalamiam.infra.core.mapper.ProfessionalRegisterConfirmationInputMapper;
 import com.ctoutweb.lalamiam.infra.model.IApiLanguage;
@@ -44,8 +44,8 @@ public class AuthServiceImpl implements IAuthService {
   private final ClientInscriptionUseCase clientInscriptionUseCase;
   private final ProfessionalInscriptionUseCase professionalInscriptionUseCase;
   private final ProfessionalInscriptionConfirmationUseCase professionalInscriptionConfirmationUseCase;
-  private final ClientInscriptionBoundaryInputMapper clientInscriptionMapper;
-  private final ProfessionalInscriptionBoundaryInputMapper professionalInscriptionMapper;
+  private final ClientInscriptionInputMapper clientInscriptionMapper;
+  private final ProfessionalInscriptionInputMapper professionalInscriptionMapper;
   private final ProfessionalRegisterConfirmationInputMapper professionalRegisterConfirmationInputMapper;
 
   private final FileService fileService;
@@ -60,10 +60,10 @@ public class AuthServiceImpl implements IAuthService {
           ClientInscriptionUseCase clientInscriptionUseCase,
           Factory factory,
           ProfessionalInscriptionUseCase professionalInscriptionUseCase,
-          ClientInscriptionBoundaryInputMapper clientInscriptionMapper,
+          ClientInscriptionInputMapper clientInscriptionMapper,
           ICryptoService cryptoService,
           ProfessionalInscriptionConfirmationUseCase professionalInscriptionConfirmationUseCase,
-          ProfessionalInscriptionBoundaryInputMapper professionalInscriptionMapper,
+          ProfessionalInscriptionInputMapper professionalInscriptionMapper,
           ProfessionalRegisterConfirmationInputMapper professionalRegisterConfirmationInputMapper,
           FileService fileService, AuthServiceHelper authServiceHelper) {
     this.apiLanguage = apiLanguage;
@@ -86,8 +86,11 @@ public class AuthServiceImpl implements IAuthService {
   @Transactional
   public void registerClient(RegisterClientDto dto) throws ConflictException {
       String hashPassword = cryptoService.hashText(dto.password());
-      IBoundaryInputAdapter boundaryInputAdapter = clientInscriptionMapper.map(dto, hashPassword);
-      ClientInscriptionUseCase.Input input = ClientInscriptionUseCase.Input.getUseCaseInput(boundaryInputAdapter);
+      IClientInscriptionInput clientInscriptionInformation = clientInscriptionMapper.map(dto, hashPassword);
+
+      // Valide l'envoie d'email apres l'inscription
+      clientInscriptionUseCase.setEmailToSend(true);
+      ClientInscriptionUseCase.Input input = ClientInscriptionUseCase.Input.getInput(clientInscriptionInformation);
       ClientInscriptionUseCase.Output output = clientInscriptionUseCase.execute(input);
   }
 
@@ -97,8 +100,8 @@ public class AuthServiceImpl implements IAuthService {
     String hashPassword = cryptoService.hashText(dto.getPassword());
 
 
-    IBoundariesAdapter.IBoundaryInputAdapter boundaryInputAdapter = professionalInscriptionMapper.map(dto, hashPassword);
-    ProfessionalInscriptionUseCase.Input input = ProfessionalInscriptionUseCase.Input.getUseCaseInput(boundaryInputAdapter);
+    IProfessionalInscriptionInput professionalInscriptionInput = professionalInscriptionMapper.map(dto, hashPassword);
+    ProfessionalInscriptionUseCase.Input input = ProfessionalInscriptionUseCase.Input.getInput(professionalInscriptionInput);
     ProfessionalInscriptionUseCase.Output output = professionalInscriptionUseCase.execute(input);
 
     // Test sauvegarde fichier

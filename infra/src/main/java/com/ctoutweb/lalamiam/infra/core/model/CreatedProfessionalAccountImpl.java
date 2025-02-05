@@ -1,6 +1,6 @@
 package com.ctoutweb.lalamiam.infra.core.model;
 
-import com.ctoutweb.lalamiam.core.entity.professionalInscription.IProfessionalInscription.ICreatedProfessionalAccount;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscription.gateway.ICreatedProfessionalAccount;
 
 public record CreatedProfessionalAccountImpl(Long accountId) implements ICreatedProfessionalAccount {
   @Override

@@ -1,8 +1,9 @@
 package com.ctoutweb.lalamiam.core.useCase.professionalInscription.useCase;
 
-import com.ctoutweb.lalamiam.core.provider.IMessageService;
+import com.ctoutweb.lalamiam.core.annotation.CoreService;
 import com.ctoutweb.lalamiam.core.useCase.UseCase;
 import com.ctoutweb.lalamiam.core.useCase.base.gateway.ICoreEmailService;
+import com.ctoutweb.lalamiam.core.useCase.base.gateway.ICoreMessageService;
 import com.ctoutweb.lalamiam.core.useCase.base.useCase.InputBaseNew;
 import com.ctoutweb.lalamiam.core.useCase.base.useCase.OutputBaseNew;
 import com.ctoutweb.lalamiam.core.useCase.clientInscription.useCase.ClientInscriptionUseCase;
@@ -12,11 +13,12 @@ import com.ctoutweb.lalamiam.core.useCase.professionalInscription.gateway.IProfe
 import com.ctoutweb.lalamiam.core.useCase.professionalInscription.entity.IProfessionalInscriptionRules;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscription.factory.Factory;
 
+@CoreService
 public class ProfessionalInscriptionUseCase implements UseCase<ProfessionalInscriptionUseCase.Input, ProfessionalInscriptionUseCase.Output> {
   private final IProfessionalInscriptionRules professionalInscriptionRules;
   public ProfessionalInscriptionUseCase(
           ClientInscriptionUseCase clientInscriptionUseCase,
-          IMessageService messageService,
+          ICoreMessageService messageService,
           IProfessionalInscriptionRepository professionalInscriptionRepository,
           ICoreEmailService coreEmailService) {
     this.professionalInscriptionRules = Factory.getProfessionalInscriptionImpl(
@@ -31,8 +33,7 @@ public class ProfessionalInscriptionUseCase implements UseCase<ProfessionalInscr
     IProfessionalInscriptionInput professionalInscriptionInformation =  input.getInputBoundaryImplementation();
 
     IProfessioanlInscriptionOutput output= professionalInscriptionRules
-            .isProfessionalEmailAvailable(professionalInscriptionInformation)
-            .createUserAccount()
+            .createUserAccount(professionalInscriptionInformation)
             .registerProfessional()
             .saveProfessionalInscriptionDocument()
             .createProfessionalAccount()
@@ -48,7 +49,11 @@ public class ProfessionalInscriptionUseCase implements UseCase<ProfessionalInscr
     }
     @Override
     protected IProfessionalInscriptionInput getInputBoundaryImplementation() {
-      return null;
+      return inputBoundaryAdapter;
+    }
+
+    public static ProfessionalInscriptionUseCase.Input getInput(IProfessionalInscriptionInput professionalInscriptionInformation) {
+      return new Input(professionalInscriptionInformation);
     }
   }
 

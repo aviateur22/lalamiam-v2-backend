@@ -15,7 +15,6 @@ import com.ctoutweb.lalamiam.core.entity.cryptographic.CryptographicType;
 import com.ctoutweb.lalamiam.core.entity.cryptographic.ICryptography;
 import com.ctoutweb.lalamiam.core.entity.professionalInscription.IProfessionalInscription;
 import com.ctoutweb.lalamiam.core.entity.professionalInscriptionConfirmation.IProfessionalInscriptionConfirmation;
-import com.ctoutweb.lalamiam.core.entity.professionalInscriptionConfirmation.impl.boundary.BoundaryOutputImpl;
 import com.ctoutweb.lalamiam.core.provider.ICaptchaConfiguration;
 import com.ctoutweb.lalamiam.core.provider.ICaptchaRepository;
 import com.ctoutweb.lalamiam.core.provider.IMessageService;
@@ -73,94 +72,7 @@ public class DataForTest {
 
       }
     };
-  }
-  public static com.ctoutweb.lalamiam.core.adapter.professionalInscription.IBoundariesAdapter.IBoundaryInputAdapter fakeProfessionalInscriptionInformationAdapter() {
-    com.ctoutweb.lalamiam.core.adapter.professionalInscription.IBoundariesAdapter.IBoundaryInputAdapter professionalInscriptionInformationAdapter = new com.ctoutweb.lalamiam.core.adapter.professionalInscription.IBoundariesAdapter.IBoundaryInputAdapter() {
-
-      @Override
-      public String getLastName() {
-        return "bobo";
-      }
-
-      @Override
-      public String getFirstName() {
-        return "my first nickname";
-      }
-
-      @Override
-      public String getPhone() {
-        return "06 23 27 41 01";
-      }
-
-      @Override
-      public List<String> getDocuments() {
-        return List.of(
-                "document-1"
-        );
-     }
-
-      @Override
-      public String getHashPassword() {
-        return "clientHashpassword";
-      }
-
-      @Override
-      public String getEmail() {
-        return "bob@marley.com";
-      }
-
-      @Override
-      public String getNickName() {
-        return "fffgg";
-      }
-
-    };
-
-    return professionalInscriptionInformationAdapter;
-  }
-
-  public static com.ctoutweb.lalamiam.core.entity.professionalInscription.impl.boundary.BoundaryOutputImpl fakeProfessionalInscriptionResult() {
-    return new com.ctoutweb.lalamiam.core.entity.professionalInscription.impl.boundary.BoundaryOutputImpl(1l, "message réponse");
-  }
-  public static BoundaryOutputImpl professionalInscriptionConfirmmationResult(boolean isConfirmationValid) {
-    return new BoundaryOutputImpl(isConfirmationValid, "fakeMessage");
-  }
-  public static com.ctoutweb.lalamiam.core.adapter.clientInscription.boundary.IBoundariesAdapter.IBoundaryInputAdapter fakeClientInscriptionAdapter() {
-
-    return new com.ctoutweb.lalamiam.core.adapter.clientInscription.boundary.IBoundariesAdapter.IBoundaryInputAdapter() {
-
-      @Override
-      public String getHashPassword() {
-        return "hashpassword";
-      }
-
-      @Override
-      public String getEmail() {
-        return "monemail@hotmail.fr";
-      }
-
-      @Override
-      public String getNickName() {
-        return "mon nom";
-      }
-    };
-  }
-  public static com.ctoutweb.lalamiam.core.entity.clientInscription.impl.boundaries.BoundaryOutputImpl userInscriptionResponse() {
-    return new com.ctoutweb.lalamiam.core.entity.clientInscription.impl.boundaries.BoundaryOutputImpl("reponse message", 1l);
-  }
-  public static com.ctoutweb.lalamiam.core.adapter.clientInscription.boundary.IBoundariesAdapter.IBoundaryOutputAdapter userInscriptionResponseAdapter() {
-    return new com.ctoutweb.lalamiam.core.adapter.clientInscription.boundary.IBoundariesAdapter.IBoundaryOutputAdapter() {
-      @Override
-      public Long getUserId() {
-        return 1L;
-      }
-
-      @Override
-      public String getResponseMessage() {
-        return "reponse message";
-      }
-    };
-  }
+ }
   public static IBoundariesAdapter.IBoundaryInputAdapter fakeUserCaptchaResponseAdapter() {
 
     return new IBoundariesAdapter.IBoundaryInputAdapter() {
@@ -293,24 +205,6 @@ public class DataForTest {
       @Override
       public LocalDateTime professionalAccountActivationAt() {
         return LocalDateTime.of(2022, 10,11, 23, 59, 59);
-      }
-    };
-  }
-  public static com.ctoutweb.lalamiam.core.adapter.professionalInscriptionConfirmation.IBoundariesAdapter.IBoundaryInputAdapter fakeProfessionalConfirmationInformationAdapter() {
-    return new com.ctoutweb.lalamiam.core.adapter.professionalInscriptionConfirmation.IBoundariesAdapter.IBoundaryInputAdapter() {
-      @Override
-      public String getProfessionalEmailToken() {
-        return null;
-      }
-
-      @Override
-      public String getProfessionalUrlToken() {
-        return null;
-      }
-
-      @Override
-      public String getProfessionalEmail() {
-        return null;
       }
     };
   }

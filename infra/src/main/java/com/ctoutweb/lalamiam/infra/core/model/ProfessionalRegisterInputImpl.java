@@ -1,11 +1,12 @@
 package com.ctoutweb.lalamiam.infra.core.model;
 
-import com.ctoutweb.lalamiam.core.adapter.professionalInscription.IBoundariesAdapter.IBoundaryInputAdapter;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscription.port.IProfessionalInscriptionInput;
 import com.ctoutweb.lalamiam.infra.dto.RegisterProfessionalDto;
 
+import java.io.File;
 import java.util.List;
 
-public record ProfessionalRegisterBoundaryInputImpl(RegisterProfessionalDto dto, String haspassword) implements IBoundaryInputAdapter {
+public record ProfessionalRegisterInputImpl(RegisterProfessionalDto dto, String haspassword) implements IProfessionalInscriptionInput {
   @Override
   public String getHashPassword() {
     return haspassword;
@@ -37,7 +38,7 @@ public record ProfessionalRegisterBoundaryInputImpl(RegisterProfessionalDto dto,
   }
 
   @Override
-  public List<String> getDocuments() {
+  public List<File> getProfessionalInscriptionDocuments() {
     return null;
   }
 }

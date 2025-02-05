@@ -6,12 +6,6 @@ import java.io.File;
 import java.util.List;
 
 public interface IProfessionalInscriptionRepository {
-  /**
-   * Réchecrhe existance email professioanel
-   * @param professionalEmail String
-   * @return Boolean
-   */
-  public Boolean isProfessionalEmailAvailable (String professionalEmail);
 
   /**
    * Ajout du professionel

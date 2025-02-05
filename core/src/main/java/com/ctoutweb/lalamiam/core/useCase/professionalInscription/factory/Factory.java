@@ -1,7 +1,7 @@
 package com.ctoutweb.lalamiam.core.useCase.professionalInscription.factory;
 
-import com.ctoutweb.lalamiam.core.provider.IMessageService;
 import com.ctoutweb.lalamiam.core.useCase.base.gateway.ICoreEmailService;
+import com.ctoutweb.lalamiam.core.useCase.base.gateway.ICoreMessageService;
 import com.ctoutweb.lalamiam.core.useCase.clientInscription.useCase.ClientInscriptionUseCase;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscription.gateway.IProfessionalInscriptionRepository;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscription.port.IProfessioanlInscriptionOutput;
@@ -15,7 +15,7 @@ import java.util.List;
 public class Factory {
 
   public static IProfessionalInscriptionRules getProfessionalInscriptionImpl(
-          IMessageService messageService,
+          ICoreMessageService messageService,
           IProfessionalInscriptionRepository professionalInscriptionRepository,
           ICoreEmailService coreEmailService,
           ClientInscriptionUseCase clientInscriptionUseCase

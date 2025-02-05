@@ -1,8 +1,8 @@
 package com.ctoutweb.lalamiam.core.useCase.professionalInscription.entity.impl;
 
-import com.ctoutweb.lalamiam.core.exception.BadRequestException;
 import com.ctoutweb.lalamiam.core.provider.IMessageService;
 import com.ctoutweb.lalamiam.core.useCase.base.gateway.ICoreEmailService;
+import com.ctoutweb.lalamiam.core.useCase.base.gateway.ICoreMessageService;
 import com.ctoutweb.lalamiam.core.useCase.clientInscription.useCase.ClientInscriptionUseCase;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscription.factory.Factory;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscription.gateway.ICreatedProfessional;
@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ProfessionalInscriptionRulesImpl implements IProfessionalInscriptionRules {
   private final ClientInscriptionUseCase clientInscriptionUseCase;
-  private final IMessageService messageService;
+  private final ICoreMessageService messageService;
   private final IProfessionalInscriptionRepository professionalInscriptionRepository;
   private final ICoreEmailService coreEmailService;
   private IProfessionalInscriptionInput professionalInscriptionInformation;
@@ -28,7 +28,7 @@ public class ProfessionalInscriptionRulesImpl implements IProfessionalInscriptio
 
   public ProfessionalInscriptionRulesImpl(
           ClientInscriptionUseCase clientInscriptionUseCase,
-          IMessageService messageService,
+          ICoreMessageService messageService,
           ICoreEmailService coreEmailService,
           IProfessionalInscriptionRepository professionalInscriptionRepository) {
     this.clientInscriptionUseCase = clientInscriptionUseCase;
@@ -36,21 +36,13 @@ public class ProfessionalInscriptionRulesImpl implements IProfessionalInscriptio
     this.professionalInscriptionRepository = professionalInscriptionRepository;
     this.coreEmailService = coreEmailService;
   }
-
   @Override
-  public IProfessionalInscriptionRules isProfessionalEmailAvailable(IProfessionalInscriptionInput professionalInscriptionInformation) {
-    if(!this.professionalInscriptionRepository.isProfessionalEmailAvailable(professionalInscriptionInformation.getEmail()))
-      throw new BadRequestException(messageService.getMessage("professional.email.exist"));
+  public IProfessionalInscriptionRules createUserAccount(IProfessionalInscriptionInput professionalInscriptionInformation) {
+    ClientInscriptionUseCase.Input clientInput = ClientInscriptionUseCase.Input.getInput(professionalInscriptionInformation);
+    ClientInscriptionUseCase.Output output = clientInscriptionUseCase.execute(clientInput);
 
     // Sauvegarde des données d'inscription du professionnel
     this.professionalInscriptionInformation = professionalInscriptionInformation;
-    return this;
-  }
-
-  @Override
-  public IProfessionalInscriptionRules createUserAccount() {
-    ClientInscriptionUseCase.Input clientInput = ClientInscriptionUseCase.Input.getInput(professionalInscriptionInformation);
-    ClientInscriptionUseCase.Output output = clientInscriptionUseCase.execute(clientInput);
 
     // Enregistrement de Id client
     this.registerUserId = output.getOutputBoundary().getUserId();

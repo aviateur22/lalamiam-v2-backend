@@ -13,6 +13,11 @@ public class CoreEmailServiceImpl implements ICoreEmailService {
   }
 
   @Override
+  public void sendClientEmailRegisterActivation(String clientEmail) {
+    emailService.sendEmail();
+  }
+
+  @Override
   public void sendProfessionalRegisterConfirmation(String professionalEmail) {
     emailService.sendEmail();
   }

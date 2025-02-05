@@ -4,17 +4,12 @@ import com.ctoutweb.lalamiam.core.useCase.professionalInscription.port.IProfessi
 import com.ctoutweb.lalamiam.core.useCase.professionalInscription.port.IProfessionalInscriptionInput;
 
 public interface IProfessionalInscriptionRules {
-  /**
-   * Vérification si un professionnel n'est pas déja enregistré
-   * @return IProfessionalInscription
-   */
-  public IProfessionalInscriptionRules isProfessionalEmailAvailable(IProfessionalInscriptionInput professionalInscriptionInformation);
 
   /**
    * Création d'un compte User
    * @return IProfessionalInscription
    */
-  public IProfessionalInscriptionRules createUserAccount();
+  public IProfessionalInscriptionRules createUserAccount(IProfessionalInscriptionInput professionalInscriptionInformation);
 
   /**
    * Création d'un professionel
