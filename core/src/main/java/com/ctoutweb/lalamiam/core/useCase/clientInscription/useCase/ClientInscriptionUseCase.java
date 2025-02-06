@@ -47,7 +47,7 @@ public class ClientInscriptionUseCase implements UseCase<ClientInscriptionUseCas
     }
     @Override
     protected IClientInscriptionInput getInputBoundaryImplementation() {
-      return null;
+      return this.inputBoundaryAdapter;
     }
   }
 

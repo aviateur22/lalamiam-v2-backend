@@ -6,7 +6,7 @@ public interface ICoreEmailService {
    * Envoie d'un email pour activer un compte d'un client
    * @param clientEmail
    */
-  public void sendClientEmailRegisterActivation(String clientEmail);
+  public void sendClientRegisterActivationEmail(String clientEmail);
 
   /**
    * Envoie d'un email pour demander la confirmation d'inscription a un professionel

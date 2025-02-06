@@ -18,6 +18,16 @@ public class FrontEndLinkHelper {
   private String changeAccountPasswordLink;
 
   /**
+   * Renvoie l'URL d'activation de compte pour un enregistrement client
+   * @param email String
+   * @param urlToken String
+   * @return String
+   */
+  public String getUserActivateAccountLink(String email, String urlToken) {
+    return String.format(activateUserAccountLink , domainFront, email, urlToken);
+  }
+
+  /**
    * Renvoie le front URL pour confirmer la création d'un compte professionel
    * @param email String
    * @param urlToken String

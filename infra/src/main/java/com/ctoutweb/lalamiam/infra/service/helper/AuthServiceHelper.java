@@ -40,7 +40,7 @@ public class AuthServiceHelper {
   }
 
   /**
-   * Validation des tokens envoyés pour validation de l'inscription d'un professionel
+   * Validation des tokens envoyés un professionnel pour ca confirmation d'inscription
    * @param professionalEmail String - email professionel
    * @param frontEndEmailToken String - token contenu dans l'email
    * @param frontEndUrlToken String- token de url
@@ -57,7 +57,10 @@ public class AuthServiceHelper {
   }
 
   /**
-   * Generation des Token de l'email + URL
+   * Envoie d'un email a l'inscription d'un professionnel afin qu'il puisse confirmer son inscription
+   * -> Génération de token + sauvegarde en bse
+   * -> Génération email avec ces token
+   * -> envoie email
    * Envoie Email de confirmation d'inscription
    **/
   public void finalizeProfessionalRegister(String professionalEmail) {
@@ -72,8 +75,10 @@ public class AuthServiceHelper {
   }
 
   /**
-   * Generation des Token de l'email + URL
-   * Envoie Email pour regenerer son mot de passe
+   * Envoie d'un email pour renouvellement de mot de passe
+   *  * -> Génération de token + sauvegarde en base
+   *  * -> Génération email avec ces tokens
+   *  * -> envoie email
    **/
   public IMessageResponse lostPasswordMailing(String email) {
 

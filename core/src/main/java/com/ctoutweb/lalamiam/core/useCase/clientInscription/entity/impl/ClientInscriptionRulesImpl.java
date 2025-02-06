@@ -61,13 +61,17 @@ public class ClientInscriptionRulesImpl implements IClientInscriptionRules {
   public IClientInscriptionRules sendEmail(boolean isEmailToSend) {
     // Envoie l'email si creation d'un compte client
     if(isEmailToSend)
-      this.emailService.sendClientEmailRegisterActivation(clientEmail);
+      this.emailService.sendClientRegisterActivationEmail(clientEmail);
 
     return this;
   }
 
   @Override
   public IClientInscriptionOutput getClientInscriptionInformation() {
-    return Factory.getClientInscriptionOutputImpl(this.createdClient.getClientId(), this.createdAccount.getAccountId());
+    String responseMessage = messageService.getMessage("register.success");
+    return Factory.getClientInscriptionOutputImpl(
+            this.createdClient.getClientId(),
+            this.createdAccount.getAccountId(),
+            responseMessage);
   }
 }

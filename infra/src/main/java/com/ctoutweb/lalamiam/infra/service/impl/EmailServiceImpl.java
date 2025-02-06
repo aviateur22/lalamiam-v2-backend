@@ -48,7 +48,7 @@ public class EmailServiceImpl implements IEmailService {
 
     // Récupration du template HTML en fonction du type de mail et du language
     String fileName = switch (type) {
-      case ACCOUNT_ACTIVATION -> HtmlTemplateType.ACCOUNT_ACTIVATION.getFileName(apiLanguage.getValidatedLanguage());
+      case USER_ACCOUNT_ACTIVATION -> HtmlTemplateType.USER_ACCOUNT_ACTIVATION.getFileName(apiLanguage.getValidatedLanguage());
       case CHANGE_PASSWORD -> HtmlTemplateType.CHANGE_PASSWORD.getFileName(apiLanguage.getValidatedLanguage());
       case LOGIN_CONNEXION_ALERT -> HtmlTemplateType.LOGIN_CONNEXION_ALERT.getFileName(apiLanguage.getValidatedLanguage());
       case PROFESSIONAL_REGISTER_ACCOUNT_CONFIRMATION -> HtmlTemplateType.PROFESSIONAL_REGISTER_ACCOUNT_CONFIRMATION.getFileName(apiLanguage.getValidatedLanguage());
@@ -77,7 +77,7 @@ public class EmailServiceImpl implements IEmailService {
 
     // Récupration de l'email subject en fonction du type de mail et du language
     String emailSubject = switch (type) {
-      case ACCOUNT_ACTIVATION -> messageService.getMessage("email.register.subject");
+      case USER_ACCOUNT_ACTIVATION -> messageService.getMessage("email.register.subject");
       case CHANGE_PASSWORD -> messageService.getMessage("email.reinitialize.password.subject");
       case LOGIN_CONNEXION_ALERT -> messageService.getMessage("email.login.account.failed.subject");
       case PROFESSIONAL_REGISTER_ACCOUNT_CONFIRMATION -> messageService.getMessage("email.register.professional.subject");

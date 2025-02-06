@@ -13,6 +13,25 @@ public class EmailHelper {
   private String applicationName;
 
   /**
+   * Liste de mot qui serviront a valoriser le template HTML utilisé pour l'email d'activation d'un compte client
+   * @param email String - Email du client
+   * @param link String - Lien URL activer le compte client
+   * @return Map<String, String>
+   */
+  public Map<String, String> listOfWordCaseUserActivateAccount(String email, String link) {
+    // Generation d'un email d'alerte
+    Map<String, String> listWordsToReplaceInHtmlTemplate = new HashMap<>();
+
+    listWordsToReplaceInHtmlTemplate.put("!%!email!%!", email);
+    listWordsToReplaceInHtmlTemplate.put("!%!appName!%!", applicationName.toUpperCase());
+    listWordsToReplaceInHtmlTemplate.put("!%!link!%!", link);
+    listWordsToReplaceInHtmlTemplate.put("!%!appName!%!", applicationName.toUpperCase());
+    listWordsToReplaceInHtmlTemplate.put("!%!appName!%!", applicationName.toUpperCase());
+
+    return listWordsToReplaceInHtmlTemplate;
+  }
+
+  /**
    * Génération d'un liste de mot pour l'envoie d'un email de type confirmation d'inscription pour un professionel
    * @param email String - Email du profrssionel
    * @param confirmationToken String - Token de confirmation

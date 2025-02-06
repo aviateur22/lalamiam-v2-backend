@@ -1,7 +1,7 @@
 package com.ctoutweb.lalamiam.infra.model.email;
 
 public enum HtmlTemplateType {
-  ACCOUNT_ACTIVATION("activationAccount_!%!lang!%!.html"),
+  USER_ACCOUNT_ACTIVATION("activationAccount_!%!lang!%!.html"),
   PROFESSIONAL_REGISTER_ACCOUNT_CONFIRMATION("registerConfirmationByProfessional_!%!lang!%!.html"),
   LOGIN_CONNEXION_ALERT("badLoginAttempt_!%!lang!%!.html"),
   CHANGE_PASSWORD("lostPasswordMailing_!%!lang!%!.html");

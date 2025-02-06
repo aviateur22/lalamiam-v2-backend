@@ -2,7 +2,7 @@ package com.ctoutweb.lalamiam.core.useCase.clientInscription.port.impl;
 
 import com.ctoutweb.lalamiam.core.useCase.clientInscription.port.IClientInscriptionOutput;
 
-public record ClientInscriptionOutputImpl(Long clientId, Long accountId) implements IClientInscriptionOutput {
+public record ClientInscriptionOutputImpl(Long clientId, Long accountId, String responseMessage) implements IClientInscriptionOutput {
   @Override
   public Long getUserId() {
     return clientId;
@@ -11,5 +11,10 @@ public record ClientInscriptionOutputImpl(Long clientId, Long accountId) impleme
   @Override
   public Long getUserAccountId() {
     return accountId;
+  }
+
+  @Override
+  public String getResponseMessage() {
+    return responseMessage;
   }
 }

@@ -40,6 +40,23 @@ public class TextUtility {
   }
 
   /**
+   * RandomText de longueyr variable
+   * @param randomWordLengthMin int - Longueur min du text
+   * @param randomWordLengthMin int - Longueur max du text
+   * @return String
+   */
+  public static String generateRandomTextBetween(int randomWordLengthMin, int randomWordLengthMax) {
+    Random rand = new Random();
+    int randomWordLength = NumberUtil.generateNumberBetween(randomWordLengthMin, randomWordLengthMax);
+    return rand.ints(48, 123)
+            .filter(num->(num < 58 || num > 64) && (num < 91 || num > 96))
+            .limit(randomWordLength)
+            .mapToObj(c->(char) c)
+            .collect(StringBuffer::new , StringBuffer::append, StringBuffer::append)
+            .toString();
+  }
+
+  /**
    * Remplace une liste de mot dans 1 text
    * @param initialText String - Text devant être mise à jour
    * @param mapOfWordToReplace Map<String, String> - Mot devant être mis dans le text

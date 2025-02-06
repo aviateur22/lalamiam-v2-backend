@@ -50,7 +50,7 @@ public class ProfessionalInscriptionUseCaseTest {
     when(professionalInscriptionRepository.addProfessional(eq(1L), any())).thenReturn(getCreatedProfessional());
     when(professionalInscriptionRepository.saveProfessionalInscriptionDocument(any(), eq(1L))).thenReturn(getSavedDocuements());
     when(professionalInscriptionRepository.addProfessionalAccount(1L)).thenReturn(getCreatedAccount());
-    when(messageService.getMessage("register.success")).thenReturn("welcome");
+    when(messageService.getMessage("professional.register.success")).thenReturn("welcome");
 
     var input = ProfessionalInscriptionUseCase.Input.getInput(getProfessionalInformation());
 
@@ -71,6 +71,10 @@ public class ProfessionalInscriptionUseCaseTest {
 
   private IClientInscriptionOutput getClientInscriptionOutput() {
     return new IClientInscriptionOutput() {
+      @Override
+      public String getResponseMessage() {
+        return "welcome";
+      }
       @Override
       public Long getUserId() {
         return 1L;

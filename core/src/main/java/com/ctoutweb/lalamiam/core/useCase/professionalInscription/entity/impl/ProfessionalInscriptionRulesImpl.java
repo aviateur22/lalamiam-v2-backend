@@ -38,6 +38,9 @@ public class ProfessionalInscriptionRulesImpl implements IProfessionalInscriptio
   }
   @Override
   public IProfessionalInscriptionRules createUserAccount(IProfessionalInscriptionInput professionalInscriptionInformation) {
+    // Inibit l'envoie d'email lors de l'execution du ClientInscriptionUseCase
+    clientInscriptionUseCase.setEmailToSend(false);
+
     ClientInscriptionUseCase.Input clientInput = ClientInscriptionUseCase.Input.getInput(professionalInscriptionInformation);
     ClientInscriptionUseCase.Output output = clientInscriptionUseCase.execute(clientInput);
 
@@ -93,7 +96,7 @@ public class ProfessionalInscriptionRulesImpl implements IProfessionalInscriptio
             this.registerProfessionalId,
             this.accountId,
             this.documentIds,
-            this.messageService.getMessage("register.success")
+            this.messageService.getMessage("professional.register.success")
 
     );
   }
