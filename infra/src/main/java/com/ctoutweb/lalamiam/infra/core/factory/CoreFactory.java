@@ -8,6 +8,7 @@ import com.ctoutweb.lalamiam.core.useCase.clientInscription.gateway.ICreatedAcco
 import com.ctoutweb.lalamiam.core.useCase.clientInscription.gateway.ICreatedClient;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscription.gateway.ICreatedProfessional;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscription.gateway.ICreatedProfessionalAccount;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscription.gateway.ISavedInscriptionDocuments;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.port.IProfessionalInscriptionConfirmationInput;
 import com.ctoutweb.lalamiam.core.useCase.adminDisplayProfessionalToActivateList.adapter.IProfessionalToActivate;
 import com.ctoutweb.lalamiam.infra.core.model.*;
@@ -73,5 +74,9 @@ public class CoreFactory {
           ProfessionalAccountEntity professionalAccount,
           List<DocumentEntity> documents) {
     return new ProfessionalDetailImpl(professionalEmail, professional, professionalAccount, documents);
+  }
+
+  public ISavedInscriptionDocuments getSavedDocumentImpl(List<Long> documentIds) {
+    return new SaveDocumentImpl(documentIds);
   }
 }

@@ -48,7 +48,7 @@ public class AuthServiceImpl implements IAuthService {
   private final ProfessionalInscriptionInputMapper professionalInscriptionMapper;
   private final ProfessionalRegisterConfirmationInputMapper professionalRegisterConfirmationInputMapper;
 
-  private final FileService fileService;
+  private final IFileService fileService;
   private final AuthServiceHelper authServiceHelper;
 
 
@@ -65,7 +65,7 @@ public class AuthServiceImpl implements IAuthService {
           ProfessionalInscriptionConfirmationUseCase professionalInscriptionConfirmationUseCase,
           ProfessionalInscriptionInputMapper professionalInscriptionMapper,
           ProfessionalRegisterConfirmationInputMapper professionalRegisterConfirmationInputMapper,
-          FileService fileService, AuthServiceHelper authServiceHelper) {
+          IFileService fileService, AuthServiceHelper authServiceHelper) {
     this.apiLanguage = apiLanguage;
     this.messageService = messageService;
     this.jwtService = jwtService;
@@ -99,17 +99,16 @@ public class AuthServiceImpl implements IAuthService {
   public void registerProfessional(RegisterProfessionalDto dto) {
     String hashPassword = cryptoService.hashText(dto.getPassword());
 
-
     IProfessionalInscriptionInput professionalInscriptionInput = professionalInscriptionMapper.map(dto, hashPassword);
     ProfessionalInscriptionUseCase.Input input = ProfessionalInscriptionUseCase.Input.getInput(professionalInscriptionInput);
     ProfessionalInscriptionUseCase.Output output = professionalInscriptionUseCase.execute(input);
 
-    // Test sauvegarde fichier
-    try {
-      fileService.uploadFile(dto.getFile1());
-    } catch (IOException e) {
-      throw new InternalException( messageService.getMessage("transfer.file.error"));
-    }
+//    // Test sauvegarde fichier
+//    try {
+//      fileService.uploadFile(dto.getFile1());
+//    } catch (IOException e) {
+//      throw new InternalException( messageService.getMessage("transfer.file.error"));
+//    }
 
     // Generation des tokens pour l'email + envoie email
     authServiceHelper.finalizeProfessionalRegister(dto.getEmail());

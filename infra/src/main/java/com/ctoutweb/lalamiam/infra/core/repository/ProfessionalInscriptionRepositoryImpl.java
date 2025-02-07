@@ -1,25 +1,30 @@
 package com.ctoutweb.lalamiam.infra.core.repository;
 
+import com.ctoutweb.lalamiam.core.useCase.professionalInscription.entity.ICoreRegisterFile;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscription.gateway.ICreatedProfessional;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscription.gateway.ICreatedProfessionalAccount;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscription.gateway.IProfessionalInscriptionRepository;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscription.gateway.ISavedInscriptionDocuments;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscription.port.IProfessionalInscriptionInput;
 import com.ctoutweb.lalamiam.infra.core.factory.CoreFactory;
+import com.ctoutweb.lalamiam.infra.factory.EntityFactory;
+import com.ctoutweb.lalamiam.infra.repository.IDocumentRepository;
 import com.ctoutweb.lalamiam.infra.repository.IProfessionalAccountRepository;
 import com.ctoutweb.lalamiam.infra.repository.IProfessionalRepository;
 import com.ctoutweb.lalamiam.infra.repository.IUserRepository;
+import com.ctoutweb.lalamiam.infra.repository.entity.DocumentEntity;
 import com.ctoutweb.lalamiam.infra.repository.entity.ProfessionalAccountEntity;
 import com.ctoutweb.lalamiam.infra.repository.entity.ProfessionalEntity;
 import com.ctoutweb.lalamiam.infra.repository.entity.UserEntity;
+import com.ctoutweb.lalamiam.infra.service.IFileService;
 import com.ctoutweb.lalamiam.infra.utility.DateUtility;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.ctoutweb.lalamiam.infra.constant.ApplicationConstant.LIMIT_DAY_TO_VALIDATE_INSCRIPTION;
@@ -29,18 +34,27 @@ public class ProfessionalInscriptionRepositoryImpl implements IProfessionalInscr
   private final IProfessionalRepository professionalRepository;
   private final IProfessionalAccountRepository professionalAccountRepository;
   private final IUserRepository userRepository;
+  private final IDocumentRepository documentRepository;
+  private final IFileService fileService;
   private final CoreFactory factory;
+  private final EntityFactory entityFactory;
   @Value("${zone.id}")
   String zoneId;
 
   public ProfessionalInscriptionRepositoryImpl(
           IProfessionalRepository professionalRepository,
           IProfessionalAccountRepository professionalAccountRepository,
-          IUserRepository userRepository, CoreFactory factory) {
+          IUserRepository userRepository,
+          IDocumentRepository documentRepository,
+          IFileService fileService,
+          CoreFactory factory, EntityFactory entityFactory) {
     this.professionalRepository = professionalRepository;
     this.professionalAccountRepository = professionalAccountRepository;
     this.userRepository = userRepository;
+    this.documentRepository = documentRepository;
+    this.fileService = fileService;
     this.factory = factory;
+    this.entityFactory = entityFactory;
   }
 
   @Override
@@ -81,7 +95,18 @@ public class ProfessionalInscriptionRepositoryImpl implements IProfessionalInscr
   }
 
   @Override
-  public ISavedInscriptionDocuments saveProfessionalInscriptionDocument(List<File> inscriptionDocuments, Long professionalId) {
-    return null;
+  public ISavedInscriptionDocuments saveProfessionalInscriptionDocument(List<ICoreRegisterFile> inscriptionDocuments, Long professionalId) {
+
+    List<Long> saveDocuments = new ArrayList<>();
+
+    // Sauvgarde des fichiers
+    inscriptionDocuments.forEach(document-> {
+      String documentPath = fileService.uploadFile(document.getRegisterFile(), document.getFileSize());
+      DocumentEntity saveDocReference = entityFactory.getDocumentEntity(professionalId, documentPath);
+      DocumentEntity savedDocument = documentRepository.save(saveDocReference);
+      saveDocuments.add(savedDocument.getId());
+    });
+
+    return factory.getSavedDocumentImpl(saveDocuments);
   }
 }

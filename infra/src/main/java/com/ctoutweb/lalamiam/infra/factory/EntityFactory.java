@@ -1,6 +1,7 @@
 package com.ctoutweb.lalamiam.infra.factory;
 
 import com.ctoutweb.lalamiam.infra.repository.entity.DelayLoginEntity;
+import com.ctoutweb.lalamiam.infra.repository.entity.DocumentEntity;
 import com.ctoutweb.lalamiam.infra.repository.entity.LoginEntity;
 import com.ctoutweb.lalamiam.infra.repository.entity.UserEntity;
 import org.springframework.security.core.userdetails.User;
@@ -37,5 +38,16 @@ public class EntityFactory {
     delayLogin.setUser(loginUser);
 
     return delayLogin;
+  }
+
+  public DocumentEntity getDocumentEntity(Long userId, String documentPath) {
+
+    UserEntity user = getUserEntityFromId(userId);
+    DocumentEntity document = new DocumentEntity();
+
+    document.setDocumentPath(documentPath);
+    document.setUser(user);
+
+    return document;
   }
 }

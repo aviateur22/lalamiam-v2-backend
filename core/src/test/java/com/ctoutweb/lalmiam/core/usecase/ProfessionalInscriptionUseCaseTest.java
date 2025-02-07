@@ -5,6 +5,7 @@ import com.ctoutweb.lalamiam.core.useCase.base.gateway.ICoreEmailService;
 import com.ctoutweb.lalamiam.core.useCase.base.gateway.ICoreMessageService;
 import com.ctoutweb.lalamiam.core.useCase.clientInscription.port.IClientInscriptionOutput;
 import com.ctoutweb.lalamiam.core.useCase.clientInscription.useCase.ClientInscriptionUseCase;
+import com.ctoutweb.lalamiam.core.useCase.professionalInscription.entity.ICoreRegisterFile;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscription.gateway.ICreatedProfessional;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscription.gateway.ICreatedProfessionalAccount;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscription.gateway.IProfessionalInscriptionRepository;
@@ -104,7 +105,7 @@ public class ProfessionalInscriptionUseCaseTest {
       }
 
       @Override
-      public List<File> getProfessionalInscriptionDocuments() {
+      public List<ICoreRegisterFile> getProfessionalInscriptionDocuments() {
         return null;
       }
 

@@ -1,8 +1,8 @@
 package com.ctoutweb.lalamiam.core.useCase.professionalInscription.gateway;
 
+import com.ctoutweb.lalamiam.core.useCase.professionalInscription.entity.ICoreRegisterFile;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscription.port.IProfessionalInscriptionInput;
 
-import java.io.File;
 import java.util.List;
 
 public interface IProfessionalInscriptionRepository {
@@ -24,8 +24,8 @@ public interface IProfessionalInscriptionRepository {
 
   /**
    * Enregistrement des documents d'inscriptions
-   * @param inscriptionDocuments List<File>
+   * @param inscriptionDocuments List<InputStream>
    * @return ISavedInscriptionDocuments
    */
-  public ISavedInscriptionDocuments saveProfessionalInscriptionDocument(List<File> inscriptionDocuments, Long professionalId);
+  public ISavedInscriptionDocuments saveProfessionalInscriptionDocument(List<ICoreRegisterFile> inscriptionDocuments, Long professionalId);
 }

@@ -6,8 +6,10 @@ import com.ctoutweb.lalamiam.infra.controller.validation.impl.DtoToValidateImpl;
 import com.ctoutweb.lalamiam.infra.controller.validation.IDtoToValidate;
 import com.ctoutweb.lalamiam.infra.model.*;
 import com.ctoutweb.lalamiam.infra.model.auth.IProfessionalRegisterToken;
+import com.ctoutweb.lalamiam.infra.model.auth.IRegisterFile;
 import com.ctoutweb.lalamiam.infra.model.auth.impl.ProfessionalRegisterToken;
 
+import com.ctoutweb.lalamiam.infra.model.auth.impl.RegisterFileImpl;
 import com.ctoutweb.lalamiam.infra.model.param.AppParamImpl;
 import com.ctoutweb.lalamiam.infra.model.param.IAppParam;
 import com.ctoutweb.lalamiam.infra.model.captcha.ICaptchaImage;
@@ -30,6 +32,7 @@ import com.ctoutweb.lalamiam.infra.service.ICryptoService;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Component;
 
+import java.io.InputStream;
 import java.time.ZonedDateTime;
 import java.util.Properties;
 
@@ -94,5 +97,9 @@ public class Factory {
   }
   public IProfessionalRegisterToken getProfessionalRegisterTokenImpl(String encryptUrlToken, String plainTextEmailToken) {
     return new ProfessionalRegisterToken(encryptUrlToken, plainTextEmailToken) ;
+  }
+
+  public IRegisterFile getRegisterFileImpl(InputStream registerFile, Long fileSize) {
+    return new RegisterFileImpl(registerFile, fileSize);
   }
 }
