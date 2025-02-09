@@ -8,4 +8,5 @@ import java.io.InputStream;
 public interface ICoreRegisterFile {
   InputStream getRegisterFile();
   Long getFileSize();
+  String getFileExtension();
 }

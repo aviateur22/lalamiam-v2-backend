@@ -67,4 +67,10 @@ public class ApplicationConstant {
 
   // SI FICHIER ENVOYE PAR FRONT-VIDE - NOM FICHIER
   public static final String FILE_EMPTY_NAME = "empty_file_pdf";
+
+  // Fichier
+  public static final byte[] PDF_MAGIC_NUMBER = {0x25, 0x50, 0x44, 0x46};
+  public static final byte[] PNG_MAGIC_NUMBER = {(byte) 0x89, 0x50, 0x4E, 0x47};
+  public static final byte[] JPEG_MAGIC_NUMBER = {(byte) 0xFF, (byte) 0xD8, (byte) 0xFF};
+
 }

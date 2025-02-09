@@ -8,7 +8,7 @@ import java.io.InputStream;
 
 @Component
 public class CoreRegisterFileMapper {
-  public ICoreRegisterFile map(InputStream documentFile, Long fileSize) {
-    return new CoreRegisterFileImpl(documentFile,fileSize);
+  public ICoreRegisterFile map(InputStream documentFile, Long fileSize, String fileExtension) {
+    return new CoreRegisterFileImpl(documentFile, fileSize, fileExtension);
   }
 }

@@ -4,7 +4,7 @@ import com.ctoutweb.lalamiam.infra.model.auth.IRegisterFile;
 
 import java.io.InputStream;
 
-public record RegisterFileImpl(InputStream registerFile, Long fileSize) implements IRegisterFile {
+public record RegisterFileImpl(InputStream registerFile, Long fileSize, String fileExtension) implements IRegisterFile {
   @Override
   public InputStream getRegisterFile() {
     return registerFile;
@@ -13,5 +13,10 @@ public record RegisterFileImpl(InputStream registerFile, Long fileSize) implemen
   @Override
   public Long getFileSize() {
     return fileSize;
+  }
+
+  @Override
+  public String getFileExtension() {
+    return fileExtension;
   }
 }

@@ -99,7 +99,7 @@ public class Factory {
     return new ProfessionalRegisterToken(encryptUrlToken, plainTextEmailToken) ;
   }
 
-  public IRegisterFile getRegisterFileImpl(InputStream registerFile, Long fileSize) {
-    return new RegisterFileImpl(registerFile, fileSize);
+  public IRegisterFile getRegisterFileImpl(InputStream registerFile, Long fileSize, String fileExtension) {
+    return new RegisterFileImpl(registerFile, fileSize, fileExtension);
   }
 }

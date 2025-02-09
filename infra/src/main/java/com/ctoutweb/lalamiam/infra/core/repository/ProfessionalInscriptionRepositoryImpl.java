@@ -101,7 +101,7 @@ public class ProfessionalInscriptionRepositoryImpl implements IProfessionalInscr
 
     // Sauvgarde des fichiers
     inscriptionDocuments.forEach(document-> {
-      String documentPath = fileService.uploadFile(document.getRegisterFile(), document.getFileSize());
+      String documentPath = fileService.uploadFile(document.getRegisterFile(), document.getFileSize(), document.getFileExtension());
       DocumentEntity saveDocReference = entityFactory.getDocumentEntity(professionalId, documentPath);
       DocumentEntity savedDocument = documentRepository.save(saveDocReference);
       saveDocuments.add(savedDocument.getId());

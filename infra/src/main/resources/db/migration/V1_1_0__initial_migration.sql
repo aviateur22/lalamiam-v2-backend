@@ -223,6 +223,10 @@ ALTER SEQUENCE if exists sc_lalamiam.users_pk_seq OWNER TO lalamiam;
 ALTER SEQUENCE if exists sc_lalamiam.users_pk_seq owned by sc_lalamiam.users.id;
 ALTER TABLE sc_lalamiam.users ALTER COLUMN id SET DEFAULT NEXTVAL('sc_lalamiam.users_pk_seq');
 
+ALTER SEQUENCE if exists sc_lalamiam.document_pk_seq OWNER TO lalamiam;
+ALTER SEQUENCE if exists sc_lalamiam.document_pk_seq owned by sc_lalamiam.document.id;
+ALTER TABLE sc_lalamiam.document ALTER COLUMN id SET DEFAULT NEXTVAL('sc_lalamiam.document_pk_seq');
+
 ALTER SEQUENCE if exists sc_lalamiam.jwt_pk_seq OWNER TO lalamiam;
 ALTER SEQUENCE if exists sc_lalamiam.jwt_pk_seq owned by sc_lalamiam.jwt.id;
 ALTER TABLE sc_lalamiam.jwt ALTER COLUMN id SET DEFAULT NEXTVAL('sc_lalamiam.jwt_pk_seq');

@@ -45,9 +45,9 @@ public class FileServiceImpl implements IFileService {
             .build();
   }
   @Override
-  public String uploadFile(InputStream documentFile, Long fileSize) {
-    // Génération d'un nom de fichier
-    String randomFileName = TextUtility.getRandomNameUUID();
+  public String uploadFile(InputStream documentFile, Long fileSize, String fileExtension) {
+    // Génération d'un nom de fichier aléatoire + extension
+    String randomFileName = TextUtility.getRandomNameUUID()+"."+fileExtension;
 
     PutObjectRequest putObjectRequest = PutObjectRequest.builder().bucket(bucketName).key(randomFileName).build();
     client.putObject(putObjectRequest, RequestBody.fromInputStream(documentFile, fileSize));

@@ -1,6 +1,9 @@
 package com.ctoutweb.lalamiam.infra.dto;
 
 import com.ctoutweb.lalamiam.infra.annotation.custom.PasswordConstraint;
+import com.ctoutweb.lalamiam.infra.annotation.custom.file.FileNotEmpty;
+import com.ctoutweb.lalamiam.infra.annotation.custom.file.FilePdfIfNotEmpty;
+import com.ctoutweb.lalamiam.infra.annotation.custom.file.PdfFile;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -31,8 +34,11 @@ public class RegisterProfessionalDto {
         @NotBlank(message = "{phone.missing}")
         private String phone;
 
+        @PdfFile(message = "{professional.register.file.1.error}")
+        @FileNotEmpty(message = "{professional.register.file.1.error}")
         private MultipartFile file1;
 
+        @FilePdfIfNotEmpty(message = "{professional.register.file.2.error}")
         private MultipartFile file2;
         @NotNull(message = "{captcha.response.missing}")
         private UserCaptchaResponseDto userCaptchaResponse;

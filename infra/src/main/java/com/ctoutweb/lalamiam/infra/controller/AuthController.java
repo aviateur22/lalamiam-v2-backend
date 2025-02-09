@@ -53,9 +53,9 @@ public class AuthController {
       throw new BadRequestException(messageService.getMessage("captcha.invalid.response"));
 
     // Creation compte client
-    authService.registerClient(registerClientDto);
+    IMessageResponse messageResponse = authService.registerClient(registerClientDto);
 
-    return new ResponseEntity<>(factory.getMessageResponseImpl(messageService.getMessage("register.success")), HttpStatus.OK);
+    return new ResponseEntity<>(messageResponse, HttpStatus.OK);
   }
 
   @PostMapping(value = "/register-professional", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
@@ -68,9 +68,9 @@ public class AuthController {
       throw new BadRequestException(messageService.getMessage("captcha.invalid.response"));
 
     // Creation compte client
-    authService.registerProfessional(registerProfessionalDto);
+    IMessageResponse messageResponse = authService.registerProfessional(registerProfessionalDto);
 
-    return new ResponseEntity<>(factory.getMessageResponseImpl(messageService.getMessage("register.success")), HttpStatus.OK);
+    return new ResponseEntity<>(messageResponse, HttpStatus.OK);
   }
 
   @PostMapping("/register-confirm-by-professional")

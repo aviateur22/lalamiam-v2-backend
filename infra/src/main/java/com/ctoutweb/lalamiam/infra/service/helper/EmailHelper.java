@@ -27,6 +27,7 @@ public class EmailHelper {
     listWordsToReplaceInHtmlTemplate.put("!%!link!%!", link);
     listWordsToReplaceInHtmlTemplate.put("!%!appName!%!", applicationName.toUpperCase());
     listWordsToReplaceInHtmlTemplate.put("!%!appName!%!", applicationName.toUpperCase());
+    listWordsToReplaceInHtmlTemplate.put("!%!year!%!", String.valueOf(LocalDateTime.now().getYear()));
 
     return listWordsToReplaceInHtmlTemplate;
   }
@@ -48,7 +49,7 @@ public class EmailHelper {
     listWordsToReplaceInHtmlTemplate.put("!%!link!%!", link);
     listWordsToReplaceInHtmlTemplate.put("!%!appName!%!", applicationName.toUpperCase());
     listWordsToReplaceInHtmlTemplate.put("!%!appName!%!", applicationName.toUpperCase());
-
+    listWordsToReplaceInHtmlTemplate.put("!%!year!%!", String.valueOf(LocalDateTime.now().getYear()));
     return listWordsToReplaceInHtmlTemplate;
   }
 

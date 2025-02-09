@@ -4,7 +4,7 @@ import com.ctoutweb.lalamiam.core.useCase.professionalInscription.entity.ICoreRe
 
 import java.io.InputStream;
 
-public record CoreRegisterFileImpl(InputStream registerFile, Long fileSize) implements ICoreRegisterFile {
+public record CoreRegisterFileImpl(InputStream registerFile, Long fileSize, String fileExtension) implements ICoreRegisterFile {
   @Override
   public InputStream getRegisterFile() {
     return registerFile;
@@ -13,5 +13,10 @@ public record CoreRegisterFileImpl(InputStream registerFile, Long fileSize) impl
   @Override
   public Long getFileSize() {
     return fileSize;
+  }
+
+  @Override
+  public String getFileExtension() {
+    return fileExtension;
   }
 }

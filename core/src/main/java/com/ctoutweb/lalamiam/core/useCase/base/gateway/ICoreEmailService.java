@@ -12,7 +12,7 @@ public interface ICoreEmailService {
    * Envoie d'un email pour demander la confirmation d'inscription a un professionel
    * @param professionalEmail
    */
-  public void sendProfessionalRegisterConfirmation(String professionalEmail);
+  public void sendProfessionalRegisterConfirmationEmail(String professionalEmail);
 
   /**
    * Envoie d'un email pour informer de l'activation d'un compte pro

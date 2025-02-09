@@ -45,6 +45,6 @@ public record ProfessionalRegisterInputImpl(RegisterProfessionalDto dto, String 
 
   @Override
   public List<ICoreRegisterFile> getProfessionalInscriptionDocuments() {
-    return professionalFiles.stream().map(doc->new CoreRegisterFileImpl(doc.getRegisterFile(), doc.getFileSize())).collect(Collectors.toList());
+    return professionalFiles.stream().map(doc->new CoreRegisterFileImpl(doc.getRegisterFile(), doc.getFileSize(), doc.getFileExtension())).collect(Collectors.toList());
   }
 }

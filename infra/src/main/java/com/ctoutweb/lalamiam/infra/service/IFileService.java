@@ -14,7 +14,7 @@ public interface IFileService {
    * @param fileSize Long
    * @return String path d'acces du fichier
    */
-  String uploadFile(InputStream documentFile, Long fileSize);
+  String uploadFile(InputStream documentFile, Long fileSize, String fileExtension);
 
   /**
    * Récupération d'un fichier

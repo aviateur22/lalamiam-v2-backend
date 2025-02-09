@@ -10,7 +10,6 @@ import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.us
 import com.ctoutweb.lalamiam.infra.dto.*;
 import com.ctoutweb.lalamiam.infra.exception.AuthException;
 import com.ctoutweb.lalamiam.infra.exception.BadRequestException;
-import com.ctoutweb.lalamiam.infra.exception.InternalException;
 import com.ctoutweb.lalamiam.infra.service.helper.AuthServiceHelper;
 import com.ctoutweb.lalamiam.infra.core.mapper.ProfessionalInscriptionInputMapper;
 import com.ctoutweb.lalamiam.infra.core.mapper.ClientInscriptionInputMapper;
@@ -29,7 +28,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.stream.Collectors;
 
 @Service
@@ -47,8 +45,6 @@ public class AuthServiceImpl implements IAuthService {
   private final ClientInscriptionInputMapper clientInscriptionMapper;
   private final ProfessionalInscriptionInputMapper professionalInscriptionMapper;
   private final ProfessionalRegisterConfirmationInputMapper professionalRegisterConfirmationInputMapper;
-
-  private final IFileService fileService;
   private final AuthServiceHelper authServiceHelper;
 
 
@@ -65,7 +61,7 @@ public class AuthServiceImpl implements IAuthService {
           ProfessionalInscriptionConfirmationUseCase professionalInscriptionConfirmationUseCase,
           ProfessionalInscriptionInputMapper professionalInscriptionMapper,
           ProfessionalRegisterConfirmationInputMapper professionalRegisterConfirmationInputMapper,
-          IFileService fileService, AuthServiceHelper authServiceHelper) {
+          AuthServiceHelper authServiceHelper) {
     this.apiLanguage = apiLanguage;
     this.messageService = messageService;
     this.jwtService = jwtService;
@@ -78,13 +74,13 @@ public class AuthServiceImpl implements IAuthService {
     this.professionalInscriptionConfirmationUseCase = professionalInscriptionConfirmationUseCase;
     this.professionalInscriptionMapper = professionalInscriptionMapper;
     this.professionalRegisterConfirmationInputMapper = professionalRegisterConfirmationInputMapper;
-    this.fileService = fileService;
+
     this.authServiceHelper = authServiceHelper;
   }
 
   @Override
   @Transactional
-  public void registerClient(RegisterClientDto dto) throws ConflictException {
+  public IMessageResponse registerClient(RegisterClientDto dto) throws ConflictException {
       String hashPassword = cryptoService.hashText(dto.password());
       IClientInscriptionInput clientInscriptionInformation = clientInscriptionMapper.map(dto, hashPassword);
 
@@ -92,26 +88,19 @@ public class AuthServiceImpl implements IAuthService {
       clientInscriptionUseCase.setEmailToSend(true);
       ClientInscriptionUseCase.Input input = ClientInscriptionUseCase.Input.getInput(clientInscriptionInformation);
       ClientInscriptionUseCase.Output output = clientInscriptionUseCase.execute(input);
+
+      return factory.getMessageResponseImpl(output.getOutputBoundary().getResponseMessage());
   }
 
   @Override
   @Transactional
-  public void registerProfessional(RegisterProfessionalDto dto) {
-    String hashPassword = cryptoService.hashText(dto.getPassword());
+  public IMessageResponse registerProfessional(RegisterProfessionalDto dto) {
 
-    IProfessionalInscriptionInput professionalInscriptionInput = professionalInscriptionMapper.map(dto, hashPassword);
+    IProfessionalInscriptionInput professionalInscriptionInput = professionalInscriptionMapper.map(dto);
     ProfessionalInscriptionUseCase.Input input = ProfessionalInscriptionUseCase.Input.getInput(professionalInscriptionInput);
     ProfessionalInscriptionUseCase.Output output = professionalInscriptionUseCase.execute(input);
 
-//    // Test sauvegarde fichier
-//    try {
-//      fileService.uploadFile(dto.getFile1());
-//    } catch (IOException e) {
-//      throw new InternalException( messageService.getMessage("transfer.file.error"));
-//    }
-
-    // Generation des tokens pour l'email + envoie email
-    authServiceHelper.finalizeProfessionalRegister(dto.getEmail());
+    return factory.getMessageResponseImpl(output.getOutputBoundary().getResponseMessage());
   }
 
   @Override
@@ -127,6 +116,7 @@ public class AuthServiceImpl implements IAuthService {
     IProfessionalInscriptionConfirmationInput professionalInscriptionConfirmationInput = professionalRegisterConfirmationInputMapper.map(dto);
     ProfessionalInscriptionConfirmationUseCase.Input input = ProfessionalInscriptionConfirmationUseCase.Input.getInput(professionalInscriptionConfirmationInput);
     ProfessionalInscriptionConfirmationUseCase.Output output = professionalInscriptionConfirmationUseCase.execute(input);
+
     return factory.getMessageResponseImpl(output.getOutputBoundary().getResponseMessage());
   }
 

@@ -1,6 +1,5 @@
 package com.ctoutweb.lalamiam.core.useCase.professionalInscription.entity.impl;
 
-import com.ctoutweb.lalamiam.core.provider.IMessageService;
 import com.ctoutweb.lalamiam.core.useCase.base.gateway.ICoreEmailService;
 import com.ctoutweb.lalamiam.core.useCase.base.gateway.ICoreMessageService;
 import com.ctoutweb.lalamiam.core.useCase.clientInscription.useCase.ClientInscriptionUseCase;
@@ -74,7 +73,7 @@ public class ProfessionalInscriptionRulesImpl implements IProfessionalInscriptio
 
   @Override
   public IProfessionalInscriptionRules sendRegisterConfirmationEmail() {
-    coreEmailService.sendProfessionalRegisterConfirmation(professionalInscriptionInformation.getEmail());
+    coreEmailService.sendProfessionalRegisterConfirmationEmail(professionalInscriptionInformation.getEmail());
     return this;
   }
 

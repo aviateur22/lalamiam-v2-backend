@@ -5,9 +5,9 @@ import com.ctoutweb.lalamiam.infra.model.IMessageResponse;
 import com.ctoutweb.lalamiam.infra.model.param.IAppParam;
 
 public interface IAuthService {
-  public void registerClient(RegisterClientDto dto);
+  public IMessageResponse registerClient(RegisterClientDto dto);
 
-  public void registerProfessional(RegisterProfessionalDto dto);
+  public IMessageResponse registerProfessional(RegisterProfessionalDto dto);
 
   /**
    * Confirmation d'une création de compte pro par le profesionel
