@@ -1,7 +1,7 @@
 package com.ctoutweb.lalamiam.infra.controller;
 
 import com.ctoutweb.lalamiam.core.provider.IMessageService;
-import com.ctoutweb.lalamiam.infra.dto.*;
+import com.ctoutweb.lalamiam.infra.dto.auth.*;
 import com.ctoutweb.lalamiam.infra.exception.BadRequestException;
 import com.ctoutweb.lalamiam.infra.factory.Factory;
 import com.ctoutweb.lalamiam.infra.model.impl.MessageResponseImpl;
@@ -17,7 +17,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 

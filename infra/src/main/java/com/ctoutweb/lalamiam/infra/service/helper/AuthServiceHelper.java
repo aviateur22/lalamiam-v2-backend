@@ -1,6 +1,6 @@
 package com.ctoutweb.lalamiam.infra.service.helper;
 
-import com.ctoutweb.lalamiam.infra.dto.ReinitializeLostPasswordDto;
+import com.ctoutweb.lalamiam.infra.dto.auth.ReinitializeLostPasswordDto;
 import com.ctoutweb.lalamiam.infra.factory.Factory;
 import com.ctoutweb.lalamiam.infra.model.IMessageResponse;
 import com.ctoutweb.lalamiam.infra.service.IMessageService;

@@ -22,6 +22,9 @@ public class JwtEntity {
   @Column(name = "jwt_id")
   private String jwtId;
 
+  @Column(name = "is_valid")
+  private Boolean isValid;
+
   @Column(name = "expired_at")
   private ZonedDateTime expiredAt;
 
@@ -105,6 +108,14 @@ public class JwtEntity {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public Boolean getIsValid() {
+    return isValid;
+  }
+
+  public void setIsValid(Boolean valid) {
+    isValid = valid;
   }
 
   @Override

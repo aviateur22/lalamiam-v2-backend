@@ -12,7 +12,7 @@ import com.ctoutweb.lalamiam.core.useCase.professionalInscription.gateway.ISaved
 import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.port.IProfessionalInscriptionConfirmationInput;
 import com.ctoutweb.lalamiam.core.useCase.adminDisplayProfessionalToActivateList.adapter.IProfessionalToActivate;
 import com.ctoutweb.lalamiam.infra.core.model.*;
-import com.ctoutweb.lalamiam.infra.dto.RegisterConfirmByProfessionalDto;
+import com.ctoutweb.lalamiam.infra.dto.auth.RegisterConfirmByProfessionalDto;
 import com.ctoutweb.lalamiam.infra.model.impl.CreateProfessionalImpl;
 import com.ctoutweb.lalamiam.infra.model.impl.CreatedAccountImpl;
 import com.ctoutweb.lalamiam.infra.model.impl.CreatedClientImpl;

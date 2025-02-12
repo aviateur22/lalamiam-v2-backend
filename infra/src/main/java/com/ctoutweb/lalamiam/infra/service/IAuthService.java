@@ -1,6 +1,6 @@
 package com.ctoutweb.lalamiam.infra.service;
 
-import com.ctoutweb.lalamiam.infra.dto.*;
+import com.ctoutweb.lalamiam.infra.dto.auth.*;
 import com.ctoutweb.lalamiam.infra.model.IMessageResponse;
 import com.ctoutweb.lalamiam.infra.model.param.IAppParam;
 

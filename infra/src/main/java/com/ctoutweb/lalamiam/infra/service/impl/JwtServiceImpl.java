@@ -10,6 +10,8 @@ import com.ctoutweb.lalamiam.infra.repository.entity.UserEntity;
 import com.ctoutweb.lalamiam.infra.security.authentication.UserPrincipal;
 import com.ctoutweb.lalamiam.infra.security.jwt.IJwtIssue;
 import com.ctoutweb.lalamiam.infra.service.IJwtService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,7 @@ import java.util.stream.Collectors;
 @Service
 @PropertySource({"classpath:application.properties"})
 public class JwtServiceImpl implements IJwtService {
+  private static final Logger LOGGER = LogManager.getLogger();
   private final Factory factory;
   private final IJwtRepository jwtRepository;
   @Value("${jwt.validity.hour}")
@@ -57,7 +60,7 @@ public class JwtServiceImpl implements IJwtService {
             .withJWTId(jwtId)
             .withIssuer(jwtIssuer)
             .withExpiresAt(expiredAt)
-            .withClaim("id", user.id())
+            .withClaim("userId", user.getId())
             .withClaim("authorities", authorities)
             .sign(Algorithm.HMAC256(jwtSecret));
 
@@ -82,6 +85,7 @@ public class JwtServiceImpl implements IJwtService {
 
   @Override
   public DecodedJWT validateAndDecode(String token) {
+    LOGGER.debug(()->String.format("[JwtServiceImpl] - validateAndDecode jwt token: %s", token));
     return JWT.require(Algorithm.HMAC256(jwtSecret))
             .build()
             .verify(token);
@@ -105,6 +109,7 @@ public class JwtServiceImpl implements IJwtService {
     insertJwtLogin.setUser(userLogin);
     insertJwtLogin.setExpiredAt(jwt.getExpiredAt());
     insertJwtLogin.setEmail(email);
+    insertJwtLogin.setIsValid(true);
     jwtRepository.save(insertJwtLogin);
   }
 }

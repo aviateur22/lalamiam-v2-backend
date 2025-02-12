@@ -53,7 +53,7 @@ public class CustomAuthProvider implements AuthenticationProvider {
     this.emailHelper = emailHelper;
   }
   @Override
-  public Authentication authenticate(Authentication authentication) throws AuthException {
+  public Authentication authenticate(Authentication authentication) {
 
     validateAuthenticationRequest(authentication);
 
@@ -61,16 +61,16 @@ public class CustomAuthProvider implements AuthenticationProvider {
     UserPrincipal userPrincipal = findUser(authentication.getName());
 
     // Vérification mot de passe
-    boolean isAuthenticationValid = this.validatePassword(authentication.getCredentials().toString(), userPrincipal.password());
+    boolean isAuthenticationValid = this.validatePassword(authentication.getCredentials().toString(), userPrincipal.getPassword());
 
     // Vérification si connexion autorisé
-    IUserLoginStatus userLoginStatus = validateLoginAuthorization(userPrincipal.id());
+    IUserLoginStatus userLoginStatus = validateLoginAuthorization(userPrincipal.getId());
 
     if(!userLoginStatus.isLoginAuthorize())
       handleLoginNotAuthorize(userLoginStatus);
 
     // Mise a jour des information de connexion
-    loginService.updateUserLoginInformation(userPrincipal.id(), isAuthenticationValid);
+    loginService.updateUserLoginInformation(userPrincipal.getId(), isAuthenticationValid);
 
     if(!isAuthenticationValid)
       handleFailedLogin(userPrincipal);
@@ -82,7 +82,7 @@ public class CustomAuthProvider implements AuthenticationProvider {
     return authentication.equals(UsernamePasswordAuthenticationToken.class);
   }
 
-  public void validateAuthenticationRequest(Authentication authentication) {
+  public void validateAuthenticationRequest(Authentication authentication) throws AuthException {
 
     if(authentication.getCredentials() == null)
       throw new AuthException(messageService.getMessage("email.unvalid"));
@@ -124,7 +124,7 @@ public class CustomAuthProvider implements AuthenticationProvider {
    */
   public void handleFailedLogin(UserPrincipal loginUser) throws AuthException {
     // List des dernieres connexions du client
-    List<LoginEntity> lastUserLoginList = loginService.getLastUserLoginInformation(loginUser.id());
+    List<LoginEntity> lastUserLoginList = loginService.getLastUserLoginInformation(loginUser.getId());
 
     // Nombre de tentative de connexion disponible
     int loginRemainingCount = loginService.getUserRemainingLogin(lastUserLoginList);
@@ -160,13 +160,13 @@ public class CustomAuthProvider implements AuthenticationProvider {
    */
   public void handleAddingLoginDelay(UserPrincipal userLogin, List<LoginEntity> lastUserLogins) {
     // Ajout d'un temps blocant le login
-    loginService.addDelayOnLogin(userLogin.id(), lastUserLogins);
+    loginService.addDelayOnLogin(userLogin.getId(), lastUserLogins);
 
     // Reset des données de connexion du client
     loginService.resetUserConnexionStatus(lastUserLogins);
 
     // envoi d'un email
-    sendEmail(userLogin.email());
+    sendEmail(userLogin.getEmail());
   }
   /**
    * Vérification si un temps d'attente doit être mis à la connexion

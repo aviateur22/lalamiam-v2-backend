@@ -7,7 +7,7 @@ import com.ctoutweb.lalamiam.core.useCase.professionalInscription.port.IProfessi
 import com.ctoutweb.lalamiam.core.useCase.professionalInscription.useCase.ProfessionalInscriptionUseCase;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.port.IProfessionalInscriptionConfirmationInput;
 import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.useCase.ProfessionalInscriptionConfirmationUseCase;
-import com.ctoutweb.lalamiam.infra.dto.*;
+import com.ctoutweb.lalamiam.infra.dto.auth.*;
 import com.ctoutweb.lalamiam.infra.exception.AuthException;
 import com.ctoutweb.lalamiam.infra.exception.BadRequestException;
 import com.ctoutweb.lalamiam.infra.service.helper.AuthServiceHelper;
@@ -136,15 +136,15 @@ public class AuthServiceImpl implements IAuthService {
 
     IJwtIssue jwt = jwtService.generate(userPrincipal);
 
-    jwtService.saveJwt(userPrincipal.id(), jwt, dto.email());
+    jwtService.saveJwt(userPrincipal.getId(), jwt, dto.email());
 
     String responseMessage = messageService.getMessage("login.success").replace(
             "!%!nickname!%!", userPrincipal.getUsername());
 
     return new LoginResponseDto(
             jwt.getJwtToken(),
-            userPrincipal.email(),
-            userPrincipal.id(),
+            userPrincipal.getEmail(),
+            userPrincipal.getId(),
             userPrincipal.getAuthorities().stream().map(authority->authority.getAuthority()).collect(Collectors.toList()),
             responseMessage);
   }

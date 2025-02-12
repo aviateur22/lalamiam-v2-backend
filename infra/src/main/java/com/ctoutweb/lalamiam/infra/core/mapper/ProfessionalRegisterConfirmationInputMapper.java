@@ -2,7 +2,7 @@ package com.ctoutweb.lalamiam.infra.core.mapper;
 
 import com.ctoutweb.lalamiam.core.useCase.professionalInscriptionConfirmation.port.IProfessionalInscriptionConfirmationInput;
 import com.ctoutweb.lalamiam.infra.core.factory.CoreFactory;
-import com.ctoutweb.lalamiam.infra.dto.RegisterConfirmByProfessionalDto;
+import com.ctoutweb.lalamiam.infra.dto.auth.RegisterConfirmByProfessionalDto;
 import org.springframework.stereotype.Component;
 
 /**

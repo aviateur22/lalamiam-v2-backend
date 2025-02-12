@@ -5,12 +5,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-public record UserPrincipal(
-        Long id,
-        String email,
-        String password,
-        Collection< ? extends GrantedAuthority > authorities,
-        Boolean isAccountActive) implements UserDetails {
+public class UserPrincipal  implements UserDetails {
+  private Long id;
+  private String email;
+  private String password;
+  private Collection< ? extends GrantedAuthority > authorities;
+  private Boolean isAccountActive;
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return authorities;
@@ -44,5 +44,37 @@ public record UserPrincipal(
   @Override
   public boolean isEnabled() {
     return true;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+    this.authorities = authorities;
+  }
+
+  public Boolean getIsAccountActive() {
+    return isAccountActive;
+  }
+
+  public void setIsAccountActive(Boolean accountActive) {
+    isAccountActive = accountActive;
   }
 }

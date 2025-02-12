@@ -20,6 +20,10 @@ public class ApplicationConstant {
   public static final String BUNDLE_CLASSPATH ="classpath:";
   public static final String BUNDLE_ERROR_MESSAGE_PATH = "message/validatorErrorMessage_%S";
 
+  // Header authorization
+  public static final String AUTHORIZATION_HEADER_NAME = "authorization";
+  public static final String BEARER_NAME = "Bearer ";
+
   // CSRF Token
   public static final String POST_CSRF_TOKEN = "POST-CSRF-TOKEN";  // Header key pour l'envoie et récupération token CSRF
   public static final String COOKIE_CSRF_PARAM_NAME = "_csrf"; // Nom du cookie contenant le token CSRF
@@ -39,10 +43,8 @@ public class ApplicationConstant {
   public static final int ACCESS_CSRF_COOKIE_MAX_AGE = 43200;
   public static final int ACCESS_CAPTCHA_COOKIE_MAX_AGE = 43200;
   public static final int ACCESS_CAPTCHA_COOKIE_MIN_AGE = 0;
-
   public static final int CSRF_COOKIE_MAX_AGE = 10800;
   public static final int CSRF_COOKIE_MIN_AGE = 0;
-
 
   // Crypto
   public static final int CRYPTO_ITERATION_COUNT = 65536;

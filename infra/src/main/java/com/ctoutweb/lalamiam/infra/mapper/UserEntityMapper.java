@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class UserEntityMapper {
   public UserEntity map(UserPrincipal userDetails) {
     UserEntity user = new UserEntity();
-    user.setId(userDetails.id());
+    user.setId(userDetails.getId());
     user.setEmail(userDetails.getUsername());
     return user;
   }

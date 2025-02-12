@@ -42,6 +42,13 @@ public class CorsConfig {
     admin.setExposedHeaders(Arrays.asList(POST_CSRF_TOKEN));
     source.registerCorsConfiguration("/admin/**", admin);
 
+    CorsConfiguration client = new CorsConfiguration();
+    client.setAllowCredentials(true);
+    client.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+    client.setAllowedMethods(Arrays.asList("GET", "POST"));
+    client.setAllowedHeaders(Arrays.asList("Content-Type", POST_CSRF_TOKEN));
+    client.setExposedHeaders(Arrays.asList(POST_CSRF_TOKEN));
+    source.registerCorsConfiguration("client/**", client);
     return  source;
   }
 }

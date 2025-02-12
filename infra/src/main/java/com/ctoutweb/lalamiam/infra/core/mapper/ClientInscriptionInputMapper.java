@@ -1,7 +1,7 @@
 package com.ctoutweb.lalamiam.infra.core.mapper;
 
 import com.ctoutweb.lalamiam.core.useCase.clientInscription.port.IClientInscriptionInput;
-import com.ctoutweb.lalamiam.infra.dto.RegisterClientDto;
+import com.ctoutweb.lalamiam.infra.dto.auth.RegisterClientDto;
 import com.ctoutweb.lalamiam.infra.core.model.ClientRegisterBoundaryInputImpl;
 import org.springframework.stereotype.Component;
 

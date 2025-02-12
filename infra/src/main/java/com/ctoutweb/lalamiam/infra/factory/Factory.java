@@ -25,15 +25,18 @@ import com.ctoutweb.lalamiam.infra.model.impl.*;
 import com.ctoutweb.lalamiam.infra.model.security.CaptchaTokenImpl;
 import com.ctoutweb.lalamiam.infra.model.security.ICaptchaToken;
 import com.ctoutweb.lalamiam.infra.repository.entity.TokenEntity;
+import com.ctoutweb.lalamiam.infra.security.authentication.UserPrincipal;
 import com.ctoutweb.lalamiam.infra.security.csrf.CsrfTokenImpl;
 import com.ctoutweb.lalamiam.infra.security.jwt.IJwtIssue;
 import com.ctoutweb.lalamiam.infra.security.jwt.impl.JwtIssueImpl;
 import com.ctoutweb.lalamiam.infra.service.ICryptoService;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Properties;
 
 @Component
@@ -101,5 +104,15 @@ public class Factory {
 
   public IRegisterFile getRegisterFileImpl(InputStream registerFile, Long fileSize, String fileExtension) {
     return new RegisterFileImpl(registerFile, fileSize, fileExtension);
+  }
+
+  public UserPrincipal getUserPrincipal(Long id, String email, String password, boolean isAccountActive, List<SimpleGrantedAuthority> authorities) {
+    UserPrincipal userPrincipal = new UserPrincipal();
+    userPrincipal.setId(id);
+    userPrincipal.setEmail(email);
+    userPrincipal.setPassword(password);
+    userPrincipal.setIsAccountActive(isAccountActive);
+    userPrincipal.setAuthorities(authorities);
+    return  userPrincipal;
   }
 }

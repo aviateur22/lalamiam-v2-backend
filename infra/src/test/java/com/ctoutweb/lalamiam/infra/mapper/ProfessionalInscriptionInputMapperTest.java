@@ -2,7 +2,7 @@ package com.ctoutweb.lalamiam.infra.mapper;
 
 import com.ctoutweb.lalamiam.core.useCase.professionalInscription.port.IProfessionalInscriptionInput;
 import com.ctoutweb.lalamiam.infra.core.mapper.ProfessionalInscriptionInputMapper;
-import com.ctoutweb.lalamiam.infra.dto.RegisterProfessionalDto;
+import com.ctoutweb.lalamiam.infra.dto.auth.RegisterProfessionalDto;
 import com.ctoutweb.lalamiam.infra.factory.Factory;
 import com.ctoutweb.lalamiam.infra.service.ICryptoService;
 import com.ctoutweb.lalamiam.infra.service.IMessageService;
